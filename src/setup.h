@@ -36,4 +36,6 @@ extern char * g_pcLogin;
 extern char * g_pcPassword;
 extern struct option const * g_sLongOptions;
 
+void test_globals ( void );
+
 #endif /* __VARIABLES_H */

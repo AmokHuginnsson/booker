@@ -53,6 +53,7 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		g_pcProgramName = a_ppcArgv [ 0 ];
 		process_bookerrc_file ( );
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
+		test_globals ( );
 		core::log.rehash ( g_pcLogFileName, 0 );
 /* enabling ncurses ablilities  */
 		if ( ! console::is_enabled ( ) )console::enter_curses ();
