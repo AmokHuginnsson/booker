@@ -199,9 +199,11 @@ c: clean
 clean:
 	@echo -n "Cleaning ... "
 	@/bin/rm -f *~ *.out .*~ .*.swp *.bak *.log *.info .depend
-	@/bin/rm -f core
+	@/bin/rm -f core $(TARGET).core 1exec.core
+	@/bin/rm -f src/core src/$(TARGET).core src/1exec.core
 	@/bin/rm -f $(OBJS)
 	@/bin/rm -f $(TARGET)
+	@cln .
 	@echo "done."
 
 tags: $(SRCS) $(SRCEXS) $(HDRS)
