@@ -38,7 +38,7 @@ Copyright:
 #include "variables.h"
 
 /* windows begin */
-#include "dictionarybankwindow.h"
+#include "dictionarybank.h"
 #include "dictionarycontractingpartywindow.h"
 /* windows end */
 
@@ -126,7 +126,7 @@ int HBookerProcess::run_quit ( void )
 int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
-	add_window ( new HDictionatyBankWindow (
+	add_window ( new HDictionaryBank (
 				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
 				g_psDictionaryBankResources ),
 			g_psDictionarySubMenu [ 0 ].f_pcLabel );
@@ -151,7 +151,7 @@ int HBookerProcess::run_config ( void )
 	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_config" );
 	for ( i = 0; i < 8; i++ )
 		{
-	add_window ( new HDictionatyBankWindow (
+	add_window ( new HDictionaryBank (
 				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
 				g_psDictionaryBankResources ),
 			g_psDictionarySubMenu [ 0 ].f_pcLabel );
