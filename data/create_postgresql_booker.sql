@@ -4,7 +4,7 @@ DROP USER booker;
 CREATE USER booker WITH ENCRYPTED PASSWORD 'b00k3r' NOCREATEDB NOCREATEUSER;
 CREATE DATABASE booker WITH OWNER booker ENCODING 'latin2';
 
-\connect booker booker;
+\connect booker
 
 CREATE TABLE config
 	(
@@ -54,3 +54,4 @@ CREATE TABLE dictionary_bank
 	fax VARCHAR(32)
 	);
 
+GRANT SELECT,INSERT,UPDATE,DELETE ON config,account_map,dictionary_bank,dictionary_contracting_party TO booker;

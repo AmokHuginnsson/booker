@@ -3,7 +3,7 @@
 
 # authentication information needed for database access
 
-database booker.db3
+database booker
 login booker
 password b00k3r
 

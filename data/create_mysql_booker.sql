@@ -1,8 +1,11 @@
 use mysql;
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM booker@localhost;
+FLUSH PRIVILEGES;
 DELETE FROM user WHERE user='booker' AND host='localhost';
-INSERT INTO user (host, user, password) VALUES ('localhost','booker',PASSWORD('b00k3r'));
-
 DROP DATABASE IF EXISTS booker;
+INSERT INTO user (host, user, password) VALUES ('localhost','booker',PASSWORD('b00k3r'));
+FLUSH PRIVILEGES;
+
 
 CREATE DATABASE booker;
 use booker;

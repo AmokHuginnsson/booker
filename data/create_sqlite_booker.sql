@@ -1,3 +1,7 @@
+DROP TABLE dictionary_bank;
+DROP TABLE dictionary_contracting_party;
+DROP TABLE account_map;
+DROP TABLE config;
 CREATE TABLE config
 	(
 	id INTEGER PRIMARY KEY,
