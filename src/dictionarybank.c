@@ -104,7 +104,7 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		& g_psDictionaryBankColumnInfos [ 5 ], 0
 		},
 		{
-/*	tabl, colu, from, orde, r, c, h, w, labe, attr, f, t, spec, coli, parent */
+/*	tabl, colu, wher, orde, r, c, h, w, labe, attr, f, t, spec, coli, parent */
 		NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0
 		}
 	}, * g_psDictionaryBankResources = x_tag_g_psDictionaryBankResources;
