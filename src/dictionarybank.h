@@ -41,7 +41,6 @@ public:
 	/*{*/
 	HDictionatyBankWindow ( const char *, HDataBase *, OResource * );
 	virtual ~HDictionatyBankWindow ( void );
-	int init ( void );
 	virtual int handler_add ( int );
 	/*}*/
 protected:

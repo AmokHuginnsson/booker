@@ -55,7 +55,8 @@ OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 OResource x_tag_g_psDictionaryBankResources [ ] =
 	{
 		{
-		"dicionary_bank", "*", "", "name ASC", 1, 1, -8, -1, " &Banki \n",
+		"dictionary_bank", "name, city, street, postal_code, street_number, phone, id",
+		"", "name ASC", 1, 1, -8, -1, " &Banki \n",
 		NULL, D_CONTROL_MAIN, D_CONTROL_LIST, NULL, NULL, 0, NULL
 		},
 		{
@@ -114,34 +115,6 @@ HDictionatyBankWindow::~HDictionatyBankWindow ( void )
 	{
 	M_PROLOG
 	return;
-	M_EPILOG
-	}
-
-int HDictionatyBankWindow::init ( void )
-	{
-	M_PROLOG
-	int l_iError = 0;
-	HDataListControl * l_poList = NULL;
-	HDictionaryBankSet rs ( theProc.data_base ( ) );
-	l_iError = HDataWindow::init ( );
-	l_poList = ( HDataListControl * ) f_poMainControl;
-	rs.open ( );
-	while ( ! rs.is_eof ( ) )
-		{
-		l_poList->add_tail ( );
-		l_poList->tail ( ) [ 0 ] = rs.m_nazwa;
-		l_poList->tail ( ) [ 1 ] = rs.m_miasto;
-		l_poList->tail ( ) [ 2 ] = rs.m_ulica;
-		l_poList->tail ( ) [ 3 ] = rs.m_kod_pocztowy;
-		l_poList->tail ( ) [ 4 ] = rs.m_numer_ulicy;
-		l_poList->tail ( ) [ 5 ] = rs.m_telefon;
-		rs.move_next ( );
-		}
-	rs.close ( );
-	l_poList->enable ( true );
-	l_poList->set_focus ( );
-	refresh ( );
-	return ( l_iError );
 	M_EPILOG
 	}
 
