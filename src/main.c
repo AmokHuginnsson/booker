@@ -47,7 +47,6 @@ int receive ( HSerial &, char * const );
 int establish_connection ( HSerial & );
 int wait_for_connection ( HSerial & );
 
-
 int main ( int a_iArgc, char **a_ppcArgv )
 	{
 /*	variables declarations for main loop: */
@@ -63,8 +62,10 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		log.rehash ( g_pcLogFileName, 0 );
 /* enabling ncurses ablilities  */
 		if ( ! console::is_enabled ( ) )console::enter_curses ();
-		theProc.init ( g_pcProgramName );
-		theProc.run ( );
+//		theProc.init ( g_pcProgramName );
+//		theProc.run ( );
+		HSerial l_oSerial;
+		read_colector ( l_oSerial );
 /* ending ncurses sesion        */
 		if ( console::is_enabled ( ) )console::leave_curses ();
 /*	... there is the place main loop ends.               :OD-OT */
