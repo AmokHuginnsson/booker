@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <stdhapi.h> /* all hAPI headers */
-#include "dictionarybankwindow.h"
+#include "dictionarybank.h"
 
 #include "booker.h"
 
