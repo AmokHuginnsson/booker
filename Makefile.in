@@ -41,35 +41,33 @@ OOS = .oo
 .SUFFIXES: $(SS) $(OS) $(OOS) $(HS)
 CXX = g++
 LXX = g++
-#LXX = ccmalloc g++
-CXXFLAGS = \
-					 -W\
-					 -Wall\
-					 -Wcast-align\
-					 -Wconversion\
-					 -Werror\
-					 -Winline\
-					 -Wlarger-than-1024\
-					 -Wlong-long\
-					 -Wmissing-noreturn\
-					 -Wpointer-arith\
-						@SPECIAL_COMPILER_FLAGS@\
-					 -Wsign-compare\
-					 -Wundef\
-					 -Wwrite-strings
-#					 -Wbad-function-cast\
-					 -Wid-clash-2\
-					 -Wmissing-declarations\
-					 -Wmissing-prototypes\
-					 -Wnested-externs\
-					 -Wstrict-prototypes\
-					 -Wtraditional\ #deprecated
-HEAVYCXXFLAGS = \
-								@SPECIAL_HEAVY_COMPILER_FLAGS@\
-								-Waggregate-return\
-								-Wcast-qual\
-								-Wredundant-decls
-FLAGS2 =
+ARFLAGS = r
+WARNING_FLAGS =	\
+						@PEDANTIC_ERRORS@\
+						@EXTRA_WARNINGS@\
+						-Wall\
+						-Wcast-align\
+						-Wcast-qual\
+						-Wconversion\
+						-Werror\
+						-Winline\
+						-Wlarger-than-4096\
+						-Wlong-long\
+						-Wmissing-noreturn\
+						-Wpointer-arith\
+						-Wredundant-decls\
+						@WARN_SHADOW@\
+						-Wsign-compare\
+						-Wundef\
+						-Wwrite-strings
+#						-Wid-clash-2\ #deprecated
+#						-Wbad-function-cast\
+						-Wmissing-declarations\
+						-Wmissing-prototypes\
+						-Wnested-externs\
+						-Wstrict-prototypes\
+						-Wtraditional\ #C only
+#						-Waggregate-return\ # useless
 ifeq ($(HD),1)
 	DB = -D__DEBUGGER_BABUNI__
 endif
@@ -84,7 +82,7 @@ LINKER_PATH_FLAGS = -L. -L$(TARGETDIR) -L/usr/local/lib
 LINKER_PRIME_FLAGS =	-Wl,--demangle @SPECIAL_LINKER_FLAG@
 #	-fno-external-templates #deprecated
 
-COMPILER_FLAGS = $(COMPILER_OPTIMIZATION_FLAGS) $(COMPILER_DEBUG_FLAGS) $(COMPILER_PATH_FLAGS) $(COMPILER_PRIME_FLAGS)
+CXXFLAGS = $(WARNING_FLAGS) $(COMPILER_OPTIMIZATION_FLAGS) $(COMPILER_DEBUG_FLAGS) $(COMPILER_PATH_FLAGS) $(COMPILER_PRIME_FLAGS)
 LINKER_FLAGS = $(LINKER_PATH_FLAGS) $(LINKER_PRIME_FLAGS)
 
 #NODEBUG =
@@ -138,7 +136,7 @@ HDRS +=
 
 %.o : %.c
 	@echo -n "Compiling \`$@' ... "
-	@$(CXX) $(CXXFLAGS) $(HEAVYCXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo "done."
 
 # explict rule
@@ -146,7 +144,7 @@ HDRS +=
 
 %.oo : %.c
 	@echo -n "Compiling \`$@' ... "
-	@$(CXX) $(CXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo "done."
 
 #------------------------------------------------------------------------
@@ -170,7 +168,7 @@ dep: .depend
 src/main.oo: src/main.c
 	@echo -n "Compiling \`$@' (program version $(RELEASE)-`date +%Y%m%d`) ... "
 	@echo "#define VER \"$(RELEASE)-`date +%Y%m%d`\"" > version.h
-	@$(CXX) $(CXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo 'done.'
 
 $(PRJNAME).info : src/$(PRJNAME).texinfo
