@@ -19,6 +19,7 @@ AC_REVISION([[$ Revision: 0.0.0 $]])
 
 dnl We select default language.
 AC_LANG([C++])
+CXXFLAGS=["-L~/lib -L/usr/local/lib -I~/prog/include -I/usr/local/include"]
 
 dnl Set up how configure will handle header checks.
 AC_CONFIG_HEADERS([config.h])
@@ -56,7 +57,9 @@ AC_CHECK_FILE(
 		[AC_DEFINE([[__HOST_OS_TYPE_PLD__]]) _HOST______=['PLD. ---    ']],
 		[AC_CHECK_FILE(
 			[[/etc/rc]],
-			[AC_DEFINE([[__HOST_OS_TYPE_FREEBSD__]]) _HOST______=['FreeBSD. ---']],
+			[AC_DEFINE([[__HOST_OS_TYPE_FREEBSD__]]) _HOST______=['FreeBSD. ---']
+				AC_SUBST([EXTRA_LIB_PATHS], [[-L/usr/local/lib/mysql]])
+				CXXFLAGS=["$CXXFLAGS -L/usr/local/lib/mysql"]],
 			[AC_MSG_ERROR([Can not recognize host operating system type!])]
 		)]
 	)]
@@ -65,18 +68,29 @@ AC_MSG_RESULT([--- Guessed host operating system is $_HOST______       [[70%]]])
 
 dnl What special compiler flags we can set?
 AC_MSG_RESULT([--- Guessing specific compiler/linker features ... ---  [[71%]]])
-_FLAG__________________________='none, lucky for us none. ---    '
+_FLAGS='none. ---                      [[76%]]'
+CXXFLAGS_ORIG=$CXXFLAGS;
+CXXFLAGS=["--Wshadow"]
+AC_TRY_COMPILE([pthread],[],[AC_SUBST([SPECIAL_COMPILER_FLAGS],[--Wshadow])
+							_FLAGS=["--Wshadow"]],
+							[AC_MSG_WARN([[Can not use --Wshadow!]])])
+CXXFLAGS=["--pedantic-errors"]
+AC_TRY_COMPILE([stdlib],[],[AC_SUBST([SPECIAL_HEAVY_COMPILER_FLAGS],[--pedantic-errors])
+							_FLAGS=["$_FLAGS --pedantic-errors"]],
+							[AC_MSG_WARN([[Can not use --pedantic-errors!]])])
 CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
 				[],
 				[AC_SUBST([SPECIAL_LINKER_FLAG],
 					[[-Wl,--allow-shlib-undefined]])]
-					_FLAG__________________________=[['-Wl,--allow-shlib-undefined. ---']]
+					_FLAGS=[['-Wl,--allow-shlib-undefined. ---']]
 					CXXFLAGS=["-Wl,--allow-shlib-undefined"]
 					[AC_MSG_WARN([[We must use -Wl,--allow-shlib-undefined!]])])
-AC_MSG_RESULT([--- Guessed fetures are $_FLAG__________________________[[76%]]])
+AC_MSG_RESULT([--- Guessed fetures are: $_FLAGS])
 
 dnl Now we can look for all needed libraries.
+CXXFLAGS=$CXXFLAGS_ORIG;
+CPPFLAGS=$CXXFLAGS_ORIG;
 AC_MSG_RESULT([--- Looking for needed libraries ... ---                [[77%]]])
 AC_CHECK_LIB([ncurses],[initscr],
 							[],[AC_MSG_ERROR([Can not continue without ncurses.])])

@@ -54,18 +54,18 @@ CXXFLAGS = \
 					 -Wmissing-noreturn\
 					 -Wmissing-prototypes\
 					 -Wpointer-arith\
-					 -Wshadow\
+						@SPECIAL_COMPILER_FLAGS@\
 					 -Wsign-compare\
 					 -Wstrict-prototypes\
 					 -Wundef\
 					 -Wwrite-strings
 #					 -Wbad-function-cast\
-					 -Wid-clash-2\
-					 -Wmissing-declarations\
-					 -Wnested-externs\
-					 -Wtraditional\ #deprecated
+#					 -Wid-clash-2\
+#					 -Wmissing-declarations\
+#					 -Wnested-externs\
+#					 -Wtraditional\ #deprecated
 HEAVYCXXFLAGS = \
-								-pedantic-errors\
+								@SPECIAL_HEAVY_COMPILER_FLAGS@\
 								-Waggregate-return\
 								-Wcast-qual\
 								-Wredundant-decls
@@ -73,21 +73,19 @@ FLAGS2 =
 ifeq ($(HD),1)
 	DB = -D__DEBUGGER_BABUNI__
 endif
+COMPILER_PRIME_FLAGS = -D_GNU_SOURCE -march=i486
 ifdef NODEBUG
-	FLAGS3 = -O3 -fexpensive-optimizations
-	FLAGS4 = @SPECIAL_LINKER_FLAG@
+	COMPILER_OPTIMIZATION_FLAGS = -O3 -fexpensive-optimizations
 else
-	FLAGS3 = -g  -g3 -ggdb -ggdb3 -pg -D__DEBUG__ $(DB)
-	FLAGS4 = @SPECIAL_LINKER_FLAG@
+	COMPILER_DEBUG_FLAGS = -g -g3 -ggdb -ggdb3 -pg -D__DEBUG__ $(DB)
 endif
-FLAGS5 = -D_GNU_SOURCE -march=i486
+COMPILER_PATH_FLAGS = -I. -I$(HEADERSDIR) -I/usr/local/include
+LINKER_PATH_FLAGS = -L. -L$(TARGETDIR) -L/usr/local/lib @EXTRA_LIB_PATHS@
+LINKER_PRIME_FLAGS =	@SPECIAL_LINKER_FLAG@
 #	-fno-external-templates #deprecated
-FLAGS6 =
-FLAGS7 =
-FLAGS8 = 
 
-FLAGS = $(FLAGS1) $(FLAGS3) $(FLAGS5) $(FLAGS7)
-FLAGS0 = $(FLAGS2) $(FLAGS4) $(FLAGS6) $(FLAGS8)
+COMPILER_FLAGS = $(COMPILER_OPTIMIZATION_FLAGS) $(COMPILER_DEBUG_FLAGS) $(COMPILER_PATH_FLAGS) $(COMPILER_PRIME_FLAGS)
+LINKER_FLAGS = $(LINKER_PATH_FLAGS) $(LINKER_PRIME_FLAGS)
 
 #NODEBUG =
 LIBS =
@@ -145,7 +143,7 @@ HDRS +=
 
 %.o : %.c
 	@echo -n "Compiling \`$@' ... "
-	@$(CXX) $(CXXFLAGS) $(HEAVYCXXFLAGS) $(FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $(HEAVYCXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo "done."
 
 # explict rule
@@ -153,7 +151,7 @@ HDRS +=
 
 %.oo : %.c
 	@echo -n "Compiling \`$@' ... "
-	@$(CXX) $(CXXFLAGS) $(FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo "done."
 
 #------------------------------------------------------------------------
@@ -177,7 +175,7 @@ dep: .depend
 src/main.oo: src/main.c
 	@echo -n "Compiling \`$@' (program version $(RELEASE)-`date +%Y%m%d`) ... "
 	@echo "#define VER \"$(RELEASE)-`date +%Y%m%d`\"" > version.h
-	@$(CXX) $(CXXFLAGS) $(FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
+	@$(CXX) $(CXXFLAGS) $(COMPILER_FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo 'done.'
 
 $(PRJNAME).info : src/$(PRJNAME).texinfo
@@ -185,7 +183,7 @@ $(PRJNAME).info : src/$(PRJNAME).texinfo
 
 $(TARGET): $(OBJS)
 	@echo -n "Linking \`$@' ... "
-	@$(LXX) $(FLAGS0) -o $(TARGET) $(OBJS) $(LIBS) 2>&1 | tee -a make.log
+	@$(LXX) $(LINKER_FLAGS) -o $(TARGET) $(OBJS) $(LIBS) 2>&1 | tee -a make.log
 ifdef NODEBUG
 	@strip $(TARGET)
 endif
@@ -216,11 +214,11 @@ tags: $(SRCS) $(SRCEXS) $(HDRS)
 m: mrproper
 mrproper: clean
 	@echo -n "Purging ... "
-	@/bin/rm -f $(PRJNAME) make.log version.h src/.gt_* src/tags
+	@/bin/rm -f $(PRJNAME) make.log version.h src/.gt_* src/tags 1exec.core src/1exec.core
 	@echo "done."
 
 purge: mrproper
-	/bin/rm -rf autom4te.cache configure config.cache config.log config.status
+	/bin/rm -rf autom4te.cache configure configure.lineno config.cache config.log config.status
 	/bin/rm -rf Makefile config.h
 
 b: bin
