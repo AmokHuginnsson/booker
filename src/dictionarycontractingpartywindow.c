@@ -72,22 +72,22 @@ int HDictionaryContractingPartyWindow::init ( void )
 			" &Kontrahenci: \n" );
 	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			l_poControl = new HEditControl ( this,
-				- 7, 1, 18, 1, " &Imiê: \n", 32, "",
+				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "Nazwisko", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 20, 28, 1, " &Nazwisko: \n",
+			l_poControl = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "Ulica", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 49, 29, 1, " &Ulica: \n",
+			l_poControl = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, 1, 32, 1, " &Miasto: \n", 32, "",
+			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, 49, 29, 1, " &E-mail: \n", 48, "",
+			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
 			" &Kombo Testowe: \n", 32 );
