@@ -94,7 +94,6 @@ LIBS += -lhcore
 LIBS += -lhconsole
 LIBS += -lhdata
 LIBS += -ltools
-LIBS += -lmysqlclient
 #	LIBS += -l
 
 STATICLIBS =
@@ -105,7 +104,6 @@ STATICLIBS += ~/lib/libhdata.a
 #STATICLIBS += ~/lib/libmysql_driver.a
 #STATICLIBS += ~/lib/libpostgresql_driver.a
 STATICLIBS += ~/lib/libdbwrapper.a
-STATICLIBS += -lmysqlclient
 STATICLIBS += -rdynamic -ldl
 STATICLIBS += -lncurses
 #STATICLIBS += -lccmalloc
