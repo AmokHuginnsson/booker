@@ -51,7 +51,7 @@ OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 	{
 		{	-1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{ -1, "miasto", 1, D_ALIGN_LEFT, D_TYPE_HSTRING },
-		{ -1, "ulica", 2, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "kwota", 2, D_ALIGN_RIGHT, D_TYPE_DOUBLE },
 		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
@@ -134,12 +134,14 @@ int HDictionaryBank::handler_add ( int a_iCode )
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
 	HItem * l_poIitem = NULL, l_oItem ( 6 );
+	HRandomizer l_oRnd ( 0 );
 	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls [ 0 ] );
 	l_oAnalyser.analyse ( "A+B" );
 	f_poStatusBar->init_progress ( 10000, " Precaching ... " );
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
 		{
-		l_dValue = l_poList->quantity ( ) / 100.;
+/*		l_dValue = l_poList->quantity ( ) / 100.;*/
+		l_dValue = ( ( double ) l_oRnd.rnd ( ) ) / 100.;
 /*		
 		l_oAnalyser [ 'A' ] = l_dValue;
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
@@ -148,7 +150,8 @@ int HDictionaryBank::handler_add ( int a_iCode )
 		l_poIitem = & l_poList->add_tail ( l_oItem );
 		( * l_poIitem ) [ 0 ] = util::kwota_slownie ( l_dValue );
 		( * l_poIitem ) [ 1 ] = "wype³niacz";
-		( * l_poIitem ) [ 2 ] = HString ( l_dValue );
+/*		( * l_poIitem ) [ 2 ] = HString ( l_dValue );*/
+		( * l_poIitem ) [ 2 ] = l_dValue;
 		f_poStatusBar->update_progress ( l_iCtr );
 		}
 /*
@@ -159,3 +162,4 @@ int HDictionaryBank::handler_add ( int a_iCode )
 	return ( a_iCode );
 	M_EPILOG
 	}
+
