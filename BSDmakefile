@@ -1,7 +1,21 @@
 # This is wrapper around GNU make.
 
-all: banner
+all: Makefile
+	@make banner
+	@echo "Invoking GNU make (gmake)."
 	@gmake all
+
+Makefile: configure
+	@make banner
+	@echo "Generating \`Makefile' and rest of necessary files."
+	@./configure
+	@echo "Ready for \`make'."
+
+configure:
+	@make banner
+	@echo -n "Generating \`configure' script ... "
+	-@autoconf 2> /dev/null
+	@echo "done."
 
 b: bin
 
@@ -40,5 +54,6 @@ purge: banner
 	@gmake purge
 
 banner:
-	@echo "--- It is only a wrapper, use GNU make (gmake). ---"
+	@echo "[1m!!![m It is only a wrapper, use GNU make (gmake). [1m!!![m"
 
+# vim: ft=make
