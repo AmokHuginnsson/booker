@@ -73,7 +73,7 @@ FLAGS2 =
 ifeq ($(HD),1)
 	DB = -D__DEBUGGER_BABUNI__
 endif
-COMPILER_PRIME_FLAGS = -pipe -D_GNU_SOURCE -march=i486
+COMPILER_PRIME_FLAGS = -x c++ -pipe -D_GNU_SOURCE -march=i486
 ifdef NODEBUG
 	COMPILER_OPTIMIZATION_FLAGS = -O3 -fexpensive-optimizations
 else
@@ -81,7 +81,7 @@ else
 endif
 COMPILER_PATH_FLAGS = -I. -I$(HEADERSDIR) -I/usr/local/include
 LINKER_PATH_FLAGS = -L. -L$(TARGETDIR) -L/usr/local/lib
-LINKER_PRIME_FLAGS =	@SPECIAL_LINKER_FLAG@
+LINKER_PRIME_FLAGS =	-Wl,--demangle @SPECIAL_LINKER_FLAG@
 #	-fno-external-templates #deprecated
 
 COMPILER_FLAGS = $(COMPILER_OPTIMIZATION_FLAGS) $(COMPILER_DEBUG_FLAGS) $(COMPILER_PATH_FLAGS) $(COMPILER_PRIME_FLAGS)
@@ -194,14 +194,12 @@ rebuild: clean
 
 c: clean
 clean:
-	@echo -n "Cleaning ... "
 	@/bin/rm -f *~ *.out .*~ .*.swp *.bak *.log *.info .depend
 	@/bin/rm -f core $(TARGET).core 1exec.core
 	@/bin/rm -f src/core src/$(TARGET).core src/1exec.core
 	@/bin/rm -f $(OBJS)
 	@/bin/rm -f $(TARGET)
 	@cln .
-	@echo "done."
 
 tags: $(SRCS) $(SRCEXS) $(HDRS)
 	@echo -n "Rehashing tags ... "
