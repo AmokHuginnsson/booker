@@ -31,13 +31,13 @@ Copyright:
 
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
-		{ 160, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, 8 },
-		{ 32, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$", false, false, false, 8 },
-		{ 48, "", "^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, 8 },
-		{ 8, "", "^[0-9 -]*$", false, false, false, 8 },
-		{ 6, "", "^[0-9a-zA-Z]*$", false, false, false, 8 },
-		{ 17, "", "^[0-9 ()-]*$", false, false, false, 8 },
-		{	0, NULL, NULL, false, false, false, 0	}
+		{ 160, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, false, 8 },
+		{ 32, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$", false, false, false, false, 8 },
+		{ 48, "", "^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, false, 8 },
+		{ 8, "", "^[0-9 -]*$", false, false, false, false, 8 },
+		{ 6, "", "^[0-9a-zA-Z]*$", false, false, false, false, 8 },
+		{ 17, "", "^[0-9 ()-]*$", false, false, false, false, 8 },
+		{	0, NULL, NULL, false, false, false, false, 0	}
 	};
 
 OListControlResource g_psDictionaryBankListControls [ ] =
