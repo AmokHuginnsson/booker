@@ -1,6 +1,6 @@
 CREATE TABLE config
 	(
-	id SERIAL,
+	id INTEGER PRIMARY KEY,
 	name VARCHAR(16) NOT NULL,
 	integer_value INT4,
 	text_value VARCHAR(255),
@@ -10,7 +10,7 @@ CREATE TABLE config
 	);
 CREATE TABLE account_map
 	(
-	id SERIAL,
+	id INTEGER PRIMARY KEY,
 	id_account_map INT4 NOT NULL,
 	number VARCHAR(8),
 	full_number VARCHAR(32),
@@ -18,7 +18,7 @@ CREATE TABLE account_map
 	);
 CREATE TABLE dictionary_contracting_party
 	(
-	id SERIAL,
+	id INTEGER PRIMARY KEY,
 	name VARCHAR(32),
 	surname VARCHAR(32),
 	tin VARCHAR(16),
@@ -35,7 +35,7 @@ CREATE TABLE dictionary_contracting_party
 	);
 CREATE TABLE dictionary_bank
 	(
-	id SERIAL,
+	id INTEGER PRIMARY KEY,
 	name VARCHAR(128),
 	country VARCHAR(32),
 	city VARCHAR(32),
