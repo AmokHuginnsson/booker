@@ -56,22 +56,22 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_poList = new HListControl ( this, 1, 1, - 8, - 1, " &Kontrahenci: \n" );
 	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			l_poControl = new HEditControl ( this,
-				- 7, 1, 18, 32, " &Imiê: \n", "",
+				- 7, 1, 18, 1, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "Nazwisko", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 20, 28, 32, " &Nazwisko: \n",
-				"", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
+			l_poControl = new HEditControl ( this, - 7, 20, 28, 1, " &Nazwisko: \n",
+				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "Ulica", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 49, 29, 32, " &Ulica: \n",
-				"", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
+			l_poControl = new HEditControl ( this, - 7, 49, 29, 1, " &Ulica: \n",
+				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, 1, 32, 32, " &Miasto: \n", "",
+			new HEditControl ( this, - 4, 1, 32, 1, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, 49, 29, 48, " &E-mail: \n", "",
+			new HEditControl ( this, - 4, 49, 29, 1, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )

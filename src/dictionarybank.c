@@ -58,25 +58,25 @@ int HDictionatyBankWindow::init ( void )
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1,
 			" &Banki: \n" );
 	l_poList->add_column ( -1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 1, - 25, 160,
-				" &Nazwa: \n", "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
+			l_poControl = new HEditControl ( this, - 7, 1, - 25, 1,
+				" &Nazwa: \n", 160, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "miasto", 1, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, - 24, 23, 32,
-				" &Miasto: \n", "",	"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ ]*$" ) );
+			l_poControl = new HEditControl ( this, - 7, - 24, 23, 1,
+				" &Miasto: \n", 32, "",	"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ ]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "ulica", 2, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 4, 1, - 33, 48, " &Ulica: \n",
-				"", "^[0-9a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
+			l_poControl = new HEditControl ( this, - 4, 1, - 33, 1, " &Ulica: \n",
+				48, "", "^[0-9a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, - 32, 7, 8, " &Kod: \n", "",
+			new HEditControl ( this, - 4, - 32, 7, 1, " &Kod: \n", 8, "",
 				"^[0-9 -]*$" ) );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, - 24, 5, 6, " &Numer: \n", "",
+			new HEditControl ( this, - 4, - 24, 5, 1, " &Numer: \n", 6, "",
 				"^[0-9a-zA-Z]*$" ) );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			new HEditControl ( this, - 4, - 15, 14, 17, " &Telefon: \n", "",
+			new HEditControl ( this, - 4, - 15, 14, 1, " &Telefon: \n", 17, "",
 				"^[0-9 ()-]*$" ) );
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )
