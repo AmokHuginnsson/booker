@@ -45,7 +45,7 @@ HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const cha
 								: HWindow ( a_pcTitle )
 	{
 	M_PROLOG
-	register_postprocess_handler ( KEY_DELETE,
+	register_postprocess_handler ( KEY_DELETE, NULL,
 			( int ( HWindow::* ) ( int ) ) & HDictionaryContractingPartyWindow::handler_delete );
 	return;
 	M_EPILOG
