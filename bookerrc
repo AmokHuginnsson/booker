@@ -1,5 +1,5 @@
 # .bookerrc is an `booker' 0.0.0 configuration file
-# tihs file ought to be in /etc/ and/or your home dirctory.
+# this file ought to be in /etc/ and/or your home dirctory.
 
 # authentication information needed for database access
 
