@@ -114,9 +114,9 @@ OBJS += cli_options!
 OBJS += rc_options
 OBJS += variables
 OBJS += booker
-OBJS += dictionarybankwindow!
+OBJS += dictionarybank!
 OBJS += dictionarycontractingpartyset
-OBJS += dictionarycontractingpartywindow
+OBJS += dictionarycontractingpartywindow!
 
 TARGET = 1exec
 ifdef NODEBUG
