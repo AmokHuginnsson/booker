@@ -53,7 +53,8 @@ AC_CHECK_FILE(
 	[[/etc/rc]],
 	[AC_DEFINE([[__HOST_OS_TYPE_FREEBSD__]]) _HOST________=['FreeBSD. ---  ']
 		AC_SUBST([ADDITIONAL_COMMAND],
-			[['ln -s lib$(NAME).so.$(RELEASE) lib$(NAME).so.$(VERSION).$(SUBVERSION);']])],
+			[['ln -s lib$(NAME).so.$(RELEASE) lib$(NAME).so.$(VERSION).$(SUBVERSION);']])
+		AC_SUBST([LIB_INTL],["-lintl"])],
 	[AC_CHECK_FILE(
 		[[/etc/debconf.conf]],
 		[AC_DEFINE([[__HOST_OS_TYPE_DEBIAN__]]) _HOST________=['Debian. ---   ']],

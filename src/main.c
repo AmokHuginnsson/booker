@@ -28,6 +28,7 @@ Copyright:
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
+#include <libintl.h>
 
 #include <stdhapi.h> /* all hAPI headers */
 M_CVSID ( "$CVSHeader$" );
@@ -77,7 +78,7 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		xfree ( ( void * ) g_pcLogin );
 	if ( g_pcDataBase )
 		xfree ( ( void * ) g_pcDataBase );
-	fprintf ( stderr, "Done.\n" ); 
+	fprintf ( stderr, "%s.\n", _( "Done" ) ); 
 	return ( 0 );
 	}
 

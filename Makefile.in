@@ -89,12 +89,12 @@ LINKER_FLAGS = $(LINKER_PATH_FLAGS) $(LINKER_PRIME_FLAGS)
 
 #NODEBUG =
 LIBS =
-#LIBS += -rdynamic -ldl
 LIBS += -lhcore
 LIBS += -lhconsole
 LIBS += -lhdata
 LIBS += -ltools
-#	LIBS += -l
+LIBS += @LIB_INTL@
+LIBS += 
 
 STATICLIBS =
 STATICLIBS += ~/lib/libhconsole.a
