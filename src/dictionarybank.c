@@ -30,22 +30,29 @@ Copyright:
 #include "booker.h"
 #include "dictionarybankset.h"
 
-
-OEditControlResource l_psDictionaryBankEditControls [ ] =
+OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
-		{ /* Nazwa */
-		160, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$", false, false, false, 8
-		}, 
+		{ 160, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$", false, false, false, 8 },
+		{ 32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ ]*$", false, false, false, 8 },
+		{ 48, "", "^[0-9a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$", false, false, false, 8 },
+		{ 8, "", "^[0-9 -]*$", false, false, false, 8 },
+		{ 6, "", "^[0-9a-zA-Z]*$", false, false, false, 8 },
+		{ 17, "", "^[0-9 ()-]*$", false, false, false, 8 },
 		{	0, NULL, NULL, false, false, false, 0	}
 	};
 
-OColumnInfo l_psDictionaryBankColumnInfos [ ] =
+OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 	{
 		{	-1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "miasto", 1, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "ulica", 2, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{	0, NULL, 0, 0, 0 }
 	};
 
-OResource l_psDictionaryBankResources [ ] =
+OResource x_tag_g_psDictionaryBankResources [ ] =
 	{
 		{
 		"dicionary_bank", "*", "", "name ASC", 1, 1, -8, -1, " &Banki \n",
@@ -54,14 +61,47 @@ OResource l_psDictionaryBankResources [ ] =
 		{
 		NULL, NULL, NULL, NULL, -7, 1, -25, 1, " &Nazwa: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& l_psDictionaryBankResources [ 0 ],
-		& l_psDictionaryBankColumnInfos [ 0 ], 0, NULL
+		& g_psDictionaryBankResources [ 0 ],
+		& g_psDictionaryBankColumnInfos [ 0 ], 0, NULL
 		},
-		{	NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0, NULL	}
-	};
+		{
+		NULL, NULL, NULL, NULL, - 7, - 24, 23, 1, " &Miasto: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& g_psDictionaryBankResources [ 1 ],
+		& g_psDictionaryBankColumnInfos [ 1 ], 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, - 4, 1, - 33, 1, " &Ulica: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& g_psDictionaryBankResources [ 2 ],
+		& g_psDictionaryBankColumnInfos [ 2 ], 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, - 4, - 32, 7, 1, " &Kod: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& g_psDictionaryBankResources [ 3 ],
+		& g_psDictionaryBankColumnInfos [ 3 ], 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, - 4, - 24, 5, 1, " &Numer: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& g_psDictionaryBankResources [ 4 ],
+		& g_psDictionaryBankColumnInfos [ 4 ], 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, - 4, - 15, 14, 1, " &Telefon: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& g_psDictionaryBankResources [ 4 ],
+		& g_psDictionaryBankColumnInfos [ 4 ], 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0, NULL
+		}
+	}, * g_psDictionaryBankResources = x_tag_g_psDictionaryBankResources;
 
-HDictionatyBankWindow::HDictionatyBankWindow ( const char * a_pcTitle )
-								: HWindow ( a_pcTitle )
+HDictionatyBankWindow::HDictionatyBankWindow ( const char * a_pcTitle,
+		HDataBase * a_poDataBase, OResource * a_psResources )
+								: HDataWindow ( a_pcTitle, a_poDataBase, a_psResources )
 	{
 	M_PROLOG
   register_postprocess_handler ( 'a', 
@@ -81,10 +121,12 @@ int HDictionatyBankWindow::init ( void )
 	{
 	M_PROLOG
 	int l_iError = 0;
-	HControl * l_poControl = NULL;
-	HListControl * l_poList = NULL;
+//	HControl * l_poControl = NULL;
+	HDataListControl * l_poList = NULL;
 	HDictionaryBankSet rs ( theProc.data_base ( ) );
-	l_iError = HWindow::init ( );
+	l_iError = HDataWindow::init ( );
+	l_poList = ( HDataListControl * ) f_poMainControl;
+/*
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1,
 			" &Banki: \n" );
 	l_poList->add_column ( -1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING,
@@ -108,6 +150,7 @@ int HDictionatyBankWindow::init ( void )
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			new HEditControl ( this, - 4, - 15, 14, 1, " &Telefon: \n", 17, "",
 				"^[0-9 ()-]*$" ) );
+*/
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )
 		{

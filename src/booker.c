@@ -127,7 +127,8 @@ int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
 	add_window ( new HDictionatyBankWindow (
-				g_psDictionarySubMenu [ 0 ].f_pcLabel ),
+				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
+				g_psDictionaryBankResources ),
 			g_psDictionarySubMenu [ 0 ].f_pcLabel );
 	return ( 0 );
 	M_EPILOG
@@ -151,7 +152,8 @@ int HBookerProcess::run_config ( void )
 	for ( i = 0; i < 8; i++ )
 		{
 	add_window ( new HDictionatyBankWindow (
-				g_psDictionarySubMenu [ 0 ].f_pcLabel ),
+				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
+				g_psDictionaryBankResources ),
 			g_psDictionarySubMenu [ 0 ].f_pcLabel );
 		}
 	refresh ( );

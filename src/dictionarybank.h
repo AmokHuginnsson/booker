@@ -27,9 +27,11 @@ Copyright:
 #ifndef __DICTIONARYBANKWINDOW_H
 #define __DICTIONARYBANKWINDOW_H
 
-#include <hwindow.h>
+#include <hdatawindow.h>
 
-class HDictionatyBankWindow : public HWindow
+extern OResource * g_psDictionaryBankResources;
+
+class HDictionatyBankWindow : public HDataWindow
 	{
 protected:
 	/*{*/
@@ -37,7 +39,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionatyBankWindow ( const char * );
+	HDictionatyBankWindow ( const char *, HDataBase *, OResource * );
 	virtual ~HDictionatyBankWindow ( void );
 	int init ( void );
 	virtual int handler_add ( int );
