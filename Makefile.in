@@ -210,7 +210,7 @@ clean:
 
 tags: $(SRCS) $(SRCEXS) $(HDRS)
 	@echo -n "Rehashing tags ... "
-	@ctags --langmap=c++:.c ./*.c
+	@ctags --langmap=c++:.c ./src/*.c
 	@touch config.h
 	@echo "done."
 
