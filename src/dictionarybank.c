@@ -61,38 +61,38 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		{
 		NULL, NULL, NULL, NULL, -7, 1, -25, 1, " &Nazwa: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 0 ],
+		& g_psDictionaryBankEditControls [ 0 ],
 		& g_psDictionaryBankColumnInfos [ 0 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, - 7, - 24, 23, 1, " &Miasto: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 1 ],
+		& g_psDictionaryBankEditControls [ 1 ],
 		& g_psDictionaryBankColumnInfos [ 1 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, 1, - 33, 1, " &Ulica: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 2 ],
+		& g_psDictionaryBankEditControls [ 2 ],
 		& g_psDictionaryBankColumnInfos [ 2 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 32, 7, 1, " &Kod: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 3 ],
+		& g_psDictionaryBankEditControls [ 3 ],
 		& g_psDictionaryBankColumnInfos [ 3 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 24, 5, 1, " &Numer: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 4 ],
+		& g_psDictionaryBankEditControls [ 4 ],
 		& g_psDictionaryBankColumnInfos [ 4 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 15, 14, 1, " &Telefon: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
-		& g_psDictionaryBankResources [ 4 ],
-		& g_psDictionaryBankColumnInfos [ 4 ], 0, NULL
+		& g_psDictionaryBankEditControls [ 5 ],
+		& g_psDictionaryBankColumnInfos [ 5 ], 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0, NULL
