@@ -52,18 +52,18 @@ CXXFLAGS = \
 					 -Wlarger-than-1024\
 					 -Wlong-long\
 					 -Wmissing-noreturn\
-					 -Wmissing-prototypes\
 					 -Wpointer-arith\
 						@SPECIAL_COMPILER_FLAGS@\
 					 -Wsign-compare\
-					 -Wstrict-prototypes\
 					 -Wundef\
 					 -Wwrite-strings
 #					 -Wbad-function-cast\
-#					 -Wid-clash-2\
-#					 -Wmissing-declarations\
-#					 -Wnested-externs\
-#					 -Wtraditional\ #deprecated
+					 -Wid-clash-2\
+					 -Wmissing-declarations\
+					 -Wmissing-prototypes\
+					 -Wnested-externs\
+					 -Wstrict-prototypes\
+					 -Wtraditional\ #deprecated
 HEAVYCXXFLAGS = \
 								@SPECIAL_HEAVY_COMPILER_FLAGS@\
 								-Waggregate-return\
@@ -92,6 +92,7 @@ LIBS =
 LIBS += -lhcore
 LIBS += -lhconsole
 LIBS += -lhdata
+LIBS += -ldbwrapper
 LIBS += -ltools
 LIBS += 
 
