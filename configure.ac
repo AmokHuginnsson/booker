@@ -87,15 +87,17 @@ AC_CHECK_LIB([pq],[PQsetdbLogin],
 							[],[AC_MSG_ERROR([Can not continue without PostGreSQL.])])
 dnl WARNING!!! Names in c++ objects are _mangled_ so we need so use
 dnl WARNING!!! this cryptic names here (I hope it is portable).
+dnl UPDATE!: Now I know it is not portable across direrent versions of
+dnl UPDATE!: compiler, so I used tricky hack with 'main'.
 AC_CHECK_LIB([hcore],[xmalloc],
 							[],[AC_MSG_ERROR([Can not continue without hcore.])])
-AC_CHECK_LIB([hconsole],[_ZN7console12enter_cursesEv],
+AC_CHECK_LIB([hconsole],[main],
 							[],[AC_MSG_ERROR([Can not continue without hconsole.])])
-AC_CHECK_LIB([tools],[_ZN7signals12set_handlersEv],
+AC_CHECK_LIB([tools],[main],
 							[],[AC_MSG_ERROR([Can not continue without tools.])])
-AC_CHECK_LIB([dbwrapper],[_ZN9dbwrapper10db_connectE],
+AC_CHECK_LIB([dbwrapper],[main],
 							[],[AC_MSG_ERROR([Can not continue without dbwrapper.])])
-AC_CHECK_LIB([hdata],[_ZN12HDataProcess4initEPKc],
+AC_CHECK_LIB([hdata],[main],
 							[],[AC_MSG_ERROR([Can not continue without hdata.])])
 AC_MSG_RESULT([--- All needed libraries found. ---                     [[92%]]])
 
