@@ -53,7 +53,7 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		g_pcProgramName = a_ppcArgv [ 0 ];
 		process_bookerrc_file ( );
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
-		log.rehash ( g_pcLogFileName, 0 );
+		core::log.rehash ( g_pcLogFileName, 0 );
 /* enabling ncurses ablilities  */
 		if ( ! console::is_enabled ( ) )console::enter_curses ();
 		theProc.init ( g_pcProgramName );
@@ -71,13 +71,13 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		delete e; 
 		}
 	if ( g_pcLogFileName )
-		xfree ( ( void * ) g_pcLogFileName );
+		xfree ( g_pcLogFileName );
 	if ( g_pcPassword )
-		xfree ( ( void * ) g_pcPassword );
+		xfree ( g_pcPassword );
 	if ( g_pcLogin )
-		xfree ( ( void * ) g_pcLogin );
+		xfree ( g_pcLogin );
 	if ( g_pcDataBase )
-		xfree ( ( void * ) g_pcDataBase );
+		xfree ( g_pcDataBase );
 	fprintf ( stderr, "%s.\n", _( "Done" ) ); 
 	return ( 0 );
 	}

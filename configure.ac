@@ -41,7 +41,6 @@ dnl and for c preprocesor
 AC_MSG_RESULT([--- Looking for c/c++ preprocessor and egrep ... ---    [[33%]]])
 AC_PROG_CPP
 AC_PROG_CXXCPP
-AC_PROG_EGREP
 
 dnl Looking for main libc headers
 AC_MSG_RESULT([--- Looking for main libc headers ... ---               [[41%]]])
@@ -51,10 +50,7 @@ dnl We need to know what operating system booker will be compiled on.
 AC_MSG_RESULT([--- Guessing host operating system ... ---              [[64%]]])
 AC_CHECK_FILE(
 	[[/etc/rc]],
-	[AC_DEFINE([[__HOST_OS_TYPE_FREEBSD__]]) _HOST________=['FreeBSD. ---  ']
-		AC_SUBST([ADDITIONAL_COMMAND],
-			[['ln -s lib$(NAME).so.$(RELEASE) lib$(NAME).so.$(VERSION).$(SUBVERSION);']])
-		AC_SUBST([LIB_INTL],["-lintl"])],
+	[AC_DEFINE([[__HOST_OS_TYPE_FREEBSD__]]) _HOST________=['FreeBSD. ---  ']],
 	[AC_CHECK_FILE(
 		[[/etc/debconf.conf]],
 		[AC_DEFINE([[__HOST_OS_TYPE_DEBIAN__]]) _HOST________=['Debian. ---   ']],

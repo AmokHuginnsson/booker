@@ -93,7 +93,6 @@ LIBS += -lhcore
 LIBS += -lhconsole
 LIBS += -lhdata
 LIBS += -ltools
-LIBS += @LIB_INTL@
 LIBS += 
 
 STATICLIBS =
