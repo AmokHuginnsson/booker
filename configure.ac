@@ -65,13 +65,15 @@ AC_MSG_RESULT([--- Guessed host operating system is $_HOST       [[74%]]])
 
 dnl What special compiler flags we can set?
 AC_MSG_RESULT([--- Guessing specific compiler/linker features ... ---  [[75%]]])
-_FLAG____________='unfortunetely none'
-CXXFLAGS=["$CXXFLAGS -fPIC -shared -Wl,--no-undefined -Wl,--fatal-warnings -Wl,-soname,conftest"]
+_FLAG_____________________='none, lucky for us none'
+CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;void foo(void){errno=0;}]],
+							[],
 							[AC_SUBST([SPECIAL_LINKER_FLAG],
-							[[-Wl,--no-undefined]])] _FLAG____________=[[-Wl,--no-undefined]],
-							[AC_MSG_WARN([[Can not use -Wl,--no-undefined!]])])
-AC_MSG_RESULT([--- Guessed fetures are $_FLAG____________. ---         [[83%]]])
+								[[-Wl,--allow-shlib-undefined]])]
+								_FLAG_____________________=[[-Wl,--allow-shlib-undefined]]
+							[AC_MSG_WARN([[We must use -Wl,--allow-shlib-undefined!]])])
+AC_MSG_RESULT([--- Guessed fetures are $_FLAG_____________________. ---[[83%]]])
 
 CXXFLAGS=[""]
 
@@ -85,7 +87,7 @@ AC_CHECK_LIB([pq],[PQsetdbLogin],
 							[],[AC_MSG_ERROR([Can not continue without PostGreSQL.])])
 dnl WARNING!!! Names in c++ objects are _mangled_ so we need so use
 dnl WARNING!!! this cryptic names here (I hope it is portable).
-AC_CHECK_LIB([hcore],[_Z7xmallocj],
+AC_CHECK_LIB([hcore],[xmalloc],
 							[],[AC_MSG_ERROR([Can not continue without hcore.])])
 AC_CHECK_LIB([hconsole],[_ZN7console12enter_cursesEv],
 							[],[AC_MSG_ERROR([Can not continue without hconsole.])])

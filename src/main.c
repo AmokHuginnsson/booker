@@ -24,7 +24,6 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <ncurses.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>

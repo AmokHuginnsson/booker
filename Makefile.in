@@ -75,10 +75,10 @@ ifeq ($(HD),1)
 endif
 ifdef NODEBUG
 	FLAGS3 = -O3 -fexpensive-optimizations
-	FLAGS4 =
+	FLAGS4 = @SPECIAL_LINKER_FLAG@
 else
 	FLAGS3 = -g  -g3 -ggdb -ggdb3 -pg -D__DEBUG__ $(DB)
-	FLAGS4 =
+	FLAGS4 = @SPECIAL_LINKER_FLAG@
 endif
 FLAGS5 = -D_GNU_SOURCE -march=i486
 #	-fno-external-templates #deprecated
