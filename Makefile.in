@@ -210,14 +210,13 @@ clean:
 
 tags: $(SRCS) $(SRCEXS) $(HDRS)
 	@echo -n "Rehashing tags ... "
-	@ctags --langmap=c++:.c ./src/*.c
-	@touch config.h
+	@ctags -o src/tags --langmap=c++:.c ./src/*.c
 	@echo "done."
 
 m: mrproper
 mrproper: clean
 	@echo -n "Purging ... "
-	@/bin/rm -f $(PRJNAME) tags make.log version.h
+	@/bin/rm -f $(PRJNAME) make.log version.h src/.gt_* src/tags
 	@echo "done."
 
 purge: mrproper
