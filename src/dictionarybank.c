@@ -65,46 +65,47 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		"name, city, street, postal_code, street_number, phone, id",
 		"", "name ASC", 1, 1, -8, -1, " &Banki \n",
 		NULL, D_CONTROL_MAIN, D_CONTROL_LIST,
-		& g_psDictionaryBankListControls [ 0 ],	NULL, 0, NULL
+		& g_psDictionaryBankListControls [ 0 ],	NULL, 0
 		},
 		{
 		NULL, NULL, NULL, NULL, -7, 1, 1, -25, " &Nazwa: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 0 ],
-		& g_psDictionaryBankColumnInfos [ 0 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 0 ], 0
 		},
 		{
 		NULL, NULL, NULL, NULL, - 7, - 24, 1, 23, " &Miasto: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 1 ],
-		& g_psDictionaryBankColumnInfos [ 1 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 1 ], 0
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, 1, 1, - 33, " &Ulica: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 2 ],
-		& g_psDictionaryBankColumnInfos [ 2 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 2 ], 0
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 32, 1, 7, " &Kod: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 3 ],
-		& g_psDictionaryBankColumnInfos [ 3 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 3 ], 0
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 24, 1, 5, " &Numer: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 4 ],
-		& g_psDictionaryBankColumnInfos [ 4 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 4 ], 0
 		},
 		{
 		NULL, NULL, NULL, NULL, - 4, - 15, 1, 14, " &Telefon: \n", NULL,
 		D_CONTROL_DATA, D_CONTROL_EDIT,
 		& g_psDictionaryBankEditControls [ 5 ],
-		& g_psDictionaryBankColumnInfos [ 5 ], 0, NULL
+		& g_psDictionaryBankColumnInfos [ 5 ], 0
 		},
 		{
-		NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0, NULL
+/*	tabl, colu, from, orde, r, c, h, w, labe, attr, f, t, spec, coli, parent */
+		NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0
 		}
 	}, * g_psDictionaryBankResources = x_tag_g_psDictionaryBankResources;
 
@@ -133,7 +134,7 @@ int HDictionaryBank::handler_add ( int a_iCode )
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
 	HItem * l_poIitem = NULL, l_oItem ( 6 );
-	HDataListControl * l_poList = ( HDataListControl * )f_psResourcesArray [ 0 ].f_poDataControl;
+	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls [ 0 ] );
 	l_oAnalyser.analyse ( "A+B" );
 	f_poStatusBar->init_progress ( 10000, " Precaching ... " );
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
