@@ -1,4 +1,5 @@
-# .`booker'rc is an `booker' 0.0.0 configuration file (ought to be in your home dirctory).
+# .bookerrc is an `booker' 0.0.0 configuration file
+# tihs file ought to be in /etc/ and/or your home dirctory.
 
 logfile x_booker.log
 
