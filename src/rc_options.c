@@ -41,15 +41,16 @@ OVariable g_psVars [ ] =
 		{ 0, NULL, NULL }
 	};
 
-void set_variables ( HString & a_roOption, HString & a_roValue )
+bool set_variables ( HString & a_roOption, HString & a_roValue )
 	{
 	printf ( "option: [%s], value: [%s]\n", ( char * ) a_roOption,
 			( char * ) a_roValue );
+	return ( false );
 	}
 
 int process_bookerrc_file ( void )
 	{
-	rc_file::process_rc_file ( "booker", g_psVars );
+	rc_file::process_rc_file ( "booker", NULL, g_psVars );
 	if ( ! g_pcLogFileName )
 		g_pcLogFileName = xstrdup ( "booker.log" );
 	return ( 0 );
