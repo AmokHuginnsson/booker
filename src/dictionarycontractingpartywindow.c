@@ -99,24 +99,24 @@ int HDictionaryContractingPartyWindow::init ( void )
 	f_oControls.exchange ( 3, 6 );
 	l_poCombo->add_column ( -1, "dummy_label", 1, D_ALIGN_LEFT, D_TYPE_HSTRING );
 	l_poCombo->enable ( true );
-	l_oItem [ 0 ] = "Ala";
+	l_oItem [ 0 ] ( "Ala" );
 	l_poCombo->add_orderly ( l_oItem );
-	l_oItem [ 0 ] = "ma";
+	l_oItem [ 0 ] ( "ma" );
 	l_poCombo->add_orderly ( l_oItem );
-	l_oItem [ 0 ] = "kota.";
+	l_oItem [ 0 ] ( "kota." );
 	l_poCombo->add_orderly ( l_oItem );
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )
 		{
 		l_poList->add_tail ( );
-		l_poList->tail ( ) [ 0 ] = rs.m_imie;
-		l_poList->tail ( ) [ 1 ] = rs.m_nazwisko;
-		l_poList->tail ( ) [ 2 ] = rs.m_ulica;
-		l_poList->tail ( ) [ 3 ] = rs.m_miasto;
-		l_poList->tail ( ) [ 4 ] = rs.m_email;
+		l_poList->tail ( ) [ 0 ] ( rs.m_imie );
+		l_poList->tail ( ) [ 1 ] ( rs.m_nazwisko );
+		l_poList->tail ( ) [ 2 ] ( rs.m_ulica );
+		l_poList->tail ( ) [ 3 ] ( rs.m_miasto );
+		l_poList->tail ( ) [ 4 ] ( rs.m_email );
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
-			l_oItem [ 0 ] = rs.m_telefon;
+			l_oItem [ 0 ] ( rs.m_telefon );
 			l_poCombo->add_orderly ( l_oItem );
 			}
 		rs.move_next ( );

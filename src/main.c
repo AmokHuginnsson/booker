@@ -69,10 +69,11 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		if ( hconsole::is_enabled ( ) )leave_curses ();
 /*	... there is the place main loop ends.               :OD-OT */
 		}
-	catch ( HException * e ) 
+	catch ( ... ) 
 		{
 /* ending ncurses sesion        */
 		if ( hconsole::is_enabled ( ) )leave_curses ();
+		throw;
 		}
 	if ( g_pcLogFileName )
 		xfree ( g_pcLogFileName );
