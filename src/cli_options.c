@@ -35,7 +35,10 @@ M_CVSID ( "$CVSHeader$" );
 #include "define.h"
 #include "variables.h"
 #include "cli_options.h"
-  
+
+using namespace stdhapi;
+using namespace stdhapi::hcore;
+
 /* Set all the option flags according to the switches specified.
    Return the index of the first non-option argument.                    */
 
@@ -55,7 +58,7 @@ does very much usefull things ... really \n", g_pcProgramName );
 
 int decode_switches ( int a_iArgc, char ** a_ppcArgv )
 	{
-	core::log ( D_LOG_INFO ) << "Decoding switches ... ";
+	hcore::log ( D_LOG_INFO ) << "Decoding switches ... ";
 	int l_c;
 	while ( ( l_c = getopt_long ( a_iArgc, a_ppcArgv, 
 					"q"	   /* quiet or silent                                       */
@@ -92,7 +95,7 @@ int decode_switches ( int a_iArgc, char ** a_ppcArgv )
 				}
 			}
 		}
-	core::log ( D_LOG_INFO ) << "done" << endl;
+	hcore::log ( D_LOG_INFO ) << "done" << endl;
 	return ( optind );
 	}
 

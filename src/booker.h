@@ -27,11 +27,11 @@ Copyright:
 #ifndef __PROCESS_H
 #define __PROCESS_H
 
-class HBookerProcess : public HDataProcess
+class HBookerProcess : public stdhapi::hdata::HDataProcess
 	{
 protected:
 	/*{*/
-	HDataBase * f_poDataBase;
+	stdhapi::dbwrapper::HDataBase * f_poDataBase;
 	/*}*/
 public:
 	/*{*/

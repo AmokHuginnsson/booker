@@ -30,6 +30,12 @@ M_CVSID ( "$CVSHeader$" );
 #include "booker.h"
 #include "dictionarybank.h"
 
+using namespace stdhapi::hcore;
+using namespace stdhapi::hconsole;
+using namespace stdhapi::tools;
+using namespace stdhapi::dbwrapper;
+using namespace stdhapi::hdata;
+
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
 		{ 160, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, false, 8 },

@@ -27,22 +27,22 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTYSET_H
 #define __DICTIONARYCONTRACTINGPARTYSET_H
 
-class HDictionaryContractingPartySet : public HRecordSet
+class HDictionaryContractingPartySet : public stdhapi::dbwrapper::HRecordSet
 	{
 public:
 	/*{*/
-	HString m_imie;
-	HString m_nazwisko;
-	HString m_nip;
-	HString m_kraj;
-	HString m_miasto;
-	HString m_ulica;
-	HString m_numer_ulicy;
-	HString m_numer_mieszkania;
-	HString m_kod_pocztowy;
-	HString m_telefon;
-	HString m_fax;
-	HString m_email;
+	stdhapi::hcore::HString m_imie;
+	stdhapi::hcore::HString m_nazwisko;
+	stdhapi::hcore::HString m_nip;
+	stdhapi::hcore::HString m_kraj;
+	stdhapi::hcore::HString m_miasto;
+	stdhapi::hcore::HString m_ulica;
+	stdhapi::hcore::HString m_numer_ulicy;
+	stdhapi::hcore::HString m_numer_mieszkania;
+	stdhapi::hcore::HString m_kod_pocztowy;
+	stdhapi::hcore::HString m_telefon;
+	stdhapi::hcore::HString m_fax;
+	stdhapi::hcore::HString m_email;
 	long int m_id_account_map;
 	/*}*/
 protected:
@@ -50,7 +50,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryContractingPartySet ( HDataBase * = NULL );
+	HDictionaryContractingPartySet ( stdhapi::dbwrapper::HDataBase * = NULL );
 	virtual ~HDictionaryContractingPartySet ( void );
 	/*}*/
 protected:

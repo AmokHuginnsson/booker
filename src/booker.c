@@ -45,6 +45,10 @@ M_CVSID ( "$CVSHeader$" );
 #include "dictionarycontractingpartywindow.h"
 /* windows end */
 
+using namespace stdhapi::hcore;
+using namespace stdhapi::hconsole;
+using namespace stdhapi::dbwrapper;
+
 #define CIP (int (HProcess::*)(void))
 
 OMenuItem g_psInspectionSubSubMenu [ ] =
@@ -151,7 +155,7 @@ int HBookerProcess::run_config ( void )
 	{
 	M_PROLOG
 	int i;
-	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_config" );
+	c_printf ( n_iHeight - 2, -1, 48, "run_config" );
 	for ( i = 0; i < 8; i++ )
 		{
 	add_window ( new HDictionaryBank (
@@ -167,7 +171,7 @@ int HBookerProcess::run_config ( void )
 int HBookerProcess::run_subject ( void )
 	{
 	M_PROLOG
-	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_subject" );
+	c_printf ( n_iHeight - 2, -1, 48, "run_subject" );
 	refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -176,7 +180,7 @@ int HBookerProcess::run_subject ( void )
 int HBookerProcess::run_account_map ( void )
 	{
 	M_PROLOG
-	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_account_map" );
+	c_printf ( n_iHeight - 2, -1, 48, "run_account_map" );
 	refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -185,7 +189,7 @@ int HBookerProcess::run_account_map ( void )
 int HBookerProcess::run_account_orders ( void )
 	{
 	M_PROLOG
-	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_account_orders" );
+	c_printf ( n_iHeight - 2, -1, 48, "run_account_orders" );
 	refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -194,7 +198,7 @@ int HBookerProcess::run_account_orders ( void )
 int HBookerProcess::run_regular_oblige ( void )
 	{
 	M_PROLOG
-	console::c_printf ( console::n_iHeight - 2, -1, 48, "run_regular_oblige" );
+	c_printf ( n_iHeight - 2, -1, 48, "run_regular_oblige" );
 	refresh ( );
 	return ( 0 );
 	M_EPILOG

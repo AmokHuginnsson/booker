@@ -29,6 +29,9 @@ M_CVSID ( "$CVSHeader$" );
 
 #include "dictionarycontractingpartyset.h"
 
+using namespace stdhapi::hcore;
+using namespace stdhapi::dbwrapper;
+
 HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase )
 	{
 	M_PROLOG

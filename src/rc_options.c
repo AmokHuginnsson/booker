@@ -33,6 +33,8 @@ M_CVSID ( "$CVSHeader$" );
 
 #include "variables.h"
 
+using namespace stdhapi::hcore;
+
 OVariable g_psVars [ ] =
 	{
 		{ D_TYPE_CHAR_POINTER, "logfile", & g_pcLogFileName },

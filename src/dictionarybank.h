@@ -27,16 +27,16 @@ Copyright:
 #ifndef __DICTIONARYBANK_H
 #define __DICTIONARYBANK_H
 
-extern OResource * g_psDictionaryBankResources;
+extern stdhapi::hdata::OResource * g_psDictionaryBankResources;
 
-class HDictionaryBank : public HDataWindow
+class HDictionaryBank : public stdhapi::hdata::HDataWindow
 	{
 protected:
 	/*{*/
 	/*}*/
 public:
 	/*{*/
-	HDictionaryBank ( const char *, HDataBase *, OResource * );
+	HDictionaryBank ( const char *, stdhapi::dbwrapper::HDataBase *, stdhapi::hdata::OResource * );
 	virtual ~HDictionaryBank ( void );
 	virtual int handler_add ( int );
 	/*}*/

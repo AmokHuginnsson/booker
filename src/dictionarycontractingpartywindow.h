@@ -27,11 +27,11 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTY_H
 #define __DICTIONARYCONTRACTINGPARTY_H
 
-class HDictionaryContractingPartyWindow : public HWindow
+class HDictionaryContractingPartyWindow : public stdhapi::hconsole::HWindow
 	{
 protected:
 	/*{*/
-	HListControl * f_poList;
+	stdhapi::hconsole::HListControl * f_poList;
 	/*}*/
 public:
 	/*{*/

@@ -39,6 +39,11 @@ M_CVSID ( "$CVSHeader$" );
 #include "cli_options.h"
 #include "rc_options.h"
 
+using namespace stdhapi;
+using namespace stdhapi::hcore;
+using namespace stdhapi::hconsole;
+using namespace stdhapi::tools;
+
 HBookerProcess theProc;
 
 int main ( int a_iArgc, char **a_ppcArgv )
@@ -55,19 +60,19 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		process_bookerrc_file ( );
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
 		test_globals ( );
-		core::log.rehash ( g_pcLogFileName, 0 );
+		hcore::log.rehash ( g_pcLogFileName, 0 );
 /* enabling ncurses ablilities  */
-		if ( ! console::is_enabled ( ) )console::enter_curses ();
+		if ( ! hconsole::is_enabled ( ) )enter_curses ();
 		theProc.init ( g_pcProgramName );
 		theProc.run ( );
 /* ending ncurses sesion        */
-		if ( console::is_enabled ( ) )console::leave_curses ();
+		if ( hconsole::is_enabled ( ) )leave_curses ();
 /*	... there is the place main loop ends.               :OD-OT */
 		}
 	catch ( HException * e ) 
 		{
 /* ending ncurses sesion        */
-		if ( console::is_enabled ( ) )console::leave_curses ();
+		if ( hconsole::is_enabled ( ) )leave_curses ();
 		}
 	if ( g_pcLogFileName )
 		xfree ( g_pcLogFileName );
