@@ -24,13 +24,12 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 
 #include <stdhapi.h>
+M_CVSID ( "$CVSHeader$" );
 
 #include "variables.h"
 

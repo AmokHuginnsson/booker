@@ -24,11 +24,10 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
+#include <stdhapi.h>
+M_CVSID ( "$CVSHeader$" );
 
 #include "dictionarycontractingpartyset.h"
-
-#include <hexception.h>
 
 HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase )
 	{

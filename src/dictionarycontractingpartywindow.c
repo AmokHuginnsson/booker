@@ -24,8 +24,6 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include "../config.h"
 
 #ifdef HAVE_NCURSES_H
@@ -37,9 +35,10 @@ char __CVSID__ [ ] = "$CVSHeader$";
 #endif /* not HAVE_NCURSES_NCURSES_H */
 
 #include <stdhapi.h> /* all hAPI headers */
-#include "dictionarycontractingpartywindow.h"
+M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
+#include "dictionarycontractingpartywindow.h"
 #include "dictionarycontractingpartyset.h"
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )

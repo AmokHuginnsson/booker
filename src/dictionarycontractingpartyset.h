@@ -27,8 +27,6 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTYSET_H
 #define __DICTIONARYCONTRACTINGPARTYSET_H
 
-#include <hrecordset.h>
-
 class HDictionaryContractingPartySet : public HRecordSet
 	{
 public:

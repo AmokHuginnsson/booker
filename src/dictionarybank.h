@@ -27,8 +27,6 @@ Copyright:
 #ifndef __DICTIONARYBANK_H
 #define __DICTIONARYBANK_H
 
-#include <hdatawindow.h>
-
 extern OResource * g_psDictionaryBankResources;
 
 class HDictionaryBank : public HDataWindow

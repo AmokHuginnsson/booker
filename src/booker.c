@@ -24,8 +24,6 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include "../config.h"
 
 #ifdef HAVE_NCURSES_H
@@ -35,6 +33,9 @@ char __CVSID__ [ ] = "$CVSHeader$";
 #else /* HAVE_NCURSES_NCURSES_H */
 #	error "No ncurses header available."
 #endif /* not HAVE_NCURSES_NCURSES_H */
+
+#include <stdhapi.h>
+M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
 #include "variables.h"

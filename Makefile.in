@@ -73,7 +73,7 @@ FLAGS2 =
 ifeq ($(HD),1)
 	DB = -D__DEBUGGER_BABUNI__
 endif
-COMPILER_PRIME_FLAGS = -D_GNU_SOURCE -march=i486
+COMPILER_PRIME_FLAGS = -pipe -D_GNU_SOURCE -march=i486
 ifdef NODEBUG
 	COMPILER_OPTIMIZATION_FLAGS = -O3 -fexpensive-optimizations
 else

@@ -24,19 +24,17 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <getopt.h>
 
 #include <stdhapi.h>
+M_CVSID ( "$CVSHeader$" );
 
-#include "cli_options.h"
-
-#include "define.h"
 #include "../version.h"
+#include "define.h"
 #include "variables.h"
+#include "cli_options.h"
   
 /* Set all the option flags according to the switches specified.
    Return the index of the first non-option argument.                    */

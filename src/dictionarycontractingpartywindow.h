@@ -27,8 +27,6 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTY_H
 #define __DICTIONARYCONTRACTINGPARTY_H
 
-#include <hwindow.h>
-
 class HDictionaryContractingPartyWindow : public HWindow
 	{
 protected:

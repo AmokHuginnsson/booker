@@ -24,20 +24,19 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
 
 #include <stdhapi.h> /* all hAPI headers */
+M_CVSID ( "$CVSHeader$" );
 
+#include "booker.h"
 #include "define.h"                                                    
 #include "variables.h"
 #include "cli_options.h"
 #include "rc_options.h"
-#include "booker.h"
 
 HBookerProcess theProc;
 

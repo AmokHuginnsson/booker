@@ -27,8 +27,6 @@ Copyright:
 #ifndef __PROCESS_H
 #define __PROCESS_H
 
-#include <stdhapi.h> /* all hAPI headers */
-
 class HBookerProcess : public HDataProcess
 	{
 protected:

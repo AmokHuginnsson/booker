@@ -24,12 +24,11 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-char __CVSID__ [ ] = "$CVSHeader$";
-
 #include <stdhapi.h> /* all hAPI headers */
-#include "dictionarybank.h"
+M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
+#include "dictionarybank.h"
 
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
