@@ -88,8 +88,11 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			new HEditControl ( this, - 4, 49, 29, 1, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
-	l_poCombo = new HComboboxControl ( this, - 10, 1, 4, 24,
-			" &Kombo Testowe: \n" );
+	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
+			" &Kombo Testowe: \n", 32 );
+	f_oControls.exchange ( 1, 6 );
+	f_oControls.exchange ( 2, 6 );
+	f_oControls.exchange ( 3, 6 );
 	l_poCombo->add_column ( -1, "dummy_label", 1, D_ALIGN_LEFT, D_TYPE_HSTRING );
 	l_poCombo->enable ( true );
 	l_oItem [ 0 ] = "Ala";
@@ -106,7 +109,12 @@ int HDictionaryContractingPartyWindow::init ( void )
 		l_poList->tail ( ) [ 1 ] = rs.m_nazwisko;
 		l_poList->tail ( ) [ 2 ] = rs.m_ulica;
 		l_poList->tail ( ) [ 3 ] = rs.m_miasto;
-//		l_poList->tail ( ) [ 4 ] = l_sMySqlRow [ 5 ];
+		l_poList->tail ( ) [ 4 ] = rs.m_email;
+		if ( ! rs.m_telefon.is_empty ( ) )
+			{
+			l_oItem [ 0 ] = rs.m_telefon;
+			l_poCombo->add_tail ( l_oItem );
+			}
 		rs.move_next ( );
 		}
 	rs.close ( );
