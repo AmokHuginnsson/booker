@@ -15,8 +15,8 @@ define go
 	run
 	source .breaks
 end
-file ./1exec -readnow -mapped
-symbol-file ./1exec -readnow -mapped
+file ./1exec -readnow
+symbol-file ./1exec -readnow
 share
 break main
 set language c++
