@@ -107,7 +107,11 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	M_PROLOG
 	HDataProcess::init ( a_pcProcessName );
 	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
+#ifdef __PLD_HOST__
+	f_oDataBase.login ( "booker:/var/lib/mysql/mysql.sock", "booker", "b00k3r" );
+#else /* __PLD_HOST__ */
 	f_oDataBase.login ( "booker", "booker", "b00k3r" );
+#endif /* not __PLD_HOST__ */
 	return ( 0 );
 	M_EPILOG
 	}
