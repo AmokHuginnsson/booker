@@ -114,7 +114,6 @@ OBJS += cli_options!
 OBJS += rc_options
 OBJS += variables
 OBJS += booker
-OBJS += dictionarybankset
 OBJS += dictionarybankwindow!
 OBJS += dictionarycontractingpartyset
 OBJS += dictionarycontractingpartywindow

@@ -28,7 +28,6 @@ Copyright:
 #include "dictionarybankwindow.h"
 
 #include "booker.h"
-#include "dictionarybankset.h"
 
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
