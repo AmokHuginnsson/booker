@@ -30,6 +30,36 @@ Copyright:
 #include "booker.h"
 #include "dictionarybankset.h"
 
+
+OEditControlResource l_psDictionaryBankEditControls [ ] =
+	{
+		{ /* Nazwa */
+		160, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, 8
+		}, 
+		{	0, NULL, NULL, false, false, false, 0	}
+	};
+
+OColumnInfo l_psDictionaryBankColumnInfos [ ] =
+	{
+		{	-1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{	0, NULL, 0, 0, 0 }
+	};
+
+OResource l_psDictionaryBankResources [ ] =
+	{
+		{
+		"dicionary_bank", "*", "", "name ASC", 1, 1, -8, -1, " &Banki \n",
+		NULL, D_CONTROL_MAIN, D_CONTROL_LIST, NULL, NULL, 0, NULL
+		},
+		{
+		NULL, NULL, NULL, NULL, -7, 1, -25, 1, " &Nazwa: \n", NULL,
+		D_CONTROL_DATA, D_CONTROL_EDIT,
+		& l_psDictionaryBankResources [ 0 ],
+		& l_psDictionaryBankColumnInfos [ 0 ], 0, NULL
+		},
+		{	NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, 0, NULL	}
+	};
+
 HDictionatyBankWindow::HDictionatyBankWindow ( const char * a_pcTitle )
 								: HWindow ( a_pcTitle )
 	{
