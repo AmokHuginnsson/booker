@@ -34,9 +34,10 @@ Copyright:
 
 void set_variables ( HString & a_roOption, HString & a_roValue )
 	{
-	if ( ! strcasecmp ( a_roOption, "logfile" ) )
+	if ( ! strcasecmp ( a_roOption, "logfile" ) && ( ! a_roValue.is_empty ( ) ) )
 		rc_file::rc_set_variable ( a_roValue, & g_pcLogFileName );
-	printf ( "option: [%s], value: [%s]\n", ( char * ) a_roOption, ( char * ) a_roValue );
+	printf ( "option: [%s], value: [%s]\n", ( char * ) a_roOption,
+			( char * ) a_roValue );
 	}
 
 int process_bookerrc_file ( void )
