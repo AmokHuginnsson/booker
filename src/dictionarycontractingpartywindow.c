@@ -90,7 +90,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
-			" &Kombo Testowe: \n", 32 );
+			" &Kombo Testowe: \n", 32, 128, D_MASK_EXTENDED );
 	f_oControls.exchange ( 1, 6 );
 	f_oControls.exchange ( 2, 6 );
 	f_oControls.exchange ( 3, 6 );
