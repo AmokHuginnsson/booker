@@ -82,11 +82,11 @@ AC_TRY_COMPILE([#include <stdlib.h>],[],
 							[AC_MSG_WARN([[Can not use -pedantic-errors!]])])
 CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
-				[],
+				[CXXFLAGS=$CXXFLAGS_ORIG],
 				[AC_SUBST([SPECIAL_LINKER_FLAG],
 					[[-Wl,--allow-shlib-undefined]])]
 					_FLAGS=[['-Wl,--allow-shlib-undefined. ---']]
-					CXXFLAGS=["-Wl,--allow-shlib-undefined"]
+					CXXFLAGS=["$CXXFLAGS_ORIG -Wl,--allow-shlib-undefined"]
 					[AC_MSG_WARN([[We must use -Wl,--allow-shlib-undefined!]])])
 if test "$_FLAGS" = "" ; then
 	_FLAGS='none. ---                      [[76%]]'
@@ -94,8 +94,7 @@ fi
 AC_MSG_RESULT([--- Guessed fetures are: $_FLAGS])
 
 dnl Now we can look for all needed libraries.
-CXXFLAGS=$CXXFLAGS_ORIG;
-CPPFLAGS=$CXXFLAGS_ORIG;
+CPPFLAGS=$CXXFLAGS;
 AC_MSG_RESULT([--- Looking for needed libraries ... ---                [[77%]]])
 AC_CHECK_LIB([ncurses],[initscr],
 							[],[AC_MSG_ERROR([Can not continue without ncurses.])])
