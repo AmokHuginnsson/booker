@@ -68,16 +68,18 @@ AC_MSG_RESULT([--- Guessed host operating system is $_HOST______       [[70%]]])
 
 dnl What special compiler flags we can set?
 AC_MSG_RESULT([--- Guessing specific compiler/linker features ... ---  [[71%]]])
-_FLAGS='none. ---                      [[76%]]'
+_FLAGS=''
 CXXFLAGS_ORIG=$CXXFLAGS;
-CXXFLAGS=["--Wshadow"]
-AC_TRY_COMPILE([pthread],[],[AC_SUBST([SPECIAL_COMPILER_FLAGS],[--Wshadow])
-							_FLAGS=["--Wshadow"]],
-							[AC_MSG_WARN([[Can not use --Wshadow!]])])
-CXXFLAGS=["--pedantic-errors"]
-AC_TRY_COMPILE([stdlib],[],[AC_SUBST([SPECIAL_HEAVY_COMPILER_FLAGS],[--pedantic-errors])
-							_FLAGS=["$_FLAGS --pedantic-errors"]],
-							[AC_MSG_WARN([[Can not use --pedantic-errors!]])])
+CXXFLAGS=["-Wshadow"]
+AC_TRY_COMPILE([#include <pthread.h>],[],
+							[AC_SUBST([SPECIAL_COMPILER_FLAGS],[-Wshadow])
+							_FLAGS=["-Wshadow"]],
+							[AC_MSG_WARN([[Can not use -Wshadow!]])])
+CXXFLAGS=["-pedantic-errors"]
+AC_TRY_COMPILE([#include <stdlib.h>],[],
+							[AC_SUBST([SPECIAL_HEAVY_COMPILER_FLAGS],[-pedantic-errors])
+							_FLAGS=["$_FLAGS -pedantic-errors"]],
+							[AC_MSG_WARN([[Can not use -pedantic-errors!]])])
 CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
 				[],
@@ -86,6 +88,9 @@ AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
 					_FLAGS=[['-Wl,--allow-shlib-undefined. ---']]
 					CXXFLAGS=["-Wl,--allow-shlib-undefined"]
 					[AC_MSG_WARN([[We must use -Wl,--allow-shlib-undefined!]])])
+if test "$_FLAGS" = "" ; then
+	_FLAGS='none. ---                      [[76%]]'
+fi
 AC_MSG_RESULT([--- Guessed fetures are: $_FLAGS])
 
 dnl Now we can look for all needed libraries.
