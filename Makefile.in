@@ -174,7 +174,7 @@ dep: .depend
 	@set -e; $(CXX) -MM $(SRCEXS) | sed -e s/'\.o\>'/'\.oo'/ >> .depend
 	@echo 'done.'
 
-main.oo: main.c
+src/main.oo: src/main.c
 	@echo -n "Compiling \`$@' (program version $(RELEASE)-`date +%Y%m%d`) ... "
 	@echo "#define VER \"$(RELEASE)-`date +%Y%m%d`\"" > version.h
 	@$(CXX) $(CXXFLAGS) $(FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
@@ -217,7 +217,7 @@ tags: $(SRCS) $(SRCEXS) $(HDRS)
 m: mrproper
 mrproper: clean
 	@echo -n "Purging ... "
-	@/bin/rm -f $(PRJNAME) tags config.h make.log
+	@/bin/rm -f $(PRJNAME) tags make.log version.h
 	@echo "done."
 
 purge: mrproper

@@ -33,7 +33,7 @@ Copyright:
 #include "cli_options.h"
 
 #include "define.h"
-#include "version.h"
+#include "../version.h"
 #include "variables.h"
   
 /* Set all the option flags according to the switches specified.

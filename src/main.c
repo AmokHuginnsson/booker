@@ -32,7 +32,7 @@ Copyright:
 
 #include <stdhapi.h> /* all hAPI headers */
 
-#include "version.h"                                                   
+#include "../version.h"                                                   
 #include "define.h"                                                    
 #include "variables.h"
 #include "cli_options.h"
