@@ -170,8 +170,8 @@ dep: .depend
 
 .depend: $(SRCS) $(SRCEXS) $(HDRS)
 	@echo -n 'Making dependicies ... '
-	@set -e; $(CXX) -MM $(SRCS) > .depend
-	@set -e; $(CXX) -MM $(SRCEXS) | sed -e s/'\.o\>'/'\.oo'/ >> .depend
+	@set -e; $(CXX) -MG -MM $(SRCS) > .depend
+	@set -e; $(CXX) -MG -MM $(SRCEXS) | sed -e s/'\.o\>'/'\.oo'/ >> .depend
 	@echo 'done.'
 
 src/main.oo: src/main.c
