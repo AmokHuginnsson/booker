@@ -13,5 +13,5 @@ symbol-file ./1exec -readnow -mapped
 share
 break main
 set language c++
-core-file ./core
+core-file ./1exec.core
 #run
