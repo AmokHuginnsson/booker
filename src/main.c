@@ -24,6 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
+char __CVSID__ [ ] = "$CVSHeader$";
+
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
@@ -53,9 +55,9 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
 		log.rehash ( g_pcLogFileName, 0 );
 /* enabling ncurses ablilities  */
-//		if ( ! console::is_enabled ( ) )console::enter_curses ();
-//		theProc.init ( g_pcProgramName );
-//		theProc.run ( );
+		if ( ! console::is_enabled ( ) )console::enter_curses ();
+		theProc.init ( g_pcProgramName );
+		theProc.run ( );
 		HList < int > l_oList;
 /*
 		l_oList.add_element ( 3 );
@@ -63,8 +65,8 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		l_oList.add_element ( 4 );
 		l_oList.add_element ( 1 );
 */
-		l_oList.add_orderly ( 3 );
-		l_oList.add_orderly ( 2 );
+//		l_oList.add_orderly ( 3 );
+//		l_oList.add_orderly ( 2 );
 //		l_oList.add_orderly ( 4 );
 //		l_oList.add_orderly ( 1 );
 		for ( int i = 0; i < 2; i ++ )

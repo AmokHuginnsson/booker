@@ -24,6 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
+char __CVSID__ [ ] = "$CVSHeader$";
+
 #include "../config.h"
 
 #ifdef HAVE_NCURSES_H

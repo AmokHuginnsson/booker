@@ -24,6 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
+char __CVSID__ [ ] = "$CVSHeader$";
+
 #include "dictionarycontractingpartyset.h"
 
 #include <hexception.h>
