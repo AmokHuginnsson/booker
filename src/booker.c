@@ -108,9 +108,9 @@ HBookerProcess::~HBookerProcess ( void )
 int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
+	f_oDataBase.login ( g_pcDataBase, g_pcLogin, g_pcPassword );
 	HDataProcess::init ( a_pcProcessName );
 	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
-	f_oDataBase.login ( g_pcDataBase, g_pcLogin, g_pcPassword );
 	return ( 0 );
 	M_EPILOG
 	}
