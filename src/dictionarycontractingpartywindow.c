@@ -24,6 +24,16 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
+#include "../config.h"
+
+#ifdef HAVE_NCURSES_H
+#	include <ncurses.h>
+#elif defined ( HAVE_NCURSES_NCURSES_H )
+#	include <ncurses/ncurses.h>
+#else /* HAVE_NCURSES_NCURSES_H */
+#	error "No ncurses header available."
+#endif /* not HAVE_NCURSES_NCURSES_H */
+
 #include <stdhapi.h> /* all hAPI headers */
 #include "dictionarycontractingpartywindow.h"
 
@@ -34,6 +44,8 @@ HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const cha
 								: HWindow ( a_pcTitle )
 	{
 	M_PROLOG
+	register_postprocess_handler ( KEY_DELETE,
+			( int ( HWindow::* ) ( int ) ) & HDictionaryContractingPartyWindow::handler_delete );
 	return;
 	M_EPILOG
 	}
@@ -53,7 +65,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	HListControl * l_poList = NULL;
 	HDictionaryContractingPartySet rs ( theProc.data_base ( ) );
 	l_iError = HWindow::init ( );
-	l_poList = new HListControl ( this, 1, 1, - 8, - 1, " &Kontrahenci: \n" );
+	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1, " &Kontrahenci: \n" );
 	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			l_poControl = new HEditControl ( this,
 				- 7, 1, 18, 1, " &Imiê: \n", 32, "",
@@ -92,3 +104,11 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_EPILOG
 	}
 
+int HDictionaryContractingPartyWindow::handler_delete ( int )
+	{
+	M_PROLOG
+	if ( f_poList->quantity ( ) )
+		f_poList->remove_element ( D_EMPTY_IF_NOT_EMPTIED );
+	return ( 0 );
+	M_EPILOG
+	}

@@ -33,6 +33,7 @@ class HDictionaryContractingPartyWindow : public HWindow
 	{
 protected:
 	/*{*/
+	HListControl * f_poList;
 	/*}*/
 public:
 	/*{*/
@@ -42,6 +43,7 @@ public:
 	/*}*/
 protected:
 	/*{*/
+	int handler_delete ( int );
 	/*}*/
 	};
 

@@ -40,6 +40,12 @@ OEditControlResource g_psDictionaryBankEditControls [ ] =
 		{	0, NULL, NULL, false, false, false, 0	}
 	};
 
+OListControlResource g_psDictionaryBankListControls [ ] =
+	{
+		{ true },
+		{ false	}
+	};
+
 OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 	{
 		{	-1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
@@ -56,7 +62,8 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		{
 		"dictionary_bank", "name, city, street, postal_code, street_number, phone, id",
 		"", "name ASC", 1, 1, -8, -1, " &Banki \n",
-		NULL, D_CONTROL_MAIN, D_CONTROL_LIST, NULL, NULL, 0, NULL
+		NULL, D_CONTROL_MAIN, D_CONTROL_LIST, & g_psDictionaryBankListControls [ 0 ],
+		NULL, 0, NULL
 		},
 		{
 		NULL, NULL, NULL, NULL, -7, 1, -25, 1, " &Nazwa: \n", NULL,
@@ -99,25 +106,25 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		}
 	}, * g_psDictionaryBankResources = x_tag_g_psDictionaryBankResources;
 
-HDictionatyBankWindow::HDictionatyBankWindow ( const char * a_pcTitle,
+HDictionaryBank::HDictionaryBank ( const char * a_pcTitle,
 		HDataBase * a_poDataBase, OResource * a_psResources )
 								: HDataWindow ( a_pcTitle, a_poDataBase, a_psResources )
 	{
 	M_PROLOG
   register_postprocess_handler ( 'a', 
-			( int ( HWindow::* ) ( int ) ) & HDictionatyBankWindow::handler_add );
+			( int ( HWindow::* ) ( int ) ) & HDictionaryBank::handler_add );
 	return;
 	M_EPILOG
 	}
 
-HDictionatyBankWindow::~HDictionatyBankWindow ( void )
+HDictionaryBank::~HDictionaryBank ( void )
 	{
 	M_PROLOG
 	return;
 	M_EPILOG
 	}
 
-int HDictionatyBankWindow::handler_add ( int a_iCode )
+int HDictionaryBank::handler_add ( int a_iCode )
 	{
 	M_PROLOG
 	int l_iCtr = 0;

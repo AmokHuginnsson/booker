@@ -24,14 +24,14 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __DICTIONARYBANKWINDOW_H
-#define __DICTIONARYBANKWINDOW_H
+#ifndef __DICTIONARYBANK_H
+#define __DICTIONARYBANK_H
 
 #include <hdatawindow.h>
 
 extern OResource * g_psDictionaryBankResources;
 
-class HDictionatyBankWindow : public HDataWindow
+class HDictionaryBank : public HDataWindow
 	{
 protected:
 	/*{*/
@@ -39,8 +39,8 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionatyBankWindow ( const char *, HDataBase *, OResource * );
-	virtual ~HDictionatyBankWindow ( void );
+	HDictionaryBank ( const char *, HDataBase *, OResource * );
+	virtual ~HDictionaryBank ( void );
 	virtual int handler_add ( int );
 	/*}*/
 protected:
@@ -48,4 +48,4 @@ protected:
 	/*}*/
 	};
 
-#endif /* __DICTIONARYBANKWINDOW_H */
+#endif /* __DICTIONARYBANK_H */
