@@ -133,7 +133,7 @@ HDictionaryBank::~HDictionaryBank ( void )
 	M_EPILOG
 	}
 
-int HDictionaryBank::handler_add ( int a_iCode )
+int HDictionaryBank::handler_add ( int a_iCode, void * )
 	{
 	M_PROLOG
 	int l_iCtr = 0;

@@ -38,7 +38,7 @@ public:
 	/*{*/
 	HDictionaryBank ( const char *, stdhapi::dbwrapper::HDataBase *, stdhapi::hdata::OResource * );
 	virtual ~HDictionaryBank ( void );
-	virtual int handler_add ( int );
+	virtual int handler_add ( int, void * );
 	/*}*/
 protected:
 	/*{*/

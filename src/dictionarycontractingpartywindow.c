@@ -129,7 +129,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_EPILOG
 	}
 
-int HDictionaryContractingPartyWindow::handler_delete ( int )
+int HDictionaryContractingPartyWindow::handler_delete ( int, void * )
 	{
 	M_PROLOG
 	if ( f_poList->quantity ( ) )

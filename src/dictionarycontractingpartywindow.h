@@ -41,7 +41,7 @@ public:
 	/*}*/
 protected:
 	/*{*/
-	int handler_delete ( int );
+	int handler_delete ( int, void * );
 	/*}*/
 	};
 
