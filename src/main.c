@@ -40,6 +40,14 @@ M_CVSID ( "$CVSHeader$" );
 
 HBookerProcess theProc;
 
+void read_colector ( HSerial & );
+bool test_char ( const char *, int );
+int send ( HSerial &, char *, int );
+int receive ( HSerial &, char * const );
+int establish_connection ( HSerial & );
+int wait_for_connection ( HSerial & );
+
+
 int main ( int a_iArgc, char **a_ppcArgv )
 	{
 /*	variables declarations for main loop: */
@@ -81,84 +89,181 @@ int main ( int a_iArgc, char **a_ppcArgv )
 	return ( 0 );
 	}
 
-/*
-		int i, f = ( int ) D_TREAT_AS_OPENED;
-		HList<int> lst;
-		HRandomizer rnd;
-		for ( i = 0; i < 8; i ++ )
-			lst.add_tail ( ) = rnd.rnd ( ) % 11;
-		
-		if ( lst.quantity ( ) )
+void read_colector ( HSerial & a_oPort ) 
+	{
+	int l_iErr = 0;
+	int l_iRet = 0;
+	long l_lCount = 0;
+	char l_pcBuffer [ 64 ];
+	HString l_oErr;
+	if ( ! a_oPort.open ( )	&& ( wait_for_connection ( a_oPort ) >= 0 ) )
+		{
+		memset ( l_pcBuffer, 0, 64 );
+		while ( strncmp ( l_pcBuffer, "QNTT", 4 ) && ( l_iRet >= 0 ) )
+			l_iRet = receive ( a_oPort, l_pcBuffer );
+		l_lCount = atol ( l_pcBuffer + 4 );
+		if ( l_iRet < 0 )l_lCount = 0;
+		while ( l_lCount )
 			{
-			lst.go ( 0 );
-			while ( f == ( int ) D_TREAT_AS_OPENED )
-				fprintf ( stderr, "%4d", lst.to_tail ( 1, & f ) );
-			fprintf ( stderr, "\n" );
-			f = ( int ) D_TREAT_AS_OPENED;
-			while ( f == ( int ) D_TREAT_AS_OPENED )
-				fprintf ( stderr, "%4d", lst.to_head ( 1, & f ) );
-			fprintf ( stderr, "\n---\n" );
-			lst.sort_by_contents ( D_DESCENDING );
-			
-			i = 0;
-			lst.go ( 0 );
-			f = ( int ) D_TREAT_AS_OPENED;
-			while ( ( f | ( int ) D_TREAT_AS_OPENED ) && ( i ++ < 10 ) )
-				fprintf ( stderr, "%4d", lst.to_tail ( 1 ) );
-			fprintf ( stderr, "\n" );
-			i = 0;
-			lst.go ( -1 );
-			f = ( int ) D_TREAT_AS_OPENED;
-			while ( ( f | ( int ) D_TREAT_AS_OPENED ) && ( i ++ < 10 ) )
-				fprintf ( stderr, "%4d", lst.to_head ( 1 ) );
-			fprintf ( stderr, "\n" );
-			}	
-			
-		HList<int> * l_poList;
-		l_poList = new HList<int>;
-		l_poList->add_tail ( 1 );
-		l_poList->add_tail ( 2 );
-		l_poList->exchange ( -2, -1 );
-		l_poList->go ( - 2 );
-		l_poList->add_tail ( 3 );
-		l_poList->exchange ( -2, -1 );
-		l_poList->go ( - 2 );
-		for ( l_iOpt = 0; l_iOpt < 9; l_iOpt ++ )
-			fprintf ( stderr, "%d\n", l_poList->to_tail ( ) );
-		delete l_poList;
-		
-		double l_dVal = 0;
-		HString l_oString;
-		HMap < HString, double > l_oMap ( 10 );
-		l_oMap [ "Asia" ] = 13.7;
-		l_oMap [ "Kasia" ] = 3.14159256;
-		l_oMap [ "Honorata" ] = 1.42421;
-		l_oMap [ "Natalia" ] = 2.735;
-		if ( l_oMap.get ( "Klotylda", l_dVal ) )
-			fprintf ( stderr, "Klotylda = %f\n", l_dVal );
-		else
-			fprintf ( stderr, "Klotylda was not found\n" );
-		if ( l_oMap.get ( "Asia", l_dVal ) )
-			fprintf ( stderr, "Asia = %f\n", l_dVal );
-		else
-			fprintf ( stderr, "Asia was not found\n" );
-		fprintf ( stderr, "Natalia = %f\n", l_oMap [ "Natalia" ] );
-		fprintf ( stderr, "Kasia = %f\n", l_oMap [ "Kasia" ] );
-		fprintf ( stderr, "Honorata = %f\n", l_oMap [ "Honorata" ] );
-		l_oMap.remove ( "Kasia" );
-		l_oMap.rewind ( );
-		while ( l_oMap.iterate ( l_oString, l_dVal ) )
-			fprintf ( stderr, "%s = %f\n", ( char * ) l_oString, l_dVal );
-			
-		HDataBase l_oDB;
-		HSerial l_oSerial ( "/dev/ttyS0" );
-		l_oDB.login ( "booker", "booker", "b00k3r" );
-		HRecordSet l_oRS ( & l_oDB );
-		l_oRS.open ( "SELECT * FROM dictionary_contracting_party ORDER BY surname;" );
-		while ( ! l_oRS.is_eof ( ) )
-			{
-			fprintf ( stderr, "%s\r\n", ( char * ) l_oRS.get ( 2 ) );
-			l_oRS.move_next ( );
+			memset ( l_pcBuffer, 0, 64 );
+			l_iErr += receive ( a_oPort, l_pcBuffer );
+			if ( l_iRet < 0 )
+				{
+				l_iErr -= l_iRet;
+				break;
+				}
+			if ( ! ( strncmp ( l_pcBuffer, "END\r\n", 5 ) && strncmp ( l_pcBuffer, "BRK\r\n", 5 ) ) )break;
+//			l_oErr.format ( "Postêp wczytywania zamówienia z kolektora ...  (%d)", l_iErr );
+//			console::c_printf ( 0, 0, 7, l_oErr );
+			fprintf ( stderr, "%s", l_pcBuffer );
+			l_pcBuffer [ 5 ] = 0;
 			}
-		read_colector ( l_oSerial );
-*/
+		}
+	return;
+	}
+
+bool test_char ( const char * a_pcBuffer, int a_iIndex )
+	{
+	return ( a_pcBuffer [ a_iIndex ]
+							&& ( ( ( a_pcBuffer [ a_iIndex ] >= '0' )
+									&& ( a_pcBuffer [ a_iIndex ] <= '9' ) )
+								|| ( ( a_pcBuffer [ a_iIndex ] >= 'A' )
+									&& ( a_pcBuffer [ a_iIndex ] <= 'Z' ) )
+								|| ( ( ( a_pcBuffer [ a_iIndex ] == 10 )
+										|| ( a_pcBuffer [ a_iIndex ] == 13 )
+										|| ( a_pcBuffer [ a_iIndex ] == '?' ) )
+									&& a_iIndex ) ) );
+	}
+
+int send ( HSerial & a_oPort, char * a_pcBuffer, int a_iLength )
+	{
+	int l_iCnt = 0;
+	char l_cCRC = 0;
+	char l_pcReadBuf [ 32 ];
+	for ( l_iCnt = 0; l_iCnt < a_iLength; l_iCnt++ )
+		l_cCRC += a_pcBuffer [ l_iCnt ];
+	for ( l_iCnt = 0; l_iCnt < 32; l_iCnt++ )l_pcReadBuf [ l_iCnt ] = 0;
+	l_iCnt = 0;
+	while ( 1 )
+		{
+		a_oPort.write ( a_pcBuffer, a_iLength );
+		a_oPort.read ( l_pcReadBuf, 1 );
+		if ( l_pcReadBuf [ 0 ] == l_cCRC )break;
+		l_iCnt ++;
+		}
+	a_oPort.write ( "OK\r\n", 4 );
+	return ( l_iCnt );
+	}
+
+int receive ( HSerial & a_oPort, char * const a_pcBuffer )
+	{
+	int l_iErr = 0;
+	int l_iLen = 0;
+	int l_iCnt = 0;
+	char l_cCRC = 0;
+	char l_pcReadBuf [ 64 ];
+	char l_pcBuffer [ 64 ];
+	do
+		{
+		memset ( l_pcReadBuf, 0, 64 );
+		memset ( l_pcBuffer, 0, 64 );
+		l_iCnt = 0;
+		l_iLen = 0;
+		while ( l_iCnt < 64 )
+			{
+			if( a_oPort.read ( l_pcReadBuf + l_iCnt, 1 ) )
+				if ( test_char ( l_pcReadBuf, l_iCnt ) )l_iCnt ++;
+			if ( l_iCnt && ( l_pcReadBuf [ l_iCnt - 1 ] == '\n' ) )break;
+			if ( console::kbhit ( ) == 'q' )return ( -1 );
+			}
+		do
+			{
+			l_iLen = l_iCnt;
+			l_cCRC = 0;
+			for ( l_iCnt = 0; l_iCnt < 64; l_iCnt++ )l_cCRC += l_pcReadBuf [ l_iCnt ];
+			l_pcBuffer [ 0 ] = l_cCRC;
+			a_oPort.write ( l_pcBuffer, 1 );
+			l_iCnt = 0;
+			l_iLen = 0;
+			memset ( l_pcBuffer, 0, 64 );
+			while ( l_iCnt < 64 )
+				{
+				if( a_oPort.read ( l_pcBuffer + l_iCnt, 1 ) )
+					if ( test_char ( l_pcReadBuf, l_iCnt ) )l_iCnt ++;
+				if ( l_iCnt && ( l_pcBuffer [ l_iCnt - 1 ] == '\n' ) )break;
+				if ( console::kbhit ( ) == 'q' )return ( -1 );
+				}
+			if ( strncmp ( l_pcBuffer, "OK\r\n", 4 ) )
+				{
+				memset ( l_pcReadBuf, 0, 64 );
+				strncpy ( l_pcReadBuf, l_pcBuffer, 64 );
+				l_iErr ++;
+				}
+			}
+		while ( strncmp ( l_pcBuffer, "OK\r\n", 4 ) );
+		}
+	while ( strncmp ( l_pcBuffer, "OK\r\n", 4 ) );
+	l_iLen = strlen ( l_pcReadBuf );
+	strncpy ( a_pcBuffer, l_pcReadBuf, l_iLen );
+	return ( l_iErr );
+	}
+
+int establish_connection ( HSerial & a_oPort )
+	{
+	int l_iErr = 0;
+	int l_iCnt = 0;
+	char l_pcReadBuf [ 8 ];
+	unsigned long l_ulTimeOut = 0;
+	memset ( l_pcReadBuf, 0, 8 );
+	while ( 1 )
+		{
+		strncpy ( l_pcReadBuf, "KO?\r\n", 5 );
+		for ( l_iCnt = 0; l_iCnt < 5; l_iCnt ++ )
+			a_oPort.write ( l_pcReadBuf + l_iCnt, 1 );
+		memset ( l_pcReadBuf, 0, 8 );
+		l_ulTimeOut = time ( 0 );
+		l_iCnt = 0;
+		while ( l_iCnt < 64 )
+			{
+			if ( a_oPort.read ( l_pcReadBuf + l_iCnt, 1 ) )
+				if ( test_char ( l_pcReadBuf, l_iCnt ) )l_iCnt ++;
+			if ( l_iCnt && ( l_pcReadBuf [ l_iCnt - 1 ] == '\n' ) )break;
+			if ( console::kbhit ( ) == 'q' )return ( -1 );
+			}
+		if ( ! strncmp ( l_pcReadBuf, "OK\r\n", 4 ) )break;
+		l_iErr ++;
+		}
+	return ( l_iErr );
+	}
+
+int wait_for_connection ( HSerial & a_oPort )
+	{
+	int l_iErr = 0;
+	int l_iCnt = 0;
+	char l_pcReadBuf [ 8 ];
+	unsigned long l_ulTimeOut = 0;
+	memset ( l_pcReadBuf, 0, 8 );
+	while ( 1 )
+		{
+		l_ulTimeOut = time ( 0 );
+		l_iCnt = 0;
+		while ( l_iCnt < 64 )
+			{
+			if ( a_oPort.read ( l_pcReadBuf + l_iCnt, 1 ) )
+				if ( test_char ( l_pcReadBuf, l_iCnt ) )l_iCnt ++;
+			if ( l_iCnt && ( l_pcReadBuf [ l_iCnt - 1 ] == '\n' ) )break;
+			if ( console::kbhit ( ) == 'q' )return ( -1 );
+			}
+		if ( ! strncmp ( l_pcReadBuf, "KO?\r\n", 5 ) )
+			{
+			strncpy ( l_pcReadBuf, "OK\r\n", 4 );
+			for ( l_iCnt = 0; l_iCnt < 4; l_iCnt ++ )
+				a_oPort.write ( l_pcReadBuf + l_iCnt, 1 );
+			break;
+			}
+		l_iErr ++;
+		}
+	fprintf ( stderr, "Connected !\r\n" );
+	return ( 0 );
+	}
+
