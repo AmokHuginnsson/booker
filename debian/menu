@@ -1,0 +1,2 @@
+?package(`booker'):needs=text|vc section=Apps/Net\
+  title="`booker'" command="/usr/bin/`booker'"
