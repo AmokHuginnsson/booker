@@ -1,10 +1,17 @@
-use booker
+use mysql;
+DELETE FROM user WHERE user='booker' AND host='localhost';
+INSERT INTO user (host, user, password) VALUES ('localhost','booker',PASSWORD('b00k3r'));
+
+DROP DATABASE IF EXISTS booker;
+
+CREATE DATABASE booker;
+use booker;
 
 CREATE TABLE IF NOT EXISTS config
 	(
-	id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(16) UNIQUE NOT NULL,
-	integer_value INT(4),
+	integer_value INTEGER(4),
 	text_value VARCHAR(255),
 	float_value FLOAT(8),
 	time_value DATETIME,
@@ -12,15 +19,15 @@ CREATE TABLE IF NOT EXISTS config
 	);
 CREATE TABLE IF NOT EXISTS account_map
 	(
-	id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	id_account_map INT(4) NOT NULL,
+	id INTEGER(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id_account_map INTEGER(4) NOT NULL,
 	number VARCHAR(8),
 	full_number VARCHAR(32),
 	name VARCHAR(128)
 	);
 CREATE TABLE IF NOT EXISTS dictionary_contracting_party
 	(
-	id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(32),
 	surname VARCHAR(32),
 	tin VARCHAR(16),
@@ -33,11 +40,11 @@ CREATE TABLE IF NOT EXISTS dictionary_contracting_party
 	phone VARCHAR(32),
 	fax VARCHAR(32),
 	email VARCHAR(32),
-	id_account_map INT(4)
+	id_account_map INTEGER(4)
 	);
 CREATE TABLE IF NOT EXISTS  dictionary_bank
 	(
-	id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(128),
 	country VARCHAR(32),
 	city VARCHAR(32),
@@ -48,4 +55,6 @@ CREATE TABLE IF NOT EXISTS  dictionary_bank
 	fax VARCHAR(32)
 	);
 
-GRANT SELECT,INSERT,UPDATE,DELETE ON booker.* TO booker@localhost IDENTIFIED BY 'b00k3r';
+GRANT SELECT,INSERT,UPDATE,DELETE ON booker.* TO booker@localhost;
+FLUSH PRIVILEGES;
+
