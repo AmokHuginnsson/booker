@@ -80,7 +80,7 @@ else
 	COMPILER_DEBUG_FLAGS = -g -g3 -ggdb -ggdb3 -gstabs+ -pg -D__DEBUG__ $(DB)
 endif
 COMPILER_PATH_FLAGS = -I. -I$(HEADERSDIR) -I/usr/local/include
-LINKER_PATH_FLAGS = -L. -L$(TARGETDIR) -L/usr/local/lib @EXTRA_LIB_PATHS@
+LINKER_PATH_FLAGS = -L. -L$(TARGETDIR) -L/usr/local/lib
 LINKER_PRIME_FLAGS =	@SPECIAL_LINKER_FLAG@
 #	-fno-external-templates #deprecated
 
@@ -101,8 +101,6 @@ STATICLIBS += ~/lib/libhconsole.a
 STATICLIBS += ~/lib/libhcore.a
 STATICLIBS += ~/lib/libtools.a
 STATICLIBS += ~/lib/libhdata.a
-#STATICLIBS += ~/lib/libmysql_driver.a
-#STATICLIBS += ~/lib/libpostgresql_driver.a
 STATICLIBS += ~/lib/libdbwrapper.a
 STATICLIBS += -rdynamic -ldl
 STATICLIBS += -lncurses
