@@ -42,8 +42,8 @@ OEditControlResource g_psDictionaryBankEditControls [ ] =
 
 OListControlResource g_psDictionaryBankListControls [ ] =
 	{
-		{ true },
-		{ false	}
+		{ true, true, true },
+		{ false, false, false	}
 	};
 
 OColumnInfo g_psDictionaryBankColumnInfos [ ] =
