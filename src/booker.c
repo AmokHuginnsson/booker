@@ -35,6 +35,7 @@ Copyright:
 #endif /* not HAVE_NCURSES_NCURSES_H */
 
 #include "booker.h"
+#include "variables.h"
 
 /* windows begin */
 #include "dictionarybankwindow.h"
@@ -109,7 +110,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	M_PROLOG
 	HDataProcess::init ( a_pcProcessName );
 	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
-	f_oDataBase.login ( "booker", "booker", "b00k3r" );
+	f_oDataBase.login ( g_pcDataBase, g_pcLogin, g_pcPassword );
 	return ( 0 );
 	M_EPILOG
 	}

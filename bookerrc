@@ -1,6 +1,12 @@
 # .bookerrc is an `booker' 0.0.0 configuration file
 # tihs file ought to be in /etc/ and/or your home dirctory.
 
+# authentication information needed for database access
+
+database booker
+login booker
+password b00k3r
+
 logfile x_booker.log
 
 # End of configuration file.

@@ -70,6 +70,12 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		}
 	if ( g_pcLogFileName )
 		xfree ( ( void * ) g_pcLogFileName );
+	if ( g_pcPassword )
+		xfree ( ( void * ) g_pcPassword );
+	if ( g_pcLogin )
+		xfree ( ( void * ) g_pcLogin );
+	if ( g_pcDataBase )
+		xfree ( ( void * ) g_pcDataBase );
 	fprintf ( stderr, "Done.\n" ); 
 	return ( 0 );
 	}
