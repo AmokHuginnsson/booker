@@ -43,6 +43,7 @@ HBookerProcess theProc;
 
 int main ( int a_iArgc, char **a_ppcArgv )
 	{
+	M_PROLOG
 /*	variables declarations for main loop: */
 	int l_iOpt = 0;
 /*	end. */
@@ -67,9 +68,6 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		{
 /* ending ncurses sesion        */
 		if ( console::is_enabled ( ) )console::leave_curses ();
-		e->log ( __WHERE__ );
-		e->print_error ( true );
-		delete e; 
 		}
 	if ( g_pcLogFileName )
 		xfree ( g_pcLogFileName );
@@ -81,5 +79,6 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		xfree ( g_pcDataBase );
 	fprintf ( stderr, "%s.\n", _( "Done" ) ); 
 	return ( 0 );
+	M_FINAL
 	}
 
