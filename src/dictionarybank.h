@@ -35,7 +35,6 @@ class HDictionaryBank : public HDataWindow
 	{
 protected:
 	/*{*/
-	HListControl * f_poList;
 	/*}*/
 public:
 	/*{*/

@@ -130,20 +130,23 @@ int HDictionaryBank::handler_add ( int a_iCode )
 	int l_iCtr = 0;
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
-	HItem * l_poIitem = NULL, l_oItem ( 3 );
+	HItem * l_poIitem = NULL, l_oItem ( 6 );
+	HDataListControl * l_poList = ( HDataListControl * )f_psResourcesArray [ 0 ].f_poDataControl;
 	l_oAnalyser.analyse ( "A+B" );
+	f_poStatusBar->init_progress ( 10000, " Precaching ... " );
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
 		{
-		l_dValue = f_poList->quantity ( ) / 100.;
+		l_dValue = l_poList->quantity ( ) / 100.;
 /*		
 		l_oAnalyser [ 'A' ] = l_dValue;
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
 		l_dValue = l_oAnalyser.count ( );
 */
-		l_poIitem = & f_poList->add_tail ( l_oItem );
+		l_poIitem = & l_poList->add_tail ( l_oItem );
 		( * l_poIitem ) [ 0 ] = util::kwota_slownie ( l_dValue );
 		( * l_poIitem ) [ 1 ] = "wype³niacz";
 		( * l_poIitem ) [ 2 ] = HString ( l_dValue );
+		f_poStatusBar->update_progress ( l_iCtr );
 		}
 /*
  * tested list control by filling it with 276300 rows
