@@ -62,10 +62,12 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_PROLOG
 	int l_iError = 0;
 	HControl * l_poControl = NULL;
+	HItem l_oItem ( 1 );
 	HListControl * l_poList = NULL;
+	HComboboxControl * l_poCombo = NULL;
 	HDictionaryContractingPartySet rs ( theProc.data_base ( ) );
 	l_iError = HWindow::init ( );
-	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1,
+	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
 	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			l_poControl = new HEditControl ( this,
@@ -86,6 +88,16 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			new HEditControl ( this, - 4, 49, 29, 1, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
+	l_poCombo = new HComboboxControl ( this, - 10, 1, 4, 24,
+			" &Kombo Testowe: \n" );
+	l_poCombo->add_column ( -1, "dummy_label", 1, D_ALIGN_LEFT, D_TYPE_HSTRING );
+	l_poCombo->enable ( true );
+	l_oItem [ 0 ] = "Ala";
+	l_poCombo->add_tail ( l_oItem );
+	l_oItem [ 0 ] = "ma";
+	l_poCombo->add_tail ( l_oItem );
+	l_oItem [ 0 ] = "kota.";
+	l_poCombo->add_tail ( l_oItem );
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )
 		{
