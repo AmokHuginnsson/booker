@@ -28,7 +28,7 @@ Copyright:
 
 #ifdef HAVE_NCURSES_H
 #	include <ncurses.h>
-#elif HAVE_NCURSES_NCURSES_H
+#elif defined ( HAVE_NCURSES_NCURSES_H )
 #	include <ncurses/ncurses.h>
 #else /* HAVE_NCURSES_NCURSES_H */
 #	error "No ncurses header available."
@@ -111,7 +111,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
 #ifdef __HOST_OS_TYPE_PLD__
 	f_oDataBase.login ( "booker:/var/lib/mysql/mysql.sock", "booker", "b00k3r" );
-#elif __HOST_OS_TYPE_FREEBSD__
+#elif defined ( __HOST_OS_TYPE_FREEBSD__ )
 	f_oDataBase.login ( "booker:/tmp/mysql.sock", "booker", "b00k3r" );
 #else /* __HOST_OS_TYPE_FREEBSD__ */
 	f_oDataBase.login ( "booker", "booker", "b00k3r" );
