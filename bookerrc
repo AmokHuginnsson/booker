@@ -1,4 +1,6 @@
 # .`booker'rc is an `booker' 0.0.0 configuration file (ought to be in your home dirctory).
 
+logfile x_booker.log
+
 # End of configuration file.
 
