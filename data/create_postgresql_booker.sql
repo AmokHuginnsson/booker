@@ -1,3 +1,11 @@
+DROP DATABASE booker;
+DROP USER booker;
+
+CREATE USER booker WITH ENCRYPTED PASSWORD 'b00k3r' NOCREATEDB NOCREATEUSER;
+CREATE DATABASE booker WITH OWNER booker ENCODING 'latin2';
+
+\connect booker booker;
+
 CREATE TABLE config
 	(
 	id SERIAL,
