@@ -65,7 +65,8 @@ int HDictionaryContractingPartyWindow::init ( void )
 	HListControl * l_poList = NULL;
 	HDictionaryContractingPartySet rs ( theProc.data_base ( ) );
 	l_iError = HWindow::init ( );
-	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1, " &Kontrahenci: \n" );
+	f_poList = l_poList = new HListControl ( this, 1, 1, - 8, - 1,
+			" &Kontrahenci: \n" );
 	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
 			l_poControl = new HEditControl ( this,
 				- 7, 1, 18, 1, " &Imiê: \n", 32, "",
