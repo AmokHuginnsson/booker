@@ -123,7 +123,7 @@ int HDictionatyBankWindow::handler_add ( int a_iCode )
 	int l_iCtr = 0;
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
-	HInfoList * l_poInfoList = NULL;
+	HItem * l_poIitem = NULL, l_oItem ( 3 );
 	l_oAnalyser.analyse ( "A+B" );
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
 		{
@@ -133,10 +133,10 @@ int HDictionatyBankWindow::handler_add ( int a_iCode )
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
 		l_dValue = l_oAnalyser.count ( );
 */
-		l_poInfoList = & f_poList->add_tail ( );
-		( * l_poInfoList ) [ 0 ] = util::kwota_slownie ( l_dValue );
-		( * l_poInfoList ) [ 1 ] = "wype³niacz";
-		( * l_poInfoList ) [ 2 ] = HString ( l_dValue );
+		l_poIitem = & f_poList->add_tail ( l_oItem );
+		( * l_poIitem ) [ 0 ] = util::kwota_slownie ( l_dValue );
+		( * l_poIitem ) [ 1 ] = "wype³niacz";
+		( * l_poIitem ) [ 2 ] = HString ( l_dValue );
 		}
 /*
  * tested list control by filling it with 276300 rows
