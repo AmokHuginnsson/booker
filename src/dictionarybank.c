@@ -49,10 +49,10 @@ OListControlResource g_psDictionaryBankListControls [ ] =
 
 OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 	{
-		{	-1, "nazwa", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
-		{ -1, "miasto", 1, D_ALIGN_LEFT, D_TYPE_HSTRING },
-		{ -1, "kwota", 2, D_ALIGN_RIGHT, D_TYPE_DOUBLE },
-		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{	-1, "nazwa", 4, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "miasto", 2, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "ulica", 3, D_ALIGN_LEFT, D_TYPE_HSTRING },
+		{ -1, "kod", 1, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING },
 		{	0, NULL, 0, 0, 0 }
