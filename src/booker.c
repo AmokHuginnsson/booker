@@ -26,11 +26,13 @@ Copyright:
 
 #include "../config.h"
 
-#ifdef __PLD_HOST__
-#	include <ncurses/ncurses.h>
-#else /* __PLD_HOST__ */
+#ifdef HAVE_NCURSES_H
 #	include <ncurses.h>
-#endif /* not __PLD_HOST__ */
+#elif HAVE_NCURSES_NCURSES_H
+#	include <ncurses/ncurses.h>
+#else /* HAVE_NCURSES_NCURSES_H */
+#	error "No ncurses header available."
+#endif /* not HAVE_NCURSES_NCURSES_H */
 
 #include "booker.h"
 
@@ -107,11 +109,11 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	M_PROLOG
 	HDataProcess::init ( a_pcProcessName );
 	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
-#ifdef __PLD_HOST__
+#ifdef __HOST_OS_TYPE_PLD__
 	f_oDataBase.login ( "booker:/var/lib/mysql/mysql.sock", "booker", "b00k3r" );
-#else /* __PLD_HOST__ */
+#else /* __HOST_OS_TYPE_PLD__ */
 	f_oDataBase.login ( "booker", "booker", "b00k3r" );
-#endif /* not __PLD_HOST__ */
+#endif /* not __HOST_OS_TYPE_PLD__ */
 	return ( 0 );
 	M_EPILOG
 	}
