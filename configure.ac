@@ -68,14 +68,13 @@ AC_MSG_RESULT([--- Guessing specific compiler/linker features ... ---  [[75%]]])
 _FLAG_____________________='none, lucky for us none. ---    '
 CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
-							[],
-							[AC_SUBST([SPECIAL_LINKER_FLAG],
-								[[-Wl,--allow-shlib-undefined]])]
-								_FLAG_____________________=[[-Wl,--allow-shlib-undefined. ---]]
+						[],
+						[AC_SUBST([SPECIAL_LINKER_FLAG],
+							[[-Wl,--allow-shlib-undefined]])]
+							_FLAG_____________________=[['-Wl,--allow-shlib-undefined. ---']]
+							CXXFLAGS=["-Wl,--allow-shlib-undefined"]
 							[AC_MSG_WARN([[We must use -Wl,--allow-shlib-undefined!]])])
 AC_MSG_RESULT([--- Guessed fetures are $_FLAG_____________________[[83%]]])
-
-CXXFLAGS=[""]
 
 dnl Now we can look for all needed libraries.
 AC_MSG_RESULT([--- Looking for needed libraries ... ---                [[84%]]])
