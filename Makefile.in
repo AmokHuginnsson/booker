@@ -129,11 +129,11 @@ ifdef NODEBUG
 endif
 
 OBJS := $(strip $(OBJS))
-OBJS := $(patsubst %,%.o, $(OBJS))
+OBJS := $(patsubst %,src/%.o, $(OBJS))
 OBJS := $(patsubst %!.o,%.oo, $(OBJS))
 HDRS := $(patsubst %.o,%.h, $(OBJS))
 HDRS := $(patsubst %.oo,%.h, $(HDRS))
-HDRS := $(subst main.h,config.h, $(HDRS))
+HDRS := $(subst main.h,../config.h, $(HDRS))
 SRCS = $(OBJS:.o=.c)
 SRCEXS := $(filter %.oo, $(SRCS))
 SRCS := $(filter-out %.oo, $(SRCS))
@@ -162,7 +162,7 @@ HDRS +=
 	@echo "Lack of \`$<'." | tee -a make.log
 
 #phony targets
-.PHONY : all dep s static r rebuild c clean tags m mrproper b bin e executable i install
+.PHONY : all dep s static r rebuild c clean tags m mrproper p purge b bin e executable i install
 
 all: dep $(TARGET) $(PRJNAME).info
 
@@ -180,8 +180,8 @@ main.oo: main.c
 	@$(CXX) $(CXXFLAGS) $(FLAGS) $< -c -o $@ 2>&1 | tee -a make.log
 	@echo 'done.'
 
-$(PRJNAME).info : $(PRJNAME).texinfo
-	@makeinfo $(PRJNAME).texinfo
+$(PRJNAME).info : src/$(PRJNAME).texinfo
+	@makeinfo src/$(PRJNAME).texinfo
 
 $(TARGET): $(OBJS)
 	@echo -n "Linking \`$@' ... "
@@ -219,6 +219,10 @@ mrproper: clean
 	@echo -n "Purging ... "
 	@/bin/rm -f $(PRJNAME) tags config.h make.log
 	@echo "done."
+
+purge: mrproper
+	/bin/rm -rf autom4te.cache configure config.cache config.log config.status
+	/bin/rm -rf Makefile config.h
 
 b: bin
 bin:

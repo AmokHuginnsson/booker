@@ -83,15 +83,17 @@ AC_CHECK_LIB([mysqlclient],[mysql_init],
 							[],[AC_MSG_ERROR([Can not continue without MySQL.])])
 AC_CHECK_LIB([pq],[PQsetdbLogin],
 							[],[AC_MSG_ERROR([Can not continue without PostGreSQL.])])
-AC_CHECK_LIB([hcore],[xmalloc],
+dnl WARNING!!! Names in c++ objects are _mangled_ so we need so use
+dnl WARNING!!! this cryptic names here (I hope it is portable).
+AC_CHECK_LIB([hcore],[_Z7xmallocj],
 							[],[AC_MSG_ERROR([Can not continue without hcore.])])
-AC_CHECK_LIB([hconsole],[console::enter_curses],
+AC_CHECK_LIB([hconsole],[_ZN7console12enter_cursesEv],
 							[],[AC_MSG_ERROR([Can not continue without hconsole.])])
-AC_CHECK_LIB([tools],[set_handlers],
+AC_CHECK_LIB([tools],[_ZN7signals12set_handlersEv],
 							[],[AC_MSG_ERROR([Can not continue without tools.])])
-AC_CHECK_LIB([dbwrapper],[db_connect],
+AC_CHECK_LIB([dbwrapper],[_ZN9dbwrapper10db_connectE],
 							[],[AC_MSG_ERROR([Can not continue without dbwrapper.])])
-AC_CHECK_LIB([hdata],[HDataProcess::init],
+AC_CHECK_LIB([hdata],[_ZN12HDataProcess4initEPKc],
 							[],[AC_MSG_ERROR([Can not continue without hdata.])])
 AC_MSG_RESULT([--- All needed libraries found. ---                     [[92%]]])
 
