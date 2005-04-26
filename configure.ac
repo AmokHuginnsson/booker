@@ -29,6 +29,12 @@ AC_MSG_RESULT([--- Checking for machine type ... ---                   [[14%]]])
 AC_CANONICAL_HOST()
 
 dnl Testing presence of c compiler
+if test ["$CXX"] = ["colorgcc"] ; then
+	CXX=["g++"]
+fi
+if test ["$CC"] = ["colorgcc"] ; then
+	CC=["gcc"]
+fi
 AC_MSG_RESULT([--- Testing presence of c compiler ... ---              [[19%]]])
 AC_PROG_CC
 dnl and for c++ compiler
@@ -88,7 +94,7 @@ AC_TRY_COMPILE([#include <stdlib.h>],[],
 CXXFLAGS=["$CXXFLAGS -Wl,--no-undefined -Wl,--fatal-warnings"]
 AC_LINK_IFELSE([[extern int errno;int main(void){return(errno);}]],
 				[CXXFLAGS=$CXXFLAGS_ORIG],
-				[AC_SUBST([SPECIAL_LINKER_FLAG],
+				[AC_SUBST([SPECIAL_LINKER_FLAGS],
 					[[-Wl,--allow-shlib-undefined]])]
 					_FLAGS=[['-Wl,--allow-shlib-undefined. ---']]
 					CXXFLAGS=["$CXXFLAGS_ORIG -Wl,--allow-shlib-undefined"]

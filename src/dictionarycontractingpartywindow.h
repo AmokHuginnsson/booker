@@ -43,6 +43,11 @@ protected:
 	/*{*/
 	int handler_delete ( int, void * );
 	/*}*/
+private:
+	/*{*/
+	HDictionaryContractingPartyWindow ( const HDictionaryContractingPartyWindow & );
+	HDictionaryContractingPartyWindow & operator = ( const HDictionaryContractingPartyWindow & );
+	/*}*/
 	};
 
 #endif /* __DICTIONARYCONTRACTINGPARTY_H */

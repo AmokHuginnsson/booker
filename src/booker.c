@@ -92,10 +92,10 @@ OMenuItem g_psMainMenu [ ] =
 		{ 0, 0, 0 }
 	};
 
-HBookerProcess::HBookerProcess ( void ) :	HDataProcess ( )
+HBookerProcess::HBookerProcess ( void )
+	:	HDataProcess ( ), f_poDataBase ( NULL )
 	{
 	M_PROLOG
-	f_poDataBase = NULL;
 /*
 	f_poDataBase = new HDataBase ( );
 */

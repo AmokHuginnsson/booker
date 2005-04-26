@@ -32,10 +32,14 @@ M_CVSID ( "$CVSHeader$" );
 using namespace stdhapi::hcore;
 using namespace stdhapi::dbwrapper;
 
-HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase )
+HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase ),
+	m_imie ( ), m_nazwisko ( ), m_nip ( ), m_kraj ( ), m_miasto ( ),
+	m_ulica ( ), m_numer_ulicy ( ), m_numer_mieszkania ( ), m_kod_pocztowy ( ),
+	m_telefon ( ), m_fax ( ), m_email ( ), m_id_account_map ( 0 )
 	{
 	M_PROLOG
 	f_oTable = "dictionary_contracting_party";
+	return;
 	M_EPILOG
 	}
 

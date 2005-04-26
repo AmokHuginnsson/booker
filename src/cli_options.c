@@ -31,7 +31,7 @@ Copyright:
 #include <stdhapi.h>
 M_CVSID ( "$CVSHeader$" );
 
-#include "../version.h"
+#include "version.h"
 #include "define.h"
 #include "variables.h"
 #include "cli_options.h"

@@ -45,7 +45,7 @@ using namespace stdhapi::hcore;
 using namespace stdhapi::hconsole;
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
-								: HWindow ( a_pcTitle )
+	: HWindow ( a_pcTitle ), f_poList ( NULL )
 	{
 	M_PROLOG
 	M_REGISTER_POSTPROCESS_HANDLER ( KEY_DELETE, NULL,

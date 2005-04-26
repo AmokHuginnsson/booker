@@ -30,4 +30,4 @@ Copyright:
 int decode_switches ( int, char ** );
 void usage ( int ) __attribute__  ((noreturn));
 
-#endif /* __CLI_OPTIONS_H */
+#endif /* not __CLI_OPTIONS_H */

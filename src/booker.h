@@ -47,6 +47,11 @@ public:
 	int run_account_orders ( void );
 	int run_regular_oblige ( void );
 	/*}*/
+private:
+	/*{*/
+	HBookerProcess ( const HBookerProcess & );
+	HBookerProcess & operator = ( const HBookerProcess & );
+	/*}*/
 	};
 
 extern HBookerProcess theProc;
