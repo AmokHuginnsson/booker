@@ -29,7 +29,7 @@ AC_MSG_RESULT([--- Checking for machine type ... ---                   [[14%]]])
 AC_CANONICAL_HOST()
 
 dnl Testing presence of c compiler
-if test ["$CXX"] = ["colorgcc"] ; then
+if test ["$CXX"] = ["colorgcc"] -o ["$CXX"] = ["colorg++"] ; then
 	CXX=["g++"]
 fi
 if test ["$CC"] = ["colorgcc"] ; then
