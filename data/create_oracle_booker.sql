@@ -21,6 +21,7 @@ We add role `dml_role' on root's objects to user `booker'.
 
 */
 
+/*{{{ Create and configure core stuff.*/
 CREATE ROLE dml_role NOT IDENTIFIED;
 CREATE ROLE ddl_role NOT IDENTIFIED;
 GRANT CREATE USER, CREATE TABLE, CREATE ANY SYNONYM TO ddl_role;
@@ -41,6 +42,7 @@ CREATE USER booker
 	ACCOUNT UNLOCK
 	TEMPORARY TABLESPACE "TEMP";
 GRANT dml_role TO booker;
+/*}}}*/
 
 /*
 
@@ -49,9 +51,7 @@ for user 'booker'.
 
 */
 
-DROP TABLE dictionary_bank;
-DROP TABLE dictionary_contracting_party;
-DROP TABLE account_map;
+/*{{{ Create config table and all supplements.*/
 DROP TABLE config;
 
 CREATE TABLE config
@@ -64,6 +64,30 @@ CREATE TABLE config
 	time_value TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
 	blob_value BLOB
 	);
+
+CREATE SEQUENCE config_sequence INCREMENT BY 1 START WITH 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER config_autonumber
+	BEFORE INSERT
+	ON config
+FOR EACH ROW
+
+BEGIN
+	SELECT config_sequence.NEXTVAL
+		INTO :NEW.id
+	FROM dual;
+END config_autonumber;
+
+CREATE SYNONYM booker.config FOR config;
+
+CREATE SYNONYM booker.config_sequence FOR config_sequence;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON root.config TO dml_role;
+/*}}}*/
+
+/*{{{ Create account_map table and all supplements.*/
+DROP TABLE account_map;
+
 CREATE TABLE account_map
 	(
 	id INTEGER PRIMARY KEY,
@@ -72,6 +96,66 @@ CREATE TABLE account_map
 	full_number VARCHAR(32),
 	name VARCHAR(128)
 	);
+
+CREATE SEQUENCE account_map_sequence INCREMENT BY 1 START WITH 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER account_map_autonumber 
+	BEFORE INSERT
+	ON account_map
+FOR EACH ROW
+
+BEGIN
+	SELECT account_map_sequence.NEXTVAL
+		INTO :NEW.id
+	FROM dual;
+END account_map_autonumber;
+
+CREATE SYNONYM booker.account_map FOR account_map;
+
+CREATE SYNONYM booker.account_map_sequence FOR account_map_sequence;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON root.account_map TO dml_role;
+/*}}}*/
+
+/*{{{ Create dictionary_bank table and all supplements.*/
+DROP TABLE dictionary_bank;
+
+CREATE TABLE dictionary_bank
+	(
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(128),
+	country VARCHAR(32),
+	city VARCHAR(32),
+	street VARCHAR(128),
+	street_number VARCHAR(8),
+	postal_code VARCHAR(8),
+	phone VARCHAR(32),
+	fax VARCHAR(32)
+	);
+
+CREATE SEQUENCE dictionary_bank_sequence INCREMENT BY 1 START WITH 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER dictionary_bank_autonumber
+	BEFORE INSERT
+	ON dictionary_bank
+FOR EACH ROW
+
+BEGIN
+	SELECT dictionary_bank_sequence.NEXTVAL
+		INTO :NEW.id
+	FROM dual;
+END dictionary_bank_autonumber;
+
+CREATE SYNONYM booker.dictionary_bank FOR dictionary_bank;
+
+CREATE SYNONYM booker.dictionary_bank_sequence FOR dictionary_bank_sequence;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON root.dictionary_bank TO dml_role;
+/*}}}*/
+
+/*{{{ Create dictionary_contracting_party table and all supplements.*/
+DROP TABLE dictionary_contracting_party;
+
 CREATE TABLE dictionary_contracting_party
 	(
 	id INTEGER PRIMARY KEY,
@@ -89,27 +173,24 @@ CREATE TABLE dictionary_contracting_party
 	email VARCHAR(32),
 	id_account_map NUMBER(4)
 	);
-CREATE TABLE dictionary_bank
-	(
-	id INTEGER PRIMARY KEY,
-	name VARCHAR(128),
-	country VARCHAR(32),
-	city VARCHAR(32),
-	street VARCHAR(128),
-	street_number VARCHAR(8),
-	postal_code VARCHAR(8),
-	phone VARCHAR(32),
-	fax VARCHAR(32)
-	);
 
-GRANT SELECT,INSERT,UPDATE,DELETE ON root.config TO dml_role;
-GRANT SELECT,INSERT,UPDATE,DELETE ON root.account_map TO dml_role;
-GRANT SELECT,INSERT,UPDATE,DELETE ON root.dictionary_bank TO dml_role;
-GRANT SELECT,INSERT,UPDATE,DELETE ON root.dictionary_contracting_party TO dml_role;
-CREATE SYNONYM booker.config FOR config;
-CREATE SYNONYM booker.account_map FOR account_map;
-CREATE SYNONYM booker.dictionary_bank FOR dictionary_bank;
+CREATE SEQUENCE dictionary_contracting_party_sequence INCREMENT BY 1 START WITH 1 NOCACHE;
+
+CREATE OR REPLACE TRIGGER dictionary_contracting_party_autonumber
+	BEFORE INSERT
+	ON dictionary_contracting_party
+FOR EACH ROW
+
+BEGIN
+	SELECT dictionary_contracting_party_sequence.NEXTVAL
+		INTO :NEW.id
+	FROM dual;
+END dictionary_contracting_party_autonumber;
+
 CREATE SYNONYM booker.dictionary_contracting_party FOR dictionary_contracting_party;
-/*}}}*/
 
+CREATE SYNONYM booker.dictionary_contracting_party_sequence FOR dictionary_contracting_party_sequence;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON root.dictionary_contracting_party TO dml_role;
+/*}}}*/
 
