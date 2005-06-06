@@ -66,7 +66,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_PROLOG
 	int l_iError = 0;
 	HControl * l_poControl = NULL;
-	HItem l_oItem ( 1 );
+	HItem l_oItem ( 1 ), l_oRow ( 5 );
 	HListControl * l_poList = NULL;
 	HComboboxControl * l_poCombo = NULL;
 	HDictionaryContractingPartySet rs ( theProc.data_base ( ) );
@@ -108,12 +108,12 @@ int HDictionaryContractingPartyWindow::init ( void )
 	rs.open ( );
 	while ( ! rs.is_eof ( ) )
 		{
-		l_poList->add_tail ( );
-		l_poList->tail ( ) [ 0 ] ( rs.m_imie );
-		l_poList->tail ( ) [ 1 ] ( rs.m_nazwisko );
-		l_poList->tail ( ) [ 2 ] ( rs.m_ulica );
-		l_poList->tail ( ) [ 3 ] ( rs.m_miasto );
-		l_poList->tail ( ) [ 4 ] ( rs.m_email );
+		l_oRow [ 0 ] ( rs.m_imie );
+		l_oRow [ 1 ] ( rs.m_nazwisko );
+		l_oRow [ 2 ] ( rs.m_ulica );
+		l_oRow [ 3 ] ( rs.m_miasto );
+		l_oRow [ 4 ] ( rs.m_email );
+		l_poList->add_tail ( & l_oRow );
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
 			l_oItem [ 0 ] ( rs.m_telefon );

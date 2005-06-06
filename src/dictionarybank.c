@@ -153,7 +153,7 @@ int HDictionaryBank::handler_add ( int a_iCode, void * )
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
 		l_dValue = l_oAnalyser.count ( );
 */
-		l_poIitem = & l_poList->add_tail ( l_oItem );
+		l_poIitem = & l_poList->add_tail ( & l_oItem );
 		( * l_poIitem ) [ 0 ] = util::kwota_slownie ( l_dValue );
 		( * l_poIitem ) [ 1 ] = "wype³niacz";
 /*		( * l_poIitem ) [ 2 ] = HString ( l_dValue );*/

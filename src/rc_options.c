@@ -53,7 +53,7 @@ bool set_variables ( HString & a_roOption, HString & a_roValue )
 
 int process_bookerrc_file ( void )
 	{
-	rc_file::process_rc_file ( "booker", NULL, g_psVars );
+	rc_file::process_rc_file ( "booker", NULL, g_psVars, NULL );
 	if ( ! g_pcLogFileName )
 		g_pcLogFileName = xstrdup ( "booker.log" );
 	return ( 0 );
