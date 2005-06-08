@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso8859-2"?>
+<resource>
+	<menu>
+		<menu_item>
+			<label>Księgowość</label>
+			<menu>
+				<menu_item>
+					<label>Polecenia księgowania</label>
+					<handler>run_account_orders</handler>
+				</menu_item>
+				<menu_item>
+					<label>Plan Kont</label>
+					<handler>run_account_map</handler>
+				</menu_item>
+				<menu_item>
+					<label>Przeglądanie</label>
+					<handler></handler>
+				</menu_item>
+			</menu>
+		</menu_item>
+		<menu_item>
+			<label>Słowniki</label>
+			<menu>
+				<menu_item>
+					<label>Banki</label>
+					<handler>run_dictionary_bank</handler>
+				</menu_item>
+				<menu_item>
+					<label>Kontrahenci</label>
+					<handler>run_dictionary_contracting_party</handler>
+				</menu_item>
+				<menu_item>
+					<label>Zobowiązania stałe</label>
+					<handler>run_regular_oblige</handler>
+				</menu_item>
+			</menu>
+		</menu_item>
+		<menu_item>
+			<label>System</label>
+			<menu>
+				<menu_item>
+					<label>Podmiot</label>
+					<handler>run_subject</handler>
+				</menu_item>
+				<menu_item>
+					<label>Konfiguracja</label>
+					<handler>run_config</handler>
+				</menu_item>
+			</menu>
+		</menu_item>
+		<menu_item>
+			<label>Koniec pracy</label>
+			<handler>run_quit</handler>
+		</menu_item>
+	</menu>
+</resource>
