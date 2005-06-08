@@ -116,8 +116,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
 	f_oDataBase.login ( g_pcDataBase, g_pcLogin, g_pcPassword );
-	HDataProcess::init_xrc ( a_pcProcessName, "booker.xrc" );
-	( ( HMainWindow * ) f_poForegroundWindow )->init_menu ( this, g_psMainMenu );
+	HDataProcess::init_xrc ( a_pcProcessName, "booker.xrc", g_psMainMenu );
 	return ( 0 );
 	M_EPILOG
 	}
