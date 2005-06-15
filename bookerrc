@@ -7,7 +7,7 @@ database booker
 login booker
 password b00k3r
 
-logfile x_booker.log
+log_path x_booker.log
 
 # End of configuration file.
 

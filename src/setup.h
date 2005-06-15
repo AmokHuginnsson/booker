@@ -30,10 +30,10 @@ Copyright:
 extern int g_iWantQuiet;			/* --quiet, --silent */
 extern int g_iWantVerbose;			/* --verbose */
 extern char * g_pcProgramName;
-extern char * g_pcLogFileName;
-extern char * g_pcDataBase;
-extern char * g_pcLogin;
-extern char * g_pcPassword;
+extern stdhapi::hcore::HString g_oLogPath;
+extern stdhapi::hcore::HString g_oDataBase;
+extern stdhapi::hcore::HString g_oLogin;
+extern stdhapi::hcore::HString g_oPassword;
 extern struct option const * g_sLongOptions;
 
 void test_globals ( void );

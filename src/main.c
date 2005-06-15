@@ -60,7 +60,7 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		process_bookerrc_file ( );
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
 		test_globals ( );
-		hcore::log.rehash ( g_pcLogFileName, 0 );
+		hcore::log.rehash ( g_oLogPath, 0 );
 /* enabling ncurses ablilities  */
 		if ( ! hconsole::is_enabled ( ) )enter_curses ();
 		theProc.init ( g_pcProgramName );
@@ -75,14 +75,6 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		if ( hconsole::is_enabled ( ) )leave_curses ();
 		throw;
 		}
-	if ( g_pcLogFileName )
-		xfree ( g_pcLogFileName );
-	if ( g_pcPassword )
-		xfree ( g_pcPassword );
-	if ( g_pcLogin )
-		xfree ( g_pcLogin );
-	if ( g_pcDataBase )
-		xfree ( g_pcDataBase );
 	fprintf ( stderr, "%s.\n", _( "Done" ) ); 
 	return ( 0 );
 	M_FINAL

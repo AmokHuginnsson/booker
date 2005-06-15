@@ -37,10 +37,10 @@ using namespace stdhapi::hcore;
 
 OVariable g_psVars [ ] =
 	{
-		{ D_TYPE_CHAR_POINTER, "logfile", & g_pcLogFileName },
-		{ D_TYPE_CHAR_POINTER, "database", & g_pcDataBase },
-		{ D_TYPE_CHAR_POINTER, "login", & g_pcLogin },
-		{ D_TYPE_CHAR_POINTER, "password", & g_pcPassword },
+		{ D_TYPE_HSTRING, "log_path", & g_oLogPath },
+		{ D_TYPE_HSTRING, "database", & g_oDataBase },
+		{ D_TYPE_HSTRING, "login", & g_oLogin },
+		{ D_TYPE_HSTRING, "password", & g_oPassword },
 		{ 0, NULL, NULL }
 	};
 
@@ -54,7 +54,7 @@ bool set_variables ( HString & a_roOption, HString & a_roValue )
 int process_bookerrc_file ( void )
 	{
 	rc_file::process_rc_file ( "booker", NULL, g_psVars, NULL );
-	if ( ! g_pcLogFileName )
-		g_pcLogFileName = xstrdup ( "booker.log" );
+	if ( ! g_oLogPath )
+		g_oLogPath = "booker.log";
 	return ( 0 );
 	}
