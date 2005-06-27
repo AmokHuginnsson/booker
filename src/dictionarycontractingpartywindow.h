@@ -32,6 +32,7 @@ class HDictionaryContractingPartyWindow : public stdhapi::hconsole::HWindow
 protected:
 	/*{*/
 	stdhapi::hconsole::HListControl * f_poList;
+	stdhapi::hconsole::HEditControl * f_poEdit;
 	/*}*/
 public:
 	/*{*/
@@ -42,6 +43,7 @@ public:
 protected:
 	/*{*/
 	int handler_delete ( int, void * );
+	int handler_enter ( int, void * );
 	/*}*/
 private:
 	/*{*/

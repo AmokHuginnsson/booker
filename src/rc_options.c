@@ -37,10 +37,10 @@ using namespace stdhapi::hcore;
 
 OVariable g_psVars [ ] =
 	{
-		{ D_TYPE_HSTRING, "log_path", & g_oLogPath },
-		{ D_TYPE_HSTRING, "database", & g_oDataBase },
-		{ D_TYPE_HSTRING, "login", & g_oLogin },
-		{ D_TYPE_HSTRING, "password", & g_oPassword },
+		{ D_HSTRING, "log_path", & g_oLogPath },
+		{ D_HSTRING, "database", & g_oDataBase },
+		{ D_HSTRING, "login", & g_oLogin },
+		{ D_HSTRING, "password", & g_oPassword },
 		{ 0, NULL, NULL }
 	};
 

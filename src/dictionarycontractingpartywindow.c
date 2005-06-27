@@ -45,11 +45,13 @@ using namespace stdhapi::hcore;
 using namespace stdhapi::hconsole;
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
-	: HWindow ( a_pcTitle ), f_poList ( NULL )
+	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
 	{
 	M_PROLOG
 	M_REGISTER_POSTPROCESS_HANDLER ( KEY_DELETE, NULL,
 			HDictionaryContractingPartyWindow::handler_delete );
+	M_REGISTER_POSTPROCESS_HANDLER ( '\r', NULL,
+			HDictionaryContractingPartyWindow::handler_enter );
 	return;
 	M_EPILOG
 	}
@@ -73,23 +75,23 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_iError = HWindow::init ( );
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
-	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_TYPE_HSTRING,
+	l_poList->add_column ( -1, "Imiê", 16, D_ALIGN_LEFT, D_HSTRING,
 			l_poControl = new HEditControl ( this,
 				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Nazwisko", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
+	l_poList->add_column ( -1, "Nazwisko", 24, D_ALIGN_LEFT, D_HSTRING,
 			l_poControl = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Ulica", 24, D_ALIGN_LEFT, D_TYPE_HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
-				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
+	l_poList->add_column ( -1, "Ulica", 24, D_ALIGN_LEFT, D_HSTRING,
+			l_poControl = f_poEdit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
+				32, "", D_MASK_LOOSE ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
+	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_HSTRING,
 			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
-	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_TYPE_HSTRING,
+	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_HSTRING,
 			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
@@ -97,7 +99,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	f_oControls.exchange ( 1, 6 );
 	f_oControls.exchange ( 2, 6 );
 	f_oControls.exchange ( 3, 6 );
-	l_poCombo->add_column ( -1, "dummy_label", 1, D_ALIGN_LEFT, D_TYPE_HSTRING );
+	l_poCombo->add_column ( -1, "dummy_label", 1, D_ALIGN_LEFT, D_HSTRING );
 	l_poCombo->enable ( true );
 	l_oItem [ 0 ] ( "Ala" );
 	l_poCombo->add_orderly ( l_oItem );
@@ -137,3 +139,13 @@ int HDictionaryContractingPartyWindow::handler_delete ( int, void * )
 	return ( 0 );
 	M_EPILOG
 	}
+
+int HDictionaryContractingPartyWindow::handler_enter ( int, void * )
+	{
+	M_PROLOG
+	if ( f_poList->quantity ( ) )
+		f_poList->present( ) [ 2 ] = f_poEdit->get ( );
+	return ( 0 );
+	M_EPILOG
+	}
+
