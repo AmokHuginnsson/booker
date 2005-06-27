@@ -41,7 +41,7 @@ OVariable g_psVars [ ] =
 		{ D_HSTRING, "database", & g_oDataBase },
 		{ D_HSTRING, "login", & g_oLogin },
 		{ D_HSTRING, "password", & g_oPassword },
-		{ 0, NULL, NULL }
+		{ D_NONE, NULL, NULL }
 	};
 
 bool set_variables ( HString & a_roOption, HString & a_roValue )
