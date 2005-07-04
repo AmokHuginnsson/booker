@@ -58,16 +58,17 @@ does very much usefull things ... really \n", g_pcProgramName );
 
 int decode_switches ( int a_iArgc, char ** a_ppcArgv )
 	{
+	M_PROLOG
+	int l_iChar = 0;
 	hcore::log ( D_LOG_INFO ) << "Decoding switches ... ";
-	int l_c;
-	while ( ( l_c = getopt_long ( a_iArgc, a_ppcArgv, 
+	while ( ( l_iChar = getopt_long ( a_iArgc, a_ppcArgv, 
 					"q"	   /* quiet or silent                                       */
 					"v"	   /* verbose                                               */
 					"h"	   /* help                                                  */
 					"V",	 /* version                                               */
 					g_sLongOptions, ( int * ) 0 ) ) != EOF )
 		{
-		switch ( l_c )
+		switch ( l_iChar )
 			{
 			case ( 'q' ):	 /* --quiet, --silent                                     */
 				{
@@ -97,5 +98,6 @@ int decode_switches ( int a_iArgc, char ** a_ppcArgv )
 		}
 	hcore::log ( D_LOG_INFO ) << "done" << endl;
 	return ( optind );
+	M_EPILOG
 	}
 
