@@ -48,49 +48,9 @@ M_CVSID ( "$CVSHeader$" );
 using namespace stdhapi::hcore;
 using namespace stdhapi::hconsole;
 using namespace stdhapi::dbwrapper;
+using namespace stdhapi::hdata;
 
-#define CIP (int (HProcess::*)(void))
-
-OMenuItem g_psInspectionSubSubMenu [ ] =
-	{
-		{ 0, CIP & HBookerProcess::run_account_orders, "Analityka" },
-		{ 0, CIP & HBookerProcess::run_account_map, "Bilans" },
-		{ 0, CIP & HBookerProcess::run_account_map, "Salda" },
-		{ 0, CIP & HBookerProcess::run_account_map, "Zestawienia" },
-		{ 0, 0, 0 }
-	};
-
-OMenuItem g_psDictionarySubMenu [ ] =
-	{
-		{ 0, CIP & HBookerProcess::run_dictionary_bank, "Banki" },
-		{ 0, CIP & HBookerProcess::run_dictionary_contracting_party,"Kontrahenci" },
-		{ 0, CIP & HBookerProcess::run_regular_oblige, "Zobowi±zania sta³e" },
-		{ 0, 0, 0 }
-	};
-
-OMenuItem g_psAccountingSubMenu [ ] =
-	{
-		{ 0, CIP & HBookerProcess::run_account_orders, "Polecenia ksiêgowania" },
-		{ 0, CIP & HBookerProcess::run_account_map, "Plan Kont" },
-		{ g_psInspectionSubSubMenu, 0, "Przegl±danie" },
-		{ 0, 0, 0 }
-	};
-
-OMenuItem g_psSystemSubMenu [ ] =
-	{
-		{ 0, CIP & HBookerProcess::run_subject, "Podmiot" },
-		{ 0, CIP & HBookerProcess::run_config, "Konfiguracja" },
-		{ 0, 0, 0 }
-	};
-	 
-OMenuItem g_psMainMenu [ ] =
-	{
-		{ g_psAccountingSubMenu, 0, "Ksiêgowo¶æ" }, 
-		{ g_psDictionarySubMenu, 0, "S³owniki" }, 
-		{ g_psSystemSubMenu, 0, "System" }, 
-		{ 0, CIP & HBookerProcess::run_quit, "Koniec pracy" }, 
-		{ 0, 0, 0 }
-	};
+#define D_MENU_HANDLERS_MAP_SIZE 32
 
 HBookerProcess::HBookerProcess ( void )
 	:	HDataProcess ( ), f_poDataBase ( NULL )
@@ -116,7 +76,17 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
 	f_oDataBase.login ( g_oDataBase, g_oLogin, g_oPassword );
-	HDataProcess::init_xrc ( a_pcProcessName, "booker.xrc", g_psMainMenu );
+	menu_handlers_map_t l_oHandlers ( D_MENU_HANDLERS_MAP_SIZE );
+	M_REGISTER_MENU_HANDLER ( run_quit );
+	M_REGISTER_MENU_HANDLER ( run_account_orders );
+	M_REGISTER_MENU_HANDLER ( run_account_map );
+	l_oHandlers [ "" ] = NULL;
+	M_REGISTER_MENU_HANDLER ( run_dictionary_bank );
+	M_REGISTER_MENU_HANDLER ( run_dictionary_contracting_party );
+	M_REGISTER_MENU_HANDLER ( run_regular_oblige );
+	M_REGISTER_MENU_HANDLER ( run_subject );
+	M_REGISTER_MENU_HANDLER ( run_config );
+	HDataProcess::init_xrc ( a_pcProcessName, "booker.xrc", l_oHandlers );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -133,9 +103,9 @@ int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
 	add_window ( new HDictionaryBank (
-				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
+				"Banki", theProc.data_base ( ),
 				g_psDictionaryBankResources ),
-			g_psDictionarySubMenu [ 0 ].f_pcLabel );
+			"Banki" );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -144,8 +114,8 @@ int HBookerProcess::run_dictionary_contracting_party ( void )
 	{
 	M_PROLOG
 	add_window ( new HDictionaryContractingPartyWindow (
-				g_psDictionarySubMenu [ 1 ].f_pcLabel ),
-			g_psDictionarySubMenu [ 1 ].f_pcLabel );
+				"Kontrahenci" ),
+			"Kontrahenci" );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -158,9 +128,9 @@ int HBookerProcess::run_config ( void )
 	for ( i = 0; i < 8; i++ )
 		{
 	add_window ( new HDictionaryBank (
-				g_psDictionarySubMenu [ 0 ].f_pcLabel, theProc.data_base ( ),
+				"Banki", theProc.data_base ( ),
 				g_psDictionaryBankResources ),
-			g_psDictionarySubMenu [ 0 ].f_pcLabel );
+			"Banki" );
 		}
 	refresh ( );
 	return ( 0 );

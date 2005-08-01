@@ -96,7 +96,7 @@ int decode_switches ( int a_iArgc, char ** a_ppcArgv )
 				}
 			}
 		}
-	hcore::log ( D_LOG_INFO ) << "done" << endl;
+	hcore::log ( D_LOG_INFO ) << "done." << endl;
 	return ( optind );
 	M_EPILOG
 	}

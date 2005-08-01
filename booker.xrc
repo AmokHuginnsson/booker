@@ -14,7 +14,24 @@
 				</menu_item>
 				<menu_item>
 					<label>Przegl±danie</label>
-					<handler></handler>
+					<menu>
+						<menu_item>
+							<label>Analityka</label>
+							<handler>run_account_orders</handler>
+						</menu_item>
+						<menu_item>
+							<label>Bilans</label>
+							<handler>run_account_orders</handler>
+						</menu_item>
+						<menu_item>
+							<label>Salda</label>
+							<handler>run_account_orders</handler>
+						</menu_item>
+						<menu_item>
+							<label>Zestawienia</label>
+							<handler>run_account_orders</handler>
+						</menu_item>
+					</menu>
 				</menu_item>
 			</menu>
 		</menu_item>
