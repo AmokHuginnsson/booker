@@ -1,7 +1,7 @@
 /*
 ---       `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski         ---
 
-	variables.h - this file is integral part of `booker' project.
+	setup.h - this file is integral part of `booker' project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -24,18 +24,45 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __VARIABLES_H
-#define __VARIABLES_H
+#ifndef __SETUP_H
+#define __SETUP_H
 
-extern int g_iWantQuiet;			/* --quiet, --silent */
-extern int g_iWantVerbose;			/* --verbose */
-extern char * g_pcProgramName;
-extern stdhapi::hcore::HString g_oLogPath;
-extern stdhapi::hcore::HString g_oDataBase;
-extern stdhapi::hcore::HString g_oLogin;
-extern stdhapi::hcore::HString g_oPassword;
-extern struct option const * g_sLongOptions;
+#include <libintl.h>
 
-void test_globals ( void );
+struct OSetup
+	{
+	OSetup ( void ) : f_bQuiet ( false ), f_bVerbose ( false ),
+										f_bHelp ( false ), f_pcProgramName ( NULL ),
+										f_oLogPath ( ), f_oDataBase ( ),
+										f_oLogin ( ), f_oPassword ( ) {}
+	void test_globals ( void )
+		{
+		M_PROLOG
+		if ( ! f_oDataBase )
+			M_THROW ( _ ( "database not set" ), g_iErrNo );
+		if ( ! f_oLogin )
+			M_THROW ( _ ( "database login not set" ), g_iErrNo );
+		if ( ! f_oPassword )
+			M_THROW ( _ ( "database password not set" ), g_iErrNo );
+		if ( ! f_oLogPath )
+			M_THROW ( _ ( "log file name not set" ), g_iErrNo );
+		return;
+		M_EPILOG
+		}
+	bool f_bQuiet;			/* --quiet, --silent */
+	bool f_bVerbose;		/* --verbose */
+	bool f_bHelp;
+	char * f_pcProgramName;
+	stdhapi::hcore::HString f_oLogPath;
+	stdhapi::hcore::HString f_oDataBase;
+	stdhapi::hcore::HString f_oLogin;
+	stdhapi::hcore::HString f_oPassword;
+private:
+	OSetup ( OSetup const & );
+	OSetup & operator = ( OSetup const & );
+	};
 
-#endif /* __VARIABLES_H */
+extern OSetup setup;
+
+
+#endif /* __SETUP_H */
