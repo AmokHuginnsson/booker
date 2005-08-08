@@ -31,18 +31,9 @@ Copyright:
 #include <stdhapi.h>
 M_CVSID ( "$CVSHeader$" );
 
-#include "variables.h"
+#include "setup.h"
 
 using namespace stdhapi::hcore;
-
-OVariable g_psVars [ ] =
-	{
-		{ D_HSTRING, "log_path", & g_oLogPath },
-		{ D_HSTRING, "database", & g_oDataBase },
-		{ D_HSTRING, "login", & g_oLogin },
-		{ D_HSTRING, "password", & g_oPassword },
-		{ D_NONE, NULL, NULL }
-	};
 
 bool set_variables ( HString & a_roOption, HString & a_roValue )
 	{
@@ -53,8 +44,17 @@ bool set_variables ( HString & a_roOption, HString & a_roValue )
 
 int process_bookerrc_file ( void )
 	{
-	rc_file::process_rc_file ( "booker", NULL, g_psVars, NULL );
-	if ( ! g_oLogPath )
-		g_oLogPath = "booker.log";
+	OVariable l_psVars [ ] =
+		{
+			{ D_HSTRING, "log_path",	& setup.f_oLogPath },
+			{ D_HSTRING, "database",	& setup.f_oDataBase },
+			{ D_HSTRING, "login",			& setup.f_oLogin },
+			{ D_HSTRING, "password",	& setup.f_oPassword },
+			{ D_NONE, NULL, NULL }
+		};
+	rc_file::process_rc_file ( "booker", NULL, l_psVars, NULL );
+	if ( ! setup.f_oLogPath )
+		setup.f_oLogPath = "booker.log";
 	return ( 0 );
 	}
+

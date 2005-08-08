@@ -34,8 +34,7 @@ Copyright:
 M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
-#include "define.h"                                                    
-#include "variables.h"
+#include "setup.h"
 #include "cli_options.h"
 #include "rc_options.h"
 
@@ -44,6 +43,7 @@ using namespace stdhapi::hcore;
 using namespace stdhapi::hconsole;
 using namespace stdhapi::tools;
 
+OSetup setup;
 HBookerProcess theProc;
 
 int main ( int a_iArgc, char **a_ppcArgv )
@@ -56,14 +56,14 @@ int main ( int a_iArgc, char **a_ppcArgv )
 		{
 		signals::set_handlers ( );
 /*	TO-DO:				                    enter main loop code here */
-		g_pcProgramName = a_ppcArgv [ 0 ];
+		setup.f_pcProgramName = a_ppcArgv [ 0 ];
 		process_bookerrc_file ( );
 		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
-		test_globals ( );
-		hcore::log.rehash ( g_oLogPath, 0 );
+		setup.test_globals ( );
+		hcore::log.rehash ( setup.f_oLogPath, 0 );
 /* enabling ncurses ablilities  */
 		if ( ! hconsole::is_enabled ( ) )enter_curses ();
-		theProc.init ( g_pcProgramName );
+		theProc.init ( setup.f_pcProgramName );
 		theProc.run ( );
 /* ending ncurses sesion        */
 		if ( hconsole::is_enabled ( ) )leave_curses ();

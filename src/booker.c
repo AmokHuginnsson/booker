@@ -38,7 +38,7 @@ Copyright:
 M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
-#include "variables.h"
+#include "setup.h"
 
 /* windows begin */
 #include "dictionarybank.h"
@@ -75,7 +75,7 @@ HBookerProcess::~HBookerProcess ( void )
 int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
-	f_oDataBase.login ( g_oDataBase, g_oLogin, g_oPassword );
+	f_oDataBase.login ( setup.f_oDataBase, setup.f_oLogin, setup.f_oPassword );
 	menu_handlers_map_t l_oHandlers ( D_MENU_HANDLERS_MAP_SIZE );
 	M_REGISTER_MENU_HANDLER ( run_quit );
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
