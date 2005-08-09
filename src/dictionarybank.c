@@ -61,7 +61,7 @@ OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 		{ -1, "kod", 1, D_ALIGN_LEFT, D_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_HSTRING },
 		{ -1, "", 0, D_ALIGN_LEFT, D_HSTRING },
-		{	0, NULL, 0, 0, D_NONE }
+		{	0, NULL, 0, 0, D_VOID }
 	};
 
 OResource x_tag_g_psDictionaryBankResources [ ] =

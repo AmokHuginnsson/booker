@@ -50,7 +50,7 @@ int process_bookerrc_file ( void )
 			{ D_HSTRING, "database",	& setup.f_oDataBase },
 			{ D_HSTRING, "login",			& setup.f_oLogin },
 			{ D_HSTRING, "password",	& setup.f_oPassword },
-			{ D_NONE, NULL, NULL }
+			{ D_VOID, NULL, NULL }
 		};
 	rc_file::process_rc_file ( "booker", NULL, l_psVars, NULL );
 	if ( ! setup.f_oLogPath )
