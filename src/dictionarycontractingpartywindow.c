@@ -24,7 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include "../config.h"
+#include <stdhapi.h> /* all hAPI headers */
+M_CVSID ( "$CVSHeader$" );
 
 #ifdef HAVE_NCURSES_H
 #	include <ncurses.h>
@@ -33,9 +34,6 @@ Copyright:
 #else /* HAVE_NCURSES_NCURSES_H */
 #	error "No ncurses header available."
 #endif /* not HAVE_NCURSES_NCURSES_H */
-
-#include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" );
 
 #include "booker.h"
 #include "dictionarycontractingpartywindow.h"
