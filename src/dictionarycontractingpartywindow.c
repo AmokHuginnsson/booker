@@ -133,7 +133,7 @@ int HDictionaryContractingPartyWindow::handler_delete ( int, void * )
 	{
 	M_PROLOG
 	if ( f_poList->quantity ( ) )
-		f_poList->remove_element ( D_EMPTY_IF_NOT_EMPTIED );
+		f_poList->remove_element ( HListControl::D_EMPTY_IF_NOT_EMPTIED );
 	return ( 0 );
 	M_EPILOG
 	}
