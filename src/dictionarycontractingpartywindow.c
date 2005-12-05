@@ -27,14 +27,6 @@ Copyright:
 #include <stdhapi.h> /* all hAPI headers */
 M_CVSID ( "$CVSHeader$" );
 
-#ifdef HAVE_NCURSES_H
-#	include <ncurses.h>
-#elif defined ( HAVE_NCURSES_NCURSES_H )
-#	include <ncurses/ncurses.h>
-#else /* HAVE_NCURSES_NCURSES_H */
-#	error "No ncurses header available."
-#endif /* not HAVE_NCURSES_NCURSES_H */
-
 #include "booker.h"
 #include "dictionarycontractingpartywindow.h"
 #include "dictionarycontractingpartyset.h"
@@ -46,7 +38,7 @@ HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const cha
 	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
 	{
 	M_PROLOG
-	M_REGISTER_POSTPROCESS_HANDLER ( KEY_DELETE, NULL,
+	M_REGISTER_POSTPROCESS_HANDLER ( KEY_CODES::D_DELETE, NULL,
 			HDictionaryContractingPartyWindow::handler_delete );
 	M_REGISTER_POSTPROCESS_HANDLER ( '\r', NULL,
 			HDictionaryContractingPartyWindow::handler_enter );

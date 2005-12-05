@@ -28,14 +28,6 @@ Copyright:
 #include <stdhapi.h>
 M_CVSID ( "$CVSHeader$" );
 
-#ifdef HAVE_NCURSES_H
-#	include <ncurses.h>
-#elif defined ( HAVE_NCURSES_NCURSES_H )
-#	include <ncurses/ncurses.h>
-#else /* HAVE_NCURSES_NCURSES_H */
-#	error "No ncurses header available."
-#endif /* not HAVE_NCURSES_NCURSES_H */
-
 #include "booker.h"
 #include "setup.h"
 
@@ -131,7 +123,7 @@ int HBookerProcess::run_config ( void )
 				g_psDictionaryBankResources ),
 			"Banki" );
 		}
-	refresh ( );
+	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -140,7 +132,7 @@ int HBookerProcess::run_subject ( void )
 	{
 	M_PROLOG
 	c_printf ( n_iHeight - 2, -1, 48, "run_subject" );
-	refresh ( );
+	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -149,7 +141,7 @@ int HBookerProcess::run_account_map ( void )
 	{
 	M_PROLOG
 	c_printf ( n_iHeight - 2, -1, 48, "run_account_map" );
-	refresh ( );
+	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -158,7 +150,7 @@ int HBookerProcess::run_account_orders ( void )
 	{
 	M_PROLOG
 	c_printf ( n_iHeight - 2, -1, 48, "run_account_orders" );
-	refresh ( );
+	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -167,7 +159,7 @@ int HBookerProcess::run_regular_oblige ( void )
 	{
 	M_PROLOG
 	c_printf ( n_iHeight - 2, -1, 48, "run_regular_oblige" );
-	refresh ( );
+	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
 	}
