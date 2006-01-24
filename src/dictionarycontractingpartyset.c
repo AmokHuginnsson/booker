@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <stdhapi.h>
-M_CVSID ( "$CVSHeader$" );
+M_CVSID ( "$CVSHeader$" )
 
 #include "dictionarycontractingpartyset.h"
 

@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" );
+M_CVSID ( "$CVSHeader$" )
 
 #include "booker.h"
 #include "dictionarybank.h"

@@ -26,7 +26,7 @@ Copyright:
 
 
 #include <stdhapi.h>
-M_CVSID ( "$CVSHeader$" );
+M_CVSID ( "$CVSHeader$" )
 
 #include "booker.h"
 #include "setup.h"

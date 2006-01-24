@@ -31,7 +31,7 @@ Copyright:
 #include <libintl.h>
 
 #include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" );
+M_CVSID ( "$CVSHeader$" )
 
 #include "booker.h"
 #include "setup.h"
