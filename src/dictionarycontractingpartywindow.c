@@ -76,7 +76,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "Ulica", 24, D_ALIGN_LEFT, D_HSTRING,
 			l_poControl = f_poEdit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
-				32, "", D_MASK_LOOSE ) );
+				32, "", n_pcMaskLoose ) );
 	l_poControl->enable ( true );
 	l_poList->add_column ( -1, "", 0, D_ALIGN_LEFT, D_HSTRING,
 			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
@@ -85,7 +85,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
-			" &Kombo Testowe: \n", 32, 128, D_MASK_EXTENDED );
+			" &Kombo Testowe: \n", 32, 128, n_pcMaskExtended );
 	f_oControls.exchange ( 1, 6 );
 	f_oControls.exchange ( 2, 6 );
 	f_oControls.exchange ( 3, 6 );
