@@ -38,10 +38,10 @@ HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const cha
 	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
 	{
 	M_PROLOG
-	M_REGISTER_POSTPROCESS_HANDLER ( KEY_CODES::D_DELETE, NULL,
-			HDictionaryContractingPartyWindow::handler_delete );
-	M_REGISTER_POSTPROCESS_HANDLER ( '\r', NULL,
-			HDictionaryContractingPartyWindow::handler_enter );
+	register_postprocess_handler ( KEY_CODES::D_DELETE, NULL,
+			& HDictionaryContractingPartyWindow::handler_delete );
+	register_postprocess_handler ( '\r', NULL,
+			& HDictionaryContractingPartyWindow::handler_enter );
 	return;
 	M_EPILOG
 	}

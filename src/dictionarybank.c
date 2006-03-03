@@ -120,8 +120,8 @@ HDictionaryBank::HDictionaryBank ( const char * a_pcTitle,
 								: HDataWindow ( a_pcTitle, a_poDataBase, a_psResources )
 	{
 	M_PROLOG
-  M_REGISTER_POSTPROCESS_HANDLER ( 'a', NULL,
-			HDictionaryBank::handler_add );
+  register_postprocess_handler ( 'a', NULL,
+			& HDictionaryBank::handler_add );
 	return;
 	M_EPILOG
 	}
