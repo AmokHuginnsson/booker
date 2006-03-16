@@ -55,13 +55,13 @@ OListControlResource g_psDictionaryBankListControls [ ] =
 
 OColumnInfo g_psDictionaryBankColumnInfos [ ] =
 	{
-		{	-1, "nazwa", 4, D_ALIGN_LEFT, D_HSTRING },
-		{ -1, "miasto", 2, D_ALIGN_LEFT, D_HSTRING },
-		{ -1, "ulica", 3, D_ALIGN_LEFT, D_HSTRING },
-		{ -1, "kod", 1, D_ALIGN_LEFT, D_HSTRING },
-		{ -1, "", 0, D_ALIGN_LEFT, D_HSTRING },
-		{ -1, "", 0, D_ALIGN_LEFT, D_HSTRING },
-		{	0, NULL, 0, 0, D_VOID }
+		{	-1, "nazwa", 4, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{ -1, "miasto", 2, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{ -1, "ulica", 3, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{ -1, "kod", 1, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{ -1, "", 0, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{ -1, "", 0, HControl::BITS::ALIGN::D_LEFT, D_HSTRING },
+		{	0, NULL, 0, HControl::BITS::ALIGN::D_LEFT, D_VOID }
 	};
 
 OResource x_tag_g_psDictionaryBankResources [ ] =
