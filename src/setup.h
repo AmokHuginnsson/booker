@@ -48,13 +48,13 @@ struct OSetup
 		{
 		M_PROLOG
 		if ( ! f_oDataBase )
-			M_THROW ( _ ( "database not set" ), g_iErrNo );
+			M_THROW ( _ ( "database not set" ), errno );
 		if ( ! f_oLogin )
-			M_THROW ( _ ( "database login not set" ), g_iErrNo );
+			M_THROW ( _ ( "database login not set" ), errno );
 		if ( ! f_oPassword )
-			M_THROW ( _ ( "database password not set" ), g_iErrNo );
+			M_THROW ( _ ( "database password not set" ), errno );
 		if ( ! f_oLogPath )
-			M_THROW ( _ ( "log file name not set" ), g_iErrNo );
+			M_THROW ( _ ( "log file name not set" ), errno );
 		return;
 		M_EPILOG
 		}
