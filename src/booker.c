@@ -85,7 +85,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 int HBookerProcess::run_quit ( void )
 	{
 	M_PROLOG
-	handler_quit ( D_KEY_COMMAND_('x') );
+	handler_quit ( KEY < 'x' >::command );
 	return ( 0 );
 	M_EPILOG
 	}
