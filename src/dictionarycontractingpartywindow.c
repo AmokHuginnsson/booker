@@ -31,7 +31,7 @@ M_CVSID ( "$CVSHeader$" )
 #include "dictionarycontractingpartywindow.h"
 #include "dictionarycontractingpartyset.h"
 
-using namespace stdhapi::hcore;
+using namespace stdhapi;
 using namespace stdhapi::hconsole;
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )

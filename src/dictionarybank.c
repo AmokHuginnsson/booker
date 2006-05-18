@@ -30,6 +30,7 @@ M_CVSID ( "$CVSHeader$" )
 #include "booker.h"
 #include "dictionarybank.h"
 
+using namespace stdhapi;
 using namespace stdhapi::hcore;
 using namespace stdhapi::hconsole;
 using namespace stdhapi::tools;
