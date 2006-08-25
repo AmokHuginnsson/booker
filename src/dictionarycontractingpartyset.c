@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <yaal.h>
-M_CVSID ( "$CVSHeader: booker/src/dictionarycontractingpartyset.c,v 1.6 2006/01/24 11:51:46 amok Exp $" )
+M_VCSID ( "$CVSHeader: booker/src/dictionarycontractingpartyset.c,v 1.6 2006/01/24 11:51:46 amok Exp $" )
 
 #include "dictionarycontractingpartyset.h"
 

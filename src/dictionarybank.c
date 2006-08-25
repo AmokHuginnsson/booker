@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <yaal.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader: booker/src/dictionarybank.c,v 1.32 2006/01/24 11:51:46 amok Exp $" )
+M_VCSID ( "$CVSHeader: booker/src/dictionarybank.c,v 1.32 2006/01/24 11:51:46 amok Exp $" )
 
 #include "booker.h"
 #include "dictionarybank.h"
