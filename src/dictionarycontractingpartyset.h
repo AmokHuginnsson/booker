@@ -27,22 +27,22 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTYSET_H
 #define __DICTIONARYCONTRACTINGPARTYSET_H
 
-class HDictionaryContractingPartySet : public stdhapi::dbwrapper::HRecordSet
+class HDictionaryContractingPartySet : public yaal::dbwrapper::HRecordSet
 	{
 public:
 	/*{*/
-	stdhapi::hcore::HString m_imie;
-	stdhapi::hcore::HString m_nazwisko;
-	stdhapi::hcore::HString m_nip;
-	stdhapi::hcore::HString m_kraj;
-	stdhapi::hcore::HString m_miasto;
-	stdhapi::hcore::HString m_ulica;
-	stdhapi::hcore::HString m_numer_ulicy;
-	stdhapi::hcore::HString m_numer_mieszkania;
-	stdhapi::hcore::HString m_kod_pocztowy;
-	stdhapi::hcore::HString m_telefon;
-	stdhapi::hcore::HString m_fax;
-	stdhapi::hcore::HString m_email;
+	yaal::hcore::HString m_imie;
+	yaal::hcore::HString m_nazwisko;
+	yaal::hcore::HString m_nip;
+	yaal::hcore::HString m_kraj;
+	yaal::hcore::HString m_miasto;
+	yaal::hcore::HString m_ulica;
+	yaal::hcore::HString m_numer_ulicy;
+	yaal::hcore::HString m_numer_mieszkania;
+	yaal::hcore::HString m_kod_pocztowy;
+	yaal::hcore::HString m_telefon;
+	yaal::hcore::HString m_fax;
+	yaal::hcore::HString m_email;
 	long int m_id_account_map;
 	/*}*/
 protected:
@@ -50,7 +50,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryContractingPartySet ( stdhapi::dbwrapper::HDataBase * = NULL );
+	HDictionaryContractingPartySet ( yaal::dbwrapper::HDataBase * = NULL );
 	virtual ~HDictionaryContractingPartySet ( void );
 	/*}*/
 protected:

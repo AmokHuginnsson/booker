@@ -30,18 +30,18 @@ Copyright:
 #include <string.h>
 #include <libintl.h>
 
-#include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" )
+#include <yaal.h> /* all hAPI headers */
+M_CVSID ( "$CVSHeader: booker/src/main.c,v 1.23 2006/01/24 11:51:46 amok Exp $" )
 
 #include "booker.h"
 #include "setup.h"
 #include "cli_options.h"
 #include "rc_options.h"
 
-using namespace stdhapi;
-using namespace stdhapi::hcore;
-using namespace stdhapi::hconsole;
-using namespace stdhapi::tools;
+using namespace yaal;
+using namespace yaal::hcore;
+using namespace yaal::hconsole;
+using namespace yaal::tools;
 
 OSetup setup;
 HBookerProcess theProc;

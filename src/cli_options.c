@@ -28,15 +28,15 @@ Copyright:
 #include <stdio.h>
 #include <getopt.h>
 
-#include <stdhapi.h>
-M_CVSID ( "$CVSHeader$" )
+#include <yaal.h>
+M_CVSID ( "$CVSHeader: booker/src/cli_options.c,v 1.13 2006/01/24 11:51:46 amok Exp $" )
 
 #include "version.h"
 #include "setup.h"
 #include "cli_options.h"
 
-using namespace stdhapi;
-using namespace stdhapi::hcore;
+using namespace yaal;
+using namespace yaal::hcore;
 
 /* Set all the option flags according to the switches specified.
    Return the index of the first non-option argument.                    */

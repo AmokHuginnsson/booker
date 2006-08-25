@@ -24,15 +24,15 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" )
+#include <yaal.h> /* all hAPI headers */
+M_CVSID ( "$CVSHeader: booker/src/dictionarycontractingpartywindow.c,v 1.23 2006/01/24 11:51:46 amok Exp $" )
 
 #include "booker.h"
 #include "dictionarycontractingpartywindow.h"
 #include "dictionarycontractingpartyset.h"
 
-using namespace stdhapi;
-using namespace stdhapi::hconsole;
+using namespace yaal;
+using namespace yaal::hconsole;
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
 	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )

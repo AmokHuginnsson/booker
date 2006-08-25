@@ -24,18 +24,18 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <stdhapi.h> /* all hAPI headers */
-M_CVSID ( "$CVSHeader$" )
+#include <yaal.h> /* all hAPI headers */
+M_CVSID ( "$CVSHeader: booker/src/dictionarybank.c,v 1.32 2006/01/24 11:51:46 amok Exp $" )
 
 #include "booker.h"
 #include "dictionarybank.h"
 
-using namespace stdhapi;
-using namespace stdhapi::hcore;
-using namespace stdhapi::hconsole;
-using namespace stdhapi::tools;
-using namespace stdhapi::dbwrapper;
-using namespace stdhapi::hdata;
+using namespace yaal;
+using namespace yaal::hcore;
+using namespace yaal::hconsole;
+using namespace yaal::tools;
+using namespace yaal::dbwrapper;
+using namespace yaal::hdata;
 
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{

@@ -35,10 +35,10 @@ struct OSetup
 	bool f_bVerbose;		/* --verbose */
 	bool f_bHelp;
 	char * f_pcProgramName;
-	stdhapi::hcore::HString f_oLogPath;
-	stdhapi::hcore::HString f_oDataBase;
-	stdhapi::hcore::HString f_oLogin;
-	stdhapi::hcore::HString f_oPassword;
+	yaal::hcore::HString f_oLogPath;
+	yaal::hcore::HString f_oDataBase;
+	yaal::hcore::HString f_oLogin;
+	yaal::hcore::HString f_oPassword;
 	/* self-sufficient */
 	OSetup ( void ) : f_bQuiet ( false ), f_bVerbose ( false ),
 										f_bHelp ( false ), f_pcProgramName ( NULL ),

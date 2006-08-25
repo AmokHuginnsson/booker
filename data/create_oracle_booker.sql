@@ -10,7 +10,7 @@ We create role that has permissions to modify data in database
 We create role that has permission to create users, and grant dml_role
 to them with name `ddl_role'.
 
-We create user that will be owner of all stdhapi related
+We create user that will be owner of all yaal related
 databases with name `root'.
 
 We grant ddl_role and dml_role to user `root'.

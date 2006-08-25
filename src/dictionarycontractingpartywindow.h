@@ -27,12 +27,12 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTY_H
 #define __DICTIONARYCONTRACTINGPARTY_H
 
-class HDictionaryContractingPartyWindow : public stdhapi::hconsole::HWindow
+class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow
 	{
 protected:
 	/*{*/
-	stdhapi::hconsole::HListControl * f_poList;
-	stdhapi::hconsole::HEditControl * f_poEdit;
+	yaal::hconsole::HListControl * f_poList;
+	yaal::hconsole::HEditControl * f_poEdit;
 	/*}*/
 public:
 	/*{*/

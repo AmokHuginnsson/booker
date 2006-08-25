@@ -24,13 +24,13 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <stdhapi.h>
-M_CVSID ( "$CVSHeader$" )
+#include <yaal.h>
+M_CVSID ( "$CVSHeader: booker/src/dictionarycontractingpartyset.c,v 1.6 2006/01/24 11:51:46 amok Exp $" )
 
 #include "dictionarycontractingpartyset.h"
 
-using namespace stdhapi::hcore;
-using namespace stdhapi::dbwrapper;
+using namespace yaal::hcore;
+using namespace yaal::dbwrapper;
 
 HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase ),
 	m_imie ( ), m_nazwisko ( ), m_nip ( ), m_kraj ( ), m_miasto ( ),
