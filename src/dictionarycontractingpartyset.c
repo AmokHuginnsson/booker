@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarycontractingpartyset.c - this file is integral part of booker.h project.
+	dictionarycontractingpartyset.cxx - this file is integral part of booker.h project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -25,7 +25,7 @@ Copyright:
 */
 
 #include <yaal.h>
-M_VCSID ( "$CVSHeader: booker/src/dictionarycontractingpartyset.c,v 1.6 2006/01/24 11:51:46 amok Exp $" )
+M_VCSID ( "$Id$" )
 
 #include "dictionarycontractingpartyset.h"
 

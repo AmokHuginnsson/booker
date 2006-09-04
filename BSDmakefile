@@ -1,4 +1,4 @@
-# $CVSHeader: yaal/BSDmakefile,v 1.7 2004/03/22 18:53:49 amok Exp $
+# $Id$
 # This is wrapper around GNU make.
 
 all: Makefile

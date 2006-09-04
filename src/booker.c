@@ -1,7 +1,7 @@
 /*
 ---        `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski         ---
 
-	booker.c - this file is integral part of `booker' project.
+	booker.cxx - this file is integral part of `booker' project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -26,7 +26,7 @@ Copyright:
 
 
 #include <yaal.h>
-M_VCSID ( "$CVSHeader: booker/src/booker.c,v 1.24 2006/01/24 11:51:46 amok Exp $" )
+M_VCSID ( "$Id$" )
 
 #include "booker.h"
 #include "setup.h"
