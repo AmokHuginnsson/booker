@@ -24,7 +24,7 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <yaal.h>
+#include <yaal/yaal.h>
 M_VCSID ( "$Id$" )
 
 #include "dictionarycontractingpartyset.h"

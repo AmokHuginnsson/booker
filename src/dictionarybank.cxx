@@ -24,7 +24,7 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <yaal.h> /* all hAPI headers */
+#include <yaal/yaal.h> /* all hAPI headers */
 M_VCSID ( "$Id$" )
 
 #include "booker.h"

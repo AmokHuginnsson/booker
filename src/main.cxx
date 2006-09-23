@@ -30,7 +30,7 @@ Copyright:
 #include <string.h>
 #include <libintl.h>
 
-#include <yaal.h> /* all hAPI headers */
+#include <yaal/yaal.h> /* all hAPI headers */
 M_VCSID ( "$Id$" )
 
 #include "booker.h"

@@ -25,7 +25,7 @@ Copyright:
 */
 
 
-#include <yaal.h>
+#include <yaal/yaal.h>
 M_VCSID ( "$Id$" )
 
 #include "booker.h"
