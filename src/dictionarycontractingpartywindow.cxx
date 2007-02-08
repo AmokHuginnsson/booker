@@ -86,9 +86,9 @@ int HDictionaryContractingPartyWindow::init ( void )
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
 			" &Kombo Testowe: \n", 32, 128, n_pcMaskExtended );
-	f_oControls.exchange ( 1, 6 );
+/*	f_oControls.exchange ( 1, 6 ); FIXME
 	f_oControls.exchange ( 2, 6 );
-	f_oControls.exchange ( 3, 6 );
+	f_oControls.exchange ( 3, 6 ); */
 	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::D_LEFT, D_HSTRING );
 	l_poCombo->enable ( true );
 	l_oItem [ 0 ] ( "Ala" );
@@ -105,7 +105,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 		l_oRow [ 2 ] ( rs.m_ulica );
 		l_oRow [ 3 ] ( rs.m_miasto );
 		l_oRow [ 4 ] ( rs.m_email );
-		l_poList->add_tail ( & l_oRow );
+		l_poList->add_tail ( l_oRow );
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
 			l_oItem [ 0 ] ( rs.m_telefon );
@@ -121,20 +121,20 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_EPILOG
 	}
 
-int HDictionaryContractingPartyWindow::handler_delete ( int, void * )
+int HDictionaryContractingPartyWindow::handler_delete ( int, void* )
 	{
 	M_PROLOG
-	if ( f_poList->quantity ( ) )
-		f_poList->remove_element ( HListControl::D_EMPTY_IF_NOT_EMPTIED );
+	if ( f_poList->get_row_count() )
+		f_poList->remove_current_row();
 	return ( 0 );
 	M_EPILOG
 	}
 
-int HDictionaryContractingPartyWindow::handler_enter ( int, void * )
+int HDictionaryContractingPartyWindow::handler_enter ( int, void* )
 	{
 	M_PROLOG
-	if ( f_poList->quantity ( ) )
-		f_poList->present( ) [ 2 ] = f_poEdit->get ( );
+	if ( f_poList->get_row_count() )
+		f_poList->set_current_row_cell( 2, f_poEdit->get() );
 	return ( 0 );
 	M_EPILOG
 	}

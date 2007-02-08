@@ -93,10 +93,9 @@ int HBookerProcess::run_quit ( void )
 int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
-	add_window ( new HDictionaryBank (
-				"Banki", theProc.data_base ( ),
-				g_psDictionaryBankResources ),
-			"Banki" );
+	add_window ( HWindow::ptr_t( new HDictionaryBank (
+					"Banki", theProc.data_base ( ),
+					g_psDictionaryBankResources ) ) );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -104,9 +103,8 @@ int HBookerProcess::run_dictionary_bank ( void )
 int HBookerProcess::run_dictionary_contracting_party ( void )
 	{
 	M_PROLOG
-	add_window ( new HDictionaryContractingPartyWindow (
-				"Kontrahenci" ),
-			"Kontrahenci" );
+	add_window ( HWindow::ptr_t ( new HDictionaryContractingPartyWindow (
+					"Kontrahenci" ) ) );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -118,10 +116,9 @@ int HBookerProcess::run_config ( void )
 	c_printf ( n_iHeight - 2, -1, 48, "run_config" );
 	for ( i = 0; i < 8; i++ )
 		{
-	add_window ( new HDictionaryBank (
-				"Banki", theProc.data_base ( ),
-				g_psDictionaryBankResources ),
-			"Banki" );
+	add_window ( HWindow::ptr_t ( new HDictionaryBank (
+					"Banki", theProc.data_base ( ),
+					g_psDictionaryBankResources ) ) );
 		}
 	c_refresh ( );
 	return ( 0 );

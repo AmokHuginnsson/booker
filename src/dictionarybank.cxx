@@ -24,6 +24,7 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
+#include <libintl.h>
 #include <yaal/yaal.h> /* all hAPI headers */
 M_VCSID ( "$Id$" )
 
@@ -50,8 +51,8 @@ OEditControlResource g_psDictionaryBankEditControls [ ] =
 
 OListControlResource g_psDictionaryBankListControls [ ] =
 	{
-		{ true, true, true, true },
-		{ false, false, false, false	}
+		{ true, true, true, true, true },
+		{ false, false, false, false, false	}
 	};
 
 OColumnInfo g_psDictionaryBankColumnInfos [ ] =
@@ -142,26 +143,26 @@ int HDictionaryBank::handler_add ( int a_iCode, void * )
 	int l_iCtr = 0;
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
-	HItem * l_poIitem = NULL, l_oItem ( 6 );
+	HItem l_oItem ( 6 );
 	HRandomizer l_oRnd ( 0 );
-	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls [ 0 ] );
+	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls.get_control_by_no( 0 ) );
 	l_oAnalyser.analyse ( "A+B" );
-	f_poStatusBar->init_progress ( 10000, " Precaching ... " );
+	f_oStatusBar->init_progress ( 10000, _( " Precaching ... " ) );
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
 		{
-/*		l_dValue = l_poList->quantity ( ) / 100.;*/
+/*		l_dValue = l_poList->size ( ) / 100.;*/
 		l_dValue = ( ( double ) l_oRnd.rnd ( ) ) / 100.;
 /*		
 		l_oAnalyser [ 'A' ] = l_dValue;
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
 		l_dValue = l_oAnalyser.count ( );
 */
-		l_poIitem = & l_poList->add_tail ( & l_oItem );
-		( * l_poIitem ) [ 0 ] = util::kwota_slownie ( l_dValue );
-		( * l_poIitem ) [ 1 ] = "wype³niacz";
-/*		( * l_poIitem ) [ 2 ] = HString ( l_dValue );*/
-		( * l_poIitem ) [ 2 ] = l_dValue;
-		f_poStatusBar->update_progress ( l_iCtr );
+		l_oItem [ 0 ] = util::kwota_slownie ( l_dValue );
+		l_oItem [ 1 ] = "wype³niacz";
+/*		l_oIitem [ 2 ] = HString ( l_dValue );*/
+		l_oItem [ 2 ] = l_dValue;
+		l_poList->add_tail ( l_oItem );
+		f_oStatusBar->update_progress ( l_iCtr );
 		}
 /*
  * tested list control by filling it with 276300 rows
