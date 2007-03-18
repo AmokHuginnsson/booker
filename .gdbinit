@@ -9,10 +9,10 @@ set print asm-demangle on
 set print demangle on
 set print pretty on
 set print object on
-define go
-	run
-	source .breaks
-end
+#define go
+#	run
+#	source .breaks
+#end
 file ./build/1exec -readnow
 symbol-file ./build/1exec -readnow
 share

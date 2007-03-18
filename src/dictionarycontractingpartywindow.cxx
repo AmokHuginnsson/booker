@@ -33,6 +33,7 @@ M_VCSID ( "$Id$" )
 
 using namespace yaal;
 using namespace yaal::hconsole;
+using namespace yaal::hconsole::list_control_helper;
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
 	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
@@ -86,18 +87,20 @@ int HDictionaryContractingPartyWindow::init ( void )
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
 			" &Kombo Testowe: \n", 32, 128, n_pcMaskExtended );
-/*	f_oControls.exchange ( 1, 6 ); FIXME
+	f_oControls.exchange ( 1, 6 );
 	f_oControls.exchange ( 2, 6 );
-	f_oControls.exchange ( 3, 6 ); */
+	f_oControls.exchange ( 3, 6 );
 	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::D_LEFT, D_HSTRING );
 	l_poCombo->enable ( true );
+	HListControler<>::ptr_t l_oControler = l_poCombo->get_controler();
 	l_oItem [ 0 ] ( "Ala" );
-	l_poCombo->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem );
 	l_oItem [ 0 ] ( "ma" );
-	l_poCombo->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem );
 	l_oItem [ 0 ] ( "kota." );
-	l_poCombo->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem );
 	rs.open ( );
+	HListControler<>::ptr_t l_oMC = l_poList->get_controler();
 	while ( ! rs.is_eof ( ) )
 		{
 		l_oRow [ 0 ] ( rs.m_imie );
@@ -105,11 +108,11 @@ int HDictionaryContractingPartyWindow::init ( void )
 		l_oRow [ 2 ] ( rs.m_ulica );
 		l_oRow [ 3 ] ( rs.m_miasto );
 		l_oRow [ 4 ] ( rs.m_email );
-		l_poList->add_tail ( l_oRow );
+		l_oMC->add_tail ( l_oRow );
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
 			l_oItem [ 0 ] ( rs.m_telefon );
-			l_poCombo->add_orderly ( l_oItem );
+			l_oControler->add_orderly ( l_oItem );
 			}
 		rs.move_next ( );
 		}
@@ -133,8 +136,8 @@ int HDictionaryContractingPartyWindow::handler_delete ( int, void* )
 int HDictionaryContractingPartyWindow::handler_enter ( int, void* )
 	{
 	M_PROLOG
-	if ( f_poList->get_row_count() )
-		f_poList->set_current_row_cell( 2, f_poEdit->get() );
+//	if ( f_poList->get_row_count() )
+//		f_poList->set_current_row_cell( 2, f_poEdit->get() );
 	return ( 0 );
 	M_EPILOG
 	}

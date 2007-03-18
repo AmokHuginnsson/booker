@@ -34,6 +34,7 @@ M_VCSID ( "$Id$" )
 using namespace yaal;
 using namespace yaal::hcore;
 using namespace yaal::hconsole;
+using namespace yaal::hconsole::list_control_helper;
 using namespace yaal::tools;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
@@ -148,6 +149,7 @@ int HDictionaryBank::handler_add ( int a_iCode, void * )
 	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls.get_control_by_no( 0 ) );
 	l_oAnalyser.analyse ( "A+B" );
 	f_oStatusBar->init_progress ( 10000, _( " Precaching ... " ) );
+	HListControler<>::ptr_t l_oControler = l_poList->get_controler();
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
 		{
 /*		l_dValue = l_poList->size ( ) / 100.;*/
@@ -161,7 +163,7 @@ int HDictionaryBank::handler_add ( int a_iCode, void * )
 		l_oItem [ 1 ] = "wype³niacz";
 /*		l_oIitem [ 2 ] = HString ( l_dValue );*/
 		l_oItem [ 2 ] = l_dValue;
-		l_poList->add_tail ( l_oItem );
+		l_oControler->add_tail ( l_oItem );
 		f_oStatusBar->update_progress ( l_iCtr );
 		}
 /*
