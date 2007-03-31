@@ -46,7 +46,7 @@ using namespace yaal::tools;
 OSetup setup;
 HBookerProcess theProc;
 
-int main ( int a_iArgc, char **a_ppcArgv )
+int main( int a_iArgc, char **a_ppcArgv )
 	{
 	M_PROLOG
 /*	variables declarations for main loop: */
@@ -54,28 +54,31 @@ int main ( int a_iArgc, char **a_ppcArgv )
 /*	end. */
 	try 
 		{
-		signals::set_handlers ( );
+		signals::set_handlers();
 /*	TO-DO:				                    enter main loop code here */
 		setup.f_pcProgramName = a_ppcArgv [ 0 ];
-		process_bookerrc_file ( );
-		l_iOpt = decode_switches ( a_iArgc, a_ppcArgv ); 
-		setup.test_globals ( );
-		hcore::log.rehash ( setup.f_oLogPath, 0 );
+		process_bookerrc_file();
+		l_iOpt = decode_switches( a_iArgc, a_ppcArgv ); 
+		setup.test_globals();
+		hcore::log.rehash( setup.f_oLogPath, 0 );
 /* enabling ncurses ablilities  */
-		if ( ! hconsole::is_enabled ( ) )enter_curses ();
-		theProc.init ( setup.f_pcProgramName );
-		theProc.run ( );
+		if ( ! hconsole::is_enabled() )
+			enter_curses();
+		theProc.init( setup.f_pcProgramName );
+		theProc.run();
 /* ending ncurses sesion        */
-		if ( hconsole::is_enabled ( ) )leave_curses ();
+		if ( hconsole::is_enabled() )
+			leave_curses();
 /*	... there is the place main loop ends.               :OD-OT */
 		}
 	catch ( ... ) 
 		{
 /* ending ncurses sesion        */
-		if ( hconsole::is_enabled ( ) )leave_curses ();
+		if ( hconsole::is_enabled() )
+			leave_curses();
 		throw;
 		}
-	fprintf ( stderr, "%s.\n", _( "Done" ) ); 
+	fprintf( stderr, "%s.\n", _( "Done" ) ); 
 	return ( 0 );
 	M_FINAL
 	}
