@@ -91,14 +91,15 @@ int HDictionaryContractingPartyWindow::init ( void )
 	f_oControls.exchange ( 2, 6 );
 	f_oControls.exchange ( 3, 6 );
 	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::D_LEFT, D_HSTRING );
+	l_poCombo->HListControl::set_flags( HListControl::FLAGS::D_NONE, HListControl::FLAGS::D_DRAW_HEADER );
 	l_poCombo->enable ( true );
 	HListControler<>::ptr_t l_oControler = l_poCombo->get_controler();
 	l_oItem [ 0 ] ( "Ala" );
-	l_oControler->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem, 0 );
 	l_oItem [ 0 ] ( "ma" );
-	l_oControler->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem, 0 );
 	l_oItem [ 0 ] ( "kota." );
-	l_oControler->add_orderly ( l_oItem );
+	l_oControler->add_orderly ( l_oItem, 0 );
 	rs.open ( );
 	HListControler<>::ptr_t l_oMC = l_poList->get_controler();
 	while ( ! rs.is_eof ( ) )
@@ -112,7 +113,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
 			l_oItem [ 0 ] ( rs.m_telefon );
-			l_oControler->add_orderly ( l_oItem );
+			l_oControler->add_orderly ( l_oItem, 0 );
 			}
 		rs.move_next ( );
 		}
