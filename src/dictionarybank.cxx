@@ -146,8 +146,9 @@ int HDictionaryBank::handler_add ( int a_iCode, void * )
 	HAnalyser l_oAnalyser;
 	HItem l_oItem ( 6 );
 	HRandomizer l_oRnd ( 0 );
-	HDataListControl * l_poList = reinterpret_cast < HDataListControl * > ( f_oControls.get_control_by_no( 0 ) );
-	l_oAnalyser.analyse ( "A+B" );
+	HDataListControl * l_poList = dynamic_cast<HDataListControl*>( f_oControls.get_control_by_no( 1 ) );
+	M_ASSERT( l_poList != NULL );
+	l_oAnalyser.analyse( "A+B" );
 	f_oStatusBar->init_progress ( 10000, _( " Precaching ... " ) );
 	HListControler<>::ptr_t l_oControler = l_poList->get_controler();
 	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
