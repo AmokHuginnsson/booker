@@ -113,7 +113,7 @@ int HBookerProcess::run_config ( void )
 	{
 	M_PROLOG
 	int i;
-	c_printf ( n_iHeight - 2, -1, 48, "run_config" );
+	c_cmvprintf ( n_iHeight - 2, -1, 48, "run_config" );
 	for ( i = 0; i < 8; i++ )
 		{
 	add_window ( HWindow::ptr_t ( new HDictionaryBank (
@@ -128,7 +128,7 @@ int HBookerProcess::run_config ( void )
 int HBookerProcess::run_subject ( void )
 	{
 	M_PROLOG
-	c_printf ( n_iHeight - 2, -1, 48, "run_subject" );
+	c_cmvprintf ( n_iHeight - 2, -1, 48, "run_subject" );
 	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -137,7 +137,7 @@ int HBookerProcess::run_subject ( void )
 int HBookerProcess::run_account_map ( void )
 	{
 	M_PROLOG
-	c_printf ( n_iHeight - 2, -1, 48, "run_account_map" );
+	c_cmvprintf ( n_iHeight - 2, -1, 48, "run_account_map" );
 	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -146,7 +146,7 @@ int HBookerProcess::run_account_map ( void )
 int HBookerProcess::run_account_orders ( void )
 	{
 	M_PROLOG
-	c_printf ( n_iHeight - 2, -1, 48, "run_account_orders" );
+	c_cmvprintf ( n_iHeight - 2, -1, 48, "run_account_orders" );
 	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
@@ -155,7 +155,7 @@ int HBookerProcess::run_account_orders ( void )
 int HBookerProcess::run_regular_oblige ( void )
 	{
 	M_PROLOG
-	c_printf ( n_iHeight - 2, -1, 48, "run_regular_oblige" );
+	c_cmvprintf ( n_iHeight - 2, -1, 48, "run_regular_oblige" );
 	c_refresh ( );
 	return ( 0 );
 	M_EPILOG
