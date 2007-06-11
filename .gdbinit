@@ -1,5 +1,5 @@
-directory .:~/src/yaal:~/src/yaal/hcore:~/src/yaal/hconsole:~/src/yaal/hdata:~/src/yaal/tools
-set solib-search-path ~/lib
+directory .:~/usr/src/yaal:~/usr/src/yaal/hcore:~/usr/src/yaal/hconsole:~/usr/src/yaal/hdata:~/usr/src/yaal/tools
+set solib-search-path ~/usr/lib
 set auto-solib-add on
 set extension-language .h c++
 set extension-language .c c++
