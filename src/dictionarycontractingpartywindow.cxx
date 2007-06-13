@@ -66,6 +66,8 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_iError = HWindow::init ( );
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
+	l_poList->enable ( true );
+	l_poList->set_focus ( );
 	l_poList->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::D_LEFT, D_HSTRING,
 			l_poControl = new HEditControl ( this,
 				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
@@ -118,8 +120,6 @@ int HDictionaryContractingPartyWindow::init ( void )
 		rs.move_next ( );
 		}
 	rs.close ( );
-	l_poList->enable ( true );
-	l_poList->set_focus ( );
 	refresh ( );
 	return ( l_iError );
 	M_EPILOG
