@@ -62,20 +62,20 @@ int main( int a_iArgc, char **a_ppcArgv )
 		setup.test_globals();
 		hcore::log.rehash( setup.f_oLogPath, 0 );
 /* enabling ncurses ablilities  */
-		if ( ! hconsole::is_enabled() )
-			enter_curses();
+		if ( ! HCons::get_instance().is_enabled() )
+			HCons::get_instance().enter_curses();
 		theProc.init( setup.f_pcProgramName );
 		theProc.run();
 /* ending ncurses sesion        */
-		if ( hconsole::is_enabled() )
-			leave_curses();
+		if ( HCons::get_instance().is_enabled() )
+			HCons::get_instance().leave_curses();
 /*	... there is the place main loop ends.               :OD-OT */
 		}
 	catch ( ... ) 
 		{
 /* ending ncurses sesion        */
-		if ( hconsole::is_enabled() )
-			leave_curses();
+		if ( HCons::get_instance().is_enabled() )
+			HCons::get_instance().leave_curses();
 		throw;
 		}
 	fprintf( stderr, "%s.\n", _( "Done" ) ); 
