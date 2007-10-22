@@ -62,7 +62,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	HItem l_oItem ( 1 ), l_oRow ( 5 );
 	HListControl * l_poList = NULL;
 	HComboboxControl * l_poCombo = NULL;
-	HDictionaryContractingPartySet rs ( theProc.data_base ( ) );
+	HDictionaryContractingPartySet rs ( theProc.data_base() );
 	l_iError = HWindow::init ( );
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
@@ -125,7 +125,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	M_EPILOG
 	}
 
-int HDictionaryContractingPartyWindow::handler_delete ( int, void* )
+int HDictionaryContractingPartyWindow::handler_delete( int, void const* )
 	{
 	M_PROLOG
 	if ( f_poList->get_row_count() )
@@ -134,7 +134,7 @@ int HDictionaryContractingPartyWindow::handler_delete ( int, void* )
 	M_EPILOG
 	}
 
-int HDictionaryContractingPartyWindow::handler_enter ( int, void* )
+int HDictionaryContractingPartyWindow::handler_enter( int, void const* )
 	{
 	M_PROLOG
 //	if ( f_poList->get_row_count() )

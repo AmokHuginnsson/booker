@@ -94,7 +94,7 @@ int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
 	add_window ( HWindow::ptr_t( new HDictionaryBank (
-					"Banki", theProc.data_base ( ),
+					"Banki", data_base(),
 					g_psDictionaryBankResources ) ) );
 	return ( 0 );
 	M_EPILOG
@@ -118,7 +118,7 @@ int HBookerProcess::run_config ( void )
 	for ( i = 0; i < 8; i++ )
 		{
 		add_window ( HWindow::ptr_t ( new HDictionaryBank (
-						"Banki", theProc.data_base ( ),
+						"Banki", data_base(),
 						g_psDictionaryBankResources ) ) );
 		}
 	cons.c_refresh ( );

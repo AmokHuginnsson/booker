@@ -38,7 +38,7 @@ public:
 	/*{*/
 	HDictionaryBank ( const char *, yaal::dbwrapper::HDataBase *, yaal::hdata::OResource * );
 	virtual ~HDictionaryBank ( void );
-	virtual int handler_add ( int, void * );
+	virtual int handler_add ( int, void const* );
 	/*}*/
 protected:
 	/*{*/

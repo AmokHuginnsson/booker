@@ -42,8 +42,8 @@ public:
 	/*}*/
 protected:
 	/*{*/
-	int handler_delete ( int, void * );
-	int handler_enter ( int, void * );
+	int handler_delete ( int, void const* );
+	int handler_enter ( int, void const* );
 	/*}*/
 private:
 	/*{*/
