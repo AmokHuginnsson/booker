@@ -54,7 +54,7 @@ int main( int a_iArgc, char **a_ppcArgv )
 /*	end. */
 	try 
 		{
-		signals::set_handlers();
+		HSignalServiceFactory::get_instance();
 /*	TO-DO:				                    enter main loop code here */
 		setup.f_pcProgramName = a_ppcArgv [ 0 ];
 		process_bookerrc_file();
