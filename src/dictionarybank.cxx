@@ -165,7 +165,7 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 /*		l_oIitem [ 2 ] = HString ( l_dValue );*/
 		l_oItem [ 2 ] = l_dValue;
 		l_oControler->add_tail ( l_oItem );
-		f_oStatusBar->update_progress ( l_iCtr );
+		f_oStatusBar->update_progress();
 		}
 /*
  * tested list control by filling it with 276300 rows
