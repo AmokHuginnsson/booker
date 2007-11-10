@@ -36,7 +36,7 @@ M_VCSID ( "$Id$" )
 using namespace yaal;
 using namespace yaal::hcore;
 
-bool set_variables ( HString & a_roOption, HString & a_roValue )
+bool set_variables( HString& a_roOption, HString& a_roValue )
 	{
 	fprintf ( stdout, "option: [%s], value: [%s]\n",
 			static_cast < char const * const > ( a_roOption ),
@@ -44,15 +44,15 @@ bool set_variables ( HString & a_roOption, HString & a_roValue )
 	return ( false );
 	}
 
-int process_bookerrc_file ( void )
+int process_bookerrc_file( void )
 	{
-	OVariable l_psVars [ ] =
+	OOption l_psVars[] =
 		{
-			{ D_HSTRING, "log_path",	& setup.f_oLogPath },
-			{ D_HSTRING, "database",	& setup.f_oDataBase },
-			{ D_HSTRING, "login",			& setup.f_oLogin },
-			{ D_HSTRING, "password",	& setup.f_oPassword },
-			{ D_VOID, NULL, NULL }
+			{ "database", D_HSTRING, &setup.f_oDataBase, NULL, OOption::D_REQUIRED, "spec", "database specyfication", NULL },
+			{ "login", D_HSTRING, &setup.f_oLogin, NULL, OOption::D_REQUIRED, "login", "login for database", NULL },
+			{ "password", D_HSTRING, &setup.f_oPassword, NULL, OOption::D_REQUIRED, "pass", "password for database", NULL },
+			{ "log_path", D_HSTRING, &setup.f_oLogPath, NULL, OOption::D_REQUIRED, "path", "path pointing to file for application logs", NULL },
+			{ NULL, D_VOID, NULL, NULL, OOption::D_NONE, NULL, NULL, NULL }
 		};
 	rc_file::process_rc_file ( "booker", NULL, l_psVars, NULL );
 	if ( ! setup.f_oLogPath )
