@@ -141,7 +141,6 @@ HDictionaryBank::~HDictionaryBank ( void )
 int HDictionaryBank::handler_add ( int a_iCode, void const* )
 	{
 	M_PROLOG
-	int l_iCtr = 0;
 	double l_dValue = 0;
 	HAnalyser l_oAnalyser;
 	HItem l_oItem ( 6 );
@@ -149,9 +148,10 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 	HDataListControl * l_poList = dynamic_cast<HDataListControl*>( f_oControls.get_control_by_no( 1 ) );
 	M_ASSERT( l_poList != NULL );
 	l_oAnalyser.analyse( "A+B" );
-	f_oStatusBar->init_progress ( 10000, _( " Precaching ... " ) );
+	int long const D_TO_ADD = 500000;
+	f_oStatusBar->init_progress ( D_TO_ADD, _( " Precaching ... " ) );
 	HListControler<>::ptr_t l_oControler = l_poList->get_controler();
-	for ( l_iCtr = 0; l_iCtr < 10000; l_iCtr ++ )
+	for ( int long l_iCtr = 0; l_iCtr < D_TO_ADD; l_iCtr ++ )
 		{
 /*		l_dValue = l_poList->size ( ) / 100.;*/
 		l_dValue = ( ( double ) l_oRnd.rnd ( ) ) / 100.;
