@@ -29,6 +29,9 @@ Copyright:
 
 #include <libintl.h>
 
+namespace booker
+{
+
 struct OSetup
 	{
 	bool f_bQuiet;			/* --quiet, --silent */
@@ -65,5 +68,6 @@ private:
 
 extern OSetup setup;
 
+}
 
 #endif /* __SETUP_H */

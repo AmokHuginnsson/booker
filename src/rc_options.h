@@ -27,6 +27,11 @@ Copyright:
 #ifndef __RC_OPTIONS_H
 #define __RC_OPTIONS_H
 
+namespace booker
+{
+
 int process_bookerrc_file ( void );
+
+}
 
 #endif /* __RC_OPTIONS_H */

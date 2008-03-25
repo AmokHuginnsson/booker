@@ -27,6 +27,9 @@ Copyright:
 #ifndef __PROCESS_H
 #define __PROCESS_H
 
+namespace booker
+{
+
 class HBookerProcess : public yaal::hdata::HDataProcess
 	{
 protected:
@@ -55,5 +58,7 @@ private:
 	};
 
 extern HBookerProcess theProc;
+
+}
 
 #endif /* __PROCESS_H */

@@ -32,6 +32,9 @@ M_VCSID ( "$Id$" )
 using namespace yaal::hcore;
 using namespace yaal::dbwrapper;
 
+namespace booker
+{
+
 HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase ),
 	m_imie ( ), m_nazwisko ( ), m_nip ( ), m_kraj ( ), m_miasto ( ),
 	m_ulica ( ), m_numer_ulicy ( ), m_numer_mieszkania ( ), m_kod_pocztowy ( ),
@@ -71,3 +74,4 @@ void HDictionaryContractingPartySet::sync ( void )
 	M_EPILOG
 	}
 
+}

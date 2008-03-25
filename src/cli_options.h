@@ -27,6 +27,11 @@ Copyright:
 #ifndef __CLI_OPTIONS_H
 #define __CLI_OPTIONS_H
 
+namespace booker
+{
+
 int decode_switches ( int, char ** );
+
+}
 
 #endif /* not __CLI_OPTIONS_H */

@@ -41,6 +41,9 @@ using namespace yaal::hconsole;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
 
+namespace booker
+{
+
 #define D_MENU_HANDLERS_MAP_SIZE 32
 
 HBookerProcess::HBookerProcess ( void )
@@ -165,4 +168,6 @@ int HBookerProcess::run_regular_oblige ( void )
 	return ( 0 );
 	M_EPILOG
 	}
+
+}
 

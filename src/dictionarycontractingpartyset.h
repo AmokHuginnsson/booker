@@ -27,6 +27,9 @@ Copyright:
 #ifndef __DICTIONARYCONTRACTINGPARTYSET_H
 #define __DICTIONARYCONTRACTINGPARTYSET_H
 
+namespace booker
+{
+
 class HDictionaryContractingPartySet : public yaal::dbwrapper::HRecordSet
 	{
 public:
@@ -58,5 +61,7 @@ protected:
 	void sync ( void );
 	/*}*/
 	};
+
+}
 
 #endif /* __DICTIONARYCONTRACTINGPARTYSET_H */

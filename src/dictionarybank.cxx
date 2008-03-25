@@ -39,6 +39,9 @@ using namespace yaal::tools;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
 
+namespace booker
+{
+
 OEditControlResource g_psDictionaryBankEditControls [ ] =
 	{
 		{ 160, "", "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$", false, false, false, false, false, 8 },
@@ -175,4 +178,6 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 	return ( a_iCode );
 	M_EPILOG
 	}
+
+}
 

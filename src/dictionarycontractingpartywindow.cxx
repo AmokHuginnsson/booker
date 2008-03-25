@@ -35,6 +35,9 @@ using namespace yaal;
 using namespace yaal::hconsole;
 using namespace yaal::hconsole::list_control_helper;
 
+namespace booker
+{
+
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
 	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
 	{
@@ -142,4 +145,6 @@ int HDictionaryContractingPartyWindow::handler_enter( int, void const* )
 	return ( 0 );
 	M_EPILOG
 	}
+
+}
 

@@ -42,9 +42,15 @@ using namespace yaal;
 using namespace yaal::hcore;
 using namespace yaal::hconsole;
 using namespace yaal::tools;
+using namespace booker;
+
+namespace booker
+{
 
 OSetup setup;
 HBookerProcess theProc;
+
+}
 
 int main( int a_iArgc, char **a_ppcArgv )
 	{

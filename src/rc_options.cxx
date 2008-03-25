@@ -36,6 +36,9 @@ M_VCSID ( "$Id$" )
 using namespace yaal;
 using namespace yaal::hcore;
 
+namespace booker
+{
+
 bool set_variables( HString& a_roOption, HString& a_roValue )
 	{
 	fprintf ( stdout, "option: [%s], value: [%s]\n",
@@ -59,4 +62,6 @@ int process_bookerrc_file( void )
 		setup.f_oLogPath = "booker.log";
 	return ( 0 );
 	}
+
+}
 
