@@ -9,7 +9,7 @@ AC_MSG_RESULT([--- Initialization ... ---                               [[6%]]])
 dnl Unique file in project: bookerrc is sample configuration file.
 AC_MSG_RESULT([--- Finding base directory ... ---                      [[12%]]])
 AC_CONFIG_SRCDIR([[bookerrc]])
-AC_CONFIG_AUX_DIR([../yaal/aux])
+AC_CONFIG_AUX_DIR([../yaal/_aux])
 
 dnl booker is not Free Software.
 AC_COPYRIGHT([[booker (c) 2003 All rights reserved.]])
