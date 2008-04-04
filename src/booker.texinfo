@@ -185,7 +185,7 @@ and then exit.
 @cindex problems
 
 If you find a bug in @code{booker}, please send electronic mail to
-@w{@samp{amok@@frihet.ath.cx}}. Include the version number, which you can find
+@w{@samp{amok@@codestation.org}}. Include the version number, which you can find
 by running @w{@samp{booker --version}}.  Also include in your message
 the output that the program produced and the output you expected.@refill
 
