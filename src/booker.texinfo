@@ -191,7 +191,7 @@ the output that the program produced and the output you expected.@refill
 
 If you have other questions, comments or suggestions about
 @code{booker}, contact the author via electronic mail to
-@w{@samp{amok@@utgard}}.  The author will try to help you out, although he
+@w{@samp{amok@@codestation.org}}.  The author will try to help you out, although he
 may not have time to fix your problems.
 
 @node Concept Index,  , Problems, Top
