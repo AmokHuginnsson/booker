@@ -30,7 +30,7 @@ Copyright:
 namespace booker
 {
 
-extern yaal::hdata::OResource * g_psDictionaryBankResources;
+extern yaal::hdata::OResource* g_psDictionaryBankResources;
 
 class HDictionaryBank : public yaal::hdata::HDataWindow
 	{
@@ -39,7 +39,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryBank ( const char *, yaal::dbwrapper::HDataBase *, yaal::hdata::OResource * );
+	HDictionaryBank ( const char *, yaal::dbwrapper::database_ptr_t, yaal::hdata::OResource * );
 	virtual ~HDictionaryBank ( void );
 	virtual int handler_add ( int, void const* );
 	/*}*/

@@ -123,9 +123,9 @@ OResource x_tag_g_psDictionaryBankResources [ ] =
 		}
 	}, * g_psDictionaryBankResources = x_tag_g_psDictionaryBankResources;
 
-HDictionaryBank::HDictionaryBank ( const char * a_pcTitle,
-		HDataBase * a_poDataBase, OResource * a_psResources )
-								: HDataWindow ( a_pcTitle, a_poDataBase, a_psResources )
+HDictionaryBank::HDictionaryBank( const char* a_pcTitle,
+		HDataBase::ptr_t a_oDataBase, OResource* a_psResources )
+								: HDataWindow( a_pcTitle, a_oDataBase, a_psResources )
 	{
 	M_PROLOG
   register_postprocess_handler ( 'a', NULL,

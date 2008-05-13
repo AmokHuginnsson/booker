@@ -47,12 +47,9 @@ namespace booker
 #define D_MENU_HANDLERS_MAP_SIZE 32
 
 HBookerProcess::HBookerProcess ( void )
-	:	HDataProcess ( ), f_poDataBase ( NULL )
+	:	HDataProcess()
 	{
 	M_PROLOG
-/*
-	f_poDataBase = new HDataBase ( );
-*/
 	return;
 	M_EPILOG
 	}
@@ -60,8 +57,6 @@ HBookerProcess::HBookerProcess ( void )
 HBookerProcess::~HBookerProcess ( void )
 	{
 	M_PROLOG
-	if ( f_poDataBase )delete f_poDataBase;
-	f_poDataBase = NULL;
 	return;
 	M_EPILOG
 	}
@@ -69,7 +64,7 @@ HBookerProcess::~HBookerProcess ( void )
 int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
-	f_oDataBase.login ( setup.f_oDataBase, setup.f_oLogin, setup.f_oPassword );
+	f_oDataBase->connect( setup.f_oDataBase, setup.f_oLogin, setup.f_oPassword );
 	menu_handlers_map_t l_oHandlers ( D_MENU_HANDLERS_MAP_SIZE );
 	M_REGISTER_MENU_HANDLER ( run_quit );
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
@@ -96,8 +91,8 @@ int HBookerProcess::run_quit ( void )
 int HBookerProcess::run_dictionary_bank ( void )
 	{
 	M_PROLOG
-	add_window ( HWindow::ptr_t( new HDictionaryBank (
-					"Banki", data_base(),
+	add_window( HWindow::ptr_t( new HDictionaryBank (
+					"Banki", f_oDataBase,
 					g_psDictionaryBankResources ) ) );
 	return ( 0 );
 	M_EPILOG

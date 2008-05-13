@@ -30,8 +30,9 @@ Copyright:
 namespace booker
 {
 
-class HDictionaryContractingPartySet : public yaal::dbwrapper::HRecordSet
+class HDictionaryContractingPartySet
 	{
+	yaal::dbwrapper::HSQLDescriptor f_oSQLDescriptor;
 public:
 	/*{*/
 	yaal::hcore::HString m_imie;
@@ -53,12 +54,14 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryContractingPartySet ( yaal::dbwrapper::HDataBase * = NULL );
+	HDictionaryContractingPartySet( yaal::dbwrapper::HDataBase::ptr_t = yaal::dbwrapper::HDataBase::ptr_t() );
 	virtual ~HDictionaryContractingPartySet ( void );
+	void sync( void );
+	void sync( yaal::dbwrapper::HRecordSet::iterator );
+	yaal::dbwrapper::HRecordSet get_records( void );
 	/*}*/
 protected:
 	/*{*/
-	void sync ( void );
 	/*}*/
 	};
 

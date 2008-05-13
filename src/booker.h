@@ -34,7 +34,6 @@ class HBookerProcess : public yaal::hdata::HDataProcess
 	{
 protected:
 	/*{*/
-	yaal::dbwrapper::HDataBase * f_poDataBase;
 	/*}*/
 public:
 	/*{*/

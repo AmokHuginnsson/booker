@@ -35,13 +35,14 @@ using namespace yaal::dbwrapper;
 namespace booker
 {
 
-HDictionaryContractingPartySet::HDictionaryContractingPartySet ( HDataBase * a_poDataBase ) : HRecordSet ( a_poDataBase ),
+HDictionaryContractingPartySet::HDictionaryContractingPartySet( HDataBase::ptr_t a_oDataBase )
+	: f_oSQLDescriptor( a_oDataBase ),
 	m_imie ( ), m_nazwisko ( ), m_nip ( ), m_kraj ( ), m_miasto ( ),
 	m_ulica ( ), m_numer_ulicy ( ), m_numer_mieszkania ( ), m_kod_pocztowy ( ),
 	m_telefon ( ), m_fax ( ), m_email ( ), m_id_account_map ( 0 )
 	{
 	M_PROLOG
-	f_oTable = "dictionary_contracting_party";
+	f_oSQLDescriptor.set_table( "dictionary_contracting_party" );
 	return;
 	M_EPILOG
 	}
@@ -53,25 +54,29 @@ HDictionaryContractingPartySet::~HDictionaryContractingPartySet ( void )
 	M_EPILOG
 	}
 
-void HDictionaryContractingPartySet::sync ( void )
+void HDictionaryContractingPartySet::sync( void )
 	{
 	M_PROLOG
-	HRecordSet::sync ( );
-	HRecordSet::sync ( 1, m_imie );
-	HRecordSet::sync ( 2, m_nazwisko );
-	HRecordSet::sync ( 3, m_nip );
-	HRecordSet::sync ( 4, m_kraj );
-	HRecordSet::sync ( 5, m_miasto );
-	HRecordSet::sync ( 6, m_ulica );
-	HRecordSet::sync ( 7, m_numer_ulicy );
-	HRecordSet::sync ( 8, m_numer_mieszkania );
-	HRecordSet::sync ( 9, m_kod_pocztowy );
-	HRecordSet::sync ( 10, m_telefon );
-	HRecordSet::sync ( 11, m_fax );
-	HRecordSet::sync ( 12, m_email );
-	HRecordSet::sync ( 13, m_id_account_map );
+	f_oSQLDescriptor.sync( 1, m_imie );
+	f_oSQLDescriptor.sync( 2, m_nazwisko );
+	f_oSQLDescriptor.sync( 3, m_nip );
+	f_oSQLDescriptor.sync( 4, m_kraj );
+	f_oSQLDescriptor.sync( 5, m_miasto );
+	f_oSQLDescriptor.sync( 6, m_ulica );
+	f_oSQLDescriptor.sync( 7, m_numer_ulicy );
+	f_oSQLDescriptor.sync( 8, m_numer_mieszkania );
+	f_oSQLDescriptor.sync( 9, m_kod_pocztowy );
+	f_oSQLDescriptor.sync( 10, m_telefon );
+	f_oSQLDescriptor.sync( 11, m_fax );
+	f_oSQLDescriptor.sync( 12, m_email );
+	f_oSQLDescriptor.sync( 13, m_id_account_map );
 	return;
 	M_EPILOG
 	}
 
+HRecordSet HDictionaryContractingPartySet::get_records( void )
+	{
+	}
+
 }
+

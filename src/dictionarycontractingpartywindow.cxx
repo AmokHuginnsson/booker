@@ -34,6 +34,7 @@ M_VCSID ( "$Id$" )
 using namespace yaal;
 using namespace yaal::hconsole;
 using namespace yaal::hconsole::list_control_helper;
+using namespace yaal::dbwrapper;
 
 namespace booker
 {
@@ -65,7 +66,6 @@ int HDictionaryContractingPartyWindow::init ( void )
 	HItem l_oItem ( 1 ), l_oRow ( 5 );
 	HListControl * l_poList = NULL;
 	HComboboxControl * l_poCombo = NULL;
-	HDictionaryContractingPartySet rs ( theProc.data_base() );
 	l_iError = HWindow::init ( );
 	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
@@ -105,10 +105,12 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_oControler->add_orderly ( l_oItem, 0 );
 	l_oItem [ 0 ] ( "kota." );
 	l_oControler->add_orderly ( l_oItem, 0 );
-	rs.open ( );
+	HDictionaryContractingPartySet rs ( theProc.data_base() );
+	HRecordSet r = rs.get_records();
 	HListControler<>::ptr_t l_oMC = l_poList->get_controler();
-	while ( ! rs.is_eof ( ) )
+	for ( HRecordSet::iterator it = r.begin(); it != r.end(); ++ it )
 		{
+		rs.sync( it );
 		l_oRow [ 0 ] ( rs.m_imie );
 		l_oRow [ 1 ] ( rs.m_nazwisko );
 		l_oRow [ 2 ] ( rs.m_ulica );
@@ -120,9 +122,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 			l_oItem [ 0 ] ( rs.m_telefon );
 			l_oControler->add_orderly ( l_oItem, 0 );
 			}
-		rs.move_next ( );
 		}
-	rs.close ( );
 	refresh ( );
 	return ( l_iError );
 	M_EPILOG
