@@ -39,7 +39,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryBank ( const char *, yaal::dbwrapper::database_ptr_t, yaal::hdata::OResource * );
+	HDictionaryBank ( const char*, yaal::hdata::HDataProcess*, yaal::hdata::OResource * );
 	virtual ~HDictionaryBank ( void );
 	virtual int handler_add ( int, void const* );
 	/*}*/

@@ -74,7 +74,7 @@ void HDictionaryContractingPartySet::sync( void )
 	M_EPILOG
 	}
 
-HRecordSet HDictionaryContractingPartySet::get_records( void )
+HRecordSet::ptr_t HDictionaryContractingPartySet::get_records( void )
 	{
 	return ( f_oSQLDescriptor.execute( HSQLDescriptor::MODE::D_SELECT ) );
 	}

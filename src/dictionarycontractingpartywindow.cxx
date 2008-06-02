@@ -106,9 +106,9 @@ int HDictionaryContractingPartyWindow::init ( void )
 	l_oItem [ 0 ] ( "kota." );
 	l_oControler->add_orderly ( l_oItem, 0 );
 	HDictionaryContractingPartySet rs ( theProc.data_base() );
-	HRecordSet r = rs.get_records();
+	HRecordSet::ptr_t r = rs.get_records();
 	HListControler<>::ptr_t l_oMC = l_poList->get_controler();
-	for ( HRecordSet::iterator it = r.begin(); it != r.end(); ++ it )
+	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it )
 		{
 		rs.sync( it );
 		l_oRow [ 0 ] ( rs.m_imie );

@@ -58,7 +58,7 @@ public:
 	virtual ~HDictionaryContractingPartySet ( void );
 	void sync( void );
 	void sync( yaal::dbwrapper::HRecordSet::iterator );
-	yaal::dbwrapper::HRecordSet get_records( void );
+	yaal::dbwrapper::HRecordSet::ptr_t get_records( void );
 	/*}*/
 protected:
 	/*{*/
