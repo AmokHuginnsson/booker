@@ -35,8 +35,7 @@ M_VCSID ( "$Id$" )
 
 #include "booker.h"
 #include "setup.h"
-#include "cli_options.h"
-#include "rc_options.h"
+#include "options.h"
 
 using namespace yaal;
 using namespace yaal::hcore;
