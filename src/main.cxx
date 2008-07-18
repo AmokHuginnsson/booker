@@ -31,7 +31,7 @@ Copyright:
 #include <libintl.h>
 
 #include <yaal/yaal.h> /* all hAPI headers */
-M_VCSID ( "$Id$" )
+M_VCSID( "$Id: "__ID__" $" )
 
 #include "booker.h"
 #include "setup.h"
