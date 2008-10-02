@@ -37,17 +37,16 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HBookerProcess ( void );
-	virtual ~HBookerProcess ( void );
-	int init ( const char * = "" );
-	int run_quit ( void );
-	int run_dictionary_bank ( void );
-	int run_dictionary_contracting_party ( void );
-	int run_config ( void );
-	int run_subject ( void );
-	int run_account_map ( void );
-	int run_account_orders ( void );
-	int run_regular_oblige ( void );
+	HBookerProcess( void );
+	virtual ~HBookerProcess( void );
+	int init( const char* = "" );
+	int run_quit( void* );
+	int run_dictionary_contracting_party( void* );
+	int run_config( void* );
+	int run_subject( void* );
+	int run_account_map( void* );
+	int run_account_orders( void* );
+	int run_regular_oblige( void* );
 	/*}*/
 private:
 	/*{*/

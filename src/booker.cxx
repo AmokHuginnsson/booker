@@ -70,7 +70,6 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
 	M_REGISTER_MENU_HANDLER ( run_account_map );
 	l_oHandlers [ "" ] = NULL;
-	M_REGISTER_MENU_HANDLER ( run_dictionary_bank );
 	M_REGISTER_MENU_HANDLER ( run_dictionary_contracting_party );
 	M_REGISTER_MENU_HANDLER ( run_regular_oblige );
 	M_REGISTER_MENU_HANDLER ( run_subject );
@@ -80,7 +79,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_quit ( void )
+int HBookerProcess::run_quit( void* )
 	{
 	M_PROLOG
 	handler_quit ( KEY < 'x' >::command );
@@ -88,17 +87,7 @@ int HBookerProcess::run_quit ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_dictionary_bank ( void )
-	{
-	M_PROLOG
-	add_window( HWindow::ptr_t( new HDictionaryBank(
-					"Banki", this,
-					g_psDictionaryBankResources ) ) );
-	return ( 0 );
-	M_EPILOG
-	}
-
-int HBookerProcess::run_dictionary_contracting_party ( void )
+int HBookerProcess::run_dictionary_contracting_party( void* )
 	{
 	M_PROLOG
 	add_window ( HWindow::ptr_t( new HDictionaryContractingPartyWindow(
@@ -107,7 +96,7 @@ int HBookerProcess::run_dictionary_contracting_party ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_config ( void )
+int HBookerProcess::run_config( void* )
 	{
 	M_PROLOG
 	int i;
@@ -124,7 +113,7 @@ int HBookerProcess::run_config ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_subject ( void )
+int HBookerProcess::run_subject( void* )
 	{
 	M_PROLOG
 	HConsole& cons = HCons::get_instance();
@@ -134,7 +123,7 @@ int HBookerProcess::run_subject ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_account_map ( void )
+int HBookerProcess::run_account_map( void* )
 	{
 	M_PROLOG
 	HConsole& cons = HCons::get_instance();
@@ -144,7 +133,7 @@ int HBookerProcess::run_account_map ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_account_orders ( void )
+int HBookerProcess::run_account_orders( void* )
 	{
 	M_PROLOG
 	HConsole& cons = HCons::get_instance();
@@ -154,7 +143,7 @@ int HBookerProcess::run_account_orders ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::run_regular_oblige ( void )
+int HBookerProcess::run_regular_oblige( void* )
 	{
 	M_PROLOG
 	HConsole& cons = HCons::get_instance();

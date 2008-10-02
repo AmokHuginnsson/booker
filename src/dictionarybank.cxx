@@ -181,3 +181,11 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 
 }
 
+extern "C"
+HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, OResource* res )
+	{
+	M_PROLOG
+	return ( HWindow::ptr_t( new booker::HDictionaryBank( title.raw(), proc, res ) ) );
+	M_EPILOG
+	}
+
