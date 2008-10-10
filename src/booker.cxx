@@ -99,15 +99,8 @@ int HBookerProcess::run_dictionary_contracting_party( void* )
 int HBookerProcess::run_config( void* )
 	{
 	M_PROLOG
-	int i;
 	HConsole& cons = HCons::get_instance();
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_config" );
-	for ( i = 0; i < 8; i++ )
-		{
-		add_window ( HWindow::ptr_t ( new HDictionaryBank(
-						"Banki", this,
-						g_psDictionaryBankResources ) ) );
-		}
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG

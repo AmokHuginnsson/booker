@@ -30,8 +30,6 @@ Copyright:
 namespace booker
 {
 
-extern yaal::hdata::OResource* g_psDictionaryBankResources;
-
 class HDictionaryBank : public yaal::hdata::HDataWindow
 	{
 protected:

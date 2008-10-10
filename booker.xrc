@@ -71,24 +71,26 @@
 		</menu_item>
 	</menu>
 	<window id="window_bank" title="Banki">
-		<control type="list" role="main">
-			<label> &amp;Banki \n</label>
+		<control type="list" role="main" refid="window_bank_list">
+			<label> &amp;Banki
+</label>
 			<position row="1" column="1" height="-8" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
 			<editable>true</editable>
 			<draw_header>true</draw_header>
+			<db table="dictionary_bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
 			<column placement="-1" name="nazwa" width="4" align="left" type="string" />
 			<column placement="-1" name="miasto" width="2" align="left" type="string" />
 			<column placement="-1" name="ulica" width="3" align="left" type="string" />
 			<column placement="-1" name="kod" width="1" align="left" type="string" />
 			<column placement="-1" name="" width="0" align="left" type="string" />
 			<column placement="-1" name="" width="0" align="left" type="string" />
-			<db table="dictionary_bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
 		</control>
 		<control type="edit" role="data">
-			<label> &amp;Nazwa: \n</label>
+			<label> &amp;Nazwa: 
+</label>
 			<position row="-7" column="1" height="1" width="-25" />
 			<max_string_size>160</max_string_size>
 			<value></value>
@@ -98,37 +100,48 @@
 			<read_only>false</read_only>
 			<right_aligned>false</right_aligned>
 			<password>false</password>
-			<mxa_history_level>8</mxa_history_level>
+			<max_history_level>8</max_history_level>
+			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
-			<label> &amp;Miasto: \n</label>
+			<label> &amp;Miasto: 
+</label>
 			<position row="-7" column="-24" height="1" width="23" />
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
+			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
 			<position row="-4" column="1" height="1" width="-33" />
-			<label> &amp;Ulica: \n</label>
+			<label> &amp;Ulica: 
+</label>
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
+			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
 			<position row="-4" column="-32" height="1" width="7" />
-			<label> &amp;Kod: \n</label>
+			<label> &amp;Kod: 
+</label>
 			<max_string_size>8</max_string_size>
 			<mask>^[0-9 -]*$</mask>
+			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
 			<position row="-4" column="-24" height="1" width="5" />
-			<label> &amp;Numer: \n</label>
+			<label> &amp;Numer: 
+</label>
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
+			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
 			<position row="-4" column="-15" height="1" width="14" />
-			<label> &amp;Telefon: \n</label>
+			<label> &amp;Telefon: 
+</label>
 			<max_string_size>17</max_string_size>
 			<mask>^[0-9 ()-]*$</mask>
+			<parent refid="window_bank_list" />
 		</control>
 	</window>
 </resource>
