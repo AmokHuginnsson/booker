@@ -64,12 +64,12 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 	{
 	M_PROLOG
 	double l_dValue = 0;
-	HAnalyser l_oAnalyser;
+	HExpression l_oAnalyser;
 	HItem l_oItem ( 6 );
 	HRandomizer l_oRnd ( 0 );
 	HDataListControl * l_poList = dynamic_cast<HDataListControl*>( f_oControls.get_control_by_no( 1 ) );
 	M_ASSERT( l_poList != NULL );
-	l_oAnalyser.analyse( "A+B" );
+	l_oAnalyser.compile( "A+B" );
 	int long const D_TO_ADD = 500000;
 	f_oStatusBar->init_progress ( D_TO_ADD, _( " Precaching ... " ) );
 	HListControler<>::ptr_t l_oControler = l_poList->get_controler();
@@ -80,7 +80,7 @@ int HDictionaryBank::handler_add ( int a_iCode, void const* )
 /*		
 		l_oAnalyser [ 'A' ] = l_dValue;
 		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
-		l_dValue = l_oAnalyser.count ( );
+		l_dValue = l_oAnalyser.evaluate ( );
 */
 		l_oItem [ 0 ] = util::kwota_slownie ( l_dValue );
 		l_oItem [ 1 ] = "wype³niacz";
