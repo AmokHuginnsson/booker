@@ -30,12 +30,12 @@ Copyright:
 #include <string.h>
 #include <libintl.h>
 
-#include <yaal/yaal.h> /* all hAPI headers */
+#include <yaal/yaal.hxx> /* all hAPI headers */
 M_VCSID( "$Id: "__ID__" $" )
 
-#include "booker.h"
-#include "setup.h"
-#include "options.h"
+#include "booker.hxx"
+#include "setup.hxx"
+#include "options.hxx"
 
 using namespace yaal;
 using namespace yaal::hcore;

@@ -25,15 +25,15 @@ Copyright:
 */
 
 
-#include <yaal/yaal.h>
+#include <yaal/yaal.hxx>
 M_VCSID( "$Id: "__ID__" $" )
 
-#include "booker.h"
-#include "setup.h"
+#include "booker.hxx"
+#include "setup.hxx"
 
 /* windows begin */
-#include "dictionarybank.h"
-#include "dictionarycontractingpartywindow.h"
+#include "dictionarybank.hxx"
+#include "dictionarycontractingpartywindow.hxx"
 /* windows end */
 
 using namespace yaal::hcore;

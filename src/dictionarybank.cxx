@@ -1,7 +1,7 @@
 /*
----           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
+---           booker 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarybankwindow.cxx - this file is integral part of booker.h project.
+	dictionarybankwindow.cxx - this file is integral part of booker project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -25,11 +25,11 @@ Copyright:
 */
 
 #include <libintl.h>
-#include <yaal/yaal.h> /* all hAPI headers */
+#include <yaal/yaal.hxx> /* all hAPI headers */
 M_VCSID( "$Id: "__ID__" $" )
 
-#include "booker.h"
-#include "dictionarybank.h"
+#include "booker.hxx"
+#include "dictionarybank.hxx"
 
 using namespace yaal;
 using namespace yaal::hcore;
