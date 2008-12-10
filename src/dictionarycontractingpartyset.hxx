@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarycontractingpartyset.h - this file is integral part of booker.h project.
+	dictionarycontractingpartyset.hxx - this file is integral part of booker.h project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -24,8 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __DICTIONARYCONTRACTINGPARTYSET_H
-#define __DICTIONARYCONTRACTINGPARTYSET_H
+#ifndef DICTIONARYCONTRACTINGPARTYSET_HXX_INCLUDED
+#define DICTIONARYCONTRACTINGPARTYSET_HXX_INCLUDED
 
 namespace booker
 {
@@ -67,4 +67,4 @@ protected:
 
 }
 
-#endif /* __DICTIONARYCONTRACTINGPARTYSET_H */
+#endif /* DICTIONARYCONTRACTINGPARTYSET_HXX_INCLUDED */

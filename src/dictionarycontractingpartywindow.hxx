@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarybank.h - this file is integral part of booker.h project.
+	dictionarybank.hxx - this file is integral part of booker.h project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -24,8 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __DICTIONARYCONTRACTINGPARTY_H
-#define __DICTIONARYCONTRACTINGPARTY_H
+#ifndef DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
+#define DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
 
 namespace booker
 {
@@ -57,4 +57,4 @@ private:
 
 }
 
-#endif /* __DICTIONARYCONTRACTINGPARTY_H */
+#endif /* DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED */

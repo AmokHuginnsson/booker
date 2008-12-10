@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarybankwindow.h - this file is integral part of booker.h project.
+	dictionarybankwindow.hxx - this file is integral part of booker.h project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -24,8 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __DICTIONARYBANK_H
-#define __DICTIONARYBANK_H
+#ifndef DICTIONARYBANK_HXX_INCLUDED
+#define DICTIONARYBANK_HXX_INCLUDED
 
 namespace booker
 {
@@ -48,4 +48,4 @@ protected:
 
 }
 
-#endif /* __DICTIONARYBANK_H */
+#endif /* DICTIONARYBANK_HXX_INCLUDED */

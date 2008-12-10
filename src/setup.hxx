@@ -1,7 +1,7 @@
 /*
 ---       `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski         ---
 
-	setup.h - this file is integral part of `booker' project.
+	setup.hxx - this file is integral part of `booker' project.
 
 	i.  You may not make any changes in Copyright information.
 	ii. You must attach Copyright information to any part of every copy
@@ -24,8 +24,8 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef __SETUP_H
-#define __SETUP_H
+#ifndef SETUP_HXX_INCLUDED
+#define SETUP_HXX_INCLUDED
 
 #include <libintl.h>
 
@@ -70,4 +70,4 @@ extern OSetup setup;
 
 }
 
-#endif /* __SETUP_H */
+#endif /* SETUP_HXX_INCLUDED */
