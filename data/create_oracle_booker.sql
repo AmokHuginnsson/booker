@@ -15,7 +15,7 @@ databases with name `root'.
 
 We grant ddl_role and dml_role to user `root'.
 
-We create user with quota 0 so he can not create his own objects
+We create user with quota 0 so he cannot create his own objects
 with name `booker' (this is application specific).
 We add role `dml_role' on root's objects to user `booker'.
 
