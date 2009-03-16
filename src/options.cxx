@@ -76,17 +76,17 @@ simple_callback_t dump( usage, NULL );
 simple_callback_t version_call( version, NULL );
 OOption n_psOptions[] =
 	{
-		{ "log_path", D_HSTRING, &setup.f_oLogPath, NULL, OOption::D_REQUIRED, "path", "path pointing to file for application logs", NULL },
-		{ "database", D_HSTRING, &setup.f_oDataBase, NULL, OOption::D_REQUIRED, "spec", "database specyfication", NULL },
-		{ "login", D_HSTRING, &setup.f_oLogin, NULL, OOption::D_REQUIRED, "login", "login for database", NULL },
-		{ "password", D_HSTRING, &setup.f_oPassword, NULL, OOption::D_REQUIRED, "pass", "password for database", NULL },
-		{ "quiet", D_BOOL, &setup.f_bQuiet, "q", OOption::D_NONE, NULL, "inhibit usual output", NULL },
-		{ "silent", D_BOOL, &setup.f_bQuiet, "q", OOption::D_NONE, NULL, "inhibit usual output", NULL },
-		{ "verbose", D_BOOL, &setup.f_bVerbose, "v", OOption::D_NONE, NULL, "print more information", NULL },
-		{ "help", D_BOOL, &setup.f_bHelp, "h", OOption::D_NONE, NULL, "display this help and exit", &help },
-		{ "dump-configuration", D_VOID, NULL, "W", OOption::D_NONE, NULL, "dump current configuration", &dump },
-		{ "version", D_VOID, NULL, "V", OOption::D_NONE, NULL, "output version information and exit", &version_call },
-		{ NULL, D_VOID, NULL, NULL, OOption::D_NONE, NULL, NULL, NULL }
+		{ "log_path", TYPE::D_HSTRING, &setup.f_oLogPath, NULL, OOption::D_REQUIRED, "path", "path pointing to file for application logs", NULL },
+		{ "database", TYPE::D_HSTRING, &setup.f_oDataBase, NULL, OOption::D_REQUIRED, "spec", "database specyfication", NULL },
+		{ "login", TYPE::D_HSTRING, &setup.f_oLogin, NULL, OOption::D_REQUIRED, "login", "login for database", NULL },
+		{ "password", TYPE::D_HSTRING, &setup.f_oPassword, NULL, OOption::D_REQUIRED, "pass", "password for database", NULL },
+		{ "quiet", TYPE::D_BOOL, &setup.f_bQuiet, "q", OOption::D_NONE, NULL, "inhibit usual output", NULL },
+		{ "silent", TYPE::D_BOOL, &setup.f_bQuiet, "q", OOption::D_NONE, NULL, "inhibit usual output", NULL },
+		{ "verbose", TYPE::D_BOOL, &setup.f_bVerbose, "v", OOption::D_NONE, NULL, "print more information", NULL },
+		{ "help", TYPE::D_BOOL, &setup.f_bHelp, "h", OOption::D_NONE, NULL, "display this help and exit", &help },
+		{ "dump-configuration", TYPE::D_VOID, NULL, "W", OOption::D_NONE, NULL, "dump current configuration", &dump },
+		{ "version", TYPE::D_VOID, NULL, "V", OOption::D_NONE, NULL, "output version information and exit", &version_call },
+		{ NULL, TYPE::D_VOID, NULL, NULL, OOption::D_NONE, NULL, NULL, NULL }
 	};
 
 }

@@ -71,23 +71,23 @@ int HDictionaryContractingPartyWindow::init ( void )
 			" &Kontrahenci: \n" );
 	l_poList->enable ( true );
 	l_poList->set_focus ( );
-	l_poList->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::D_LEFT, D_HSTRING,
+	l_poList->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::D_LEFT, TYPE::D_HSTRING,
 			l_poControl = new HEditControl ( this,
 				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Nazwisko", 20, HControl::BITS::ALIGN::D_LEFT, D_HSTRING,
+	l_poList->add_column ( -1, "Nazwisko", 20, HControl::BITS::ALIGN::D_LEFT, TYPE::D_HSTRING,
 			l_poControl = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Ulica", 24, HControl::BITS::ALIGN::D_LEFT, D_HSTRING,
+	l_poList->add_column ( -1, "Ulica", 24, HControl::BITS::ALIGN::D_LEFT, TYPE::D_HSTRING,
 			l_poControl = f_poEdit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
 				32, "", n_pcMaskLoose ) );
 	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Miasto", 20, HControl::BITS::ALIGN::D_CENTER, D_HSTRING,
+	l_poList->add_column ( -1, "Miasto", 20, HControl::BITS::ALIGN::D_CENTER, TYPE::D_HSTRING,
 			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
-	l_poList->add_column ( -1, "e-mail", 24, HControl::BITS::ALIGN::D_RIGHT, D_HSTRING,
+	l_poList->add_column ( -1, "e-mail", 24, HControl::BITS::ALIGN::D_RIGHT, TYPE::D_HSTRING,
 			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
 	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
@@ -95,8 +95,8 @@ int HDictionaryContractingPartyWindow::init ( void )
 	f_oControls.exchange ( 1, 6 );
 	f_oControls.exchange ( 2, 6 );
 	f_oControls.exchange ( 3, 6 );
-	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::D_LEFT, D_HSTRING );
-	l_poCombo->HListControl::set_flags( HListControl::FLAGS::D_NONE, HListControl::FLAGS::D_DRAW_HEADER );
+	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::D_LEFT, TYPE::D_HSTRING );
+	l_poCombo->HListControl::set_flags( HListControl::FLAG::D_NONE, HListControl::FLAG::D_DRAW_HEADER );
 	l_poCombo->enable ( true );
 	HListControler<>::ptr_t l_oControler = l_poCombo->get_controler();
 	l_oItem [ 0 ] ( "Ala" );
