@@ -43,27 +43,27 @@ struct OSetup
 	yaal::hcore::HString f_oLogin;
 	yaal::hcore::HString f_oPassword;
 	/* self-sufficient */
-	OSetup ( void ) : f_bQuiet ( false ), f_bVerbose ( false ),
-										f_bHelp ( false ), f_pcProgramName ( NULL ),
-										f_oLogPath ( ), f_oDataBase ( ),
-										f_oLogin ( ), f_oPassword ( ) {}
-	void test_globals ( void )
+	OSetup( void ) : f_bQuiet( false ), f_bVerbose( false ),
+										f_bHelp( false ), f_pcProgramName( NULL ),
+										f_oLogPath(), f_oDataBase(),
+										f_oLogin(), f_oPassword() {}
+	void test_setup( void )
 		{
 		M_PROLOG
 		if ( ! f_oDataBase )
-			M_THROW ( _ ( "database not set" ), errno );
+			M_THROW( _( "database not set" ), errno );
 		if ( ! f_oLogin )
-			M_THROW ( _ ( "database login not set" ), errno );
+			M_THROW( _( "database login not set" ), errno );
 		if ( ! f_oPassword )
-			M_THROW ( _ ( "database password not set" ), errno );
+			M_THROW( _( "database password not set" ), errno );
 		if ( ! f_oLogPath )
-			M_THROW ( _ ( "log file name not set" ), errno );
+			M_THROW( _( "log file name not set" ), errno );
 		return;
 		M_EPILOG
 		}
 private:
-	OSetup ( OSetup const & );
-	OSetup & operator = ( OSetup const & );
+	OSetup ( OSetup const& );
+	OSetup& operator = ( OSetup const& );
 	};
 
 extern OSetup setup;
