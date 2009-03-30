@@ -36,17 +36,17 @@ struct OSetup
 	{
 	bool f_bQuiet;			/* --quiet, --silent */
 	bool f_bVerbose;		/* --verbose */
-	bool f_bHelp;
 	char * f_pcProgramName;
 	yaal::hcore::HString f_oLogPath;
 	yaal::hcore::HString f_oDataBase;
 	yaal::hcore::HString f_oLogin;
 	yaal::hcore::HString f_oPassword;
 	/* self-sufficient */
-	OSetup( void ) : f_bQuiet( false ), f_bVerbose( false ),
-										f_bHelp( false ), f_pcProgramName( NULL ),
-										f_oLogPath(), f_oDataBase(),
-										f_oLogin(), f_oPassword() {}
+	OSetup( void )
+		: f_bQuiet( false ), f_bVerbose( false ),
+		f_pcProgramName( NULL ),
+		f_oLogPath(), f_oDataBase(),
+		f_oLogin(), f_oPassword() {}
 	void test_setup( void )
 		{
 		M_PROLOG

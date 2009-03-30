@@ -50,17 +50,6 @@ bool set_variables( HString& a_roOption, HString& a_roValue )
 	return ( false );
 	}
 
-/* Set all the option flags according to the switches specified.
-   Return the index of the first non-option argument.                    */
-
-void usage( void* ) __attribute__((__noreturn__));
-void usage( void* arg )
-	{
-	OOptionInfo* info = static_cast<OOptionInfo*>( arg );
-	info->PROC( info->_opt, setup.f_pcProgramName, "fiscal accounting software", NULL );
-	throw ( setup.f_bHelp ? 0 : 1 );
-	}
-
 void version( void* ) __attribute__ ( ( __noreturn__ ) );
 void version( void* )
 	{
@@ -68,40 +57,36 @@ void version( void* )
 	throw ( 0 );
 	}
 
-namespace
-{
-
-HProgramOptionsHandler::simple_callback_t help( usage, NULL );
-HProgramOptionsHandler::simple_callback_t dump( usage, NULL );
-HProgramOptionsHandler::simple_callback_t version_call( version, NULL );
-
-}
-
+/* Set all the option flags according to the switches specified.
+   Return the index of the first non-option argument.                    */
 int handle_program_options( int a_iArgc, char** a_ppcArgv )
 	{
 	M_PROLOG
 	HProgramOptionsHandler po;
-	po( "log_path", program_options_helper::option_value( setup.f_oLogPath ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "path", "path pointing to file for application logs", NULL )
-		( "database", program_options_helper::option_value( setup.f_oDataBase ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "spec", "database specyfication", NULL )
-		( "login", program_options_helper::option_value( setup.f_oLogin ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "login", "login for database", NULL )
-		( "password", program_options_helper::option_value( setup.f_oPassword ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "pass", "password for database", NULL )
-		( "quiet", program_options_helper::option_value( setup.f_bQuiet ), "q", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "inhibit usual output", NULL )
-		( "silent", program_options_helper::option_value( setup.f_bQuiet ), "q", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "inhibit usual output", NULL )
-		( "verbose", program_options_helper::option_value( setup.f_bVerbose ), "v", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "print more information", NULL )
-		( "help", program_options_helper::option_value( setup.f_bHelp ), "h", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "display this help and exit", &help )
-		( "dump-configuration", program_options_helper::no_value, "W", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "dump current configuration", &dump )
-		( "version", program_options_helper::no_value, "V", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "output version information and exit", &version_call );
+	OOptionInfo info( po, setup.f_pcProgramName, "fiscal accounting software", NULL );
+	bool stop = false;
+	po( "log_path", program_options_helper::option_value( setup.f_oLogPath ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "path", "path pointing to file for application logs" )
+		( "database", program_options_helper::option_value( setup.f_oDataBase ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "spec", "database specification" )
+		( "login", program_options_helper::option_value( setup.f_oLogin ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "login", "login for database" )
+		( "password", program_options_helper::option_value( setup.f_oPassword ), NULL, HProgramOptionsHandler::OOption::TYPE::D_REQUIRED, "pass", "password for database" )
+		( "quiet", program_options_helper::option_value( setup.f_bQuiet ), "q", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "inhibit usual output" )
+		( "silent", program_options_helper::option_value( setup.f_bQuiet ), "q", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "inhibit usual output" )
+		( "verbose", program_options_helper::option_value( setup.f_bVerbose ), "v", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "print more information" )
+		( "help", program_options_helper::option_value( stop ), "h", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "display this help and stop", program_options_helper::callback( util::show_help, &info ) )
+		( "dump-configuration", program_options_helper::option_value( stop ), "W", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "dump current configuration", program_options_helper::callback( util::dump_configuration, &info ) )
+		( "version", program_options_helper::no_value, "V", HProgramOptionsHandler::OOption::TYPE::D_NONE, NULL, "output version information and stop", program_options_helper::callback( version, NULL ) );
 	po.process_rc_file( "booker", "", NULL );
 	if ( setup.f_oLogPath.is_empty() )
 		setup.f_oLogPath = "booker.log";
 	int l_iUnknown = 0, l_iNonOption = 0;
-	OOptionInfo info( po.get_options(), util::show_help );
-	OOptionInfo infoConf( po.get_options(), util::dump_configuration );
-	help.second = &info;
-	dump.second = &infoConf;
 	l_iNonOption = po.process_command_line( a_iArgc, a_ppcArgv, &l_iUnknown );
 	if ( l_iUnknown > 0 )
-		usage( &info );
+		{
+		util::show_help( &info );
+		throw l_iUnknown;
+		}
+	if ( stop )
+		throw 0;
 	return ( l_iNonOption );
 	M_EPILOG
 	}
