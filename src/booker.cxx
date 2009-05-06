@@ -44,7 +44,7 @@ using namespace yaal::hdata;
 namespace booker
 {
 
-#define D_MENU_HANDLERS_MAP_SIZE 32
+#define MENU_HANDLERS_MAP_SIZE 32
 
 HBookerProcess::HBookerProcess ( void )
 	:	HDataProcess()
@@ -65,7 +65,7 @@ int HBookerProcess::init ( const char * a_pcProcessName )
 	{
 	M_PROLOG
 	f_oDataBase->connect( setup.f_oDataBase, setup.f_oLogin, setup.f_oPassword );
-	menu_handlers_map_t l_oHandlers ( D_MENU_HANDLERS_MAP_SIZE );
+	menu_handlers_map_t l_oHandlers ( MENU_HANDLERS_MAP_SIZE );
 	M_REGISTER_MENU_HANDLER ( run_quit );
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
 	M_REGISTER_MENU_HANDLER ( run_account_map );

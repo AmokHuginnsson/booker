@@ -76,7 +76,7 @@ void HDictionaryContractingPartySet::sync( void )
 
 HRecordSet::ptr_t HDictionaryContractingPartySet::get_records( void )
 	{
-	return ( f_oSQLDescriptor.execute( HSQLDescriptor::MODE::D_SELECT ) );
+	return ( f_oSQLDescriptor.execute( HSQLDescriptor::MODE::SELECT ) );
 	}
 
 void HDictionaryContractingPartySet::sync( yaal::dbwrapper::HRecordSet::iterator it )
