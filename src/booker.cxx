@@ -44,7 +44,7 @@ using namespace yaal::hdata;
 namespace booker
 {
 
-#define MENU_HANDLERS_MAP_SIZE 32
+static int const MENU_HANDLERS_MAP_SIZE = 32;
 
 HBookerProcess::HBookerProcess ( void )
 	:	HDataProcess()
