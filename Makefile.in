@@ -43,6 +43,3 @@ LINKER_PRIME_FLAGS +=	@SPECIAL_LINKER_FLAGS@
 
 include $(DIR_ROOT)/_aux/inc-helper-post.mk
 
-ifeq ($(CURDIR),$(DIR_BUILD))
--include $(OBJS:.$(OS)=.$(DS))
-endif
