@@ -30,8 +30,7 @@ Copyright:
 namespace booker
 {
 
-int process_bookerrc_file( void );
-int decode_switches( int, char** );
+int handle_program_options( int, char** );
 
 }
 

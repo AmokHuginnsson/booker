@@ -14,11 +14,11 @@ AC_CONFIG_AUX_DIR([../yaal/_aux])
 dnl booker is not Free Software.
 AC_COPYRIGHT([[booker (c) 2003 All rights reserved.]])
 
-AC_CHECK_PROG(HAS_GIT,[git-log],["true"],["false"])
+AC_CHECK_PROG(HAS_GIT,[git],["true"],["false"])
 AC_MSG_CHECKING([git id sub-command])
 AC_SUBST(GITID,[true])
 if test ["$HAS_GIT"] = ["true"] ; then
-	THIS_ID=`git id configure.ac 2> /dev/null`
+	THIS_ID=`git id ${0}.ac 2> /dev/null`
 	if test ["x${THIS_ID}"] != ["x"] ; then
 		AC_SUBST(GITID,["git id"])
 		AC_MSG_RESULT([ok])
@@ -165,7 +165,7 @@ AH_BOTTOM([
 ])
 
 dnl We have to set up proper compiler/linker flags.
-AC_OUTPUT([Makefile])
+AC_OUTPUT([Makefile.mk])
 AC_MSG_RESULT([--- All ok, good luck! ---                     	       [[100%]]])
 AC_MSG_RESULT([[Now you can type \`make'.]])
 

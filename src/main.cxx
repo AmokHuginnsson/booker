@@ -62,10 +62,9 @@ int main( int a_iArgc, char **a_ppcArgv )
 		HSignalServiceFactory::get_instance();
 /*	TO-DO:				                    enter main loop code here */
 		setup.f_pcProgramName = a_ppcArgv [ 0 ];
-		process_bookerrc_file();
-		l_iOpt = decode_switches( a_iArgc, a_ppcArgv ); 
-		setup.test_globals();
-		hcore::log.rehash( setup.f_oLogPath, 0 );
+		l_iOpt = handle_program_options( a_iArgc, a_ppcArgv );
+		hcore::log.rehash( setup.f_oLogPath, setup.f_pcProgramName );
+		setup.test_setup();
 /* enabling ncurses ablilities  */
 		if ( ! HCons::get_instance().is_enabled() )
 			HCons::get_instance().enter_curses();
