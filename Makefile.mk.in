@@ -28,7 +28,7 @@ $(foreach DIR,$(subst /, ,$(CURDIR)), $(eval $(eval DIR_ROOT_TEST=$(DIR_ROOT_TES
 VERSION				= 0
 SUBVERSION		= 0
 EXTRAVERSION	= 0
-include $(DIR_ROOT)/_aux/mk/0_paths.mk
+include $(DIR_ROOT)/_aux/mk/1_basic.mk
 LIBS					= pthread hcore hconsole hdata dbwrapper tools
 $(eval $(call NEW_TARGET,booker,src,,@RDYNAMIC@))
 EXEC_NAME			= 1exec
