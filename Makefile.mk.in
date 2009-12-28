@@ -30,16 +30,17 @@ SUBVERSION		= 0
 EXTRAVERSION	= 0
 include $(DIR_ROOT)/_aux/mk/0_paths.mk
 LIBS					= pthread hcore hconsole hdata dbwrapper tools
-$(eval $(call NEW_TARGET,booker,src,,-rdynamic))
+$(eval $(call NEW_TARGET,booker,src,,@RDYNAMIC@))
 EXEC_NAME			= 1exec
 CTAGS	= @CTAGS@
 GITID = @GITID@
 
 include $(DIR_ROOT)/_aux/inc-helper-pre.mk
 
-CWARNING_FLAGS								+= @PEDANTIC_ERRORS@ @EXTRA_WARNINGS@ @WARN_SHADOW@
-COMPILER_PRIME_FLAGS					+= @DEFS@
-LINKER_PRIME_FLAGS +=	@SPECIAL_LINKER_FLAGS@
+CXXFLAGS += @EXTRA_CXXFLAGS@ @DEFS@
+LXXFLAGS +=	@EXTRA_LXXFLAGS@
+START_GROUP = @START_GROUP@
+END_GROUP = @END_GROUP@
 
 include $(DIR_ROOT)/_aux/inc-helper-post.mk
 
