@@ -28,6 +28,7 @@ Copyright:
 #include <yaal/yaal.hxx> /* all hAPI headers */
 M_VCSID( "$Id: "__ID__" $" )
 
+#include "setup.hxx"
 #include "booker.hxx"
 #include "dictionarybank.hxx"
 

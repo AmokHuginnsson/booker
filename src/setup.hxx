@@ -29,6 +29,8 @@ Copyright:
 
 #include <libintl.h>
 
+#include "config.hxx"
+
 namespace booker
 {
 
