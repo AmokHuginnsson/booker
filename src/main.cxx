@@ -24,10 +24,7 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
+#include <cstdlib>
 #include <libintl.h>
 
 #include <yaal/yaal.hxx> /* all hAPI headers */
@@ -63,7 +60,7 @@ int main( int a_iArgc, char **a_ppcArgv )
 /*	TO-DO:				                    enter main loop code here */
 		setup.f_pcProgramName = a_ppcArgv [ 0 ];
 		l_iOpt = handle_program_options( a_iArgc, a_ppcArgv );
-		hcore::log.rehash( setup.f_oLogPath, setup.f_pcProgramName );
+		hcore::log( call( static_cast<void ( HLog::* )( HString const&, char const* const )>( &HLog::rehash ), _1, setup.f_oLogPath, setup.f_pcProgramName ) );
 		setup.test_setup();
 /* enabling ncurses ablilities  */
 		if ( ! HCons::get_instance().is_enabled() )
