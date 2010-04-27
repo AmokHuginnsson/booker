@@ -79,7 +79,7 @@ int main( int a_iArgc, char **a_ppcArgv )
 			HCons::get_instance().leave_curses();
 		throw;
 		}
-	fprintf( stderr, "%s.\n", _( "Done" ) ); 
+	cerr << _( "Done" ) << endl;
 	return ( 0 );
 	M_FINAL
 	}
