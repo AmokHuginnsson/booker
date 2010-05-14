@@ -34,8 +34,8 @@ class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow
 	{
 protected:
 	/*{*/
-	yaal::hconsole::HListControl * f_poList;
-	yaal::hconsole::HEditControl * f_poEdit;
+	yaal::hconsole::HListControl * _list;
+	yaal::hconsole::HEditControl * _edit;
 	/*}*/
 public:
 	/*{*/

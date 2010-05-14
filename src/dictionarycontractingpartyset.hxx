@@ -32,7 +32,7 @@ namespace booker
 
 class HDictionaryContractingPartySet
 	{
-	yaal::dbwrapper::HSQLDescriptor f_oSQLDescriptor;
+	yaal::dbwrapper::HSQLDescriptor _sQLDescriptor;
 public:
 	/*{*/
 	yaal::hcore::HString m_imie;

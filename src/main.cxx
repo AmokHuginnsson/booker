@@ -48,24 +48,24 @@ HBookerProcess theProc;
 
 }
 
-int main( int a_iArgc, char **a_ppcArgv )
+int main( int argc_, char **argv_ )
 	{
 	M_PROLOG
 /*	variables declarations for main loop: */
-	int l_iOpt = 0;
+	int opt = 0;
 /*	end. */
 	try 
 		{
 		HSignalServiceFactory::get_instance();
 /*	TO-DO:				                    enter main loop code here */
-		setup.f_pcProgramName = a_ppcArgv [ 0 ];
-		l_iOpt = handle_program_options( a_iArgc, a_ppcArgv );
-		hcore::log.rehash( setup.f_oLogPath, setup.f_pcProgramName );
+		setup._programName = argv_ [ 0 ];
+		opt = handle_program_options( argc_, argv_ );
+		hcore::log.rehash( setup._logPath, setup._programName );
 		setup.test_setup();
 /* enabling ncurses ablilities  */
 		if ( ! HCons::get_instance().is_enabled() )
 			HCons::get_instance().enter_curses();
-		theProc.init( setup.f_pcProgramName );
+		theProc.init( setup._programName );
 		theProc.run();
 /* ending ncurses sesion        */
 		if ( HCons::get_instance().is_enabled() )

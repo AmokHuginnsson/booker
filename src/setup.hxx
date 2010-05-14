@@ -36,29 +36,29 @@ namespace booker
 
 struct OSetup
 	{
-	bool f_bQuiet;			/* --quiet, --silent */
-	bool f_bVerbose;		/* --verbose */
-	char * f_pcProgramName;
-	yaal::hcore::HString f_oLogPath;
-	yaal::hcore::HString f_oDataBase;
-	yaal::hcore::HString f_oLogin;
-	yaal::hcore::HString f_oPassword;
+	bool _quiet;			/* --quiet, --silent */
+	bool _verbose;		/* --verbose */
+	char * _programName;
+	yaal::hcore::HString _logPath;
+	yaal::hcore::HString _dataBase;
+	yaal::hcore::HString _login;
+	yaal::hcore::HString _password;
 	/* self-sufficient */
 	OSetup( void )
-		: f_bQuiet( false ), f_bVerbose( false ),
-		f_pcProgramName( NULL ),
-		f_oLogPath(), f_oDataBase(),
-		f_oLogin(), f_oPassword() {}
+		: _quiet( false ), _verbose( false ),
+		_programName( NULL ),
+		_logPath(), _dataBase(),
+		_login(), _password() {}
 	void test_setup( void )
 		{
 		M_PROLOG
-		if ( ! f_oDataBase )
+		if ( ! _dataBase )
 			M_THROW( _( "database not set" ), errno );
-		if ( ! f_oLogin )
+		if ( ! _login )
 			M_THROW( _( "database login not set" ), errno );
-		if ( ! f_oPassword )
+		if ( ! _password )
 			M_THROW( _( "database password not set" ), errno );
-		if ( ! f_oLogPath )
+		if ( ! _logPath )
 			M_THROW( _( "log file name not set" ), errno );
 		return;
 		M_EPILOG

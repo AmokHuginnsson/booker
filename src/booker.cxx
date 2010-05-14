@@ -61,20 +61,20 @@ HBookerProcess::~HBookerProcess ( void )
 	M_EPILOG
 	}
 
-int HBookerProcess::init ( const char * a_pcProcessName )
+int HBookerProcess::init ( const char * processName_ )
 	{
 	M_PROLOG
-	f_oDataBase->connect( setup.f_oDataBase, setup.f_oLogin, setup.f_oPassword );
-	menu_handlers_map_t l_oHandlers ( MENU_HANDLERS_MAP_SIZE );
+	_dataBase->connect( setup._dataBase, setup._login, setup._password );
+	menu_handlers_map_t handlers ( MENU_HANDLERS_MAP_SIZE );
 	M_REGISTER_MENU_HANDLER ( run_quit );
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
 	M_REGISTER_MENU_HANDLER ( run_account_map );
-	l_oHandlers [ "" ] = NULL;
+	handlers [ "" ] = NULL;
 	M_REGISTER_MENU_HANDLER ( run_dictionary_contracting_party );
 	M_REGISTER_MENU_HANDLER ( run_regular_oblige );
 	M_REGISTER_MENU_HANDLER ( run_subject );
 	M_REGISTER_MENU_HANDLER ( run_config );
-	HDataProcess::init_xrc ( a_pcProcessName, "booker.xrc", l_oHandlers );
+	HDataProcess::init_xrc ( processName_, "booker.xrc", handlers );
 	return ( 0 );
 	M_EPILOG
 	}

@@ -39,8 +39,8 @@ using namespace yaal::dbwrapper;
 namespace booker
 {
 
-HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * a_pcTitle )
-	: HWindow ( a_pcTitle ), f_poList ( NULL ), f_poEdit ( NULL )
+HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * title_ )
+	: HWindow ( title_ ), _list ( NULL ), _edit ( NULL )
 	{
 	M_PROLOG
 	register_postprocess_handler ( KEY_CODES::DELETE, NULL,
@@ -61,78 +61,78 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void )
 int HDictionaryContractingPartyWindow::init ( void )
 	{
 	M_PROLOG
-	int l_iError = 0;
-	HControl * l_poControl = NULL;
-	HItem l_oItem ( 1 ), l_oRow ( 5 );
-	HListControl * l_poList = NULL;
-	HComboboxControl * l_poCombo = NULL;
-	l_iError = HWindow::init ( );
-	f_poList = l_poList = new HListControl ( this, 1, 1, - 11, - 1,
+	int error = 0;
+	HControl * control = NULL;
+	HItem item ( 1 ), row ( 5 );
+	HListControl * list = NULL;
+	HComboboxControl * combo = NULL;
+	error = HWindow::init ( );
+	_list = list = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
-	l_poList->enable ( true );
-	l_poList->set_focus ( );
-	l_poList->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			l_poControl = new HEditControl ( this,
+	list->enable ( true );
+	list->set_focus ( );
+	list->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = new HEditControl ( this,
 				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
-	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			l_poControl = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
+	control->enable ( true );
+	list->add_column ( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
-	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			l_poControl = f_poEdit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
-				32, "", n_pcMaskLoose ) );
-	l_poControl->enable ( true );
-	l_poList->add_column ( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
+	control->enable ( true );
+	list->add_column ( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = _edit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
+				32, "", _maskLoose_ ) );
+	control->enable ( true );
+	list->add_column ( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
 			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
-	l_poList->add_column ( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+	list->add_column ( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
-	l_poCombo = new HComboboxControl ( this, - 10, 1, 9, 24,
-			" &Kombo Testowe: \n", 32, 128, n_pcMaskExtended );
-	f_oControls.exchange ( 1, 6 );
-	f_oControls.exchange ( 2, 6 );
-	f_oControls.exchange ( 3, 6 );
-	l_poCombo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING );
-	l_poCombo->HListControl::set_flags( HListControl::FLAG::NONE, HListControl::FLAG::DRAW_HEADER );
-	l_poCombo->enable ( true );
-	HListControler<>::ptr_t l_oControler = l_poCombo->get_controler();
-	l_oItem [ 0 ] ( "Ala" );
-	l_oControler->add_orderly ( l_oItem, 0 );
-	l_oItem [ 0 ] ( "ma" );
-	l_oControler->add_orderly ( l_oItem, 0 );
-	l_oItem [ 0 ] ( "kota." );
-	l_oControler->add_orderly ( l_oItem, 0 );
+	combo = new HComboboxControl ( this, - 10, 1, 9, 24,
+			" &Kombo Testowe: \n", 32, 128, _maskExtended_ );
+	_controls.exchange ( 1, 6 );
+	_controls.exchange ( 2, 6 );
+	_controls.exchange ( 3, 6 );
+	combo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING );
+	combo->HListControl::set_flags( HListControl::FLAG::NONE, HListControl::FLAG::DRAW_HEADER );
+	combo->enable ( true );
+	HListControler<>::ptr_t controler = combo->get_controler();
+	item [ 0 ] ( "Ala" );
+	controler->add_orderly ( item, 0 );
+	item [ 0 ] ( "ma" );
+	controler->add_orderly ( item, 0 );
+	item [ 0 ] ( "kota." );
+	controler->add_orderly ( item, 0 );
 	HDictionaryContractingPartySet rs ( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
-	HListControler<>::ptr_t l_oMC = l_poList->get_controler();
+	HListControler<>::ptr_t mC = list->get_controler();
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it )
 		{
 		rs.sync( it );
-		l_oRow [ 0 ] ( rs.m_imie );
-		l_oRow [ 1 ] ( rs.m_nazwisko );
-		l_oRow [ 2 ] ( rs.m_ulica );
-		l_oRow [ 3 ] ( rs.m_miasto );
-		l_oRow [ 4 ] ( rs.m_email );
-		l_oMC->add_tail ( l_oRow );
+		row [ 0 ] ( rs.m_imie );
+		row [ 1 ] ( rs.m_nazwisko );
+		row [ 2 ] ( rs.m_ulica );
+		row [ 3 ] ( rs.m_miasto );
+		row [ 4 ] ( rs.m_email );
+		mC->add_tail ( row );
 		if ( ! rs.m_telefon.is_empty ( ) )
 			{
-			l_oItem [ 0 ] ( rs.m_telefon );
-			l_oControler->add_orderly ( l_oItem, 0 );
+			item [ 0 ] ( rs.m_telefon );
+			controler->add_orderly ( item, 0 );
 			}
 		}
 	refresh ( );
-	return ( l_iError );
+	return ( error );
 	M_EPILOG
 	}
 
 int HDictionaryContractingPartyWindow::handler_delete( int, void const* )
 	{
 	M_PROLOG
-	if ( f_poList->get_row_count() )
-		f_poList->remove_current_row();
+	if ( _list->get_row_count() )
+		_list->remove_current_row();
 	return ( 0 );
 	M_EPILOG
 	}
@@ -140,8 +140,8 @@ int HDictionaryContractingPartyWindow::handler_delete( int, void const* )
 int HDictionaryContractingPartyWindow::handler_enter( int, void const* )
 	{
 	M_PROLOG
-//	if ( f_poList->get_row_count() )
-//		f_poList->set_current_row_cell( 2, f_poEdit->get() );
+//	if ( _list->get_row_count() )
+//		_list->set_current_row_cell( 2, _edit->get() );
 	return ( 0 );
 	M_EPILOG
 	}

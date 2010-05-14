@@ -43,12 +43,12 @@ using namespace yaal::hdata;
 namespace booker
 {
 
-HDictionaryBank::HDictionaryBank( const char* a_pcTitle,
-		HDataProcess* a_poOwner, OResource* a_psResources )
-								: HDataWindow( a_pcTitle, a_poOwner, a_psResources )
+HDictionaryBank::HDictionaryBank( const char* title_,
+		HDataProcess* owner_, resources_t* resources_ )
+								: HDataWindow( title_, owner_, resources_ )
 	{
 	M_PROLOG
-  register_postprocess_handler ( 'a', NULL,
+  register_postprocess_handler( 'a', NULL,
 			& HDictionaryBank::handler_add );
 	return;
 	M_EPILOG
@@ -61,48 +61,48 @@ HDictionaryBank::~HDictionaryBank ( void )
 	M_EPILOG
 	}
 
-int HDictionaryBank::handler_add ( int a_iCode, void const* )
+int HDictionaryBank::handler_add ( int code_, void const* )
 	{
 	M_PROLOG
-	double l_dValue = 0;
-	HExpression l_oAnalyser;
-	HItem l_oItem ( 6 );
-	HRandomizer l_oRnd ( 0 );
-	HDataListControl * l_poList = dynamic_cast<HDataListControl*>( f_oControls.get_control_by_no( 1 ) );
-	M_ASSERT( l_poList != NULL );
-	l_oAnalyser.compile( "A+B" );
+	double value = 0;
+	HExpression analyser;
+	HItem item ( 6 );
+	HRandomizer rnd ( 0 );
+	HDataListControl * list = dynamic_cast<HDataListControl*>( _controls.get_control_by_no( 1 ) );
+	M_ASSERT( list != NULL );
+	analyser.compile( "A+B" );
 	int long const TO_ADD = 500000;
-	f_oStatusBar->init_progress ( TO_ADD, _( " Precaching ... " ) );
-	HListControler<>::ptr_t l_oControler = l_poList->get_controler();
-	for ( int long l_iCtr = 0; l_iCtr < TO_ADD; l_iCtr ++ )
+	_statusBar->init_progress ( TO_ADD, _( " Precaching ... " ) );
+	HListControler<>::ptr_t controler = list->get_controler();
+	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ )
 		{
-/*		l_dValue = l_poList->size ( ) / 100.;*/
-		l_dValue = ( ( double ) l_oRnd.rnd ( ) ) / 100.;
+/*		value = list->size ( ) / 100.;*/
+		value = ( ( double ) rnd.rnd ( ) ) / 100.;
 /*		
-		l_oAnalyser [ 'A' ] = l_dValue;
-		l_oAnalyser [ 'B' ] = l_dValue * l_dValue;
-		l_dValue = l_oAnalyser.evaluate ( );
+		analyser [ 'A' ] = value;
+		analyser [ 'B' ] = value * value;
+		value = analyser.evaluate ( );
 */
-		l_oItem [ 0 ] = util::kwota_slownie ( l_dValue );
-		l_oItem [ 1 ] = "wype³niacz";
-/*		l_oIitem [ 2 ] = HString ( l_dValue );*/
-		l_oItem [ 2 ] = l_dValue;
-		l_oControler->add_tail ( l_oItem );
-		f_oStatusBar->update_progress();
+		item [ 0 ] = util::kwota_slownie ( value );
+		item [ 1 ] = "wype³niacz";
+/*		iitem [ 2 ] = HString ( value );*/
+		item [ 2 ] = value;
+		controler->add_tail ( item );
+		_statusBar->update_progress();
 		}
 /*
  * tested list control by filling it with 276300 rows
  */
 	refresh ( );
-	a_iCode = 0;
-	return ( a_iCode );
+	code_ = 0;
+	return ( code_ );
 	M_EPILOG
 	}
 
 }
 
 extern "C"
-HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, OResource* res )
+HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res )
 	{
 	M_PROLOG
 	return ( HWindow::ptr_t( new booker::HDictionaryBank( title.raw(), proc, res ) ) );
