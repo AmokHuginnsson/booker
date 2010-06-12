@@ -32,11 +32,8 @@ namespace booker
 
 class HBookerProcess : public yaal::hdata::HDataProcess
 	{
-protected:
-	/*{*/
-	/*}*/
 public:
-	/*{*/
+	typedef HBookerProcess this_type;
 	HBookerProcess( void );
 	virtual ~HBookerProcess( void );
 	int init( const char* = "" );
@@ -47,12 +44,9 @@ public:
 	int run_account_map( void* );
 	int run_account_orders( void* );
 	int run_regular_oblige( void* );
-	/*}*/
 private:
-	/*{*/
 	HBookerProcess ( const HBookerProcess & );
 	HBookerProcess & operator = ( const HBookerProcess & );
-	/*}*/
 	};
 
 extern HBookerProcess theProc;
