@@ -50,33 +50,34 @@ HBookerProcess theProc;
 
 int main( int argc_, char **argv_ )
 	{
+	M_AT_END_OF_SCOPE( HSignalService::get_instance().stop(); );
 	M_PROLOG
 /*	variables declarations for main loop: */
 	int opt = 0;
 /*	end. */
 	try 
 		{
-		HSignalServiceFactory::get_instance();
+		HSignalService::get_instance();
 /*	TO-DO:				                    enter main loop code here */
 		setup._programName = argv_ [ 0 ];
 		opt = handle_program_options( argc_, argv_ );
 		hcore::log.rehash( setup._logPath, setup._programName );
 		setup.test_setup();
 /* enabling ncurses ablilities  */
-		if ( ! HCons::get_instance().is_enabled() )
-			HCons::get_instance().enter_curses();
+		if ( ! HConsole::get_instance().is_enabled() )
+			HConsole::get_instance().enter_curses();
 		theProc.init( setup._programName );
 		theProc.run();
 /* ending ncurses sesion        */
-		if ( HCons::get_instance().is_enabled() )
-			HCons::get_instance().leave_curses();
+		if ( HConsole::get_instance().is_enabled() )
+			HConsole::get_instance().leave_curses();
 /*	... there is the place main loop ends.               :OD-OT */
 		}
 	catch ( ... ) 
 		{
 /* ending ncurses sesion        */
-		if ( HCons::get_instance().is_enabled() )
-			HCons::get_instance().leave_curses();
+		if ( HConsole::get_instance().is_enabled() )
+			HConsole::get_instance().leave_curses();
 		throw;
 		}
 	cerr << _( "Done" ) << endl;
