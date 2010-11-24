@@ -64,11 +64,11 @@ HDictionaryBank::~HDictionaryBank ( void )
 int HDictionaryBank::handler_add ( int code_, void const* )
 	{
 	M_PROLOG
-	double value = 0;
+	double value( 0 );
 	HExpression analyser;
-	HItem item ( 6 );
-	HRandomizer rnd ( 0 );
-	HDataListControl * list = dynamic_cast<HDataListControl*>( _controls.get_control_by_no( 1 ) );
+	HItem item( 6 );
+	HRandomizer rnd( 0 );
+	HDataListControl* list = dynamic_cast<HDataListControl*>( _controls.get_control_by_no( 1 ) );
 	M_ASSERT( list != NULL );
 	analyser.compile( "A+B" );
 	int long const TO_ADD = 500000;
@@ -77,7 +77,7 @@ int HDictionaryBank::handler_add ( int code_, void const* )
 	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ )
 		{
 /*		value = list->size ( ) / 100.;*/
-		value = ( ( double ) rnd.rnd ( ) ) / 100.;
+		value = ( ( double ) rnd() ) / 100.;
 /*		
 		analyser [ 'A' ] = value;
 		analyser [ 'B' ] = value * value;
