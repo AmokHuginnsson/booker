@@ -105,7 +105,7 @@ extern "C"
 HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res )
 	{
 	M_PROLOG
-	return ( HWindow::ptr_t( new booker::HDictionaryBank( title.raw(), proc, res ) ) );
+	return ( make_pointer<booker::HDictionaryBank>( title.raw(), proc, res ) );
 	M_EPILOG
 	}
 

@@ -90,8 +90,7 @@ int HBookerProcess::run_quit( void* )
 int HBookerProcess::run_dictionary_contracting_party( void* )
 	{
 	M_PROLOG
-	add_window ( HWindow::ptr_t( new HDictionaryContractingPartyWindow(
-					"Kontrahenci" ) ) );
+	add_window( make_pointer<HDictionaryContractingPartyWindow>( "Kontrahenci" ) );
 	return ( 0 );
 	M_EPILOG
 	}
@@ -99,7 +98,7 @@ int HBookerProcess::run_dictionary_contracting_party( void* )
 int HBookerProcess::run_config( void* )
 	{
 	M_PROLOG
-	HConsole& cons = HConsole::get_instance();
+	HConsole& cons( HConsole::get_instance() );
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_config" );
 	cons.c_refresh ( );
 	return ( 0 );
