@@ -27,11 +27,9 @@ Copyright:
 #ifndef DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
 #define DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
 
-namespace booker
-{
+namespace booker {
 
-class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow
-	{
+class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow {
 protected:
 	/*{*/
 	yaal::hconsole::HListControl * _list;
@@ -53,7 +51,7 @@ private:
 	HDictionaryContractingPartyWindow ( const HDictionaryContractingPartyWindow & );
 	HDictionaryContractingPartyWindow & operator = ( const HDictionaryContractingPartyWindow & );
 	/*}*/
-	};
+};
 
 }
 

@@ -40,20 +40,17 @@ using namespace yaal::hconsole;
 using namespace yaal::tools;
 using namespace booker;
 
-namespace booker
-{
+namespace booker {
 
 OSetup setup;
 HBookerProcess theProc;
 
 }
 
-int main( int argc_, char **argv_ )
-	{
+int main( int argc_, char **argv_ ) {
 	M_AT_END_OF_SCOPE( HSignalService::get_instance().stop(); );
 	M_PROLOG
-	try 
-		{
+	try {
 		HSignalService::get_instance();
 /*	TO-DO:				                    enter main loop code here */
 		setup._programName = argv_ [ 0 ];
@@ -69,16 +66,14 @@ int main( int argc_, char **argv_ )
 		if ( HConsole::get_instance().is_enabled() )
 			HConsole::get_instance().leave_curses();
 /*	... there is the place main loop ends.               :OD-OT */
-		}
-	catch ( ... ) 
-		{
+	} catch ( ... ) {
 /* ending ncurses sesion        */
 		if ( HConsole::get_instance().is_enabled() )
 			HConsole::get_instance().leave_curses();
 		throw;
-		}
+	}
 	cerr << _( "Done" ) << endl;
 	return ( 0 );
 	M_FINAL
-	}
+}
 

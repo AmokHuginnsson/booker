@@ -32,11 +32,9 @@ M_VCSID( "$Id: "__ID__" $" )
 
 using namespace yaal::hcore;
 
-namespace booker
-{
+namespace booker {
 
-void OSetup::test_setup( void )
-	{
+void OSetup::test_setup( void ) {
 	M_PROLOG
 	if ( _quiet && _verbose )
 		yaal::tools::util::failure( 1,
@@ -55,7 +53,7 @@ void OSetup::test_setup( void )
 		M_THROW( _( "log file name not set" ), errno );
 	return;
 	M_EPILOG
-	}
+}
 
 }
 

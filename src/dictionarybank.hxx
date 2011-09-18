@@ -27,11 +27,9 @@ Copyright:
 #ifndef DICTIONARYBANK_HXX_INCLUDED
 #define DICTIONARYBANK_HXX_INCLUDED
 
-namespace booker
-{
+namespace booker {
 
-class HDictionaryBank : public yaal::hdata::HDataWindow
-	{
+class HDictionaryBank : public yaal::hdata::HDataWindow {
 protected:
 	/*{*/
 	/*}*/
@@ -44,7 +42,7 @@ public:
 protected:
 	/*{*/
 	/*}*/
-	};
+};
 
 }
 

@@ -27,11 +27,9 @@ Copyright:
 #ifndef PROCESS_HXX_INCLUDED
 #define PROCESS_HXX_INCLUDED
 
-namespace booker
-{
+namespace booker {
 
-class HBookerProcess : public yaal::hdata::HDataProcess
-	{
+class HBookerProcess : public yaal::hdata::HDataProcess {
 public:
 	typedef HBookerProcess this_type;
 	HBookerProcess( void );
@@ -47,7 +45,7 @@ public:
 private:
 	HBookerProcess ( const HBookerProcess & );
 	HBookerProcess & operator = ( const HBookerProcess & );
-	};
+};
 
 extern HBookerProcess theProc;
 

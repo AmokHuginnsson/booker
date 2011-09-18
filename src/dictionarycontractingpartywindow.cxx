@@ -36,12 +36,10 @@ using namespace yaal::hconsole;
 using namespace yaal::hconsole::list_control_helper;
 using namespace yaal::dbwrapper;
 
-namespace booker
-{
+namespace booker {
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * title_ )
-	: HWindow ( title_ ), _list ( NULL ), _edit ( NULL )
-	{
+	: HWindow ( title_ ), _list ( NULL ), _edit ( NULL ) {
 	M_PROLOG
 	register_postprocess_handler ( KEY_CODES::DELETE, NULL,
 			& HDictionaryContractingPartyWindow::handler_delete );
@@ -49,17 +47,15 @@ HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const cha
 			& HDictionaryContractingPartyWindow::handler_enter );
 	return;
 	M_EPILOG
-	}
+}
 
-HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void )
-	{
+HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 	M_PROLOG
 	return;
 	M_EPILOG
-	}
+}
 
-int HDictionaryContractingPartyWindow::init ( void )
-	{
+int HDictionaryContractingPartyWindow::init ( void ) {
 	M_PROLOG
 	int error = 0;
 	HControl * control = NULL;
@@ -108,8 +104,7 @@ int HDictionaryContractingPartyWindow::init ( void )
 	HDictionaryContractingPartySet rs ( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
 	HListControler<>::ptr_t mC = list->get_controler();
-	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it )
-		{
+	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
 		row [ 0 ] ( rs.m_imie );
 		row [ 1 ] ( rs.m_nazwisko );
@@ -117,34 +112,31 @@ int HDictionaryContractingPartyWindow::init ( void )
 		row [ 3 ] ( rs.m_miasto );
 		row [ 4 ] ( rs.m_email );
 		mC->add_tail ( row );
-		if ( ! rs.m_telefon.is_empty ( ) )
-			{
+		if ( ! rs.m_telefon.is_empty ( ) ) {
 			item [ 0 ] ( rs.m_telefon );
 			controler->add_orderly ( item, 0 );
-			}
 		}
+	}
 	refresh ( );
 	return ( error );
 	M_EPILOG
-	}
+}
 
-int HDictionaryContractingPartyWindow::handler_delete( int, void const* )
-	{
+int HDictionaryContractingPartyWindow::handler_delete( int, void const* ) {
 	M_PROLOG
 	if ( _list->get_row_count() )
 		_list->remove_current_row();
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HDictionaryContractingPartyWindow::handler_enter( int, void const* )
-	{
+int HDictionaryContractingPartyWindow::handler_enter( int, void const* ) {
 	M_PROLOG
 //	if ( _list->get_row_count() )
 //		_list->set_current_row_cell( 2, _edit->get() );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
 }
 

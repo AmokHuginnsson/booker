@@ -41,28 +41,24 @@ using namespace yaal::hconsole;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
 
-namespace booker
-{
+namespace booker {
 
 static int const MENU_HANDLERS_MAP_SIZE = 32;
 
 HBookerProcess::HBookerProcess ( void )
-	:	HDataProcess()
-	{
+	:	HDataProcess() {
 	M_PROLOG
 	return;
 	M_EPILOG
-	}
+}
 
-HBookerProcess::~HBookerProcess ( void )
-	{
+HBookerProcess::~HBookerProcess ( void ) {
 	M_PROLOG
 	return;
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::init ( const char * processName_ )
-	{
+int HBookerProcess::init ( const char * processName_ ) {
 	M_PROLOG
 	_dataBase->connect( setup._dataBase, setup._login, setup._password );
 	menu_handlers_map_t handlers ( MENU_HANDLERS_MAP_SIZE );
@@ -77,73 +73,66 @@ int HBookerProcess::init ( const char * processName_ )
 	HDataProcess::init_xrc ( processName_, "booker.xrc", handlers );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_quit( void* )
-	{
+int HBookerProcess::run_quit( void* ) {
 	M_PROLOG
 	handler_quit ( KEY < 'x' >::command );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_dictionary_contracting_party( void* )
-	{
+int HBookerProcess::run_dictionary_contracting_party( void* ) {
 	M_PROLOG
 	add_window( make_pointer<HDictionaryContractingPartyWindow>( "Kontrahenci" ) );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_config( void* )
-	{
+int HBookerProcess::run_config( void* ) {
 	M_PROLOG
 	HConsole& cons( HConsole::get_instance() );
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_config" );
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_subject( void* )
-	{
+int HBookerProcess::run_subject( void* ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_subject" );
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_account_map( void* )
-	{
+int HBookerProcess::run_account_map( void* ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_account_map" );
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_account_orders( void* )
-	{
+int HBookerProcess::run_account_orders( void* ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_account_orders" );
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
-int HBookerProcess::run_regular_oblige( void* )
-	{
+int HBookerProcess::run_regular_oblige( void* ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
 	cons.c_cmvprintf ( cons.get_height() - 2, -1, 48, "run_regular_oblige" );
 	cons.c_refresh ( );
 	return ( 0 );
 	M_EPILOG
-	}
+}
 
 }
 

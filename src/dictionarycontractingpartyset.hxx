@@ -27,11 +27,9 @@ Copyright:
 #ifndef DICTIONARYCONTRACTINGPARTYSET_HXX_INCLUDED
 #define DICTIONARYCONTRACTINGPARTYSET_HXX_INCLUDED
 
-namespace booker
-{
+namespace booker {
 
-class HDictionaryContractingPartySet
-	{
+class HDictionaryContractingPartySet {
 	yaal::dbwrapper::HSQLDescriptor _sQLDescriptor;
 public:
 	/*{*/
@@ -63,7 +61,7 @@ public:
 protected:
 	/*{*/
 	/*}*/
-	};
+};
 
 }
 

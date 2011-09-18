@@ -40,29 +40,25 @@ using namespace yaal::tools;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
 
-namespace booker
-{
+namespace booker {
 
 HDictionaryBank::HDictionaryBank( const char* title_,
 		HDataProcess* owner_, resources_t* resources_ )
-								: HDataWindow( title_, owner_, resources_ )
-	{
+								: HDataWindow( title_, owner_, resources_ ) {
 	M_PROLOG
   register_postprocess_handler( 'a', NULL,
 			& HDictionaryBank::handler_add );
 	return;
 	M_EPILOG
-	}
+}
 
-HDictionaryBank::~HDictionaryBank ( void )
-	{
+HDictionaryBank::~HDictionaryBank ( void ) {
 	M_PROLOG
 	return;
 	M_EPILOG
-	}
+}
 
-int HDictionaryBank::handler_add ( int code_, void const* )
-	{
+int HDictionaryBank::handler_add ( int code_, void const* ) {
 	M_PROLOG
 	double value( 0 );
 	HExpression analyser;
@@ -74,8 +70,7 @@ int HDictionaryBank::handler_add ( int code_, void const* )
 	int long const TO_ADD = 500000;
 	_statusBar->init_progress ( TO_ADD, _( " Precaching ... " ) );
 	HListControler<>::ptr_t controler = list->get_controler();
-	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ )
-		{
+	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ ) {
 /*		value = list->size ( ) / 100.;*/
 		value = ( ( double ) rnd() ) / 100.;
 /*		
@@ -89,7 +84,7 @@ int HDictionaryBank::handler_add ( int code_, void const* )
 		item [ 2 ] = value;
 		controler->add_tail ( item );
 		_statusBar->update_progress();
-		}
+	}
 /*
  * tested list control by filling it with 276300 rows
  */
@@ -97,15 +92,14 @@ int HDictionaryBank::handler_add ( int code_, void const* )
 	code_ = 0;
 	return ( code_ );
 	M_EPILOG
-	}
+}
 
 }
 
 extern "C"
-HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res )
-	{
+HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res ) {
 	M_PROLOG
 	return ( make_pointer<booker::HDictionaryBank>( title.raw(), proc, res ) );
 	M_EPILOG
-	}
+}
 
