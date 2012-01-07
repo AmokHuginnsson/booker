@@ -72,13 +72,13 @@ int HDictionaryBank::handler_add ( int code_, void const* ) {
 	HListControler<>::ptr_t controler = list->get_controler();
 	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ ) {
 /*		value = list->size ( ) / 100.;*/
-		value = ( ( double ) rnd() ) / 100.;
+		value = static_cast<double>( rnd() ) / 100.;
 /*		
 		analyser [ 'A' ] = value;
 		analyser [ 'B' ] = value * value;
 		value = analyser.evaluate ( );
 */
-		item [ 0 ] = util::kwota_slownie ( value );
+		item [ 0 ] = tools::util::kwota_slownie( value );
 		item [ 1 ] = "wype³niacz";
 /*		iitem [ 2 ] = HString ( value );*/
 		item [ 2 ] = value;
