@@ -97,6 +97,7 @@ int HDictionaryBank::handler_add ( int code_, void const* ) {
 }
 
 extern "C"
+HWindow::ptr_t window_bank( HString const&, HDataProcess*, resources_t* );
 HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res ) {
 	M_PROLOG
 	return ( make_pointer<booker::HDictionaryBank>( title.raw(), proc, res ) );
