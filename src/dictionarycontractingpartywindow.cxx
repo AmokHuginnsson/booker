@@ -59,7 +59,7 @@ int HDictionaryContractingPartyWindow::init ( void ) {
 	M_PROLOG
 	int error = 0;
 	HControl * control = NULL;
-	HItem item ( 1 ), row ( 5 );
+	HInfoItem item ( 1 ), row ( 5 );
 	HListControl * list = NULL;
 	HComboboxControl * combo = NULL;
 	error = HWindow::init ( );

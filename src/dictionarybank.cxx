@@ -62,7 +62,7 @@ int HDictionaryBank::handler_add ( int code_, void const* ) {
 	M_PROLOG
 	double value( 0 );
 	HExpression analyser;
-	HItem item( 6 );
+	HInfoItem item( 6 );
 	HRandomizer rnd( 0 );
 	HDataListControl* list = dynamic_cast<HDataListControl*>( _controls.get_control_by_no( 1 ) );
 	M_ASSERT( list != NULL );
