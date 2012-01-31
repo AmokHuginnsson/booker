@@ -78,11 +78,11 @@ int HDictionaryBank::handler_add ( int code_, void const* ) {
 		analyser [ 'B' ] = value * value;
 		value = analyser.evaluate ( );
 */
-		item [ 0 ] = tools::util::kwota_slownie( value );
-		item [ 1 ] = "wype³niacz";
+		item[ 0 ].set_string( tools::util::kwota_slownie( value ) );
+		item[ 1 ].set_string( "wype³niacz" );
 /*		iitem [ 2 ] = HString ( value );*/
-		item [ 2 ] = value;
-		controler->add_tail ( item );
+		item[ 2 ].set_double( value );
+		controler->add_tail( item );
 		_statusBar->update_progress();
 	}
 /*

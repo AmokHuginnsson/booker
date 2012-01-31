@@ -57,67 +57,67 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 
 int HDictionaryContractingPartyWindow::init ( void ) {
 	M_PROLOG
-	int error = 0;
-	HControl * control = NULL;
-	HInfoItem item ( 1 ), row ( 5 );
-	HListControl * list = NULL;
-	HComboboxControl * combo = NULL;
-	error = HWindow::init ( );
+	int error( 0 );
+	HControl* control( NULL );
+	HInfoItem item( 1 ), row( 5 );
+	HListControl* list( NULL );
+	HComboboxControl* combo( NULL );
+	error = HWindow::init();
 	_list = list = new HListControl ( this, 1, 1, - 11, - 1,
 			" &Kontrahenci: \n" );
-	list->enable ( true );
-	list->set_focus ( );
-	list->add_column ( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+	list->enable( true );
+	list->set_focus();
+	list->add_column( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditControl ( this,
 				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
 				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
-	control->enable ( true );
-	list->add_column ( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+	control->enable( true );
+	list->add_column( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
 				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
-	control->enable ( true );
-	list->add_column ( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
+	control->enable( true );
+	list->add_column( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = _edit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
 				32, "", _maskLoose_ ) );
-	control->enable ( true );
-	list->add_column ( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
-			new HEditControl ( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
+	control->enable( true );
+	list->add_column( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
+			new HEditControl( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
 				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
-	list->add_column ( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			new HEditControl ( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
+	list->add_column( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+			new HEditControl( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
 				"^[a-zA-Z0-9\\._@-]*$" ) );
-	combo = new HComboboxControl ( this, - 10, 1, 9, 24,
+	combo = new HComboboxControl( this, - 10, 1, 9, 24,
 			" &Kombo Testowe: \n", 32, 128, _maskExtended_ );
-	_controls.exchange ( 1, 6 );
-	_controls.exchange ( 2, 6 );
-	_controls.exchange ( 3, 6 );
-	combo->add_column ( -1, "dummy_label", 1, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING );
+	_controls.exchange( 1, 6 );
+	_controls.exchange( 2, 6 );
+	_controls.exchange( 3, 6 );
+	combo->add_column( -1, "dummy_label", 1, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING );
 	combo->HListControl::set_flags( HListControl::FLAG::NONE, HListControl::FLAG::DRAW_HEADER );
-	combo->enable ( true );
+	combo->enable( true );
 	HListControler<>::ptr_t controler = combo->get_controler();
-	item [ 0 ] ( "Ala" );
-	controler->add_orderly ( item, 0 );
-	item [ 0 ] ( "ma" );
-	controler->add_orderly ( item, 0 );
-	item [ 0 ] ( "kota." );
-	controler->add_orderly ( item, 0 );
-	HDictionaryContractingPartySet rs ( theProc.data_base() );
+	item[ 0 ].set_string( "Ala" );
+	controler->add_orderly( item, 0 );
+	item[ 0 ].set_string( "ma" );
+	controler->add_orderly( item, 0 );
+	item[ 0 ].set_string( "kota." );
+	controler->add_orderly( item, 0 );
+	HDictionaryContractingPartySet rs( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
 	HListControler<>::ptr_t mC = list->get_controler();
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
-		row [ 0 ] ( rs.m_imie );
-		row [ 1 ] ( rs.m_nazwisko );
-		row [ 2 ] ( rs.m_ulica );
-		row [ 3 ] ( rs.m_miasto );
-		row [ 4 ] ( rs.m_email );
-		mC->add_tail ( row );
-		if ( ! rs.m_telefon.is_empty ( ) ) {
-			item [ 0 ] ( rs.m_telefon );
-			controler->add_orderly ( item, 0 );
+		row[ 0 ].set_string( rs.m_imie );
+		row[ 1 ].set_string( rs.m_nazwisko );
+		row[ 2 ].set_string( rs.m_ulica );
+		row[ 3 ].set_string( rs.m_miasto );
+		row[ 4 ].set_string( rs.m_email );
+		mC->add_tail( row );
+		if ( ! rs.m_telefon.is_empty() ) {
+			item[ 0 ].set_string( rs.m_telefon );
+			controler->add_orderly( item, 0 );
 		}
 	}
-	refresh ( );
+	refresh();
 	return ( error );
 	M_EPILOG
 }
