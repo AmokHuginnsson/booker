@@ -33,19 +33,19 @@ class HDictionaryContractingPartySet {
 	yaal::dbwrapper::HSQLDescriptor _sQLDescriptor;
 public:
 	/*{*/
-	yaal::hcore::HString m_imie;
-	yaal::hcore::HString m_nazwisko;
-	yaal::hcore::HString m_nip;
-	yaal::hcore::HString m_kraj;
-	yaal::hcore::HString m_miasto;
-	yaal::hcore::HString m_ulica;
-	yaal::hcore::HString m_numer_ulicy;
-	yaal::hcore::HString m_numer_mieszkania;
-	yaal::hcore::HString m_kod_pocztowy;
-	yaal::hcore::HString m_telefon;
-	yaal::hcore::HString m_fax;
-	yaal::hcore::HString m_email;
-	long int m_id_account_map;
+	yaal::hcore::HString _imie;
+	yaal::hcore::HString _nazwisko;
+	yaal::hcore::HString _nip;
+	yaal::hcore::HString _kraj;
+	yaal::hcore::HString _miasto;
+	yaal::hcore::HString _ulica;
+	yaal::hcore::HString _numer_ulicy;
+	yaal::hcore::HString _numer_mieszkania;
+	yaal::hcore::HString _kod_pocztowy;
+	yaal::hcore::HString _telefon;
+	yaal::hcore::HString _fax;
+	yaal::hcore::HString _email;
+	long int _id_account_map;
 	/*}*/
 protected:
 	/*{*/

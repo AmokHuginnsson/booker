@@ -36,9 +36,9 @@ namespace booker {
 
 HDictionaryContractingPartySet::HDictionaryContractingPartySet( HDataBase::ptr_t dataBase_ )
 	: _sQLDescriptor( dataBase_ ),
-	m_imie ( ), m_nazwisko ( ), m_nip ( ), m_kraj ( ), m_miasto ( ),
-	m_ulica ( ), m_numer_ulicy ( ), m_numer_mieszkania ( ), m_kod_pocztowy ( ),
-	m_telefon ( ), m_fax ( ), m_email ( ), m_id_account_map ( 0 ) {
+	_imie(), _nazwisko(), _nip(), _kraj(), _miasto(),
+	_ulica(), _numer_ulicy(), _numer_mieszkania(), _kod_pocztowy(),
+	_telefon(), _fax(), _email( ), _id_account_map( 0 ) {
 	M_PROLOG
 	_sQLDescriptor.set_table( "dictionary_contracting_party" );
 	return;
@@ -53,19 +53,19 @@ HDictionaryContractingPartySet::~HDictionaryContractingPartySet ( void ) {
 
 void HDictionaryContractingPartySet::sync( void ) {
 	M_PROLOG
-	_sQLDescriptor.sync( 1, m_imie );
-	_sQLDescriptor.sync( 2, m_nazwisko );
-	_sQLDescriptor.sync( 3, m_nip );
-	_sQLDescriptor.sync( 4, m_kraj );
-	_sQLDescriptor.sync( 5, m_miasto );
-	_sQLDescriptor.sync( 6, m_ulica );
-	_sQLDescriptor.sync( 7, m_numer_ulicy );
-	_sQLDescriptor.sync( 8, m_numer_mieszkania );
-	_sQLDescriptor.sync( 9, m_kod_pocztowy );
-	_sQLDescriptor.sync( 10, m_telefon );
-	_sQLDescriptor.sync( 11, m_fax );
-	_sQLDescriptor.sync( 12, m_email );
-	_sQLDescriptor.sync( 13, m_id_account_map );
+	_sQLDescriptor.sync( 1, _imie );
+	_sQLDescriptor.sync( 2, _nazwisko );
+	_sQLDescriptor.sync( 3, _nip );
+	_sQLDescriptor.sync( 4, _kraj );
+	_sQLDescriptor.sync( 5, _miasto );
+	_sQLDescriptor.sync( 6, _ulica );
+	_sQLDescriptor.sync( 7, _numer_ulicy );
+	_sQLDescriptor.sync( 8, _numer_mieszkania );
+	_sQLDescriptor.sync( 9, _kod_pocztowy );
+	_sQLDescriptor.sync( 10, _telefon );
+	_sQLDescriptor.sync( 11, _fax );
+	_sQLDescriptor.sync( 12, _email );
+	_sQLDescriptor.sync( 13, _id_account_map );
 	return;
 	M_EPILOG
 }

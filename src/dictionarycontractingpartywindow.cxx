@@ -106,14 +106,14 @@ int HDictionaryContractingPartyWindow::init ( void ) {
 	HListControler<>::ptr_t mC = list->get_controler();
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
-		row[ 0 ].set_string( rs.m_imie );
-		row[ 1 ].set_string( rs.m_nazwisko );
-		row[ 2 ].set_string( rs.m_ulica );
-		row[ 3 ].set_string( rs.m_miasto );
-		row[ 4 ].set_string( rs.m_email );
+		row[ 0 ].set_string( rs._imie );
+		row[ 1 ].set_string( rs._nazwisko );
+		row[ 2 ].set_string( rs._ulica );
+		row[ 3 ].set_string( rs._miasto );
+		row[ 4 ].set_string( rs._email );
 		mC->add_tail( row );
-		if ( ! rs.m_telefon.is_empty() ) {
-			item[ 0 ].set_string( rs.m_telefon );
+		if ( ! rs._telefon.is_empty() ) {
+			item[ 0 ].set_string( rs._telefon );
 			controler->add_orderly( item, 0 );
 		}
 	}
