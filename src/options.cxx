@@ -29,7 +29,7 @@ Copyright:
 #include <cstdio>
 
 #include <yaal/yaal.hxx>
-M_VCSID( "$Id: "__ID__" $" )
+M_VCSID( "$Id: " __ID__ " $" )
 
 #include "options.hxx"
 #include "config.hxx"

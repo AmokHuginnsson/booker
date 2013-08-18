@@ -26,7 +26,7 @@ Copyright:
 
 
 #include <yaal/yaal.hxx>
-M_VCSID( "$Id: "__ID__" $" )
+M_VCSID( "$Id: " __ID__ " $" )
 
 #include "booker.hxx"
 #include "setup.hxx"
