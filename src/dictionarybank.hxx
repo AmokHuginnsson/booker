@@ -35,9 +35,9 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryBank ( const char*, yaal::hdata::HDataProcess*, yaal::hdata::resources_t* );
-	virtual ~HDictionaryBank ( void );
-	virtual int handler_add ( int, void const* );
+	HDictionaryBank( const char*, yaal::hdata::HDataProcess*, yaal::hdata::resources_t* );
+	virtual ~HDictionaryBank( void );
+	virtual int handler_add( int );
 	/*}*/
 protected:
 	/*{*/

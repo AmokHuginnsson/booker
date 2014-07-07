@@ -46,8 +46,7 @@ HDictionaryBank::HDictionaryBank( const char* title_,
 		HDataProcess* owner_, resources_t* resources_ )
 								: HDataWindow( title_, owner_, resources_ ) {
 	M_PROLOG
-  register_postprocess_handler( 'a', NULL,
-			& HDictionaryBank::handler_add );
+  register_postprocess_handler( 'a', NULL, call( &HDictionaryBank::handler_add, this, _1 ) );
 	return;
 	M_EPILOG
 }
@@ -58,7 +57,7 @@ HDictionaryBank::~HDictionaryBank ( void ) {
 	M_EPILOG
 }
 
-int HDictionaryBank::handler_add ( int code_, void const* ) {
+int HDictionaryBank::handler_add( int code_ ) {
 	M_PROLOG
 	double value( 0 );
 	HExpression analyser;
@@ -88,7 +87,7 @@ int HDictionaryBank::handler_add ( int code_, void const* ) {
 /*
  * tested list control by filling it with 276300 rows
  */
-	refresh ( );
+	paint();
 	code_ = 0;
 	return ( code_ );
 	M_EPILOG

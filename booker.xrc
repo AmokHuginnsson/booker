@@ -2,7 +2,7 @@
 <resource>
 	<menu>
 		<menu_item>
-			<label>Ksiêgowo¶æ</label>
+			<!--label>Ksiêgowo¶æ</label>
 			<menu>
 				<menu_item>
 					<label>Polecenia ksiêgowania</label>
@@ -33,7 +33,9 @@
 						</menu_item>
 					</menu>
 				</menu_item>
-			</menu>
+			</menu-->
+			<label>Faktury</label>
+			<handler>run_quit</handler>
 		</menu_item>
 		<menu_item>
 			<label>S³owniki</label>
@@ -46,10 +48,10 @@
 					<label>Kontrahenci</label>
 					<handler>run_dictionary_contracting_party</handler>
 				</menu_item>
-				<menu_item>
+				<!--menu_item>
 					<label>Zobowi±zania sta³e</label>
 					<handler>run_regular_oblige</handler>
-				</menu_item>
+				</menu_item-->
 			</menu>
 		</menu_item>
 		<menu_item>

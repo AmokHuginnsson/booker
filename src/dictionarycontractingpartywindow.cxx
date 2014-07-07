@@ -32,19 +32,18 @@ M_VCSID( "$Id: " __ID__ " $" )
 #include "dictionarycontractingpartyset.hxx"
 
 using namespace yaal;
+using namespace yaal::hcore;
 using namespace yaal::hconsole;
 using namespace yaal::hconsole::list_control_helper;
 using namespace yaal::dbwrapper;
 
 namespace booker {
 
-HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow ( const char * title_ )
+HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow( const char* title_ )
 	: HWindow ( title_ ), _list ( NULL ), _edit ( NULL ) {
 	M_PROLOG
-	register_postprocess_handler ( KEY_CODES::DELETE, NULL,
-			& HDictionaryContractingPartyWindow::handler_delete );
-	register_postprocess_handler ( '\r', NULL,
-			& HDictionaryContractingPartyWindow::handler_enter );
+	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HDictionaryContractingPartyWindow::handler_delete, this, _1 ) );
+	register_postprocess_handler( '\r', NULL, call( &HDictionaryContractingPartyWindow::handler_enter, this, _1 ) );
 	return;
 	M_EPILOG
 }
@@ -117,12 +116,12 @@ int HDictionaryContractingPartyWindow::init ( void ) {
 			controler->add_orderly( item, 0 );
 		}
 	}
-	refresh();
+	paint();
 	return ( error );
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::handler_delete( int, void const* ) {
+int HDictionaryContractingPartyWindow::handler_delete( int ) {
 	M_PROLOG
 	if ( _list->get_row_count() )
 		_list->remove_current_row();
@@ -130,7 +129,7 @@ int HDictionaryContractingPartyWindow::handler_delete( int, void const* ) {
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::handler_enter( int, void const* ) {
+int HDictionaryContractingPartyWindow::handler_enter( int ) {
 	M_PROLOG
 //	if ( _list->get_row_count() )
 //		_list->set_current_row_cell( 2, _edit->get() );
