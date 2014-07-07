@@ -121,19 +121,19 @@ int HDictionaryContractingPartyWindow::init ( void ) {
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::handler_delete( int ) {
+bool HDictionaryContractingPartyWindow::handler_delete( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	if ( _list->get_row_count() )
 		_list->remove_current_row();
-	return ( 0 );
+	return ( true );
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::handler_enter( int ) {
+bool HDictionaryContractingPartyWindow::handler_enter( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 //	if ( _list->get_row_count() )
 //		_list->set_current_row_cell( 2, _edit->get() );
-	return ( 0 );
+	return ( true );
 	M_EPILOG
 }
 

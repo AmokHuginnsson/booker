@@ -27,6 +27,8 @@ Copyright:
 #ifndef DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
 #define DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
 
+#include <yaal/hconsole/hevent.hxx>
+
 namespace booker {
 
 class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow {
@@ -43,8 +45,8 @@ public:
 	/*}*/
 protected:
 	/*{*/
-	int handler_delete( int );
-	int handler_enter( int );
+	bool handler_delete( yaal::hconsole::HEvent const& );
+	bool handler_enter( yaal::hconsole::HEvent const& );
 	/*}*/
 private:
 	/*{*/

@@ -57,7 +57,7 @@ HDictionaryBank::~HDictionaryBank ( void ) {
 	M_EPILOG
 }
 
-int HDictionaryBank::handler_add( int code_ ) {
+bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	M_PROLOG
 	double value( 0 );
 	HExpression analyser;
@@ -72,7 +72,7 @@ int HDictionaryBank::handler_add( int code_ ) {
 	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ ) {
 /*		value = list->size ( ) / 100.;*/
 		value = static_cast<double>( rnd() ) / 100.;
-/*		
+/*
 		analyser [ 'A' ] = value;
 		analyser [ 'B' ] = value * value;
 		value = analyser.evaluate ( );
@@ -88,8 +88,7 @@ int HDictionaryBank::handler_add( int code_ ) {
  * tested list control by filling it with 276300 rows
  */
 	paint();
-	code_ = 0;
-	return ( code_ );
+	return ( true );
 	M_EPILOG
 }
 

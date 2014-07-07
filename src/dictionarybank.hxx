@@ -27,6 +27,8 @@ Copyright:
 #ifndef DICTIONARYBANK_HXX_INCLUDED
 #define DICTIONARYBANK_HXX_INCLUDED
 
+#include <yaal/hconsole/hevent.hxx>
+
 namespace booker {
 
 class HDictionaryBank : public yaal::hdata::HDataWindow {
@@ -37,7 +39,7 @@ public:
 	/*{*/
 	HDictionaryBank( const char*, yaal::hdata::HDataProcess*, yaal::hdata::resources_t* );
 	virtual ~HDictionaryBank( void );
-	virtual int handler_add( int );
+	virtual bool handler_add( yaal::hconsole::HEvent const& );
 	/*}*/
 protected:
 	/*{*/
@@ -47,3 +49,4 @@ protected:
 }
 
 #endif /* DICTIONARYBANK_HXX_INCLUDED */
+

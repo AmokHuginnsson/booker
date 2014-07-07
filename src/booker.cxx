@@ -61,25 +61,25 @@ HBookerProcess::~HBookerProcess ( void ) {
 int HBookerProcess::init ( const char * processName_ ) {
 	M_PROLOG
 	_dataBase->connect( setup._dataBase, setup._login, setup._password );
-	menu_handlers_map_t handlers ( MENU_HANDLERS_MAP_SIZE );
-	M_REGISTER_MENU_HANDLER ( run_quit );
+	menu_handlers_map_t handlers( MENU_HANDLERS_MAP_SIZE );
+	M_REGISTER_MENU_HANDLER( run_quit );
 	handlers [ "" ] = NULL;
-	M_REGISTER_MENU_HANDLER ( run_dictionary_contracting_party );
-	M_REGISTER_MENU_HANDLER ( run_subject );
-	M_REGISTER_MENU_HANDLER ( run_config );
+	M_REGISTER_MENU_HANDLER( run_dictionary_contracting_party );
+	M_REGISTER_MENU_HANDLER( run_subject );
+	M_REGISTER_MENU_HANDLER( run_config );
 	/*
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
 	M_REGISTER_MENU_HANDLER ( run_account_map );
 	M_REGISTER_MENU_HANDLER ( run_regular_oblige );
 	*/
-	HDataProcess::init_xrc ( processName_, "booker.xrc", handlers );
+	HDataProcess::init_xrc( processName_, "booker.xrc", handlers );
 	return ( 0 );
 	M_EPILOG
 }
 
 int HBookerProcess::run_quit( void* ) {
 	M_PROLOG
-	handler_quit ( KEY < 'x' >::command );
+	quit();
 	return ( 0 );
 	M_EPILOG
 }
