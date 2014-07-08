@@ -40,7 +40,7 @@ using namespace yaal::dbwrapper;
 namespace booker {
 
 HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow( const char* title_ )
-	: HWindow ( title_ ), _list ( NULL ), _edit ( NULL ) {
+	: HWindow( title_ ), _list ( NULL ), _edit ( NULL ) {
 	M_PROLOG
 	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HDictionaryContractingPartyWindow::handler_delete, this, _1 ) );
 	register_postprocess_handler( '\r', NULL, call( &HDictionaryContractingPartyWindow::handler_enter, this, _1 ) );
@@ -54,7 +54,7 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::init ( void ) {
+int HDictionaryContractingPartyWindow::init( void ) {
 	M_PROLOG
 	int error( 0 );
 	HControl* control( NULL );
@@ -62,31 +62,48 @@ int HDictionaryContractingPartyWindow::init ( void ) {
 	HListControl* list( NULL );
 	HComboboxControl* combo( NULL );
 	error = HWindow::init();
-	_list = list = new HListControl ( this, 1, 1, - 11, - 1,
-			" &Kontrahenci: \n" );
+
+	_list = list = new HListControl( this, 1, 1, - 11, - 1,
+			"&Kontrahenci" );
 	list->enable( true );
 	list->set_focus();
 	list->add_column( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditControl ( this,
-				- 7, 1, 1, 18, " &Imiê: \n", 32, "",
-				"^[a-zA-Z0-9±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" ) );
+			control = new HEditControl( this,
+				- 7, 1, 1, 18, "&Imiê",
+				HEditControlAttrubites()
+				.max_string_size( 32 )
+				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
+				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditControl ( this, - 7, 20, 1, 28, " &Nazwisko: \n",
-				32, "", "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" ) );
+			control = new HEditControl( this, - 7, 20, 1, 28, "&Nazwisko",
+				HEditControlAttrubites()
+				.max_string_size( 32 )
+				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" )
+				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = _edit = new HEditControl ( this, - 7, 49, 1, 29, " &Ulica: \n",
-				32, "", _maskLoose_ ) );
+			control = _edit = new HEditControl ( this, - 7, 49, 1, 29, "&Ulica",
+				HEditControlAttrubites()
+				.max_string_size( 32 )
+				.pattern( _maskLoose_ )
+				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
-			new HEditControl( this, - 4, 1, 1, 32, " &Miasto: \n", 32, "",
-				"^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" ) );
+			new HEditControl( this, - 4, 1, 1, 32, "&Miasto",
+				HEditControlAttrubites()
+				.max_string_size( 32 )
+				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" )
+				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
 	list->add_column( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			new HEditControl( this, - 4, 49, 1, 29, " &E-mail: \n", 48, "",
-				"^[a-zA-Z0-9\\._@-]*$" ) );
+			new HEditControl( this, - 4, 49, 1, 29, "&E-mail",
+				HEditControlAttrubites()
+				.max_string_size( 48 )
+				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
+				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
 	combo = new HComboboxControl( this, - 10, 1, 9, 24,
-			" &Kombo Testowe: \n", 32, 128, _maskExtended_ );
+			"&Kombo Testowe", 32, 128, _maskExtended_ );
+	_list->set_label_position( HControl::LABEL::POSITION::STACKED );
 	_controls.exchange( 1, 6 );
 	_controls.exchange( 2, 6 );
 	_controls.exchange( 3, 6 );

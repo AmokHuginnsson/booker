@@ -74,9 +74,9 @@
 	</menu>
 	<window id="window_bank" title="Banki">
 		<control type="list" role="main" refid="window_bank_list">
-			<label> &amp;Banki
-</label>
+			<label>&amp;Banki</label>
 			<position row="1" column="1" height="-8" width="-1" />
+			<label_stacked>true</label_stacked>
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
@@ -91,9 +91,9 @@
 			<column placement="-1" name="" width="0" align="left" type="string" />
 		</control>
 		<control type="edit" role="data">
-			<label> &amp;Nazwa: 
-</label>
+			<label>&amp;Nazwa</label>
 			<position row="-7" column="1" height="1" width="-25" />
+			<label_stacked>true</label_stacked>
 			<max_string_size>160</max_string_size>
 			<value></value>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
@@ -106,41 +106,41 @@
 			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
-			<label> &amp;Miasto: 
-</label>
+			<label>&amp;Miasto</label>
 			<position row="-7" column="-24" height="1" width="23" />
+			<label_stacked>true</label_stacked>
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
 			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
+			<label>&amp;Ulica</label>
 			<position row="-4" column="1" height="1" width="-33" />
-			<label> &amp;Ulica: 
-</label>
+			<label_stacked>true</label_stacked>
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
 			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
+			<label>&amp;Kod</label>
 			<position row="-4" column="-32" height="1" width="7" />
-			<label> &amp;Kod: 
-</label>
+			<label_stacked>true</label_stacked>
 			<max_string_size>8</max_string_size>
 			<mask>^[0-9 -]*$</mask>
 			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
+			<label>&amp;Numer</label>
 			<position row="-4" column="-24" height="1" width="5" />
-			<label> &amp;Numer: 
-</label>
+			<label_stacked>true</label_stacked>
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
 			<parent refid="window_bank_list" />
 		</control>
 		<control type="edit" role="data">
+			<label>&amp;Telefon</label>
 			<position row="-4" column="-15" height="1" width="14" />
-			<label> &amp;Telefon: 
-</label>
+			<label_stacked>true</label_stacked>
 			<max_string_size>17</max_string_size>
 			<mask>^[0-9 ()-]*$</mask>
 			<parent refid="window_bank_list" />
