@@ -34,14 +34,14 @@ namespace booker {
 class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow {
 protected:
 	/*{*/
-	yaal::hconsole::HListControl * _list;
-	yaal::hconsole::HEditControl * _edit;
+	yaal::hconsole::HListWidget* _list;
+	yaal::hconsole::HEditWidget* _edit;
 	/*}*/
 public:
 	/*{*/
-	HDictionaryContractingPartyWindow ( const char * );
-	virtual ~HDictionaryContractingPartyWindow ( void );
-	int init ( void );
+	HDictionaryContractingPartyWindow( const char* );
+	virtual ~HDictionaryContractingPartyWindow( void );
+	int init( void );
 	/*}*/
 protected:
 	/*{*/
@@ -50,8 +50,8 @@ protected:
 	/*}*/
 private:
 	/*{*/
-	HDictionaryContractingPartyWindow ( const HDictionaryContractingPartyWindow & );
-	HDictionaryContractingPartyWindow & operator = ( const HDictionaryContractingPartyWindow & );
+	HDictionaryContractingPartyWindow( const HDictionaryContractingPartyWindow& );
+	HDictionaryContractingPartyWindow& operator = ( const HDictionaryContractingPartyWindow& );
 	/*}*/
 };
 

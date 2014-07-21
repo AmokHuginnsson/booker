@@ -34,7 +34,7 @@ M_VCSID( "$Id: " __ID__ " $" )
 using namespace yaal;
 using namespace yaal::hcore;
 using namespace yaal::hconsole;
-using namespace yaal::hconsole::list_control_helper;
+using namespace yaal::hconsole::list_widget_helper;
 using namespace yaal::dbwrapper;
 
 namespace booker {
@@ -57,58 +57,58 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 int HDictionaryContractingPartyWindow::init( void ) {
 	M_PROLOG
 	int error( 0 );
-	HControl* control( NULL );
+	HWidget* control( NULL );
 	HInfoItem item( 1 ), row( 5 );
-	HListControl* list( NULL );
-	HComboboxControl* combo( NULL );
+	HListWidget* list( NULL );
+	HComboboxWidget* combo( NULL );
 	error = HWindow::init();
 
-	_list = list = new HListControl( this, 1, 1, - 11, - 1,
+	_list = list = new HListWidget( this, 1, 1, - 11, - 1,
 			"&Kontrahenci" );
 	list->enable( true );
 	list->set_focus();
-	list->add_column( -1, "Imiê", 16, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditControl( this,
+	list->add_column( -1, "Imiê", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = new HEditWidget( this,
 				- 7, 1, 1, 18, "&Imiê",
-				HEditControlAttrubites()
+				HEditWidgetAttrubites()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
-				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Nazwisko", 20, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditControl( this, - 7, 20, 1, 28, "&Nazwisko",
-				HEditControlAttrubites()
+	list->add_column( -1, "Nazwisko", 20, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = new HEditWidget( this, - 7, 20, 1, 28, "&Nazwisko",
+				HEditWidgetAttrubites()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" )
-				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Ulica", 24, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = _edit = new HEditControl ( this, - 7, 49, 1, 29, "&Ulica",
-				HEditControlAttrubites()
+	list->add_column( -1, "Ulica", 24, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = _edit = new HEditWidget ( this, - 7, 49, 1, 29, "&Ulica",
+				HEditWidgetAttrubites()
 				.max_string_size( 32 )
 				.pattern( _maskLoose_ )
-				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Miasto", 20, HControl::BITS::ALIGN::CENTER, TYPE::HSTRING,
-			new HEditControl( this, - 4, 1, 1, 32, "&Miasto",
-				HEditControlAttrubites()
+	list->add_column( -1, "Miasto", 20, HWidget::BITS::ALIGN::CENTER, TYPE::HSTRING,
+			new HEditWidget( this, - 4, 1, 1, 32, "&Miasto",
+				HEditWidgetAttrubites()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" )
-				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
-	list->add_column( -1, "e-mail", 24, HControl::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			new HEditControl( this, - 4, 49, 1, 29, "&E-mail",
-				HEditControlAttrubites()
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+	list->add_column( -1, "e-mail", 24, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+			new HEditWidget( this, - 4, 49, 1, 29, "&E-mail",
+				HEditWidgetAttrubites()
 				.max_string_size( 48 )
 				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
-				.label_position( HControl::LABEL::POSITION::STACKED ) ) );
-	combo = new HComboboxControl( this, - 10, 1, 9, 24,
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+	combo = new HComboboxWidget( this, - 10, 1, 9, 24,
 			"&Kombo Testowe", 32, 128, _maskExtended_ );
-	_list->set_label_position( HControl::LABEL::POSITION::STACKED );
-	_controls.exchange( 1, 6 );
-	_controls.exchange( 2, 6 );
-	_controls.exchange( 3, 6 );
-	combo->add_column( -1, "dummy_label", 1, HControl::BITS::ALIGN::LEFT, TYPE::HSTRING );
-	combo->HListControl::set_flags( HListControl::FLAG::NONE, HListControl::FLAG::DRAW_HEADER );
+	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
+	_widgets.exchange( 1, 6 );
+	_widgets.exchange( 2, 6 );
+	_widgets.exchange( 3, 6 );
+	combo->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
+	combo->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
 	combo->enable( true );
 	HListControler<>::ptr_t controler = combo->get_controler();
 	item[ 0 ].set_string( "Ala" );

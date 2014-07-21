@@ -35,7 +35,7 @@ M_VCSID( "$Id: " __ID__ " $" )
 using namespace yaal;
 using namespace yaal::hcore;
 using namespace yaal::hconsole;
-using namespace yaal::hconsole::list_control_helper;
+using namespace yaal::hconsole::list_widget_helper;
 using namespace yaal::tools;
 using namespace yaal::dbwrapper;
 using namespace yaal::hdata;
@@ -63,7 +63,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	HExpression analyser;
 	HInfoItem item( 6 );
 	HRandomizer rnd( 0 );
-	HDataListControl* list = dynamic_cast<HDataListControl*>( _controls.get_control_by_no( 1 ) );
+	HDataListWidget* list = dynamic_cast<HDataListWidget*>( _widgets.get_widget_by_no( 1 ) );
 	M_ASSERT( list != NULL );
 	analyser.compile( "A+B" );
 	int long const TO_ADD = 500000;
