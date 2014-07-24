@@ -68,7 +68,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	analyser.compile( "A+B" );
 	int long const TO_ADD = 500000;
 	_statusBar->init_progress ( TO_ADD, _( "Precaching ..." ) );
-	HListControler<>::ptr_t controler = list->get_controler();
+	HAsIsValueListModel<>::ptr_t controler = list->get_controler();
 	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ ) {
 /*		value = list->size ( ) / 100.;*/
 		value = static_cast<double>( rnd() ) / 100.;
