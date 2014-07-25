@@ -110,7 +110,7 @@ int HDictionaryContractingPartyWindow::init( void ) {
 	combo->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
 	combo->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
 	combo->enable( true );
-	HAsIsValueListModel<>::ptr_t controler = combo->get_controler();
+	HAsIsValueListModel<>::ptr_t controler = combo->get_model();
 	item[ 0 ].set_string( "Ala" );
 	controler->add_orderly( item, 0 );
 	item[ 0 ].set_string( "ma" );
@@ -119,7 +119,7 @@ int HDictionaryContractingPartyWindow::init( void ) {
 	controler->add_orderly( item, 0 );
 	HDictionaryContractingPartySet rs( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
-	HAsIsValueListModel<>::ptr_t mC = list->get_controler();
+	HAsIsValueListModel<>::ptr_t mC = list->get_model();
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
 		row[ 0 ].set_string( rs._imie );
