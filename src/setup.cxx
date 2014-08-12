@@ -36,21 +36,28 @@ namespace booker {
 
 void OSetup::test_setup( void ) {
 	M_PROLOG
-	if ( _quiet && _verbose )
+	if ( _quiet && _verbose ) {
 		yaal::tools::util::failure( 1,
 				_( "quiet and verbose options are exclusive\n" ) );
-	if ( _verbose )
-		clog.reset( make_pointer<HFile>( stdout, false ) );
-	if ( _quiet )
+	}
+	if ( _verbose ) {
+		clog.reset( make_pointer<HFile>( stdout, HFile::OWNERSHIP::EXTERNAL ) );
+	}
+	if ( _quiet ) {
 		cout.reset();
-	if ( ! _dataBase )
+	}
+	if ( ! _dataBase ) {
 		M_THROW( _( "database not set" ), errno );
-	if ( ! _login )
+	}
+	if ( ! _login ) {
 		M_THROW( _( "database login not set" ), errno );
-	if ( ! _password )
+	}
+	if ( ! _password ) {
 		M_THROW( _( "database password not set" ), errno );
-	if ( ! _logPath )
+	}
+	if ( ! _logPath ) {
 		M_THROW( _( "log file name not set" ), errno );
+	}
 	return;
 	M_EPILOG
 }

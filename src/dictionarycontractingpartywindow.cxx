@@ -70,34 +70,34 @@ int HDictionaryContractingPartyWindow::init( void ) {
 	list->add_column( -1, "Imiê", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this,
 				- 7, 1, 1, 18, "&Imiê",
-				HEditWidgetAttrubites()
+				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Nazwisko", 20, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this, - 7, 20, 1, 28, "&Nazwisko",
-				HEditWidgetAttrubites()
+				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Ulica", 24, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = _edit = new HEditWidget ( this, - 7, 49, 1, 29, "&Ulica",
-				HEditWidgetAttrubites()
+				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( _maskLoose_ )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Miasto", 20, HWidget::BITS::ALIGN::CENTER, TYPE::HSTRING,
 			new HEditWidget( this, - 4, 1, 1, 32, "&Miasto",
-				HEditWidgetAttrubites()
+				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	list->add_column( -1, "e-mail", 24, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			new HEditWidget( this, - 4, 49, 1, 29, "&E-mail",
-				HEditWidgetAttrubites()
+				HEditWidgetAttributes()
 				.max_string_size( 48 )
 				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
