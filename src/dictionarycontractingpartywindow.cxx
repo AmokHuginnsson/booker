@@ -101,8 +101,16 @@ int HDictionaryContractingPartyWindow::init( void ) {
 				.max_string_size( 48 )
 				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
-	combo = new HComboboxWidget( this, - 10, 1, 9, 24,
-			"&Kombo Testowe", 32, 128, _maskExtended_ );
+	combo = new HComboboxWidget( this, - 10, 1, 9, 24, "&Kombo Testowe",
+			dynamic_cast<HComboboxWidgetAttributes&>( HComboboxWidgetAttributes()
+				.dropped_width( 32 )
+				.max_string_size( 128 )
+				.pattern( _maskExtended_ )
+				.label_position( HWidget::LABEL::POSITION::STACKED ) )
+#if 0
+			.searchable( true )
+#endif
+	);
 	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
 	_widgets.exchange( 1, 6 );
 	_widgets.exchange( 2, 6 );
