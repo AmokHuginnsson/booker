@@ -64,7 +64,7 @@ int HDictionaryContractingPartyWindow::init( void ) {
 	error = HWindow::init();
 
 	_list = list = new HListWidget( this, 1, 1, - 11, - 1,
-			"&Kontrahenci" );
+			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
 	list->enable( true );
 	list->set_focus();
 	list->add_column( -1, "Imiê", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
@@ -102,14 +102,13 @@ int HDictionaryContractingPartyWindow::init( void ) {
 				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	combo = new HComboboxWidget( this, - 10, 1, 9, 24, "&Kombo Testowe",
-			dynamic_cast<HComboboxWidgetAttributes&>( HComboboxWidgetAttributes()
+			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
 				.pattern( _maskExtended_ )
-				.label_position( HWidget::LABEL::POSITION::STACKED ) )
-#if 0
-			.searchable( true )
-#endif
+				.label_position( HWidget::LABEL::POSITION::STACKED )
+				.up<HComboboxWidgetAttributes>()
+				.searchable( true )
 	);
 	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
 	_widgets.exchange( 1, 6 );
