@@ -41,7 +41,7 @@ public:
 	/*{*/
 	HDictionaryContractingPartyWindow( const char* );
 	virtual ~HDictionaryContractingPartyWindow( void );
-	int init( void );
+	void init( void );
 	/*}*/
 protected:
 	/*{*/

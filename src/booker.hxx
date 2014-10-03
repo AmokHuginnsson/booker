@@ -35,13 +35,13 @@ public:
 	HBookerProcess( void );
 	virtual ~HBookerProcess( void );
 	int init( const char* = "" );
-	int run_quit( void* );
-	int run_dictionary_contracting_party( void* );
-	int run_config( void* );
-	int run_subject( void* );
-	int run_account_map( void* );
-	int run_account_orders( void* );
-	int run_regular_oblige( void* );
+	bool run_quit( yaal::hconsole::HEvent const& );
+	bool run_dictionary_contracting_party( yaal::hconsole::HEvent const& );
+	bool run_config( yaal::hconsole::HEvent const& );
+	bool run_subject( yaal::hconsole::HEvent const& );
+	bool run_account_map( yaal::hconsole::HEvent const& );
+	bool run_account_orders( yaal::hconsole::HEvent const& );
+	bool run_regular_oblige( yaal::hconsole::HEvent const& );
 private:
 	HBookerProcess ( const HBookerProcess & );
 	HBookerProcess & operator = ( const HBookerProcess & );

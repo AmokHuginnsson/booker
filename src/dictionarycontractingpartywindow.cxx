@@ -54,14 +54,13 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 	M_EPILOG
 }
 
-int HDictionaryContractingPartyWindow::init( void ) {
+void HDictionaryContractingPartyWindow::init( void ) {
 	M_PROLOG
-	int error( 0 );
 	HWidget* control( NULL );
 	HInfoItem item( 1 ), row( 5 );
 	HListWidget* list( NULL );
 	HComboboxWidget* combo( NULL );
-	error = HWindow::init();
+	HWindow::init();
 
 	_list = list = new HListWidget( this, 1, 1, - 11, - 1,
 			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
@@ -141,7 +140,7 @@ int HDictionaryContractingPartyWindow::init( void ) {
 		}
 	}
 	paint();
-	return ( error );
+	return;
 	M_EPILOG
 }
 

@@ -37,7 +37,7 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryBank( const char*, yaal::hdata::HDataProcess*, yaal::hdata::resources_t* );
+	HDictionaryBank( const char*, yaal::hdata::HDataProcess* );
 	virtual ~HDictionaryBank( void );
 	virtual bool handler_add( yaal::hconsole::HEvent const& );
 	/*}*/

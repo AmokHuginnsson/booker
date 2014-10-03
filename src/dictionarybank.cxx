@@ -42,9 +42,8 @@ using namespace yaal::hdata;
 
 namespace booker {
 
-HDictionaryBank::HDictionaryBank( const char* title_,
-		HDataProcess* owner_, resources_t* resources_ )
-								: HDataWindow( title_, owner_, resources_ ) {
+HDictionaryBank::HDictionaryBank( const char* title_, HDataProcess* owner_ )
+		: HDataWindow( title_, owner_ ) {
 	M_PROLOG
   register_postprocess_handler( 'a', NULL, call( &HDictionaryBank::handler_add, this, _1 ) );
 	return;
@@ -92,13 +91,5 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	M_EPILOG
 }
 
-}
-
-extern "C"
-HWindow::ptr_t window_bank( HString const&, HDataProcess*, resources_t* );
-HWindow::ptr_t window_bank( HString const& title, HDataProcess* proc, resources_t* res ) {
-	M_PROLOG
-	return ( make_pointer<booker::HDictionaryBank>( title.raw(), proc, res ) );
-	M_EPILOG
 }
 
