@@ -72,8 +72,8 @@
 			<handler>run_quit</handler>
 		</menu_item>
 	</menu>
-	<window id="window_bank" title="Banki">
-		<control type="list" role="main" refid="window_bank_list">
+	<datawindow id="window_bank" title="Banki">
+		<datalist type="list" role="main" refid="window_bank_list">
 			<label>&amp;Banki</label>
 			<position row="1" column="1" height="-8" width="-1" />
 			<label_stacked>true</label_stacked>
@@ -83,14 +83,14 @@
 			<editable>true</editable>
 			<draw_header>true</draw_header>
 			<db table="dictionary_bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
-			<column placement="-1" name="nazwa" width="4" align="left" type="string" />
-			<column placement="-1" name="miasto" width="2" align="left" type="string" />
-			<column placement="-1" name="ulica" width="3" align="left" type="string" />
-			<column placement="-1" name="kod" width="1" align="left" type="string" />
-			<column placement="-1" name="" width="0" align="left" type="string" />
-			<column placement="-1" name="" width="0" align="left" type="string" />
-		</control>
-		<control type="edit" role="data">
+			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_bank_name" />
+			<column placement="-1" name="miasto" width="2" align="left" type="string" refid="window_bank_city" />
+			<column placement="-1" name="ulica" width="3" align="left" type="string" refid="window_bank_street" />
+			<column placement="-1" name="kod" width="1" align="left" type="string" refid="window_bank_postalcode" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_street_no" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_phone" />
+		</datalist>
+		<edit id="window_bank_name" role="data">
 			<label>&amp;Nazwa</label>
 			<position row="-7" column="1" height="1" width="-25" />
 			<label_stacked>true</label_stacked>
@@ -103,47 +103,41 @@
 			<right_aligned>false</right_aligned>
 			<password>false</password>
 			<max_history_level>8</max_history_level>
-			<parent refid="window_bank_list" />
-		</control>
-		<control type="edit" role="data">
+		</edit>
+		<edit id="window_bank_city" role="data">
 			<label>&amp;Miasto</label>
 			<position row="-7" column="-24" height="1" width="23" />
 			<label_stacked>true</label_stacked>
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
-			<parent refid="window_bank_list" />
-		</control>
-		<control type="edit" role="data">
+		</edit>
+		<edit id="window_bank_street" role="data">
 			<label>&amp;Ulica</label>
 			<position row="-4" column="1" height="1" width="-33" />
 			<label_stacked>true</label_stacked>
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
-			<parent refid="window_bank_list" />
-		</control>
-		<control type="edit" role="data">
+		</edit>
+		<edit id="window_bank_postalcode" role="data">
 			<label>&amp;Kod</label>
 			<position row="-4" column="-32" height="1" width="7" />
 			<label_stacked>true</label_stacked>
 			<max_string_size>8</max_string_size>
 			<mask>^[0-9 -]*$</mask>
-			<parent refid="window_bank_list" />
-		</control>
-		<control type="edit" role="data">
+		</edit>
+		<edit id="window_bank_street_no" role="data">
 			<label>&amp;Numer</label>
 			<position row="-4" column="-24" height="1" width="5" />
 			<label_stacked>true</label_stacked>
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
-			<parent refid="window_bank_list" />
-		</control>
-		<control type="edit" role="data">
+		</edit>
+		<edit id="window_bank_phone" role="data">
 			<label>&amp;Telefon</label>
 			<position row="-4" column="-15" height="1" width="14" />
 			<label_stacked>true</label_stacked>
 			<max_string_size>17</max_string_size>
 			<mask>^[0-9 ()-]*$</mask>
-			<parent refid="window_bank_list" />
-		</control>
-	</window>
+		</edit>
+	</datawindow>
 </resource>

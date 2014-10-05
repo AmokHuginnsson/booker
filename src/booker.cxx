@@ -43,8 +43,6 @@ using namespace yaal::hdata;
 
 namespace booker {
 
-static int const MENU_HANDLERS_MAP_SIZE = 32;
-
 HBookerProcess::HBookerProcess ( void )
 	:	HDataProcess() {
 	M_PROLOG
