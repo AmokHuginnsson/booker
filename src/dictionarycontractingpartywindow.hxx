@@ -41,10 +41,10 @@ public:
 	/*{*/
 	HDictionaryContractingPartyWindow( const char* );
 	virtual ~HDictionaryContractingPartyWindow( void );
-	void init( void );
 	/*}*/
 protected:
 	/*{*/
+	virtual void do_init( void );
 	bool handler_delete( yaal::hconsole::HEvent const& );
 	bool handler_enter( yaal::hconsole::HEvent const& );
 	/*}*/

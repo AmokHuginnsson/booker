@@ -54,13 +54,13 @@ HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
 	M_EPILOG
 }
 
-void HDictionaryContractingPartyWindow::init( void ) {
+void HDictionaryContractingPartyWindow::do_init( void ) {
 	M_PROLOG
 	HWidget* control( NULL );
 	HInfoItem item( 1 ), row( 5 );
 	HListWidget* list( NULL );
 	HComboboxWidget* combo( NULL );
-	HWindow::init();
+	HWindow::do_init();
 
 	_list = list = new HListWidget( this, 1, 1, - 11, - 1,
 			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );

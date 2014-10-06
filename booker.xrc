@@ -73,6 +73,7 @@
 		</menu_item>
 	</menu>
 	<datawindow id="window_bank" title="Banki">
+		<db table="dictionary_bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
 			<label position="stacked">&amp;Banki</label>
 			<position row="1" column="1" height="-8" width="-1" />
@@ -81,7 +82,6 @@
 			<searchable>true</searchable>
 			<editable>true</editable>
 			<draw_header>true</draw_header>
-			<db table="dictionary_bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
 			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_bank_name" />
 			<column placement="-1" name="miasto" width="2" align="left" type="string" refid="window_bank_city" />
 			<column placement="-1" name="ulica" width="3" align="left" type="string" refid="window_bank_street" />
