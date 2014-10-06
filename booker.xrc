@@ -73,10 +73,9 @@
 		</menu_item>
 	</menu>
 	<datawindow id="window_bank" title="Banki">
-		<datalist type="list" role="main" refid="window_bank_list">
-			<label>&amp;Banki</label>
+		<datalist role="main">
+			<label position="stacked">&amp;Banki</label>
 			<position row="1" column="1" height="-8" width="-1" />
-			<label_stacked>true</label_stacked>
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
@@ -91,9 +90,8 @@
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_phone" />
 		</datalist>
 		<edit id="window_bank_name" role="data">
-			<label>&amp;Nazwa</label>
+			<label position="stacked">&amp;Nazwa</label>
 			<position row="-7" column="1" height="1" width="-25" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>160</max_string_size>
 			<value></value>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
@@ -105,37 +103,32 @@
 			<max_history_level>8</max_history_level>
 		</edit>
 		<edit id="window_bank_city" role="data">
-			<label>&amp;Miasto</label>
+			<label position="stacked">&amp;Miasto</label>
 			<position row="-7" column="-24" height="1" width="23" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
 		</edit>
 		<edit id="window_bank_street" role="data">
-			<label>&amp;Ulica</label>
+			<label position="stacked">&amp;Ulica</label>
 			<position row="-4" column="1" height="1" width="-33" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
 		</edit>
 		<edit id="window_bank_postalcode" role="data">
-			<label>&amp;Kod</label>
+			<label position="stacked">&amp;Kod</label>
 			<position row="-4" column="-32" height="1" width="7" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>8</max_string_size>
 			<mask>^[0-9 -]*$</mask>
 		</edit>
 		<edit id="window_bank_street_no" role="data">
-			<label>&amp;Numer</label>
+			<label position="stacked">&amp;Numer</label>
 			<position row="-4" column="-24" height="1" width="5" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
 		</edit>
 		<edit id="window_bank_phone" role="data">
-			<label>&amp;Telefon</label>
+			<label position="stacked">&amp;Telefon</label>
 			<position row="-4" column="-15" height="1" width="14" />
-			<label_stacked>true</label_stacked>
 			<max_string_size>17</max_string_size>
 			<mask>^[0-9 ()-]*$</mask>
 		</edit>
