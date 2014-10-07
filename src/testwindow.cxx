@@ -29,7 +29,7 @@ M_VCSID( "$Id: " __ID__ " $" )
 
 #include "booker.hxx"
 #include "testwindow.hxx"
-#include "dictionarycontractingpartyset.hxx"
+#include "testset.hxx"
 
 using namespace yaal;
 using namespace yaal::hcore;
@@ -66,36 +66,36 @@ void HTestWindow::do_init( void ) {
 			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
 	list->enable( true );
 	list->set_focus();
-	list->add_column( -1, "Imiê", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+	list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this,
-				- 7, 1, 1, 18, "&Imiê",
+				- 7, 1, 1, 18, "&Name",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Nazwisko", 20, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 7, 20, 1, 28, "&Nazwisko",
+	list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = new HEditWidget( this, - 7, 20, 1, 28, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ -]*$" )
+				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Ulica", 24, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = _edit = new HEditWidget ( this, - 7, 49, 1, 29, "&Ulica",
+	list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+			control = _edit = new HEditWidget ( this, - 7, 16, 1, 29, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( _maskLoose_ )
+				.pattern( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Miasto", 20, HWidget::BITS::ALIGN::CENTER, TYPE::HSTRING,
-			new HEditWidget( this, - 4, 1, 1, 32, "&Miasto",
+	list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::CENTER, TYPE::HSTRING,
+			new HEditWidget( this, - 4, 1, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\.-]*$" )
+				.pattern( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
-	list->add_column( -1, "e-mail", 24, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			new HEditWidget( this, - 4, 49, 1, 29, "&E-mail",
+	list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+			new HEditWidget( this, - 4, 11, 1, 29, "&Date",
 				HEditWidgetAttributes()
 				.max_string_size( 48 )
 				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
@@ -123,19 +123,19 @@ void HTestWindow::do_init( void ) {
 	controler->add_orderly( item, 0 );
 	item[ 0 ].set_string( "kota." );
 	controler->add_orderly( item, 0 );
-	HDictionaryContractingPartySet rs( theProc.data_base() );
+	HTestSet rs( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
 	HAsIsValueListModel<>::ptr_t mC = list->get_model();
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
-		row[ 0 ].set_string( rs._imie );
-		row[ 1 ].set_string( rs._nazwisko );
-		row[ 2 ].set_string( rs._ulica );
-		row[ 3 ].set_string( rs._miasto );
-		row[ 4 ].set_string( rs._email );
+		row[ 0 ].set_string( rs._name );
+		row[ 1 ].set_string( rs._vText );
+		row[ 2 ].set_string( rs._vInt );
+		row[ 3 ].set_string( rs._vReal );
+		row[ 4 ].set_string( rs._vDate );
 		mC->add_tail( row );
-		if ( ! rs._telefon.is_empty() ) {
-			item[ 0 ].set_string( rs._telefon );
+		if ( ! rs._vTime.is_empty() ) {
+			item[ 0 ].set_string( rs._vTime );
 			controler->add_orderly( item, 0 );
 		}
 	}

@@ -36,11 +36,10 @@ namespace booker {
 
 HTestSet::HTestSet( HDataBase::ptr_t dataBase_ )
 	: _sQLDescriptor( dataBase_ ),
-	_name(), _vText(), _vInt(), _vReal(), _vDate(),
-	_vTime(), _vDatetime(), _id(), _kod_pocztowy(),
-	_telefon(), _fax(), _email( ), _id_account_map( 0 ) {
+	 _id(), _name(), _vText(), _vInt(), _vReal(), _vDate(),
+	_vTime(), _vDatetime() {
 	M_PROLOG
-	_sQLDescriptor.set_table( "dictionary_contracting_party" );
+	_sQLDescriptor.set_table( "test" );
 	return;
 	M_EPILOG
 }
@@ -60,7 +59,7 @@ void HTestSet::sync( void ) {
 	_sQLDescriptor.sync( 5, _vDate );
 	_sQLDescriptor.sync( 6, _vTime );
 	_sQLDescriptor.sync( 7, _vDatetime );
-	_sQLDescriptor.sync( 8, _id );
+	_sQLDescriptor.sync( 0, _id );
 	return;
 	M_EPILOG
 }
