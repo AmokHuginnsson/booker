@@ -89,7 +89,7 @@
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_street_no" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_phone" />
 		</datalist>
-		<edit id="window_bank_name" role="data">
+		<dataedit id="window_bank_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
 			<position row="-7" column="1" height="1" width="-25" />
 			<max_string_size>160</max_string_size>
@@ -101,36 +101,36 @@
 			<right_aligned>false</right_aligned>
 			<password>false</password>
 			<max_history_level>8</max_history_level>
-		</edit>
-		<edit id="window_bank_city" role="data">
+		</dataedit>
+		<dataedit id="window_bank_city" role="data">
 			<label position="stacked">&amp;Miasto</label>
 			<position row="-7" column="-24" height="1" width="23" />
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
-		</edit>
-		<edit id="window_bank_street" role="data">
+		</dataedit>
+		<dataedit id="window_bank_street" role="data">
 			<label position="stacked">&amp;Ulica</label>
 			<position row="-4" column="1" height="1" width="-33" />
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
-		</edit>
-		<edit id="window_bank_postalcode" role="data">
+		</dataedit>
+		<dataedit id="window_bank_postalcode" role="data">
 			<label position="stacked">&amp;Kod</label>
 			<position row="-4" column="-32" height="1" width="7" />
 			<max_string_size>8</max_string_size>
 			<mask>^[0-9 -]*$</mask>
-		</edit>
-		<edit id="window_bank_street_no" role="data">
+		</dataedit>
+		<dataedit id="window_bank_street_no" role="data">
 			<label position="stacked">&amp;Numer</label>
 			<position row="-4" column="-24" height="1" width="5" />
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
-		</edit>
-		<edit id="window_bank_phone" role="data">
+		</dataedit>
+		<dataedit id="window_bank_phone" role="data">
 			<label position="stacked">&amp;Telefon</label>
 			<position row="-4" column="-15" height="1" width="14" />
 			<max_string_size>17</max_string_size>
 			<mask>^[0-9 ()-]*$</mask>
-		</edit>
+		</dataedit>
 	</datawindow>
 </resource>
