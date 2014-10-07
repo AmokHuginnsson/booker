@@ -65,6 +65,10 @@
 					<label>Konfiguracja</label>
 					<handler>run_config</handler>
 				</menu_item>
+				<menu_item>
+					<label>Test</label>
+					<handler>run_test</handler>
+				</menu_item>
 			</menu>
 		</menu_item>
 		<menu_item>

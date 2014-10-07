@@ -24,14 +24,14 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#ifndef DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
-#define DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED
+#ifndef TESTWINDOW_HXX_INCLUDED
+#define TESTWINDOW_HXX_INCLUDED
 
 #include <yaal/hconsole/hevent.hxx>
 
 namespace booker {
 
-class HDictionaryContractingPartyWindow : public yaal::hconsole::HWindow {
+class HTestWindow : public yaal::hconsole::HWindow {
 protected:
 	/*{*/
 	yaal::hconsole::HListWidget* _list;
@@ -39,8 +39,8 @@ protected:
 	/*}*/
 public:
 	/*{*/
-	HDictionaryContractingPartyWindow( const char* );
-	virtual ~HDictionaryContractingPartyWindow( void );
+	HTestWindow( const char* );
+	virtual ~HTestWindow( void );
 	/*}*/
 protected:
 	/*{*/
@@ -50,11 +50,11 @@ protected:
 	/*}*/
 private:
 	/*{*/
-	HDictionaryContractingPartyWindow( const HDictionaryContractingPartyWindow& );
-	HDictionaryContractingPartyWindow& operator = ( const HDictionaryContractingPartyWindow& );
+	HTestWindow( const HTestWindow& );
+	HTestWindow& operator = ( const HTestWindow& );
 	/*}*/
 };
 
 }
 
-#endif /* DICTIONARYCONTRACTINGPARTY_HXX_INCLUDED */
+#endif /* TESTWINDOW_HXX_INCLUDED */

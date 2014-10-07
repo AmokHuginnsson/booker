@@ -38,6 +38,7 @@ public:
 	bool run_quit( yaal::hconsole::HEvent const& );
 	bool run_dictionary_contracting_party( yaal::hconsole::HEvent const& );
 	bool run_config( yaal::hconsole::HEvent const& );
+	bool run_test( yaal::hconsole::HEvent const& );
 	bool run_subject( yaal::hconsole::HEvent const& );
 	bool run_account_map( yaal::hconsole::HEvent const& );
 	bool run_account_orders( yaal::hconsole::HEvent const& );

@@ -27,17 +27,17 @@ Copyright:
 #include <yaal/yaal.hxx>
 M_VCSID( "$Id: " __ID__ " $" )
 
-#include "dictionarycontractingpartyset.hxx"
+#include "testset.hxx"
 
 using namespace yaal::hcore;
 using namespace yaal::dbwrapper;
 
 namespace booker {
 
-HDictionaryContractingPartySet::HDictionaryContractingPartySet( HDataBase::ptr_t dataBase_ )
+HTestSet::HTestSet( HDataBase::ptr_t dataBase_ )
 	: _sQLDescriptor( dataBase_ ),
-	_imie(), _nazwisko(), _nip(), _kraj(), _miasto(),
-	_ulica(), _numer_ulicy(), _numer_mieszkania(), _kod_pocztowy(),
+	_name(), _vText(), _vInt(), _vReal(), _vDate(),
+	_vTime(), _vDatetime(), _id(), _kod_pocztowy(),
 	_telefon(), _fax(), _email( ), _id_account_map( 0 ) {
 	M_PROLOG
 	_sQLDescriptor.set_table( "dictionary_contracting_party" );
@@ -45,36 +45,31 @@ HDictionaryContractingPartySet::HDictionaryContractingPartySet( HDataBase::ptr_t
 	M_EPILOG
 }
 
-HDictionaryContractingPartySet::~HDictionaryContractingPartySet ( void ) {
+HTestSet::~HTestSet ( void ) {
 	M_PROLOG
 	return;
 	M_EPILOG
 }
 
-void HDictionaryContractingPartySet::sync( void ) {
+void HTestSet::sync( void ) {
 	M_PROLOG
-	_sQLDescriptor.sync( 1, _imie );
-	_sQLDescriptor.sync( 2, _nazwisko );
-	_sQLDescriptor.sync( 3, _nip );
-	_sQLDescriptor.sync( 4, _kraj );
-	_sQLDescriptor.sync( 5, _miasto );
-	_sQLDescriptor.sync( 6, _ulica );
-	_sQLDescriptor.sync( 7, _numer_ulicy );
-	_sQLDescriptor.sync( 8, _numer_mieszkania );
-	_sQLDescriptor.sync( 9, _kod_pocztowy );
-	_sQLDescriptor.sync( 10, _telefon );
-	_sQLDescriptor.sync( 11, _fax );
-	_sQLDescriptor.sync( 12, _email );
-	_sQLDescriptor.sync( 13, _id_account_map );
+	_sQLDescriptor.sync( 1, _name );
+	_sQLDescriptor.sync( 2, _vText );
+	_sQLDescriptor.sync( 3, _vInt );
+	_sQLDescriptor.sync( 4, _vReal );
+	_sQLDescriptor.sync( 5, _vDate );
+	_sQLDescriptor.sync( 6, _vTime );
+	_sQLDescriptor.sync( 7, _vDatetime );
+	_sQLDescriptor.sync( 8, _id );
 	return;
 	M_EPILOG
 }
 
-HRecordSet::ptr_t HDictionaryContractingPartySet::get_records( void ) {
+HRecordSet::ptr_t HTestSet::get_records( void ) {
 	return ( _sQLDescriptor.execute( HSQLDescriptor::MODE::SELECT ) );
 }
 
-void HDictionaryContractingPartySet::sync( yaal::dbwrapper::HRecordSet::iterator it ) {
+void HTestSet::sync( yaal::dbwrapper::HRecordSet::iterator it ) {
 	_sQLDescriptor.sync( it );
 	sync();
 }

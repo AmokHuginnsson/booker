@@ -28,7 +28,7 @@ Copyright:
 M_VCSID( "$Id: " __ID__ " $" )
 
 #include "booker.hxx"
-#include "dictionarycontractingpartywindow.hxx"
+#include "testwindow.hxx"
 #include "dictionarycontractingpartyset.hxx"
 
 using namespace yaal;
@@ -39,22 +39,22 @@ using namespace yaal::dbwrapper;
 
 namespace booker {
 
-HDictionaryContractingPartyWindow::HDictionaryContractingPartyWindow( const char* title_ )
+HTestWindow::HTestWindow( const char* title_ )
 	: HWindow( title_ ), _list ( NULL ), _edit ( NULL ) {
 	M_PROLOG
-	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HDictionaryContractingPartyWindow::handler_delete, this, _1 ) );
-	register_postprocess_handler( '\r', NULL, call( &HDictionaryContractingPartyWindow::handler_enter, this, _1 ) );
+	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
+	register_postprocess_handler( '\r', NULL, call( &HTestWindow::handler_enter, this, _1 ) );
 	return;
 	M_EPILOG
 }
 
-HDictionaryContractingPartyWindow::~HDictionaryContractingPartyWindow ( void ) {
+HTestWindow::~HTestWindow ( void ) {
 	M_PROLOG
 	return;
 	M_EPILOG
 }
 
-void HDictionaryContractingPartyWindow::do_init( void ) {
+void HTestWindow::do_init( void ) {
 	M_PROLOG
 	HWidget* control( NULL );
 	HInfoItem item( 1 ), row( 5 );
@@ -144,7 +144,7 @@ void HDictionaryContractingPartyWindow::do_init( void ) {
 	M_EPILOG
 }
 
-bool HDictionaryContractingPartyWindow::handler_delete( yaal::hconsole::HEvent const& ) {
+bool HTestWindow::handler_delete( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	if ( _list->get_row_count() )
 		_list->remove_current_row();
@@ -152,7 +152,7 @@ bool HDictionaryContractingPartyWindow::handler_delete( yaal::hconsole::HEvent c
 	M_EPILOG
 }
 
-bool HDictionaryContractingPartyWindow::handler_enter( yaal::hconsole::HEvent const& ) {
+bool HTestWindow::handler_enter( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 //	if ( _list->get_row_count() )
 //		_list->set_current_row_cell( 2, _edit->get() );

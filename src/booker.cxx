@@ -33,7 +33,7 @@ M_VCSID( "$Id: " __ID__ " $" )
 
 /* windows begin */
 #include "dictionarybank.hxx"
-#include "dictionarycontractingpartywindow.hxx"
+#include "testwindow.hxx"
 /* windows end */
 
 using namespace yaal::hcore;
@@ -63,6 +63,7 @@ int HBookerProcess::init( const char* processName_ ) {
 	register_command_handler( "run_dictionary_contracting_party", call( &HBookerProcess::run_dictionary_contracting_party, this, _1 ) );
 	register_command_handler( "run_subject", call( &HBookerProcess::run_subject, this, _1 ) );
 	register_command_handler( "run_config", call( &HBookerProcess::run_config, this, _1 ) );
+	register_command_handler( "run_test", call( &HBookerProcess::run_test, this, _1 ) );
 	/*
 	M_REGISTER_MENU_HANDLER ( run_account_orders );
 	M_REGISTER_MENU_HANDLER ( run_account_map );
@@ -82,7 +83,6 @@ bool HBookerProcess::run_quit( yaal::hconsole::HEvent const& ) {
 
 bool HBookerProcess::run_dictionary_contracting_party( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
-	add_window( make_pointer<HDictionaryContractingPartyWindow>( "Kontrahenci" ) );
 	return ( true );
 	M_EPILOG
 }
@@ -92,6 +92,15 @@ bool HBookerProcess::run_config( yaal::hconsole::HEvent const& ) {
 	HConsole& cons( HConsole::get_instance() );
 	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_config" );
 	cons.refresh ( );
+	return ( true );
+	M_EPILOG
+}
+
+bool HBookerProcess::run_test( yaal::hconsole::HEvent const& ) {
+	M_PROLOG
+	if ( setup._test ) {
+		add_window( make_pointer<HTestWindow>( "Test" ) );
+	}
 	return ( true );
 	M_EPILOG
 }

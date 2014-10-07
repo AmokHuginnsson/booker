@@ -36,6 +36,7 @@ namespace booker {
 struct OSetup {
 	bool _quiet;			/* --quiet, --silent */
 	bool _verbose;		/* --verbose */
+	bool _test;
 	char * _programName;
 	yaal::hcore::HString _logPath;
 	yaal::hcore::HString _dataBase;
@@ -43,7 +44,7 @@ struct OSetup {
 	yaal::hcore::HString _password;
 	/* self-sufficient */
 	OSetup( void )
-		: _quiet( false ), _verbose( false ),
+		: _quiet( false ), _verbose( false ), _test( false ),
 		_programName( NULL ),
 		_logPath(), _dataBase(),
 		_login(), _password() {}

@@ -2,8 +2,7 @@ DROP TABLE dictionary_bank;
 DROP TABLE dictionary_contracting_party;
 DROP TABLE account_map;
 DROP TABLE config;
-CREATE TABLE config
-	(
+CREATE TABLE config (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(16) NOT NULL,
 	integer_value INT4,
@@ -11,17 +10,15 @@ CREATE TABLE config
 	float_value FLOAT8,
 	time_value TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP,
 	blob_value TEXT
-	);
-CREATE TABLE account_map
-	(
+);
+CREATE TABLE account_map (
 	id INTEGER PRIMARY KEY,
 	id_account_map INT4 NOT NULL,
 	number VARCHAR(8),
 	full_number VARCHAR(32),
 	name VARCHAR(128)
-	);
-CREATE TABLE dictionary_contracting_party
-	(
+);
+CREATE TABLE dictionary_contracting_party (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(32),
 	surname VARCHAR(32),
@@ -36,9 +33,8 @@ CREATE TABLE dictionary_contracting_party
 	fax VARCHAR(32),
 	email VARCHAR(32),
 	id_account_map INT4
-	);
-CREATE TABLE dictionary_bank
-	(
+);
+CREATE TABLE dictionary_bank (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(128),
 	country VARCHAR(32),
@@ -48,5 +44,14 @@ CREATE TABLE dictionary_bank
 	postal_code VARCHAR(8),
 	phone VARCHAR(32),
 	fax VARCHAR(32)
-	);
-
+);
+CREATE TABLE test (
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(128),
+	v_text VARCHAR(255),
+	v_int INTEGER,
+	v_real FLOAT,
+	v_date DATE,
+	v_time TIME,
+	v_datetime DATETIME
+);
