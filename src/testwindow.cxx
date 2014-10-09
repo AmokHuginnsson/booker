@@ -62,45 +62,45 @@ void HTestWindow::do_init( void ) {
 	HComboboxWidget* combo( NULL );
 	HWindow::do_init();
 
-	_list = list = new HListWidget( this, 1, 1, - 20, - 1,
+	_list = list = new HListWidget( this, 1, 1, - 22, - 1,
 			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
 	list->enable( true );
 	list->set_focus();
 	list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this,
-				- 19, 1, 1, 18, "&Name",
+				- 21, 1, 1, 18, "&Name",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 19, 40, 1, 39, "&Text",
+			control = new HEditWidget( this, - 21, 40, 1, 39, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			control = _edit = new HEditWidget ( this, - 16, 1, 1, 29, "&Int",
+			control = _edit = new HEditWidget ( this, - 18, 1, 1, 29, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 13, 1, 1, 32, "&Real",
+			control = new HEditWidget( this, - 15, 1, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
-			control = new HDateWidget( this, - 10, 1, "&Date",
+			control = new HDateWidget( this, - 12, 1, "&Date",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	combo = new HComboboxWidget( this, - 16, 40, 9, 24, "&Kombo Testowe",
+	combo = new HComboboxWidget( this, - 18, 40, 9, 24, "&Kombo Testowe",
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
