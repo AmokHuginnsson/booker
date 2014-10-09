@@ -62,45 +62,45 @@ void HTestWindow::do_init( void ) {
 	HComboboxWidget* combo( NULL );
 	HWindow::do_init();
 
-	_list = list = new HListWidget( this, 1, 1, - 11, - 1,
+	_list = list = new HListWidget( this, 1, 1, - 20, - 1,
 			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
 	list->enable( true );
 	list->set_focus();
 	list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this,
-				- 7, 1, 1, 18, "&Name",
+				- 19, 1, 1, 18, "&Name",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
 	list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 7, 20, 1, 28, "&Text",
+			control = new HEditWidget( this, - 19, 40, 1, 39, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = _edit = new HEditWidget ( this, - 7, 16, 1, 29, "&Int",
+	list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+			control = _edit = new HEditWidget ( this, - 16, 1, 1, 29, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::CENTER, TYPE::HSTRING,
-			new HEditWidget( this, - 4, 1, 1, 32, "&Real",
+	list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+			control = new HEditWidget( this, - 13, 1, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
-	list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			new HEditWidget( this, - 4, 11, 1, 29, "&Date",
-				HEditWidgetAttributes()
-				.max_string_size( 48 )
-				.pattern( "^[a-zA-Z0-9\\._@-]*$" )
+	control->enable( true );
+	list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
+			control = new HDateWidget( this, - 10, 1, "&Date",
+				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
-	combo = new HComboboxWidget( this, - 10, 1, 9, 24, "&Kombo Testowe",
+	control->enable( true );
+	combo = new HComboboxWidget( this, - 16, 40, 9, 24, "&Kombo Testowe",
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
@@ -110,9 +110,9 @@ void HTestWindow::do_init( void ) {
 				.searchable( true )
 	);
 	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
-	_widgets.exchange( 1, 6 );
+/*	_widgets.exchange( 1, 6 );
 	_widgets.exchange( 2, 6 );
-	_widgets.exchange( 3, 6 );
+	_widgets.exchange( 3, 6 ); */
 	combo->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
 	combo->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
 	combo->enable( true );
@@ -132,12 +132,10 @@ void HTestWindow::do_init( void ) {
 		row[ 1 ].set_string( rs._vText );
 		row[ 2 ].set_string( rs._vInt );
 		row[ 3 ].set_string( rs._vReal );
-		row[ 4 ].set_string( rs._vDate );
+		row[ 4 ].set_time( rs._vDate );
 		mC->add_tail( row );
-		if ( ! rs._vTime.is_empty() ) {
-			item[ 0 ].set_string( rs._vTime );
-			controler->add_orderly( item, 0 );
-		}
+		item[ 0 ].set_time( rs._vTime );
+		controler->add_orderly( item, 0 );
 	}
 	paint();
 	return;

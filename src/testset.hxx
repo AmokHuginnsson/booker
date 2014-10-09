@@ -38,9 +38,9 @@ public:
 	yaal::hcore::HString _vText;
 	yaal::hcore::HString _vInt;
 	yaal::hcore::HString _vReal;
-	yaal::hcore::HString _vDate;
-	yaal::hcore::HString _vTime;
-	yaal::hcore::HString _vDatetime;
+	yaal::hcore::HTime _vDate;
+	yaal::hcore::HTime _vTime;
+	yaal::hcore::HTime _vDatetime;
 	/*}*/
 protected:
 	/*{*/
