@@ -1,4 +1,5 @@
 DROP TABLE test;
+DROP TABLE test_dict;
 DROP TABLE invoice_item;
 DROP TABLE invoice;
 DROP TABLE issuer;
@@ -82,9 +83,14 @@ CREATE TABLE invoice_item (
 	quantity INTEGER
 );
 
-CREATE TABLE test (
+CREATE TABLE test_dict (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(128),
+);
+
+CREATE TABLE test (
+	id INTEGER PRIMARY KEY,
+	id_test_dict INTEGER,
 	v_text VARCHAR(255),
 	v_int INTEGER,
 	v_real FLOAT,

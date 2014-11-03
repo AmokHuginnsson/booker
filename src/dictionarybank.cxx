@@ -79,7 +79,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 		item[ 0 ].set_string( tools::util::kwota_slownie( value ) );
 		item[ 1 ].set_string( "wype³niacz" );
 /*		iitem [ 2 ] = HString ( value );*/
-		item[ 2 ].set_double( value );
+		item[ 2 ].set_real( value );
 		controler->add_tail( item );
 		_statusBar->update_progress();
 	}
