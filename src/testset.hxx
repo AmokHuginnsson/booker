@@ -33,8 +33,8 @@ class HTestSet {
 	yaal::dbwrapper::HSQLDescriptor _sQLDescriptor;
 public:
 	/*{*/
-	long int _id;
-	yaal::hcore::HString _name;
+	int long _id;
+	int long _idName;
 	yaal::hcore::HString _vText;
 	yaal::hcore::HString _vInt;
 	yaal::hcore::HString _vReal;

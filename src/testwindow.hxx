@@ -27,15 +27,20 @@ Copyright:
 #ifndef TESTWINDOW_HXX_INCLUDED
 #define TESTWINDOW_HXX_INCLUDED
 
+#include <yaal/hcore/hhashmap.hxx>
 #include <yaal/hconsole/hevent.hxx>
+#include <yaal/hconsole/hcomboboxwidget.hxx>
 
 namespace booker {
 
 class HTestWindow : public yaal::hconsole::HWindow {
 protected:
 	/*{*/
+	typedef yaal::hcore::HHashMap<int, yaal::hcore::HPair<int, yaal::hcore::HString>> names_t;
+	names_t _names;
 	yaal::hconsole::HListWidget* _list;
 	yaal::hconsole::HEditWidget* _edit;
+	yaal::hconsole::HComboboxWidget* _name;
 	/*}*/
 public:
 	/*{*/
@@ -47,6 +52,7 @@ protected:
 	virtual void do_init( void );
 	bool handler_delete( yaal::hconsole::HEvent const& );
 	bool handler_enter( yaal::hconsole::HEvent const& );
+	bool on_sel_change( yaal::hconsole::HEvent const& );
 	/*}*/
 private:
 	/*{*/

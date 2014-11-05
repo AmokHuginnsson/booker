@@ -85,7 +85,7 @@ CREATE TABLE invoice_item (
 
 CREATE TABLE test_dict (
 	id INTEGER PRIMARY KEY,
-	name VARCHAR(128),
+	name VARCHAR(128)
 );
 
 CREATE TABLE test (

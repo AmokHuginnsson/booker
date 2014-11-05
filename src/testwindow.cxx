@@ -40,7 +40,7 @@ using namespace yaal::dbwrapper;
 namespace booker {
 
 HTestWindow::HTestWindow( const char* title_ )
-	: HWindow( title_ ), _list ( NULL ), _edit ( NULL ) {
+	: HWindow( title_ ), _names(), _list( NULL ), _edit( NULL ), _name( NULL ) {
 	M_PROLOG
 	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
 	register_postprocess_handler( '\r', NULL, call( &HTestWindow::handler_enter, this, _1 ) );
@@ -56,90 +56,92 @@ HTestWindow::~HTestWindow ( void ) {
 
 void HTestWindow::do_init( void ) {
 	M_PROLOG
-	HWidget* control( NULL );
-	HInfoItem item( 1 ), row( 5 );
-	HListWidget* list( NULL );
-	HComboboxWidget* combo( NULL );
 	HWindow::do_init();
-
-	_list = list = new HListWidget( this, 1, 1, - 22, - 1,
-			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
-	list->enable( true );
-	list->set_focus();
-	list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditWidget( this,
-				- 21, 1, 1, 18, "&Name",
-				HEditWidgetAttributes()
-				.max_string_size( 32 )
+	_name = new HComboboxWidget( this, - 21, 1, 9, 24, "&Name",
+			HComboboxWidgetAttributes()
+				.dropped_width( 32 )
+				.max_string_size( 128 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
-				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
-	control->enable( true );
-	list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+				.label_position( HWidget::LABEL::POSITION::STACKED )
+				.up<HComboboxWidgetAttributes>()
+				.searchable( true )
+	);
+	_name->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
+	_name->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
+	_name->enable( true );
+	HQuery::ptr_t q( theProc.data_base()->prepare_query( "SELECT * FROM test_dict;" ) );
+	HRecordSet::ptr_t dict( q->execute() );
+	HAsIsValueListModel<>::ptr_t controler = _name->get_model();
+	int index( 0 );
+	for ( HRecordSet::values_t const& row : *dict ) {
+		int id( lexical_cast<int>( *row[0] ) );
+		HString const& name( *row[1] );
+		_names[id] = make_pair( index ++, name );
+		HInfoItem item( 1 );
+		item[ 0 ].set_integer( id );
+		item[ 0 ].set_string( name );
+		controler->add_tail( item );
+	}
+	_list = new HListWidget( this, 1, 1, - 22, - 1,
+			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
+	_list->enable( true );
+	_list->set_focus();
+	_list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, _name );
+	HWidget* control( NULL );
+	_list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this, - 21, 40, 1, 39, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+	_list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			control = _edit = new HEditWidget ( this, - 18, 1, 1, 29, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+	_list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			control = new HEditWidget( this, - 15, 1, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
+	_list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
 			control = new HDateWidget( this, - 12, 1, "&Date",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
 	control->enable( true );
-	combo = new HComboboxWidget( this, - 18, 40, 9, 24, "&Kombo Testowe",
-			HComboboxWidgetAttributes()
-				.dropped_width( 32 )
-				.max_string_size( 128 )
-				.pattern( _maskExtended_ )
-				.label_position( HWidget::LABEL::POSITION::STACKED )
-				.up<HComboboxWidgetAttributes>()
-				.searchable( true )
-	);
 	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
+	_list->register_event_listener( call( &HTestWindow::on_sel_change, this, _1 ) );
 /*	_widgets.exchange( 1, 6 );
 	_widgets.exchange( 2, 6 );
 	_widgets.exchange( 3, 6 ); */
-	combo->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
-	combo->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
-	combo->enable( true );
-	HAsIsValueListModel<>::ptr_t controler = combo->get_model();
-	item[ 0 ].set_string( "Ala" );
-	controler->add_orderly( item, 0 );
-	item[ 0 ].set_string( "ma" );
-	controler->add_orderly( item, 0 );
-	item[ 0 ].set_string( "kota." );
-	controler->add_orderly( item, 0 );
 	HTestSet rs( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
-	HAsIsValueListModel<>::ptr_t mC = list->get_model();
+	HAsIsValueListModel<>::ptr_t mC = _list->get_model();
+	HInfoItem row( 5 );
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
-		row[ 0 ].set_string( rs._name );
+		row[ 0 ].set_integer( _names[static_cast<int>( rs._idName )].first );
+		row[ 0 ].set_string( _names[static_cast<int>( rs._idName )].second );
 		row[ 1 ].set_string( rs._vText );
 		row[ 2 ].set_string( rs._vInt );
 		row[ 3 ].set_string( rs._vReal );
 		row[ 4 ].set_time( rs._vDate );
 		mC->add_tail( row );
-		item[ 0 ].set_time( rs._vTime );
-		controler->add_orderly( item, 0 );
 	}
 	paint();
 	return;
 	M_EPILOG
+}
+
+bool HTestWindow::on_sel_change( yaal::hconsole::HEvent const& ) {
+	list_widget_helper::HAbstractRow& current( _list->get_current_row() );
+	status_bar()->message( "cursor position: %d, %d", _name->get_cursor_position(), static_cast<int>( current[0].get_integer() ) );
+	return ( true );
 }
 
 bool HTestWindow::handler_delete( yaal::hconsole::HEvent const& ) {
