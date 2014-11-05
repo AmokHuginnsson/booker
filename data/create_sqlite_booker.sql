@@ -3,7 +3,7 @@ DROP TABLE test_dict;
 DROP TABLE invoice_item;
 DROP TABLE invoice;
 DROP TABLE issuer;
-DROP TABLE pay_method;
+DROP TABLE payment_method;
 DROP TABLE bank;
 DROP TABLE contracting_party;
 DROP TABLE config;
@@ -51,7 +51,7 @@ CREATE TABLE bank (
 	fax VARCHAR(32)
 );
 
-CREATE TABLE pay_method (
+CREATE TABLE payment_method (
 	id INTEGER PRIMARY KEY,
 	name VARCHAR(32)
 );
@@ -69,7 +69,7 @@ CREATE TABLE invoice (
 	invoice_number VARCHAR(16),
 	invoice_date DATE,
 	transaction_date DATE,
-	due_date DATE,
+	due_date INTEGER,
 	id_pay_method INTEGER,
 	id_issuer INTEGER
 );

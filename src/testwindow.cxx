@@ -83,7 +83,7 @@ void HTestWindow::do_init( void ) {
 		controler->add_tail( item );
 	}
 	_list = new HListWidget( this, 1, 1, - 22, - 1,
-			"&Kontrahenci", HListWidgetAttributes().searchable( true ) );
+			"&Test data", HListWidgetAttributes().searchable( true ) );
 	_list->enable( true );
 	_list->set_focus();
 	_list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, _name );
