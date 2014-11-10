@@ -30,7 +30,7 @@ Copyright:
 namespace booker {
 
 class HTestSet {
-	yaal::dbwrapper::HSQLDescriptor _sQLDescriptor;
+	yaal::dbwrapper::HCRUDDescriptor _sQLDescriptor;
 public:
 	/*{*/
 	int long _id;

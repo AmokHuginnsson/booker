@@ -65,7 +65,7 @@ void HTestSet::sync( void ) {
 }
 
 HRecordSet::ptr_t HTestSet::get_records( void ) {
-	return ( _sQLDescriptor.execute( HSQLDescriptor::MODE::SELECT ) );
+	return ( _sQLDescriptor.execute( HCRUDDescriptor::MODE::SELECT ) );
 }
 
 void HTestSet::sync( yaal::dbwrapper::HRecordSet::iterator it ) {
