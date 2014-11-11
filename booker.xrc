@@ -100,6 +100,34 @@
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
 		</dataedit>
 	</datawindow>
+	<datawindow id="window_issuer" title="Wystawiaj±cy">
+		<db table="issuer" column="name, signature, id" id_column="id" sort="name ASC" />
+		<datalist role="main">
+			<label position="stacked">&amp;Wystawiaj±cy</label>
+			<position row="1" column="1" height="-8" width="-1" />
+			<checkable>true</checkable>
+			<sortable>true</sortable>
+			<searchable>true</searchable>
+			<editable>true</editable>
+			<draw_header>true</draw_header>
+			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_issuer_name" />
+			<column placement="-1" name="podpis" width="4" align="left" type="string" refid="window_issuer_signature" />
+		</datalist>
+		<dataedit id="window_issuer_name" role="data">
+			<label position="stacked">&amp;Nazwa</label>
+			<position row="-7" column="1" height="1" width="35" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
+		</dataedit>
+		<dataedit id="window_issuer_signature" role="data">
+			<label position="stacked">&amp;Podpis</label>
+			<position row="-7" column="37" height="1" width="35" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+			<mask>^[a-z]*$</mask>
+		</dataedit>
+	</datawindow>
 	<datawindow id="window_bank" title="Banki">
 		<db table="bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
@@ -162,30 +190,44 @@
 		</dataedit>
 	</datawindow>
 	<datawindow id="window_contracting_party" title="Kontrahenci">
-		<db table="contracting_party" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
+		<db table="contracting_party" column="name, first_name, middle_name, last_name, country, postal_code, city, street, street_number, flat_number, tin, phone, fax, email, webpage, extra, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
 			<label position="stacked">&amp;Kontrahenci</label>
-			<position row="1" column="1" height="-16" width="-1" />
+			<position row="1" column="1" height="-21" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
 			<editable>true</editable>
 			<draw_header>true</draw_header>
-			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_contracting_party_name" />
-			<column placement="-1" name="miasto" width="2" align="left" type="string" refid="window_contracting_party_city" />
-			<column placement="-1" name="ulica" width="3" align="left" type="string" refid="window_contracting_party_street" />
-			<column placement="-1" name="kod" width="1" align="left" type="string" refid="window_contracting_party_postalcode" />
+			<column placement="-1" name="nazwa" width="6" align="left" type="string" refid="window_contracting_party_name" />
+			<column placement="-1" name="imiÍ" width="4" align="left" type="string" refid="window_contracting_party_first_name" />
+			<column placement="-1" name="drugie" width="0" align="left" type="string" refid="window_contracting_party_middle_name" />
+			<column placement="-1" name="nazwisko" width="4" align="left" type="string" refid="window_contracting_party_last_name" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_country" />
+			<column placement="-1" name="kod" width="2" align="left" type="string" refid="window_contracting_party_postalcode" />
+			<column placement="-1" name="miasto" width="4" align="left" type="string" refid="window_contracting_party_city" />
+			<column placement="-1" name="ulica" width="4" align="left" type="string" refid="window_contracting_party_street" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_street_no" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_flat_no" />
+			<column placement="-1" name="NIP" width="2" align="left" type="string" refid="window_contracting_party_tin" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_phone" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_fax" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_email" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_www" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_extra" />
 		</datalist>
+		<dataedit id="window_contracting_party_tin" role="data">
+			<label position="stacked">&amp;NIP</label>
+			<position row="-20" column="1" height="1" width="16" />
+			<max_string_size>15</max_string_size>
+			<mask>^[0-9-]*$</mask>
+		</dataedit>
 		<dataedit id="window_contracting_party_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
-			<position row="-7" column="1" height="1" width="-25" />
+			<position row="-20" column="20" height="1" width="-1" />
 			<max_string_size>160</max_string_size>
 			<value></value>
-			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
+			<mask>.*</mask>
 			<replace>false</replace>
 			<multi_line>false</multi_line>
 			<read_only>false</read_only>
@@ -193,48 +235,90 @@
 			<password>false</password>
 			<max_history_level>8</max_history_level>
 		</dataedit>
+		<dataedit id="window_contracting_party_first_name" role="data">
+			<label position="stacked">&amp;ImiÍ</label>
+			<position row="-17" column="1" height="1" width="24" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+		</dataedit>
+		<dataedit id="window_contracting_party_last_name" role="data">
+			<label position="stacked">&amp;Nazwisko</label>
+			<position row="-17" column="28" height="1" width="24" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+		</dataedit>
+		<dataedit id="window_contracting_party_middle_name" role="data">
+			<label position="stacked">&amp;Drugie imiÍ</label>
+			<position row="-17" column="55" height="1" width="24" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+		</dataedit>
+		<dataedit id="window_contracting_party_country" role="data">
+			<label position="stacked">&amp;Kraj</label>
+			<position row="-14" column="1" height="1" width="24" />
+			<max_string_size>32</max_string_size>
+			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
+		</dataedit>
+		<dataedit id="window_contracting_party_postalcode" role="data">
+			<label position="stacked">&amp;Kod</label>
+			<position row="-14" column="28" height="1" width="7" />
+			<max_string_size>8</max_string_size>
+			<mask>^[0-9 -]*$</mask>
+		</dataedit>
 		<dataedit id="window_contracting_party_city" role="data">
 			<label position="stacked">&amp;Miasto</label>
-			<position row="-15" column="-24" height="1" width="23" />
+			<position row="-14" column="38" height="1" width="23" />
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_street" role="data">
 			<label position="stacked">&amp;Ulica</label>
-			<position row="-12" column="1" height="1" width="-33" />
+			<position row="-11" column="1" height="1" width="40" />
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
 		</dataedit>
-		<dataedit id="window_contracting_party_postalcode" role="data">
-			<label position="stacked">&amp;Kod</label>
-			<position row="-9" column="-32" height="1" width="7" />
-			<max_string_size>8</max_string_size>
-			<mask>^[0-9 -]*$</mask>
-		</dataedit>
 		<dataedit id="window_contracting_party_street_no" role="data">
-			<label position="stacked">&amp;Numer</label>
-			<position row="-9" column="-24" height="1" width="5" />
-			<max_string_size>6</max_string_size>
-			<mask>^[0-9a-zA-Z]*$</mask>
+			<label position="stacked">&amp;Numer domu</label>
+			<position row="-11" column="44" height="1" width="8" />
+			<max_string_size>16</max_string_size>
+			<mask>^[0-9a-zA-Z/]*$</mask>
+		</dataedit>
+		<dataedit id="window_contracting_party_flat_no" role="data">
+			<label position="stacked">&amp;Numer mieszkania</label>
+			<position row="-11" column="60" height="1" width="8" />
+			<max_string_size>16</max_string_size>
+			<mask>^[0-9a-zA-Z/]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_phone" role="data">
 			<label position="stacked">&amp;Telefon</label>
-			<position row="-6" column="1" height="1" width="14" />
-			<max_string_size>17</max_string_size>
-			<mask>^[0-9 ()-]*$</mask>
+			<position row="-8" column="1" height="1" width="24" />
+			<max_string_size>32</max_string_size>
+			<mask>^[0-9 ()-\+]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_email" role="data">
-			<label position="stacked">&amp;Telefon</label>
-			<position row="-6" column="-24" height="1" width="14" />
-			<max_string_size>17</max_string_size>
-			<mask>^[a-z0-9\._-]*$</mask>
+			<label position="stacked">&amp;Email</label>
+			<position row="-8" column="28" height="1" width="24" />
+			<max_string_size>32</max_string_size>
+			<mask>^[a-z0-9\._@-]*$</mask>
 			<valid>^[a-z0-9\._-]\+@[a-z0-9][a-z0-9\.-]*[a-z0-9]$</valid>
 		</dataedit>
 		<dataedit id="window_contracting_party_www" role="data">
-			<label position="stacked">&amp;Telefon</label>
-			<position row="-6" column="-15" height="1" width="14" />
-			<max_string_size>17</max_string_size>
+			<label position="stacked">&amp;Strona WWW</label>
+			<position row="-8" column="55" height="1" width="24" />
+			<max_string_size>32</max_string_size>
 			<mask>^[a-z0-9/:\.-]*$</mask>
+		</dataedit>
+		<dataedit id="window_contracting_party_extra" role="data">
+			<label position="stacked">&amp;Informacje dodatkowe</label>
+			<position row="-5" column="1" height="1" width="-14" />
+			<max_string_size>255</max_string_size>
+			<mask>.*</mask>
+		</dataedit>
+		<dataedit id="window_contracting_party_fax" role="data">
+			<label position="stacked">&amp;Fax</label>
+			<position row="-5" column="-11" height="1" width="-1" />
+			<max_string_size>32</max_string_size>
+			<mask>^[0-9 ()-\+]*$</mask>
 		</dataedit>
 	</datawindow>
 </resource>
