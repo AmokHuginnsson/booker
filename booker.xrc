@@ -35,7 +35,7 @@
 				</menu_item>
 			</menu-->
 			<label>Faktury</label>
-			<handler>run_quit</handler>
+			<handler name="create_window" param="window_invoice" />
 		</menu_item>
 		<menu_item>
 			<label>S≥owniki</label>
@@ -129,10 +129,10 @@
 		</dataedit>
 	</datawindow>
 	<datawindow id="window_bank" title="Banki">
-		<db table="bank" column="name, city, street, postal_code, street_number, phone, id" id_column="id" sort="name ASC" />
+		<db table="bank" column="name, city, street, postal_code, street_number, webpage, phone, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
 			<label position="stacked">&amp;Banki</label>
-			<position row="1" column="1" height="-8" width="-1" />
+			<position row="1" column="1" height="-9" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
@@ -143,11 +143,12 @@
 			<column placement="-1" name="ulica" width="3" align="left" type="string" refid="window_bank_street" />
 			<column placement="-1" name="kod" width="1" align="left" type="string" refid="window_bank_postalcode" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_street_no" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_www" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_phone" />
 		</datalist>
 		<dataedit id="window_bank_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
-			<position row="-7" column="1" height="1" width="-25" />
+			<position row="-8" column="1" height="1" width="-46" />
 			<max_string_size>160</max_string_size>
 			<value></value>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
@@ -158,35 +159,41 @@
 			<password>false</password>
 			<max_history_level>8</max_history_level>
 		</dataedit>
+		<dataedit id="window_bank_www" role="data">
+			<label position="stacked">&amp;Strona WWW</label>
+			<position row="-8" column="-44" height="1" width="-23" />
+			<max_string_size>32</max_string_size>
+			<mask>^[a-z0-9/:\.-]*$</mask>
+		</dataedit>
+		<dataedit id="window_bank_phone" role="data">
+			<label position="stacked">&amp;Telefon</label>
+			<position row="-8" column="-21" height="1" width="20" />
+			<max_string_size>17</max_string_size>
+			<mask>^[0-9 ()-]*$</mask>
+		</dataedit>
+		<dataedit id="window_bank_postalcode" role="data">
+			<label position="stacked">&amp;Kod</label>
+			<position row="-5" column="1" height="1" width="7" />
+			<max_string_size>8</max_string_size>
+			<mask>^[0-9 -]*$</mask>
+		</dataedit>
 		<dataedit id="window_bank_city" role="data">
 			<label position="stacked">&amp;Miasto</label>
-			<position row="-7" column="-24" height="1" width="23" />
+			<position row="-5" column="10" height="1" width="23" />
 			<max_string_size>32</max_string_size>
 			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
 		</dataedit>
 		<dataedit id="window_bank_street" role="data">
 			<label position="stacked">&amp;Ulica</label>
-			<position row="-4" column="1" height="1" width="-33" />
+			<position row="-5" column="35" height="1" width="-11" />
 			<max_string_size>48</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
 		</dataedit>
-		<dataedit id="window_bank_postalcode" role="data">
-			<label position="stacked">&amp;Kod</label>
-			<position row="-4" column="-32" height="1" width="7" />
-			<max_string_size>8</max_string_size>
-			<mask>^[0-9 -]*$</mask>
-		</dataedit>
 		<dataedit id="window_bank_street_no" role="data">
 			<label position="stacked">&amp;Numer</label>
-			<position row="-4" column="-24" height="1" width="5" />
+			<position row="-5" column="-9" height="1" width="8" />
 			<max_string_size>6</max_string_size>
 			<mask>^[0-9a-zA-Z]*$</mask>
-		</dataedit>
-		<dataedit id="window_bank_phone" role="data">
-			<label position="stacked">&amp;Telefon</label>
-			<position row="-4" column="-15" height="1" width="14" />
-			<max_string_size>17</max_string_size>
-			<mask>^[0-9 ()-]*$</mask>
 		</dataedit>
 	</datawindow>
 	<datawindow id="window_contracting_party" title="Kontrahenci">
@@ -320,5 +327,74 @@
 			<max_string_size>32</max_string_size>
 			<mask>^[0-9 ()-\+]*$</mask>
 		</dataedit>
+	</datawindow>
+	<datawindow id="window_invoice" title="Faktury">
+		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC" />
+		<datalist role="main">
+			<label position="stacked">&amp;Faktury</label>
+			<position row="1" column="1" height="-21" width="-1" />
+			<checkable>true</checkable>
+			<sortable>true</sortable>
+			<searchable>true</searchable>
+			<editable>true</editable>
+			<draw_header>true</draw_header>
+			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
+			<column placement="-1" name="data wystawienia" width="3" align="center" type="string" refid="window_invoice_invoice_date" />
+			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_veondor" />
+			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_veondee" />
+			<column placement="-1" name="data sprzedaøy" width="3" align="center" type="string" refid="window_invoice_transaction_date" />
+			<column placement="-1" name="termin p≥atno∂ci" width="2" align="left" type="string" refid="window_invoice_due_date" />
+			<column placement="-1" name="metoda p≥atno∂ci" width="2" align="left" type="string" refid="window_invoice_payment_method" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" />
+		</datalist>
+		<dataedit id="window_invoice_no" role="data">
+			<label position="stacked">&amp;Numer faktury</label>
+			<position row="-20" column="1" height="1" width="16" />
+			<max_string_size>15</max_string_size>
+			<mask>^[0-9-]*$</mask>
+		</dataedit>
+		<datadate id="window_invoice_invoice_date" role="data">
+			<label position="stacked">Data &amp;wystawienia</label>
+			<position row="-20" column="19" />
+		</datadate>
+		<datadate id="window_invoice_transaction_date" role="data">
+			<label position="stacked">Data &amp;sprzedaøy</label>
+			<position row="-20" column="40" />
+		</datadate>
+		<dataedit id="window_invoice_due_date" role="data">
+			<label position="stacked">&amp;Termin p≥atno∂ci</label>
+			<position row="-20" column="60" height="1" width="19" />
+			<max_string_size>32</max_string_size>
+			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
+		</dataedit>
+		<datacombobox id="window_invoice_veondor" role="data">
+			<label position="stacked">&amp;Sprzedaj±cy</label>
+			<position row="-17" column="1" width="38" height="6" />
+		</datacombobox>
+		<datacombobox id="window_invoice_veondee" role="data">
+			<label position="stacked">&amp;Kupuj±cy</label>
+			<position row="-17" column="41" width="38" height="6" />
+		</datacombobox>
+		<datacombobox id="window_invoice_payment_method" role="data">
+			<label position="stacked">&amp;Metoda p≥atno∂ci</label>
+			<position row="-14" column="1" width="38" height="6" />
+		</datacombobox>
+		<datacombobox id="window_invoice_issuer" role="data">
+			<label position="stacked">&amp;Wystawiaj±cy</label>
+			<position row="-14" column="41" width="38" height="6" />
+		</datacombobox>
+		<datalist role="data">
+			<label position="stacked">&amp;Pozycje</label>
+			<position row="-11" column="1" height="-3" width="-1" />
+			<checkable>true</checkable>
+			<sortable>true</sortable>
+			<searchable>true</searchable>
+			<editable>true</editable>
+			<draw_header>true</draw_header>
+			<column placement="-1" name="nazwa" width="6" align="left" type="string" />
+			<column placement="-1" name="cena" width="1" align="right" type="string" />
+			<column placement="-1" name="VAT" width="1" align="right" type="string" />
+			<column placement="-1" name="ilo∂Ê" width="1" align="right" type="string" />
+		</datalist>
 	</datawindow>
 </resource>

@@ -4,6 +4,7 @@ DROP TABLE invoice_item;
 DROP TABLE invoice;
 DROP TABLE issuer;
 DROP TABLE payment_method;
+DROP TABLE contracting_party_account;
 DROP TABLE bank;
 DROP TABLE contracting_party;
 DROP TABLE config;
@@ -35,8 +36,7 @@ CREATE TABLE contracting_party (
 	webpage VARCHAR(128),
 	phone VARCHAR(32),
 	fax VARCHAR(32),
-	extra VARCHAR(255),
-	id_bank INTEGER
+	extra VARCHAR(1024)
 );
 
 CREATE TABLE bank (
@@ -47,8 +47,15 @@ CREATE TABLE bank (
 	street VARCHAR(128),
 	street_number VARCHAR(8),
 	postal_code VARCHAR(8),
-	phone VARCHAR(32),
-	fax VARCHAR(32)
+	webpage VARCHAR(128),
+	phone VARCHAR(32)
+);
+
+CREATE TABLE contracting_party_account (
+	id INTEGER PRIMARY KEY,
+	id_contracting_party INTEGER NOT NULL,
+	id_bank INTEGER,
+	iban VARCHAR(32)
 );
 
 CREATE TABLE payment_method (
