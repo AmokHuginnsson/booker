@@ -330,6 +330,11 @@
 	</datawindow>
 	<datawindow id="window_invoice" title="Faktury">
 		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC" />
+		<dicts>
+			<dict name="contracting_party" table="contracting_party" id_column="id" value_column="name" />
+			<dict name="payment_method" table="payment_method" id_column="id" value_column="name" />
+			<dict name="issuer" table="issuer" id_column="id" value_column="name" />
+		</dicts>
 		<datalist role="main">
 			<label position="stacked">&amp;Faktury</label>
 			<position row="1" column="1" height="-21" width="-1" />
@@ -340,8 +345,8 @@
 			<draw_header>true</draw_header>
 			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
 			<column placement="-1" name="data wystawienia" width="3" align="center" type="string" refid="window_invoice_invoice_date" />
-			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_veondor" />
-			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_veondee" />
+			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" />
+			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" />
 			<column placement="-1" name="data sprzedaøy" width="3" align="center" type="string" refid="window_invoice_transaction_date" />
 			<column placement="-1" name="termin p≥atno∂ci" width="2" align="left" type="string" refid="window_invoice_due_date" />
 			<column placement="-1" name="metoda p≥atno∂ci" width="2" align="left" type="string" refid="window_invoice_payment_method" />
@@ -367,21 +372,25 @@
 			<max_string_size>32</max_string_size>
 			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ ]*$</mask>
 		</dataedit>
-		<datacombobox id="window_invoice_veondor" role="data">
+		<datacombobox id="window_invoice_vendor" role="data">
 			<label position="stacked">&amp;Sprzedaj±cy</label>
 			<position row="-17" column="1" width="38" height="6" />
+			<dict>contracting_party</dict>
 		</datacombobox>
-		<datacombobox id="window_invoice_veondee" role="data">
+		<datacombobox id="window_invoice_vendee" role="data">
 			<label position="stacked">&amp;Kupuj±cy</label>
 			<position row="-17" column="41" width="38" height="6" />
+			<dict>contracting_party</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_payment_method" role="data">
 			<label position="stacked">&amp;Metoda p≥atno∂ci</label>
 			<position row="-14" column="1" width="38" height="6" />
+			<dict>payment_method</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_issuer" role="data">
 			<label position="stacked">&amp;Wystawiaj±cy</label>
 			<position row="-14" column="41" width="38" height="6" />
+			<dict>issuer</dict>
 		</datacombobox>
 		<datalist role="data">
 			<label position="stacked">&amp;Pozycje</label>
