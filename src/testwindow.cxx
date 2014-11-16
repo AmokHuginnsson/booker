@@ -66,8 +66,6 @@ void HTestWindow::do_init( void ) {
 				.up<HComboboxWidgetAttributes>()
 				.searchable( true )
 	);
-	_name->add_column( -1, "dummy_label", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING );
-	_name->HListWidget::set_flags( HListWidget::FLAG::NONE, HListWidget::FLAG::DRAW_HEADER );
 	_name->enable( true );
 	HQuery::ptr_t q( theProc.data_base()->prepare_query( "SELECT * FROM test_dict;" ) );
 	HRecordSet::ptr_t dict( q->execute() );

@@ -344,10 +344,10 @@
 			<editable>true</editable>
 			<draw_header>true</draw_header>
 			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
-			<column placement="-1" name="data wystawienia" width="3" align="center" type="string" refid="window_invoice_invoice_date" />
+			<column placement="-1" name="data wystawienia" width="3" align="center" type="date" refid="window_invoice_invoice_date" />
 			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" />
 			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" />
-			<column placement="-1" name="data sprzeda¿y" width="3" align="center" type="string" refid="window_invoice_transaction_date" />
+			<column placement="-1" name="data sprzeda¿y" width="3" align="center" type="date" refid="window_invoice_transaction_date" />
 			<column placement="-1" name="termin p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_due_date" />
 			<column placement="-1" name="metoda p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_payment_method" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" />
