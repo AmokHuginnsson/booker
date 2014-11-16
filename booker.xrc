@@ -337,7 +337,7 @@
 		</dicts>
 		<datalist role="main">
 			<label position="stacked">&amp;Faktury</label>
-			<position row="1" column="1" height="-21" width="-1" />
+			<position row="1" column="1" height="-19" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
@@ -345,65 +345,65 @@
 			<draw_header>true</draw_header>
 			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
 			<column placement="-1" name="data wystawienia" width="3" align="center" type="date" refid="window_invoice_invoice_date" />
-			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" />
-			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" />
+			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" dict="contracting_party" />
+			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" dict="contracting_party" />
 			<column placement="-1" name="data sprzeda¿y" width="3" align="center" type="date" refid="window_invoice_transaction_date" />
-			<column placement="-1" name="termin p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_due_date" />
-			<column placement="-1" name="metoda p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_payment_method" />
-			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" />
+			<column placement="-1" name="termin p³atno¶ci" width="2" align="left" type="integer" refid="window_invoice_due_date" />
+			<column placement="-1" name="metoda p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
+			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" dict="issuer" />
 		</datalist>
 		<dataedit id="window_invoice_no" role="data">
 			<label position="stacked">&amp;Numer faktury</label>
-			<position row="-20" column="1" height="1" width="16" />
+			<position row="-18" column="1" height="1" width="16" />
 			<max_string_size>15</max_string_size>
-			<mask>^[0-9-]*$</mask>
+			<mask>^[FV0-9/-]*$</mask>
 		</dataedit>
 		<datadate id="window_invoice_invoice_date" role="data">
 			<label position="stacked">Data &amp;wystawienia</label>
-			<position row="-20" column="19" />
+			<position row="-18" column="19" />
 		</datadate>
 		<datadate id="window_invoice_transaction_date" role="data">
 			<label position="stacked">Data &amp;sprzeda¿y</label>
-			<position row="-20" column="40" />
+			<position row="-18" column="40" />
 		</datadate>
 		<dataedit id="window_invoice_due_date" role="data">
 			<label position="stacked">&amp;Termin p³atno¶ci</label>
-			<position row="-20" column="60" height="1" width="19" />
+			<position row="-18" column="60" height="1" width="19" />
 			<max_string_size>32</max_string_size>
 			<mask>^[0-9a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ ]*$</mask>
 		</dataedit>
 		<datacombobox id="window_invoice_vendor" role="data">
 			<label position="stacked">&amp;Sprzedaj±cy</label>
-			<position row="-17" column="1" width="38" height="6" />
+			<position row="-15" column="1" width="38" height="6" />
 			<dict>contracting_party</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_vendee" role="data">
 			<label position="stacked">&amp;Kupuj±cy</label>
-			<position row="-17" column="41" width="38" height="6" />
+			<position row="-15" column="41" width="38" height="6" />
 			<dict>contracting_party</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_payment_method" role="data">
 			<label position="stacked">&amp;Metoda p³atno¶ci</label>
-			<position row="-14" column="1" width="38" height="6" />
+			<position row="-12" column="1" width="38" height="6" />
 			<dict>payment_method</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_issuer" role="data">
 			<label position="stacked">&amp;Wystawiaj±cy</label>
-			<position row="-14" column="41" width="38" height="6" />
+			<position row="-12" column="41" width="38" height="6" />
 			<dict>issuer</dict>
 		</datacombobox>
 		<datalist role="data">
 			<label position="stacked">&amp;Pozycje</label>
-			<position row="-11" column="1" height="-3" width="-1" />
+			<position row="-9" column="1" height="-3" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
 			<searchable>true</searchable>
 			<editable>true</editable>
 			<draw_header>true</draw_header>
 			<column placement="-1" name="nazwa" width="6" align="left" type="string" />
-			<column placement="-1" name="cena" width="1" align="right" type="string" />
-			<column placement="-1" name="VAT" width="1" align="right" type="string" />
-			<column placement="-1" name="ilo¶æ" width="1" align="right" type="string" />
+			<column placement="-1" name="cena" width="1" align="right" type="real" />
+			<column placement="-1" name="VAT" width="1" align="right" type="real" />
+			<column placement="-1" name="ilo¶æ" width="1" align="right" type="integer" />
 		</datalist>
 	</datawindow>
 </resource>
