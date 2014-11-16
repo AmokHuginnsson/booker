@@ -84,33 +84,33 @@ void HTestWindow::do_init( void ) {
 			"&Test data", HListWidgetAttributes().searchable( true ) );
 	_list->enable( true );
 	_list->set_focus();
-	_list->add_column( -1, "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, _name );
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, _name ) );
 	HWidget* control( NULL );
-	_list->add_column( -1, "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
 			control = new HEditWidget( this, - 21, 40, 1, 39, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
-				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
-	_list->add_column( -1, "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			control = _edit = new HEditWidget ( this, - 18, 1, 1, 29, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9]*$" )
-				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
-	_list->add_column( -1, "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
 			control = new HEditWidget( this, - 15, 1, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9\\.-]*$" )
-				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
-	_list->add_column( -1, "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
 			control = new HDateWidget( this, - 12, 1, "&Date",
 				HWidgetAttributes()
-				.label_position( HWidget::LABEL::POSITION::STACKED ) ) );
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->set_label_position( HWidget::LABEL::POSITION::STACKED );
 	_list->register_event_listener( call( &HTestWindow::on_sel_change, this, _1 ) );
