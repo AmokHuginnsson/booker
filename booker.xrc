@@ -141,7 +141,7 @@
 			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_bank_name" />
 			<column placement="-1" name="miasto" width="2" align="left" type="string" refid="window_bank_city" />
 			<column placement="-1" name="ulica" width="3" align="left" type="string" refid="window_bank_street" />
-			<column placement="-1" name="kod" width="1" align="left" type="string" refid="window_bank_postalcode" />
+			<column placement="-1" name="kod" width="-6" align="left" type="string" refid="window_bank_postalcode" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_street_no" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_www" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_bank_phone" />
@@ -211,12 +211,12 @@
 			<column placement="-1" name="drugie" width="0" align="left" type="string" refid="window_contracting_party_middle_name" />
 			<column placement="-1" name="nazwisko" width="4" align="left" type="string" refid="window_contracting_party_last_name" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_country" />
-			<column placement="-1" name="kod" width="2" align="left" type="string" refid="window_contracting_party_postalcode" />
+			<column placement="-1" name="kod" width="-6" align="left" type="string" refid="window_contracting_party_postalcode" />
 			<column placement="-1" name="miasto" width="4" align="left" type="string" refid="window_contracting_party_city" />
 			<column placement="-1" name="ulica" width="4" align="left" type="string" refid="window_contracting_party_street" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_street_no" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_flat_no" />
-			<column placement="-1" name="NIP" width="2" align="left" type="string" refid="window_contracting_party_tin" />
+			<column placement="-1" name="NIP" width="-13" align="left" type="string" refid="window_contracting_party_tin" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_phone" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_fax" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_email" />
@@ -344,10 +344,10 @@
 			<editable>true</editable>
 			<draw_header>true</draw_header>
 			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
-			<column placement="-1" name="data wystawienia" width="3" align="center" type="date" refid="window_invoice_invoice_date" />
+			<column placement="-1" name="data wystawienia" width="-10" align="center" type="date" refid="window_invoice_invoice_date" />
 			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" dict="contracting_party" />
 			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" dict="contracting_party" />
-			<column placement="-1" name="data sprzeda¿y" width="3" align="center" type="date" refid="window_invoice_transaction_date" />
+			<column placement="-1" name="data sprzeda¿y" width="-10" align="center" type="date" refid="window_invoice_transaction_date" />
 			<column placement="-1" name="termin p³atno¶ci" width="2" align="left" type="integer" refid="window_invoice_due_date" />
 			<column placement="-1" name="metoda p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" dict="issuer" />
