@@ -152,8 +152,9 @@ bool HTestWindow::on_sel_change( yaal::hconsole::HEvent const& ) {
 
 bool HTestWindow::handler_delete( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
-	if ( _list->get_row_count() )
+	if ( _list->has_focus() && _list->get_row_count() ) {
 		_list->remove_current_row();
+	}
 	return ( true );
 	M_EPILOG
 }
