@@ -40,7 +40,7 @@ using namespace yaal::dbwrapper;
 namespace booker {
 
 HTestWindow::HTestWindow( const char* title_ )
-	: HWindow( title_ ), _names(), _list( NULL ), _edit( NULL ), _name( NULL ) {
+	: HWindow( title_ ), _names(), _list( NULL ), _editableList( nullptr ), _edit( NULL ), _name( NULL ) {
 	M_PROLOG
 	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
 	register_postprocess_handler( '\r', NULL, call( &HTestWindow::handler_enter, this, _1 ) );
@@ -57,7 +57,7 @@ HTestWindow::~HTestWindow ( void ) {
 void HTestWindow::do_init( void ) {
 	M_PROLOG
 	HWindow::do_init();
-	_name = new HComboboxWidget( this, - 21, 1, 9, 24, "&Name",
+	_name = new HComboboxWidget( this, -16, 1, 9, 24, "&Name",
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
@@ -80,35 +80,34 @@ void HTestWindow::do_init( void ) {
 		item[ 0 ].set_string( name );
 		controler->add_tail( item );
 	}
-	_list = new HListWidget( this, 1, 1, - 22, - 1,
-			"&Test data", HListWidgetAttributes().searchable( true ) );
+	_list = new HListWidget( this, 1, 1, -17, -1, "&Test data", HListWidgetAttributes().searchable( true ) );
 	_list->enable( true );
 	_list->set_focus();
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, _name ) );
 	HWidget* control( NULL );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 21, 40, 1, 39, "&Text",
+			control = new HEditWidget( this, -16, 27, 1, -1, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			control = _edit = new HEditWidget ( this, - 18, 1, 1, 29, "&Int",
+			control = _edit = new HEditWidget( this, -13, 1, 1, 24, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING,
-			control = new HEditWidget( this, - 15, 1, 1, 32, "&Real",
+			control = new HEditWidget( this, -13, 27, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.pattern( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME,
-			control = new HDateWidget( this, - 12, 1, "&Date",
+			control = new HDateWidget( this, -13, 61, "&Date",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
@@ -131,6 +130,15 @@ void HTestWindow::do_init( void ) {
 		row[ 4 ].set_time( rs._vDate );
 		mC->add_tail( row );
 	}
+	_editableList = new HListWidget( this, -10, 1, -3, -1, "&Edit test",
+			HListWidgetAttributes()
+			.editable( true )
+			.searchable( true )
+			.label_position( HWidget::LABEL::POSITION::STACKED ) );
+	_editableList->add_column( -1, make_resource<HListWidget::HColumnInfo>( "text", 1, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING ) );
+	_editableList->add_column( -1, make_resource<HListWidget::HColumnInfo>( "integer", 1, HWidget::BITS::ALIGN::RIGHT, TYPE::INT_LONG_LONG ) );
+	_editableList->add_column( -1, make_resource<HListWidget::HColumnInfo>( "real", 1, HWidget::BITS::ALIGN::RIGHT, TYPE::DOUBLE_LONG ) );
+	_editableList->enable( true );
 	paint();
 	return;
 	M_EPILOG

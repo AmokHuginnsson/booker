@@ -39,6 +39,7 @@ protected:
 	typedef yaal::hcore::HHashMap<int, yaal::hcore::HPair<int, yaal::hcore::HString>> names_t;
 	names_t _names;
 	yaal::hconsole::HListWidget* _list;
+	yaal::hconsole::HListWidget* _editableList;
 	yaal::hconsole::HEditWidget* _edit;
 	yaal::hconsole::HComboboxWidget* _name;
 	/*}*/
