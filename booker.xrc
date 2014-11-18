@@ -393,6 +393,7 @@
 			<dict>issuer</dict>
 		</datacombobox>
 		<datalist role="data">
+			<db table="invoice_item" column="name, price, vat, quantity, id" id_column="id" filter_column="id_invoice" sort="id ASC" />
 			<label position="stacked">&amp;Pozycje</label>
 			<position row="-9" column="1" height="-3" width="-1" />
 			<checkable>true</checkable>
