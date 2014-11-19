@@ -69,7 +69,9 @@ HRecordSet::ptr_t HTestSet::get_records( void ) {
 }
 
 void HTestSet::sync( yaal::dbwrapper::HRecordSet::iterator it ) {
-	_sQLDescriptor.sync( it );
+	for ( int i( 0 ), c( static_cast<int>( (*it).get_size() ) ); i < c; ++ i ) {
+		_sQLDescriptor[i] = it[i];
+	}
 	sync();
 }
 
