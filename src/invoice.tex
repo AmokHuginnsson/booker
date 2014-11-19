@@ -1,0 +1,158 @@
+% Report for studies.
+% useful stuff:
+% \raggedleft = left aligned
+% \raggedright = right aligned
+% \centering = centered
+\documentclass[a4paper,12pt,oneside]{mwart}
+\usepackage[MeX]{polski} % polish national characters
+\usepackage[latin2]{inputenc} % character encoding
+\usepackage{array}
+%\usepackage{showframe}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[cm]{fullpage}
+\usepackage{changepage}
+\usepackage[normalem]{ulem}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{arydshln}
+\makeatletter
+\makeatother
+\pagestyle{empty}
+\brokenpenalty=10000 % do not divide words across pages
+\clubpenalty=10000 % do not leave orphants
+\widowpenalty=10000 % do not leave widows
+%\sloppy % do not extend lines if not fit
+\frenchspacing
+\hyphenation{FreeBSD UNIX Debian PostgreSQL MySQL PLD MSSQL perl python
+Visual Studio Stable RedHat make gprof}
+\renewcommand*{\familydefault}{\sfdefault}
+\newcommand{\invoiceNo}{@invoiceNo@}
+\newcommand{\invoiceDate}{@invoiceDate@}
+\newcommand{\transactionDate}{@transactionDate@}
+\newcommand{\dueDate}{@dueDate@}
+\newcommand{\payMethod}{@payMethod@}
+\newcommand{\documentType}{@documentType@}
+\newcommand{\vendorName}{@vendorName@}
+\newcommand{\vendorStreet}{@vendorStreet@}
+\newcommand{\vendorCity}{@vendorCity@}
+\newcommand{\vendorTIN}{@vendorTIN@}
+\newcommand{\vendorExtra}{@vendorExtra@}
+\newcommand{\vendeeName}{@vendeeName@}
+\newcommand{\vendeeStreet}{@vendeeStreet@}
+\newcommand{\vendeeCity}{@vendeeCity@}
+\newcommand{\vendeeTIN}{@vendeeTIN@}
+\newcommand{\vendeeExtra}{@vendeeExtra@}
+\newcommand{\issuer}{@issuer@}
+\newcommand{\netto}{@netto@}
+\newcommand{\taxes}{@taxes@}
+\newcommand{\items}{@items@}
+\newcommand{\vatAmount}{@vatAmount@}
+\newcommand{\brutto}{@brutto@}
+\newcommand{\amountInWords}{@amountInWords@}
+\newcommand{\amok}{\fontencoding{T1}\fontfamily{amk}\selectfont}
+\newcommand{\sig}{\amok{\Large{\color{Blue!60!black}{\issuer}}}}
+\begin{document}
+\noindent
+\begin{flushright}
+	{\Large\textbf{Faktura VAT nr \invoiceNo}} \\
+	\medskip
+	\begin{tabular}{ l l }
+		Data wystawienia: & \invoiceDate \\
+		Data sprzeda¿y: & \transactionDate \\
+		Termin p³atno¶ci: & \dueDate \\
+		Metoda p³atno¶ci: & \payMethod \\
+	\end{tabular}
+\end{flushright}
+\medskip
+\begin{adjustwidth}{-2cm}{-2cm}{}
+	\begin{center}
+		\documentType \\
+		\bigskip
+		\begin{tabular}{ c c c }
+			\framebox{
+				\parbox[t][4.5cm]{8.5cm}{
+					\textbf{\textit{\uline{Sprzedawca}}}
+					\smallskip \\
+					\vendorName \\
+					\vendorStreet \\
+					\vendorCity \\
+					\\
+					\vendorTIN \\
+					\vendorExtra
+				}
+			}
+			&
+			\framebox{
+				\parbox[t][4.5cm]{8.5cm}{
+					\textbf{\textit{\uline{Nabywca}}}
+					\smallskip \\
+					\vendeeName \\
+					\vendeeStreet \\
+					\vendeeCity \\
+					\\
+					\vendeeTIN \\
+					\vendeeExtra
+				}
+			}
+		\end{tabular}
+		\bigskip
+		\begin{footnotesize}
+			\def\arraystretch{1.2}
+			\begin{tabular}[b]{|r p{6cm} l r r r r r r|}
+				\hline
+					\rowcolor[rgb]{.8,.8,.8}
+					\multicolumn{1}{|c|}{\textbf{Lp}}&
+					\multicolumn{1}{c|}{\textbf{Nazwa towaru lub us³ugi}}&
+					\multicolumn{1}{c|}{\textbf{Jedn}}&
+					\multicolumn{1}{c|}{\textbf{Ilo¶æ}}&
+					\multicolumn{1}{c|}{\textbf{Cena}}&
+					\multicolumn{1}{c|}{\parbox{1cm}{\centering \textbf{Stawka VAT}}}&
+					\multicolumn{1}{c|}{\textbf{Netto}}&
+					\multicolumn{1}{c|}{\parbox{1cm}{\centering \textbf{Kwota VAT}}}&
+					\multicolumn{1}{c|}{\textbf{Brutto}} \\
+				\hline
+					\items
+				\hline
+			\end{tabular}
+		\end{footnotesize}
+	\end{center}
+\end{adjustwidth}
+
+\begin{footnotesize}
+	\bigskip
+	\begin{flushright}
+		\def\arraystretch{1.2}
+		\begin{tabular}{| r | r | r | r |}
+			\hline
+				\textbf{Stawka VAT}&\textbf{Warto¶æ netto}&\textbf{Kwota VAT}&\textbf{Warto¶æ brutto} \\
+			\hline
+				\taxes
+			\hline
+				\multicolumn{1}{|c|}{\textbf{Razem}}&\textbf{\netto}&\textbf{\vatAmount}&\textbf{\brutto} \\
+			\hline
+		\end{tabular}
+	\end{flushright}
+\end{footnotesize}
+
+\bigskip
+\begin{flushleft}
+	\begin{small}
+		\begin{tabular}{ l l }
+			\textbf{Do zap³aty:}&\textbf{\brutto} \\
+		\hline
+			\textbf{S³ownie:}&\textbf{\amountInWords}
+		\end{tabular}
+	\end{small}
+\end{flushleft}
+
+\bigskip
+\begin{tabular}{ c }
+\sig \\
+\hline
+Wystawiaj±cy fakturê
+\end{tabular}
+\end{document}
+
