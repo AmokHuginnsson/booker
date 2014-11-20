@@ -53,7 +53,7 @@ OInvoiceItem::OInvoiceItem( void )
 OInvoice::OInvoice( void )
 	: _vendor(), _vendee(), _invoiceNo(), _invoiceDate(),
 	_transactionDate(), _dueDate(), _payMethod(), _issuer(),
-	_items()
+	_signature(), _items()
 	{}
 
 char const INVOICE_TEMPLATE_PATH[] = "./data/invoice.tex";
@@ -71,7 +71,7 @@ HString leave_characters( HString const& string_, HString const& characters_ ) {
 }
 }
 
-void print_invoice( OInvoice const& invoice_ ) {
+document_file_names_t print( OInvoice const& invoice_ ) {
 	M_PROLOG
 	HFSItem invoiceTemplatePath( INVOICE_TEMPLATE_PATH );
 	M_ENSURE( !! invoiceTemplatePath && invoiceTemplatePath.is_file() );
@@ -143,6 +143,7 @@ void print_invoice( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@vendeeExtra@", invoice_._vendee._extra );
 
 	invoiceText.replace( "@issuer@", invoice_._issuer );
+	invoiceText.replace( "@signature@", invoice_._signature );
 
 	typedef HMap<HNumber, HNumber> taxes_t;
 	taxes_t taxes;
@@ -183,14 +184,23 @@ void print_invoice( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@documentType@", "ORYGINA£" );
 	invoiceTextCopy.replace( "@documentType@", "KOPIA" );
 
+	document_file_names_t documentFileNames;
+
 	HString date( leave_characters( invoice_._invoiceDate, "0123456789-" ) );
-	HFile invoice( "fv_" + date + "_orig.tex", HFile::OPEN::WRITING );
+	HString fileName;
+
+	fileName.assign( "fv_" ).append( date ).append( "_orig.tex" );
+	HFile invoice( fileName, HFile::OPEN::WRITING );
 	invoice.write( invoiceText.raw(), invoiceText.get_length() );
 	invoice.close();
-	HFile invoiceCopy( "fv_" + date + "_copy.tex", HFile::OPEN::WRITING );
+	documentFileNames.emplace_back( fileName );
+
+	fileName.assign( "fv_" ).append( date ).append( "_copy.tex" );
+	HFile invoiceCopy( fileName, HFile::OPEN::WRITING );
 	invoiceCopy.write( invoiceTextCopy.raw(), invoiceTextCopy.get_length() );
 	invoiceCopy.close();
-	return;
+	documentFileNames.emplace_back( fileName );
+	return ( documentFileNames );
 	M_EPILOG
 }
 

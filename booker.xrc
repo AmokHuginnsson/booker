@@ -328,7 +328,7 @@
 			<mask>^[0-9 ()-\+]*$</mask>
 		</dataedit>
 	</datawindow>
-	<datawindow id="window_invoice" title="Faktury">
+	<invoicewindow id="window_invoice" title="Faktury">
 		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC" />
 		<dicts>
 			<dict name="contracting_party" table="contracting_party" id_column="id" value_column="name" />
@@ -406,5 +406,5 @@
 			<column placement="-1" name="VAT" width="1" align="right" type="real" />
 			<column placement="-1" name="ilo¶æ" width="1" align="right" type="integer" />
 		</datalist>
-	</datawindow>
+	</invoicewindow>
 </resource>

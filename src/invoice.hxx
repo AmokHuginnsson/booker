@@ -71,11 +71,13 @@ struct OInvoice {
 	yaal::hcore::HString _dueDate;
 	yaal::hcore::HString _payMethod;
 	yaal::hcore::HString _issuer;
+	yaal::hcore::HString _signature;
 	items_t _items;
 	OInvoice( void );
 };
 
-void print_invoice( OInvoice const& );
+typedef yaal::hcore::HArray<yaal::hcore::HString> document_file_names_t;
+document_file_names_t print( OInvoice const& );
 
 }
 
