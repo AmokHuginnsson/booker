@@ -36,8 +36,8 @@ namespace booker {
 
 HTestSet::HTestSet( HDataBase::ptr_t dataBase_ )
 	: _sQLDescriptor( dataBase_ ),
-	 _id( -1 ), _idName( -1 ), _vText(), _vInt(), _vReal(), _vDate( HTime::LOCAL, _iso8601DateFormat_ ),
-	_vTime( HTime::LOCAL, _iso8601TimeFormat_ ), _vDatetime( HTime::LOCAL, _iso8601DateTimeFormat_ ) {
+	 _id( -1 ), _idName( -1 ), _vText(), _vInt(), _vReal(), _vDate( HTime::TZ::LOCAL, _iso8601DateFormat_ ),
+	_vTime( HTime::TZ::LOCAL, _iso8601TimeFormat_ ), _vDatetime( HTime::TZ::LOCAL, _iso8601DateTimeFormat_ ) {
 	M_PROLOG
 	_sQLDescriptor.set_table( "test" );
 	return;
