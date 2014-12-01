@@ -329,7 +329,22 @@
 		</dataedit>
 	</datawindow>
 	<invoicewindow id="window_invoice" title="Faktury">
-		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC" />
+		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC">
+SELECT i.invoice_number AS invoice_number,
+	i.invoice_date AS invoice_date,
+	i.id_vendor AS id_vendor,
+	i.id_vendee AS id_vendee,
+	i.transaction_date AS transaction_date,
+	i.due_date AS due_date,
+	i.id_pay_method AS id_pay_method,
+	i.id_issuer AS id_issuer,
+	SUM( ii.price * ii.quantity ) AS netto,
+	SUM( ( ii.price * ( 100 + ii.vat ) * ii.quantity ) / 100 ) AS brutto
+FROM invoice AS i
+	LEFT JOIN invoice_item AS ii
+		ON i.id = ii.id_invoice
+GROUP BY i.id;
+		</db>
 		<dicts>
 			<dict name="contracting_party" table="contracting_party" id_column="id" value_column="name" />
 			<dict name="payment_method" table="payment_method" id_column="id" value_column="name" />
@@ -402,8 +417,8 @@
 			<editable>true</editable>
 			<draw_header>true</draw_header>
 			<column placement="-1" name="nazwa" width="6" align="left" type="string" />
-			<column placement="-1" name="cena" width="1" align="right" type="real" />
-			<column placement="-1" name="VAT" width="1" align="right" type="real" />
+			<column placement="-1" name="cena" width="1" align="right" type="real" format="%.2Lf" />
+			<column placement="-1" name="VAT" width="1" align="right" type="real" format="%.1Lf" />
 			<column placement="-1" name="ilo¶æ" width="1" align="right" type="integer" />
 		</datalist>
 	</invoicewindow>
