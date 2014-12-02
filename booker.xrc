@@ -335,11 +335,12 @@ SELECT i.invoice_number AS invoice_number,
 	i.id_vendor AS id_vendor,
 	i.id_vendee AS id_vendee,
 	i.transaction_date AS transaction_date,
+	SUM( ii.price * ii.quantity ) AS netto,
+	SUM( ( ii.price * ( 100 + ii.vat ) * ii.quantity ) / 100 ) AS brutto,
 	i.due_date AS due_date,
 	i.id_pay_method AS id_pay_method,
 	i.id_issuer AS id_issuer,
-	SUM( ii.price * ii.quantity ) AS netto,
-	SUM( ( ii.price * ( 100 + ii.vat ) * ii.quantity ) / 100 ) AS brutto
+	i.id AS id
 FROM invoice AS i
 	LEFT JOIN invoice_item AS ii
 		ON i.id = ii.id_invoice
@@ -363,8 +364,10 @@ GROUP BY i.id;
 			<column placement="-1" name="sprzedaj±cy" width="4" align="left" type="string" refid="window_invoice_vendor" dict="contracting_party" />
 			<column placement="-1" name="kupuj±cy" width="4" align="left" type="string" refid="window_invoice_vendee" dict="contracting_party" />
 			<column placement="-1" name="data sprzeda¿y" width="-10" align="center" type="date" refid="window_invoice_transaction_date" />
-			<column placement="-1" name="termin p³atno¶ci" width="2" align="left" type="integer" refid="window_invoice_due_date" />
-			<column placement="-1" name="metoda p³atno¶ci" width="2" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
+			<column placement="-1" name="netto" width="1" align="right" type="real" format="%.2Lf" />
+			<column placement="-1" name="brutto" width="1" align="right" type="real" format="%.2Lf" />
+			<column placement="-1" name="termin p³atno¶ci" width="1" align="left" type="integer" refid="window_invoice_due_date" />
+			<column placement="-1" name="metoda p³atno¶ci" width="1" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" dict="issuer" />
 		</datalist>
 		<dataedit id="window_invoice_no" role="data">
