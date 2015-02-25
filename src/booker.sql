@@ -69,6 +69,11 @@ CREATE TABLE issuer (
 	signature VARCHAR(255)
 );
 
+CREATE TABLE invoice_type (
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(32)
+);
+
 CREATE TABLE invoice (
 	id INTEGER PRIMARY KEY,
 	id_vendor INTEGER NOT NULL,
@@ -78,7 +83,8 @@ CREATE TABLE invoice (
 	transaction_date DATE,
 	due_date INTEGER,
 	id_pay_method INTEGER,
-	id_issuer INTEGER
+	id_issuer INTEGER,
+	id_invoice_type INTEGER
 );
 
 CREATE TABLE invoice_item (

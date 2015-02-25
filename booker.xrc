@@ -45,6 +45,10 @@
 					<handler name="create_window" param="window_payment_method" />
 				</menu_item>
 				<menu_item>
+					<label>Typy faktur</label>
+					<handler name="create_window" param="window_invoice_type" />
+				</menu_item>
+				<menu_item>
 					<label>Wystawiaj±cy</label>
 					<handler name="create_window" param="window_issuer" />
 				</menu_item>
@@ -93,6 +97,26 @@
 			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_payment_method_name" />
 		</datalist>
 		<dataedit id="window_payment_method_name" role="data">
+			<label position="stacked">&amp;Nazwa</label>
+			<position row="-7" column="1" height="1" width="-25" />
+			<max_string_size>160</max_string_size>
+			<value></value>
+			<mask>^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
+		</dataedit>
+	</datawindow>
+	<datawindow id="window_invoice_type" title="Typy faktur">
+		<db table="invoice_type" column="name, id" id_column="id" sort="name ASC" />
+		<datalist role="main">
+			<label position="stacked">&amp;Typy faktur</label>
+			<position row="1" column="1" height="-8" width="-1" />
+			<checkable>true</checkable>
+			<sortable>true</sortable>
+			<searchable>true</searchable>
+			<editable>true</editable>
+			<draw_header>true</draw_header>
+			<column placement="-1" name="nazwa" width="4" align="left" type="string" refid="window_invoice_type_name" />
+		</datalist>
+		<dataedit id="window_invoice_type_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
 			<position row="-7" column="1" height="1" width="-25" />
 			<max_string_size>160</max_string_size>
@@ -329,7 +353,7 @@
 		</dataedit>
 	</datawindow>
 	<invoicewindow id="window_invoice" title="Faktury">
-		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id" id_column="id" sort="invoice_date ASC">
+		<db table="invoice" column="invoice_number, invoice_date, id_vendor, id_vendee, transaction_date, due_date, id_pay_method, id_issuer, id_invoice_type, id" id_column="id" sort="invoice_date ASC">
 SELECT i.invoice_number AS invoice_number,
 	i.invoice_date AS invoice_date,
 	i.id_vendor AS id_vendor,
@@ -340,6 +364,7 @@ SELECT i.invoice_number AS invoice_number,
 	i.due_date AS due_date,
 	i.id_pay_method AS id_pay_method,
 	i.id_issuer AS id_issuer,
+	i.id_invoice_type AS id_invoice_type,
 	i.id AS id
 FROM invoice AS i
 	LEFT JOIN invoice_item AS ii
@@ -349,6 +374,7 @@ GROUP BY i.id;
 		<dicts>
 			<dict name="contracting_party" table="contracting_party" id_column="id" value_column="name" />
 			<dict name="payment_method" table="payment_method" id_column="id" value_column="name" />
+			<dict name="invoice_type" table="invoice_type" id_column="id" value_column="name" />
 			<dict name="issuer" table="issuer" id_column="id" value_column="name" />
 		</dicts>
 		<datalist role="main">
@@ -368,6 +394,7 @@ GROUP BY i.id;
 			<column placement="-1" name="brutto" width="1" align="right" type="real" format="%.2Lf" />
 			<column placement="-1" name="termin p≥atno∂ci" width="1" align="left" type="integer" refid="window_invoice_due_date" />
 			<column placement="-1" name="metoda p≥atno∂ci" width="1" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
+			<column placement="-1" name="typ faktury" width="-4" align="left" type="string" refid="window_invoice_invoice_type" dict="invoice_type" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" dict="issuer" />
 		</datalist>
 		<dataedit id="window_invoice_no" role="data">
@@ -402,8 +429,13 @@ GROUP BY i.id;
 		</datacombobox>
 		<datacombobox id="window_invoice_payment_method" role="data">
 			<label position="stacked">&amp;Metoda p≥atno∂ci</label>
-			<position row="-12" column="1" width="38" height="6" />
+			<position row="-12" column="1" width="19" height="6" />
 			<dict>payment_method</dict>
+		</datacombobox>
+		<datacombobox id="window_invoice_invoice_type" role="data">
+			<label position="stacked">&amp;Typ faktury</label>
+			<position row="-12" column="22" width="17" height="6" />
+			<dict>invoice_type</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_issuer" role="data">
 			<label position="stacked">&amp;Wystawiaj±cy</label>
