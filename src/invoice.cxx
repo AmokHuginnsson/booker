@@ -179,7 +179,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );
 	invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
 	invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
-	invoiceText.replace( "@amountInWords@", kwota_slownie( totalBrutto ) );
+	invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto ) );
 	HString invoiceTextCopy( invoiceText );
 	invoiceText.replace( "@documentType@", "ORYGINA£" );
 	invoiceTextCopy.replace( "@documentType@", "KOPIA" );
