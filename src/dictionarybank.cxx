@@ -76,7 +76,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 		analyser [ 'B' ] = value * value;
 		value = analyser.evaluate ( );
 */
-		item[ 0 ].set_string( tools::util::in_words_pl( value ) );
+		item[ 0 ].set_string( tools::money::in_words_pl( value, money::CURRENCY::PLN ) );
 		item[ 1 ].set_string( "wype³niacz" );
 /*		iitem [ 2 ] = HString ( value );*/
 		item[ 2 ].set_real( value );

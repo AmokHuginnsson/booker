@@ -28,7 +28,7 @@ Copyright:
 #include <yaal/tools/hfsitem.hxx>
 #include <yaal/tools/hstringstream.hxx>
 #include <yaal/tools/streamtools.hxx>
-#include <yaal/tools/util.hxx>
+#include <yaal/tools/money.hxx>
 M_VCSID( "$Id: " __ID__ " $" )
 //M_VCSID( "$Id: " __TID__ " $" )
 #include "invoice.hxx"
@@ -36,7 +36,7 @@ M_VCSID( "$Id: " __ID__ " $" )
 using namespace yaal;
 using namespace yaal::hcore;
 using namespace yaal::tools;
-using namespace yaal::tools::util;
+using namespace yaal::tools::money;
 
 namespace invoice {
 
@@ -179,7 +179,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );
 	invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
 	invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
-	invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto ) );
+	invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto, CURRENCY::PLN ) );
 	HString invoiceTextCopy( invoiceText );
 	invoiceText.replace( "@documentType@", "ORYGINA£" );
 	invoiceTextCopy.replace( "@documentType@", "KOPIA" );
