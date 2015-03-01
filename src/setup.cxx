@@ -58,6 +58,9 @@ void OSetup::test_setup( void ) {
 	if ( ! _logPath ) {
 		M_THROW( _( "log file name not set" ), errno );
 	}
+	if ( ! _resource ) {
+		M_THROW( _( "resource name not set" ), errno );
+	}
 	return;
 	M_EPILOG
 }

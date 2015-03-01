@@ -62,7 +62,13 @@ struct OInvoiceItem {
 };
 
 struct OInvoice {
+	enum class TYPE {
+		INVALID,
+		EU,
+		PL
+	};
 	typedef yaal::hcore::HArray<OInvoiceItem> items_t;
+	TYPE _type;
 	OContractingParty _vendor;
 	OContractingParty _vendee;
 	yaal::hcore::HString _invoiceNo;

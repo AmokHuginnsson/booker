@@ -1,7 +1,7 @@
 /*
 ---       `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski         ---
 
-	setup.hxx - this file is integral part of `booker' project.
+  setup.hxx - this file is integral part of `booker' project.
 
   i.  You may not make any changes in Copyright information.
   ii. You must attach Copyright information to any part of every copy
@@ -39,6 +39,7 @@ struct OSetup {
 	bool _test;
 	char * _programName;
 	yaal::hcore::HString _logPath;
+	yaal::hcore::HString _resource;
 	yaal::hcore::HString _dataBase;
 	yaal::hcore::HString _login;
 	yaal::hcore::HString _password;
@@ -46,8 +47,11 @@ struct OSetup {
 	OSetup( void )
 		: _quiet( false ), _verbose( false ), _test( false ),
 		_programName( NULL ),
-		_logPath(), _dataBase(),
-		_login(), _password() {}
+		_logPath(), _resource(),
+		_dataBase(), _login(),
+		_password() {
+		return;
+	}
 	void test_setup( void );
 private:
 	OSetup ( OSetup const& );

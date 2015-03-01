@@ -1,0 +1,136 @@
+% Report for studies.
+% useful stuff:
+% \raggedleft = left aligned
+% \raggedright = right aligned
+% \centering = centered
+\documentclass[a4paper,12pt,oneside]{mwart}
+\usepackage[MeX]{polski} % polish national characters
+\usepackage[latin2]{inputenc} % character encoding
+\usepackage{array}
+%\usepackage{showframe}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[cm]{fullpage}
+\usepackage{changepage}
+\usepackage[normalem]{ulem}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{arydshln}
+\makeatletter
+\makeatother
+\pagestyle{empty}
+\brokenpenalty=10000 % do not divide words across pages
+\clubpenalty=10000 % do not leave orphants
+\widowpenalty=10000 % do not leave widows
+%\sloppy % do not extend lines if not fit
+\frenchspacing
+\hyphenation{FreeBSD UNIX Debian PostgreSQL MySQL PLD MSSQL perl python
+Visual Studio Stable RedHat make gprof}
+\renewcommand*{\familydefault}{\sfdefault}
+\newcommand{\invoiceNo}{@invoiceNo@}
+\newcommand{\invoiceDate}{@invoiceDate@}
+\newcommand{\transactionDate}{@transactionDate@}
+\newcommand{\dueDate}{@dueDate@}
+\newcommand{\payMethod}{@payMethod@}
+\newcommand{\documentType}{@documentType@}
+\newcommand{\vendorName}{@vendorName@}
+\newcommand{\vendorStreet}{@vendorStreet@}
+\newcommand{\vendorCity}{@vendorCity@}
+\newcommand{\vendorTIN}{@vendorTIN@}
+\newcommand{\vendorExtra}{@vendorExtra@}
+\newcommand{\vendeeName}{@vendeeName@}
+\newcommand{\vendeeStreet}{@vendeeStreet@}
+\newcommand{\vendeeCity}{@vendeeCity@}
+\newcommand{\vendeeTIN}{@vendeeTIN@}
+\newcommand{\vendeeExtra}{@vendeeExtra@}
+\newcommand{\issuer}{@issuer@}
+\newcommand{\netto}{@netto@}
+\newcommand{\items}{@items@}
+\newcommand{\amountInWords}{@amountInWords@}
+\newcommand{\amok}{\fontencoding{T1}\fontfamily{amk}\selectfont}
+\newcommand{\sig}{\@signature@{\Large{\color{Blue!60!black}{\issuer}}}}
+\begin{document}
+\noindent
+\begin{flushright}
+	{\Large\textbf{Invoice number \invoiceNo}} \\
+	\medskip
+	\begin{tabular}{ l l }
+		Invoice date: & \invoiceDate \\
+		Transaction date: & \transactionDate \\
+		Due date: & \dueDate \\
+		Payment method: & \payMethod \\
+	\end{tabular}
+\end{flushright}
+\medskip
+\begin{adjustwidth}{-2cm}{-2cm}{}
+	\begin{center}
+		\documentType \\
+		\bigskip
+		\begin{tabular}{ c c c }
+			\framebox{
+				\parbox[t][4.5cm]{8.5cm}{
+					\textbf{\textit{\uline{Vendor}}}
+					\smallskip \\
+					\vendorName \\
+					\vendorStreet \\
+					\vendorCity \\
+					\\
+					\vendorTIN \\
+					\vendorExtra
+				}
+			}
+			&
+			\framebox{
+				\parbox[t][4.5cm]{8.5cm}{
+					\textbf{\textit{\uline{Vendee}}}
+					\smallskip \\
+					\vendeeName \\
+					\vendeeStreet \\
+					\vendeeCity \\
+					\\
+					\vendeeTIN \\
+					\vendeeExtra
+				}
+			}
+		\end{tabular}
+		\bigskip
+		\begin{footnotesize}
+			\def\arraystretch{1.2}
+			\begin{tabular}[b]{|r p{6cm} l r r r |}
+				\hline
+					\rowcolor[rgb]{.8,.8,.8}
+					\multicolumn{1}{|c|}{\textbf{No}}&
+					\multicolumn{1}{c|}{\textbf{Item or service name}}&
+					\multicolumn{1}{c|}{\textbf{Unit}}&
+					\multicolumn{1}{c|}{\textbf{Quantity}}&
+					\multicolumn{1}{c|}{\textbf{Price}}&
+					\multicolumn{1}{c|}{\textbf{Value}} \\
+				\hline
+					\items
+				\hline
+			\end{tabular}
+		\end{footnotesize}
+	\end{center}
+\end{adjustwidth}
+
+\bigskip
+\begin{flushleft}
+	\begin{small}
+		\begin{tabular}{ l l }
+			\textbf{Total to pay:}&\textbf{\netto} \\
+		\hline
+			\textbf{In words:}&\textbf{\amountInWords}
+		\end{tabular}
+	\end{small}
+\end{flushleft}
+
+\bigskip
+\begin{tabular}{ c }
+\sig \\
+\hline
+Issuer signature
+\end{tabular}
+\end{document}
+

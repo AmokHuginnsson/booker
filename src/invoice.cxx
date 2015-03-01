@@ -51,12 +51,12 @@ OInvoiceItem::OInvoiceItem( void )
 	{}
 
 OInvoice::OInvoice( void )
-	: _vendor(), _vendee(), _invoiceNo(), _invoiceDate(),
+	: _type( TYPE::INVALID ), _vendor(), _vendee(), _invoiceNo(), _invoiceDate(),
 	_transactionDate(), _dueDate(), _payMethod(), _issuer(),
 	_signature(), _items()
 	{}
 
-char const INVOICE_TEMPLATE_PATH[] = "./data/invoice.tex";
+char const INVOICE_TEMPLATE_PATH[] = "./data/invoice_";
 
 namespace {
 HString leave_characters( HString const& string_, HString const& characters_ ) {
@@ -73,10 +73,18 @@ HString leave_characters( HString const& string_, HString const& characters_ ) {
 
 document_file_names_t print( OInvoice const& invoice_ ) {
 	M_PROLOG
-	HFSItem invoiceTemplatePath( INVOICE_TEMPLATE_PATH );
+	HString invoiceTemplatePathName( INVOICE_TEMPLATE_PATH );
+	if ( invoice_._type == OInvoice::TYPE::EU ) {
+		invoiceTemplatePathName.append( "eu.tex" );
+	} else if ( invoice_._type == OInvoice::TYPE::PL ) {
+		invoiceTemplatePathName.append( "pl.tex" );
+	} else {
+		M_THROW( "Invoice type not set: ", static_cast<int>( invoice_._type ) );
+	}
+	HFSItem invoiceTemplatePath( invoiceTemplatePathName );
 	M_ENSURE( !! invoiceTemplatePath && invoiceTemplatePath.is_file() );
 	int invoiceTemplateSize( static_cast<int>( invoiceTemplatePath.get_size() ) );
-	HFile invoiceTemplate( INVOICE_TEMPLATE_PATH, HFile::OPEN::READING );
+	HFile invoiceTemplate( invoiceTemplatePathName, HFile::OPEN::READING );
 	HChunk readBuffer( invoiceTemplateSize );
 	M_ENSURE( invoiceTemplate.read( readBuffer.raw(), invoiceTemplateSize ) == invoiceTemplateSize );
 	invoiceTemplate.close();
@@ -149,40 +157,55 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	taxes_t taxes;
 	HStringStream items;
 	int no( 1 );
+	HNumber totalNetto;
+	HString unit( invoice_._type == OInvoice::TYPE::PL ? "szt." : "each" );
 	for ( OInvoice::items_t::const_iterator it( invoice_._items.begin() ), end( invoice_._items.end() ); it != end; ++ it ) {
-		if ( no > 1 )
+		if ( no > 1 ) {
 			items << "\\hdashline" << endl;
+		}
 		HNumber netto( it->_price * it->_quantity );
+		totalNetto += netto;
 		HNumber vat( ( netto * it->_vat ) / "100" );
 		HNumber brutto( netto + vat );
-		items << no << '&' << it->_name << "&szt.&" << it->_quantity << '&' << money_string( it->_price )
-			<< '&' << it->_vat << "\\%&" << money_string( netto ) << '&' << money_string( vat ) << '&' << money_string( brutto ) << "\\\\" << endl;
+		items << no << '&' << it->_name << "&" << unit << "&" << it->_quantity << '&' << money_string( it->_price );
+		if ( invoice_._type == OInvoice::TYPE::PL ) {
+			items << '&' << it->_vat << "\\%&" << money_string( netto ) << '&' << money_string( vat ) << '&' << money_string( brutto ) << "\\\\" << endl;
+		} else {
+			items << '&' << money_string( netto ) << "\\\\" << endl;
+		}
 		++ no;
 	}
 	invoiceText.replace( "@items@", items.string() );
-	for ( OInvoice::items_t::const_iterator it( invoice_._items.begin() ), end( invoice_._items.end() ); it != end; ++ it ) {
-		taxes[it->_vat] += it->_quantity * it->_price;
+	if ( invoice_._type == OInvoice::TYPE::PL ) {
+		for ( OInvoice::items_t::const_iterator it( invoice_._items.begin() ), end( invoice_._items.end() ); it != end; ++ it ) {
+			taxes[it->_vat] += it->_quantity * it->_price;
+		}
+		HStringStream taxesText;
+		HNumber totalVat;
+		HNumber totalBrutto;
+		for ( taxes_t::const_iterator it( taxes.begin() ), end( taxes.end() ); it != end; ++ it ) {
+			HNumber vat( ( it->first * it->second ) / "100" );
+			HNumber brutto( it->second + vat );
+			totalVat += vat;
+			totalBrutto += brutto;
+			taxesText << it->first << "\\%&" << money_string( it->second ) << '&' << money_string( vat ) << '&' << money_string( brutto ) << "\\\\" << endl;
+		}
+		invoiceText.replace( "@taxes@", taxesText.string() );
+		invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
+		invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
+		invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto, CURRENCY::PLN ) );
+	} else {
+		invoiceText.replace( "@amountInWords@", in_words_en( totalNetto, CURRENCY::PLN ) );
 	}
-	HStringStream taxesText;
-	HNumber totalNetto;
-	HNumber totalVat;
-	HNumber totalBrutto;
-	for ( taxes_t::const_iterator it( taxes.begin() ), end( taxes.end() ); it != end; ++ it ) {
-		HNumber vat( ( it->first * it->second ) / "100" );
-		HNumber brutto( it->second + vat );
-		totalNetto += it->second;
-		totalVat += vat;
-		totalBrutto += brutto;
-		taxesText << it->first << "\\%&" << money_string( it->second ) << '&' << money_string( vat ) << '&' << money_string( brutto ) << "\\\\" << endl;
-	}
-	invoiceText.replace( "@taxes@", taxesText.string() );
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );
-	invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
-	invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
-	invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto, CURRENCY::PLN ) );
 	HString invoiceTextCopy( invoiceText );
-	invoiceText.replace( "@documentType@", "ORYGINA£" );
-	invoiceTextCopy.replace( "@documentType@", "KOPIA" );
+	if ( invoice_._type == OInvoice::TYPE::PL ) {
+		invoiceText.replace( "@documentType@", "ORYGINA£" );
+		invoiceTextCopy.replace( "@documentType@", "KOPIA" );
+	} else {
+		invoiceText.replace( "@documentType@", "ORYGINAL" );
+		invoiceTextCopy.replace( "@documentType@", "COPY" );
+	}
 
 	document_file_names_t documentFileNames;
 

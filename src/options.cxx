@@ -66,6 +66,7 @@ int handle_program_options( int argc_, char** argv_ ) {
 	OOptionInfo info( po, setup._programName, "fiscal accounting software", NULL );
 	bool stop = false;
 	po( "log_path", program_options_helper::option_value( setup._logPath ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "path pointing to file for application logs", "path" )
+		( "resource", program_options_helper::option_value( setup._resource ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "path to resource file", "path" )
 		( "database", program_options_helper::option_value( setup._dataBase ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "database specification", "spec" )
 		( "login", program_options_helper::option_value( setup._login ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "login for database", "login" )
 		( "password", program_options_helper::option_value( setup._password ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "password for database", "pass" )

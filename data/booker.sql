@@ -21,16 +21,16 @@ CREATE TABLE config (
 
 CREATE TABLE contracting_party (
 	id INTEGER PRIMARY KEY,
-	name VARCHAR(64),
-	first_name VARCHAR(32),
-	middle_name VARCHAR(32),
-	last_name VARCHAR(32),
+	name VARCHAR(256),
+	first_name VARCHAR(64),
+	middle_name VARCHAR(64),
+	last_name VARCHAR(64),
 	country VARCHAR(64),
-	postal_code VARCHAR(8),
+	postal_code VARCHAR(16),
 	city VARCHAR(64),
-	street VARCHAR(128),
-	street_number VARCHAR(8),
-	flat_number VARCHAR(8),
+	street VARCHAR(256),
+	street_number VARCHAR(64),
+	flat_number VARCHAR(16),
 	tin VARCHAR(16),
 	email VARCHAR(64),
 	webpage VARCHAR(128),
@@ -83,8 +83,8 @@ CREATE TABLE invoice (
 	transaction_date DATE,
 	due_date INTEGER,
 	id_pay_method INTEGER,
-	id_issuer INTEGER,
-	id_invoice_type INTEGER
+	id_invoice_type INTEGER,
+	id_issuer INTEGER
 );
 
 CREATE TABLE invoice_item (

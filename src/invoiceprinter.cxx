@@ -74,10 +74,11 @@ OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 
 void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 	HString sql(
-			"SELECT i.*, pm.name, issuer.*"
+			"SELECT i.*, pm.name, issuer.*, invoice_type.name"
 			" FROM invoice AS i "
 			" LEFT JOIN payment_method AS pm ON pm.id = i.id_pay_method"
 			" LEFT JOIN issuer ON issuer.id = i.id_issuer"
+			" LEFT JOIN invoice_type ON invoice_type.id = i.id_invoice_type"
 			" WHERE i.id = "
 	);
 	sql.append( to_string( id_ ) );
@@ -92,10 +93,23 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 	inv._invoiceNo.assign( document[3] ? *document[3] : "" );
 	inv._invoiceDate.assign( document[4] ? *document[4] : "" );
 	inv._transactionDate.assign( document[5] ? *document[5] : "" );
-	inv._dueDate.assign( document[6] ? *document[6] : "" ).append( " dni" );
-	inv._payMethod.assign( document[9] ? *document[9] : "" );
-	inv._issuer.assign( document[11] ? *document[11] : "" );
-	inv._signature.assign( document[12] ? *document[12] : "" );
+	inv._dueDate.assign( document[6] ? *document[6] : "" );
+	inv._payMethod.assign( document[10] ? *document[10] : "" );
+	inv._issuer.assign( document[12] ? *document[12] : "" );
+	inv._signature.assign( document[13] ? *document[13] : "" );
+	if ( !! document[14] ) {
+		HString type( *document[14] );
+		type.lower();
+		if ( type == "eu" ) {
+			inv._type = OInvoice::TYPE::EU;
+			inv._dueDate.append( " days" );
+		} else if ( type == "pl" ) {
+			inv._type = OInvoice::TYPE::PL;
+			inv._dueDate.append( " dni" );
+		} else {
+			M_THROW( "Unsupported invoice type: `"_ys.append( type ).append( "'." ), 0 );
+		}
+	}
 	HCRUDDescriptor crud( db_ );
 	crud.set_table( "invoice_item" );
 	crud.set_filter( to_string( "id_invoice = " ).append( to_string( id_ ) ) );
