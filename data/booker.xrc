@@ -251,7 +251,7 @@
 			<label position="stacked">&amp;NIP</label>
 			<position row="-20" column="1" height="1" width="16" />
 			<max_string_size>15</max_string_size>
-			<mask>^[0-9-]*$</mask>
+			<mask>^\([A-Z][A-Z] \)\?[0-9-]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
@@ -294,7 +294,7 @@
 			<label position="stacked">&amp;Kod</label>
 			<position row="-14" column="28" height="1" width="7" />
 			<max_string_size>8</max_string_size>
-			<mask>^[0-9 -]*$</mask>
+			<mask>^[0-9a-zA-Z -]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_city" role="data">
 			<label position="stacked">&amp;Miasto</label>
@@ -306,7 +306,7 @@
 			<label position="stacked">&amp;Ulica</label>
 			<position row="-11" column="1" height="1" width="40" />
 			<max_string_size>48</max_string_size>
-			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\.-]*$</mask>
+			<mask>^[0-9a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ /\\.,-]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_street_no" role="data">
 			<label position="stacked">&amp;Numer domu</label>
@@ -318,7 +318,7 @@
 			<label position="stacked">&amp;Numer mieszkania</label>
 			<position row="-11" column="60" height="1" width="8" />
 			<max_string_size>16</max_string_size>
-			<mask>^[0-9a-zA-Z/]*$</mask>
+			<mask>^[0-9a-zA-Z/ ,\\.-]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_phone" role="data">
 			<label position="stacked">&amp;Telefon</label>
