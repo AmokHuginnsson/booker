@@ -251,7 +251,8 @@
 			<label position="stacked">&amp;NIP</label>
 			<position row="-20" column="1" height="1" width="16" />
 			<max_string_size>15</max_string_size>
-			<mask>^\([A-Z][A-Z] \)\?[0-9-]*$</mask>
+			<mask>^[A-Z0-9 -]*$</mask>
+			<valid>^\([A-Z][A-Z] \)\?[0-9][0-9-]*[0-9]$</valid>
 		</dataedit>
 		<dataedit id="window_contracting_party_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
@@ -402,6 +403,7 @@ GROUP BY i.id;
 			<position row="-18" column="1" height="1" width="16" />
 			<max_string_size>15</max_string_size>
 			<mask>^[FV0-9/-]*$</mask>
+			<valid>^FV/[0-9][0-9/-]*[0-9]$</valid>
 		</dataedit>
 		<datadate id="window_invoice_invoice_date" role="data">
 			<label position="stacked">Data &amp;wystawienia</label>

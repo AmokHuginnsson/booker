@@ -61,7 +61,7 @@ void HTestWindow::do_init( void ) {
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
-				.pattern( "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\._@-]*$" )
+				.mask( "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED )
 				.up<HComboboxWidgetAttributes>()
 				.searchable( true )
@@ -89,21 +89,21 @@ void HTestWindow::do_init( void ) {
 			control = new HEditWidget( this, -16, 27, 1, -1, "&Text",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ !,-]*$" )
+				.mask( "^[a-zA-Z±°Ê∆Í ≥£Ò—Û”∂¶º¨øØ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
 			control = _edit = new HEditWidget( this, -13, 1, 1, 24, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( "^[0-9]*$" )
+				.mask( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
 			control = new HEditWidget( this, -13, 27, 1, 32, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
-				.pattern( "^[0-9\\.-]*$" )
+				.mask( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
