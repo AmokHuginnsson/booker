@@ -122,6 +122,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		vendorCity += " ";
 		vendorCity += invoice_._vendor._city;
 	}
+	invoiceText.replace( "@vendorCountry@", invoice_._vendor._country );
 	invoiceText.replace( "@vendorCity@", vendorCity );
 	invoiceText.replace( "@vendorTIN@", invoice_._vendor._tin );
 	invoiceText.replace( "@vendorExtra@", invoice_._vendor._extra );
@@ -149,6 +150,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		vendeeCity += " ";
 		vendeeCity += invoice_._vendee._city;
 	}
+	invoiceText.replace( "@vendeeCountry@", invoice_._vendee._country );
 	invoiceText.replace( "@vendeeCity@", vendeeCity );
 	invoiceText.replace( "@vendeeTIN@", invoice_._vendee._tin );
 	invoiceText.replace( "@vendeeExtra@", invoice_._vendee._extra );

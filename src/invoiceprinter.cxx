@@ -61,6 +61,7 @@ OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 		name.append( contractingPartyData[4] ? *contractingPartyData[4] : "" );
 	}
 	contractingParty._name.assign( name );
+	contractingParty._country.assign( contractingPartyData[5] ? *contractingPartyData[5] : "" );
 	contractingParty._postalCode.assign( contractingPartyData[6] ? *contractingPartyData[6] : "" );
 	contractingParty._city.assign( contractingPartyData[7] ? *contractingPartyData[7] : "" );
 	contractingParty._street.assign( contractingPartyData[8] ? *contractingPartyData[8] : "" );
