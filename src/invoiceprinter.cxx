@@ -65,7 +65,7 @@ OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 	contractingParty._city.assign( contractingPartyData[7] ? *contractingPartyData[7] : "" );
 	contractingParty._street.assign( contractingPartyData[8] ? *contractingPartyData[8] : "" );
 	contractingParty._streetNo.assign( contractingPartyData[9] ? *contractingPartyData[9] : "" );
-	contractingParty._tin.assign( "NIP " ).append( contractingPartyData[11] ? *contractingPartyData[11] : "" );
+	contractingParty._tin.assign( contractingPartyData[11] ? *contractingPartyData[11] : "" );
 	contractingParty._extra.assign( contractingPartyData[16] ? *contractingPartyData[16] : "" );
 	return ( contractingParty );
 }

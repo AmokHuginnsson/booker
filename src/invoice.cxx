@@ -58,6 +58,10 @@ OInvoice::OInvoice( void )
 
 char const INVOICE_TEMPLATE_PATH[] = "./data/invoice_";
 
+HHashMap<HString, HString> _translations_ = {
+	{ "przelew", "Bank transfer" }
+};
+
 namespace {
 HString leave_characters( HString const& string_, HString const& characters_ ) {
 	M_PROLOG
@@ -94,7 +98,6 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@invoiceDate@", invoice_._invoiceDate );
 	invoiceText.replace( "@transactionDate@", invoice_._transactionDate );
 	invoiceText.replace( "@dueDate@", invoice_._dueDate );
-	invoiceText.replace( "@payMethod@", invoice_._payMethod );
 
 	HString vendorName( invoice_._vendor._name );
 	if ( vendorName.is_empty() ) {
@@ -194,8 +197,10 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
 		invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
 		invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto, CURRENCY::PLN ) );
+		invoiceText.replace( "@payMethod@", invoice_._payMethod );
 	} else {
 		invoiceText.replace( "@amountInWords@", in_words_en( totalNetto, CURRENCY::PLN ) );
+		invoiceText.replace( "@payMethod@", _translations_.at( HString( invoice_._payMethod ).lower() ) );
 	}
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );
 	HString invoiceTextCopy( invoiceText );
