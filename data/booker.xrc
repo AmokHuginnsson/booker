@@ -252,7 +252,7 @@
 			<position row="-20" column="1" height="1" width="16" />
 			<max_string_size>24</max_string_size>
 			<mask>^[A-Z0-9 -]*$</mask>
-			<valid>^\([A-Z][A-Z] \)\?[0-9][0-9-]*[0-9]$</valid>
+			<valid>^([A-Z][A-Z] )?[0-9][0-9-]*[0-9]$</valid>
 		</dataedit>
 		<dataedit id="window_contracting_party_name" role="data">
 			<label position="stacked">&amp;Nazwa</label>
