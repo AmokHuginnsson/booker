@@ -1,7 +1,7 @@
 /*
 ---       `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski         ---
 
-	rc_options.cxx - this file is integral part of `booker' project.
+  options.cxx - this file is integral part of `booker' project.
 
   i.  You may not make any changes in Copyright information.
   ii. You must attach Copyright information to any part of every copy
@@ -52,7 +52,7 @@ bool set_variables( HString& option_, HString& value_ ) {
 	return ( true );
 }
 
-void version( void* ) {
+void version( void ) {
 	cout << PACKAGE_STRING << endl;
 }
 
@@ -65,21 +65,96 @@ int handle_program_options( int argc_, char** argv_ ) {
 	HProgramOptionsHandler po;
 	OOptionInfo info( po, setup._programName, "fiscal accounting software", NULL );
 	bool stop = false;
-	po( "log_path", program_options_helper::option_value( setup._logPath ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "path pointing to file for application logs", "path" )
-		( "resource", program_options_helper::option_value( setup._resource ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "path to resource file", "path" )
-		( "database", program_options_helper::option_value( setup._dataBase ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "database specification", "spec" )
-		( "login", program_options_helper::option_value( setup._login ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "login for database", "login" )
-		( "password", program_options_helper::option_value( setup._password ), HProgramOptionsHandler::OOption::TYPE::REQUIRED, "password for database", "pass" )
-		( "quiet", program_options_helper::option_value( setup._quiet ), 'q', HProgramOptionsHandler::OOption::TYPE::NONE, "inhibit usual output" )
-		( "silent", program_options_helper::option_value( setup._quiet ), 'q', HProgramOptionsHandler::OOption::TYPE::NONE, "inhibit usual output" )
-		( "verbose", program_options_helper::option_value( setup._verbose ), 'v', HProgramOptionsHandler::OOption::TYPE::NONE, "print more information" )
-		( "test", program_options_helper::option_value( setup._test ), 'T', HProgramOptionsHandler::OOption::TYPE::NONE, "run in test mode" )
-		( "help", program_options_helper::option_value( stop ), 'h', HProgramOptionsHandler::OOption::TYPE::NONE, "display this help and stop", program_options_helper::callback( util::show_help, &info ) )
-		( "dump-configuration", program_options_helper::option_value( stop ), 'W', HProgramOptionsHandler::OOption::TYPE::NONE, "dump current configuration", program_options_helper::callback( util::dump_configuration, &info ) )
-		( "version", program_options_helper::option_value( stop ), 'V', HProgramOptionsHandler::OOption::TYPE::NONE, "output version information and stop", program_options_helper::callback( version, NULL ) );
+	po(
+		HProgramOptionsHandler::HOption()
+		.long_form( "log_path" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "path pointing to file for application logs" )
+		.recipient(	setup._logPath )
+		.argument_name( "path" )
+		.default_value( "booker.log" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.long_form( "resource" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "path to resource file" )
+		.recipient( setup._resource )
+		.argument_name( "path" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.long_form( "database" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "database specification" )
+		.recipient( setup._dataBase )
+		.argument_name( "spec" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.long_form( "login" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "login for database" )
+		.recipient( setup._login )
+		.argument_name( "login" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.long_form( "password" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "password for database" )
+		.recipient( setup._password )
+		.argument_name( "pass" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'T' )
+		.long_form( "test" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "run in test mode" )
+		.recipient( setup._test )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'q' )
+		.long_form( "quiet" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "inhibit usual output" )
+		.recipient( setup._quiet )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'q' )
+		.long_form( "silent" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "inhibit usual output" )
+		.recipient( setup._quiet )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'v' )
+		.long_form( "verbose" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "print more information" )
+		.recipient( setup._verbose )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'h' )
+		.long_form( "help" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "display this help and stop" )
+		.recipient( stop )
+		.callback( call( &util::show_help, &info ) )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'W' )
+		.long_form( "dump-configuration" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "dump current configuration" )
+		.recipient( stop )
+		.callback( call( &util::dump_configuration, &info ) )
+	)(
+		HProgramOptionsHandler::HOption()
+		.short_form( 'V' )
+		.long_form( "version" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )
+		.description( "output version information and stop" )
+		.recipient( stop )
+		.callback( call( &version ) )
+	);
 	po.process_rc_file( "booker", "", set_variables );
-	if ( setup._logPath.is_empty() )
-		setup._logPath = "booker.log";
 	int unknown( 0 );
 	int nonOption( po.process_command_line( argc_, argv_, &unknown ) );
 	if ( stop || ( unknown > 0 ) ) {
