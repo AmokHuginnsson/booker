@@ -25,10 +25,9 @@ Copyright:
 */
 
 
-#include <yaal/yaal.hxx>
+#include "booker.hxx"
 M_VCSID( "$Id: " __ID__ " $" )
 
-#include "booker.hxx"
 #include "setup.hxx"
 
 /* windows begin */

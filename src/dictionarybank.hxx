@@ -28,6 +28,7 @@ Copyright:
 #define DICTIONARYBANK_HXX_INCLUDED
 
 #include <yaal/hconsole/hevent.hxx>
+#include <yaal/hdata/hdatawindow.hxx>
 
 namespace booker {
 

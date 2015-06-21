@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarybank.hxx - this file is integral part of booker.h project.
+  testwindow.hxx - this file is integral part of booker.h project.
 
   i.  You may not make any changes in Copyright information.
   ii. You must attach Copyright information to any part of every copy
@@ -28,6 +28,7 @@ Copyright:
 #define TESTWINDOW_HXX_INCLUDED
 
 #include <yaal/hcore/hhashmap.hxx>
+#include <yaal/hconsole/hwindow.hxx>
 #include <yaal/hconsole/hevent.hxx>
 #include <yaal/hconsole/hcomboboxwidget.hxx>
 

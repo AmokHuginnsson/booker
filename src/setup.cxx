@@ -1,7 +1,7 @@
 /*
 ---           `booker' 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	setup.cxx - this file is integral part of `booker' project.
+  setup.cxx - this file is integral part of `booker' project.
 
   i.  You may not make any changes in Copyright information.
   ii. You must attach Copyright information to any part of every copy
@@ -24,11 +24,10 @@ Copyright:
  FITNESS FOR A PARTICULAR PURPOSE. Use it at your own risk.
 */
 
-#include <cstdio>
-
-#include <yaal/yaal.hxx>
-M_VCSID( "$Id: " __ID__ " $" )
 #include "setup.hxx"
+M_VCSID( "$Id: " __ID__ " $" )
+#include <yaal/hcore/hfile.hxx>
+#include <yaal/tools/util.hxx>
 
 using namespace yaal::hcore;
 

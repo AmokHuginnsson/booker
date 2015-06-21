@@ -1,7 +1,7 @@
 /*
 ---           booker.h 0.0.0 (c) 1978 by Marcin 'Amok' Konarski            ---
 
-	dictionarycontractingpartyset.hxx - this file is integral part of booker.h project.
+  testset.hxx - this file is integral part of booker.h project.
 
   i.  You may not make any changes in Copyright information.
   ii. You must attach Copyright information to any part of every copy
@@ -26,6 +26,9 @@ Copyright:
 
 #ifndef TESTSET_HXX_INCLUDED
 #define TESTSET_HXX_INCLUDED
+
+#include <yaal/dbwrapper/hdatabase.hxx>
+#include <yaal/dbwrapper/hcruddescriptor.hxx>
 
 namespace booker {
 

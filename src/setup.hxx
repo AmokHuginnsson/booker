@@ -30,6 +30,7 @@ Copyright:
 #include <libintl.h>
 
 #include "config.hxx"
+#include <yaal/hcore/hstring.hxx>
 
 namespace booker {
 

@@ -27,6 +27,8 @@ Copyright:
 #ifndef PROCESS_HXX_INCLUDED
 #define PROCESS_HXX_INCLUDED
 
+#include <yaal/hdata/hdataprocess.hxx>
+
 namespace booker {
 
 class HBookerProcess : public yaal::hdata::HDataProcess {

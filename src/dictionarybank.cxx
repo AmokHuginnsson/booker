@@ -25,12 +25,14 @@ Copyright:
 */
 
 #include <libintl.h>
-#include <yaal/yaal.hxx> /* all hAPI headers */
+
+#include "dictionarybank.hxx"
 M_VCSID( "$Id: " __ID__ " $" )
+#include <yaal/tools/hexpression.hxx>
+#include <yaal/tools/money.hxx>
 
 #include "setup.hxx"
 #include "booker.hxx"
-#include "dictionarybank.hxx"
 
 using namespace yaal;
 using namespace yaal::hcore;

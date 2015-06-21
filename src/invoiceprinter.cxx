@@ -26,9 +26,11 @@ Copyright:
 
 #include <cstdlib>
 
-#include <yaal/yaal.hxx>
-M_VCSID( "$Id: " __ID__ " $" )
 #include "invoiceprinter.hxx"
+M_VCSID( "$Id: " __ID__ " $" )
+#include <yaal/tools/filesystem.hxx>
+#include <yaal/dbwrapper/hcruddescriptor.hxx>
+
 #include "invoice.hxx"
 
 using namespace yaal;
