@@ -80,6 +80,8 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	HString invoiceTemplatePathName( INVOICE_TEMPLATE_PATH );
 	if ( invoice_._type == OInvoice::TYPE::EU ) {
 		invoiceTemplatePathName.append( "eu.tex" );
+	} else if ( invoice_._type == OInvoice::TYPE::EU_VAT ) {
+		invoiceTemplatePathName.append( "eu_vat.tex" );
 	} else if ( invoice_._type == OInvoice::TYPE::PL ) {
 		invoiceTemplatePathName.append( "pl.tex" );
 	} else {
@@ -163,6 +165,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	HStringStream items;
 	int no( 1 );
 	HNumber totalNetto;
+	HNumber totalBrutto;
 	HString unit( invoice_._type == OInvoice::TYPE::PL ? "szt." : "each" );
 	for ( OInvoice::items_t::const_iterator it( invoice_._items.begin() ), end( invoice_._items.end() ); it != end; ++ it ) {
 		if ( no > 1 ) {
@@ -173,7 +176,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		HNumber vat( ( netto * it->_vat ) / "100" );
 		HNumber brutto( netto + vat );
 		items << no << '&' << it->_name << "&" << unit << "&" << it->_quantity << '&' << money_string( it->_price );
-		if ( invoice_._type == OInvoice::TYPE::PL ) {
+		if ( ( invoice_._type == OInvoice::TYPE::PL ) || ( invoice_._type == OInvoice::TYPE::EU_VAT ) ) {
 			items << '&' << it->_vat << "\\%&" << money_string( netto ) << '&' << money_string( vat ) << '&' << money_string( brutto ) << "\\\\" << endl;
 		} else {
 			items << '&' << money_string( netto ) << "\\\\" << endl;
@@ -181,13 +184,12 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		++ no;
 	}
 	invoiceText.replace( "@items@", items.string() );
-	if ( invoice_._type == OInvoice::TYPE::PL ) {
+	if ( ( invoice_._type == OInvoice::TYPE::PL ) || ( invoice_._type == OInvoice::TYPE::EU_VAT ) ) {
 		for ( OInvoice::items_t::const_iterator it( invoice_._items.begin() ), end( invoice_._items.end() ); it != end; ++ it ) {
 			taxes[it->_vat] += it->_quantity * it->_price;
 		}
 		HStringStream taxesText;
 		HNumber totalVat;
-		HNumber totalBrutto;
 		for ( taxes_t::const_iterator it( taxes.begin() ), end( taxes.end() ); it != end; ++ it ) {
 			HNumber vat( ( it->first * it->second ) / "100" );
 			HNumber brutto( it->second + vat );
@@ -198,10 +200,15 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 		invoiceText.replace( "@taxes@", taxesText.string() );
 		invoiceText.replace( "@vatAmount@", money_string( totalVat ) );
 		invoiceText.replace( "@brutto@", money_string( totalBrutto ) );
+	}
+	if ( invoice_._type == OInvoice::TYPE::PL ) {
 		invoiceText.replace( "@amountInWords@", in_words_pl( totalBrutto, CURRENCY::PLN ) );
 		invoiceText.replace( "@payMethod@", invoice_._payMethod );
 	} else {
-		invoiceText.replace( "@amountInWords@", in_words_en( totalNetto, CURRENCY::PLN ) );
+		invoiceText.replace(
+			"@amountInWords@",
+			in_words_en( invoice_._type == OInvoice::TYPE::EU ? totalNetto : totalBrutto, CURRENCY::PLN )
+		);
 		invoiceText.replace( "@payMethod@", _translations_.at( HString( invoice_._payMethod ).lower() ) );
 	}
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );

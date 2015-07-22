@@ -106,6 +106,9 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 		if ( type == "eu" ) {
 			inv._type = OInvoice::TYPE::EU;
 			inv._dueDate.append( " days" );
+		} else if ( type == "eu vat" ) {
+			inv._type = OInvoice::TYPE::EU_VAT;
+			inv._dueDate.append( " days" );
 		} else if ( type == "pl" ) {
 			inv._type = OInvoice::TYPE::PL;
 			inv._dueDate.append( " dni" );

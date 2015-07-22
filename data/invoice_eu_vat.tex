@@ -29,6 +29,7 @@
 \hyphenation{FreeBSD UNIX Debian PostgreSQL MySQL PLD MSSQL perl python
 Visual Studio Stable RedHat make gprof}
 \renewcommand*{\familydefault}{\sfdefault}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 \newcommand{\invoiceNo}{@invoiceNo@}
 \newcommand{\invoiceDate}{@invoiceDate@}
 \newcommand{\transactionDate}{@transactionDate@}
@@ -49,10 +50,10 @@ Visual Studio Stable RedHat make gprof}
 \newcommand{\vendeeExtra}{@vendeeExtra@}
 \newcommand{\issuer}{@issuer@}
 \newcommand{\netto}{@netto@}
-
+\newcommand{\taxes}{@taxes@}
 \newcommand{\items}{@items@}
-
-
+\newcommand{\vatAmount}{@vatAmount@}
+\newcommand{\brutto}{@brutto@}
 \newcommand{\amountInWords}{@amountInWords@}
 \newcommand{\amok}{\fontencoding{T1}\fontfamily{amk}\selectfont}
 \newcommand{\sig}{\@signature@{\Large{\color{Blue!60!black}{\issuer}}}}
@@ -75,7 +76,7 @@ Visual Studio Stable RedHat make gprof}
 		\bigskip
 		\begin{tabular}{ c c c }
 			\framebox{
-				\parbox[t][6cm]{8.5cm}{
+				\parbox[t][5.5cm]{8.5cm}{
 					\textbf{\textit{\uline{Vendor}}}
 					\smallskip \\
 					\vendorName \\
@@ -89,7 +90,7 @@ Visual Studio Stable RedHat make gprof}
 			}
 			&
 			\framebox{
-				\parbox[t][6cm]{8.5cm}{
+				\parbox[t][5.5cm]{8.5cm}{
 					\textbf{\textit{\uline{Vendee}}}
 					\smallskip \\
 					\vendeeName \\
@@ -106,15 +107,19 @@ Visual Studio Stable RedHat make gprof}
 		\medskip
 		\begin{footnotesize}
 			\def\arraystretch{1.2}
-			\begin{tabular}[b]{|r p{10cm} l r r r |}
+			\begin{tabular}[b]{|r p{10cm} l r r r r r r|}
 				\hline
 					\rowcolor[rgb]{.8,.8,.8}
 					\multicolumn{1}{|c|}{\textbf{No}}&
 					\multicolumn{1}{c|}{\textbf{Item or service name}}&
 					\multicolumn{1}{c|}{\textbf{Unit}}&
-					\multicolumn{1}{c|}{\textbf{Quantity}}&
+					\multicolumn{1}{c|}{\parbox{0.7cm}{\textbf{ Quantity}}}& % meaningful space, LaTeX does not hyphenate the first word of a paragraph
 					\multicolumn{1}{c|}{\textbf{Price}}&
-					\multicolumn{1}{c|}{\textbf{Value}} \\
+
+					\multicolumn{1}{c|}{\parbox{1cm}{\centering \textbf{VAT rate}}}&
+					\multicolumn{1}{c|}{\parbox{1cm}{\textbf{Net value}}}&
+					\multicolumn{1}{c|}{\parbox{1cm}{\centering \textbf{VAT amount}}}&
+					\multicolumn{1}{c|}{\parbox{1cm}{\textbf{Gross value}}} \\
 				\hline
 					\items
 				\hline
@@ -123,21 +128,30 @@ Visual Studio Stable RedHat make gprof}
 	\end{center}
 \end{adjustwidth}
 
+\begin{footnotesize}
+	\bigskip
+	\begin{flushright}
+		\def\arraystretch{1.2}
+		\begin{tabular}{| r | r | r | r |}
+			\hline
+				\textbf{VAT rate}&\textbf{Net value}&\textbf{VAT amout}&\textbf{Gross value} \\
+			\hline
+				\taxes
+			\hline
+				\multicolumn{1}{|c|}{\textbf{Total}}&\textbf{\netto}&\textbf{\vatAmount}&\textbf{\brutto} \\
+			\hline
+		\end{tabular}
+	\end{flushright}
+\end{footnotesize}
+
 \bigskip
 \begin{flushleft}
 	\begin{small}
 		\begin{tabular}{ l l }
-			\textbf{Total to pay:}&\textbf{\netto} \\
+			\textbf{Total to pay:}&\textbf{\brutto} \\
 		\hline
 			\textbf{In words:}&\textbf{\amountInWords}
 		\end{tabular}
-	\end{small}
-\end{flushleft}
-\bigskip
-
-\begin{flushleft}
-	\begin{small}
-		Remarks: Levy of VAT reverse charged to recipient of service (inverse liabilities)
 	\end{small}
 \end{flushleft}
 

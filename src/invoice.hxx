@@ -65,6 +65,7 @@ struct OInvoice {
 	enum class TYPE {
 		INVALID,
 		EU,
+		EU_VAT,
 		PL
 	};
 	typedef yaal::hcore::HArray<OInvoiceItem> items_t;
