@@ -47,8 +47,9 @@ namespace {
 OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 	HCRUDDescriptor crud( db_ );
 	crud.set_table( "contracting_party" );
-	crud.set_filter( to_string( "id = " ).append( to_string( id_ ) ) );
-	HRecordSet::ptr_t rs( crud.execute( HCRUDDescriptor::MODE::SELECT ) );
+	crud.set_filter( "id" );
+	crud.set_filter_value( to_string( id_ ) );
+	HRecordSet::ptr_t rs( crud.execute( HCRUDDescriptor::MODE::READ ) );
 	HRecordSet::HIterator it( rs->begin() );
 	M_ENSURE_EX( it != rs->end(), "no such record" );
 	HRecordSet::values_t contractingPartyData( *it );
@@ -118,9 +119,10 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 	}
 	HCRUDDescriptor crud( db_ );
 	crud.set_table( "invoice_item" );
-	crud.set_filter( to_string( "id_invoice = " ).append( to_string( id_ ) ) );
+	crud.set_filter( "id_invoice" );
+	crud.set_filter_value( to_string( id_ ) );
 	crud.set_sort( "id ASC" );
-	rs = crud.execute( HCRUDDescriptor::MODE::SELECT );
+	rs = crud.execute( HCRUDDescriptor::MODE::READ );
 	for ( HRecordSet::values_t const& itemData : *rs ) {
 		OInvoiceItem item;
 		item._name.assign( itemData[2] ? *itemData[2] : "" );
