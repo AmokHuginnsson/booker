@@ -41,16 +41,14 @@ struct OSetup {
 	char * _programName;
 	yaal::hcore::HString _logPath;
 	yaal::hcore::HString _resource;
-	yaal::hcore::HString _dataBase;
-	yaal::hcore::HString _login;
-	yaal::hcore::HString _password;
 	/* self-sufficient */
 	OSetup( void )
-		: _quiet( false ), _verbose( false ), _test( false ),
-		_programName( NULL ),
-		_logPath(), _resource(),
-		_dataBase(), _login(),
-		_password() {
+		: _quiet( false )
+		, _verbose( false )
+		, _test( false )
+		, _programName( NULL )
+		, _logPath()
+		, _resource() {
 		return;
 	}
 	void test_setup( void );

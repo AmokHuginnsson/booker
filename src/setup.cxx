@@ -45,15 +45,6 @@ void OSetup::test_setup( void ) {
 	if ( _quiet ) {
 		cout.reset();
 	}
-	if ( ! _dataBase ) {
-		M_THROW( _( "database not set" ), errno );
-	}
-	if ( ! _login ) {
-		M_THROW( _( "database login not set" ), errno );
-	}
-	if ( ! _password ) {
-		M_THROW( _( "database password not set" ), errno );
-	}
 	if ( ! _logPath ) {
 		M_THROW( _( "log file name not set" ), errno );
 	}

@@ -88,27 +88,6 @@ int handle_program_options( int argc_, char** argv_ ) {
 		.argument_name( "path" )
 	)(
 		HProgramOptionsHandler::HOption()
-		.long_form( "database" )
-		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
-		.description( "database specification" )
-		.recipient( setup._dataBase )
-		.argument_name( "spec" )
-	)(
-		HProgramOptionsHandler::HOption()
-		.long_form( "login" )
-		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
-		.description( "login for database" )
-		.recipient( setup._login )
-		.argument_name( "login" )
-	)(
-		HProgramOptionsHandler::HOption()
-		.long_form( "password" )
-		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
-		.description( "password for database" )
-		.recipient( setup._password )
-		.argument_name( "pass" )
-	)(
-		HProgramOptionsHandler::HOption()
 		.short_form( 'T' )
 		.long_form( "test" )
 		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::NONE )

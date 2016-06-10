@@ -3,9 +3,6 @@
 
 # authentication information needed for database access
 
-database booker
-login booker
-password b00k3r
 resource ./data/booker.xrc
 
 log_path x_booker.log

@@ -57,7 +57,6 @@ HBookerProcess::~HBookerProcess ( void ) {
 
 int HBookerProcess::init( const char* processName_ ) {
 	M_PROLOG
-	_dataBase->connect( setup._dataBase, setup._login, setup._password );
 	register_command_handler( "run_quit", call( &HBookerProcess::run_quit, this, _1 ) );
 	register_command_handler( "run_dictionary_contracting_party", call( &HBookerProcess::run_dictionary_contracting_party, this, _1 ) );
 	register_command_handler( "run_subject", call( &HBookerProcess::run_subject, this, _1 ) );
