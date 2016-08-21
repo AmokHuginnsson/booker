@@ -51,7 +51,7 @@ OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 	crud.set_filter_value( to_string( id_ ) );
 	HRecordSet::ptr_t rs( crud.execute( HCRUDDescriptor::MODE::READ ) );
 	HRecordSet::HIterator it( rs->begin() );
-	M_ENSURE_EX( it != rs->end(), "no such record" );
+	M_ENSURE( it != rs->end(), "no such record" );
 	HRecordSet::values_t contractingPartyData( *it );
 	rs.reset();
 
@@ -88,7 +88,7 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 	sql.append( to_string( id_ ) );
 	HRecordSet::ptr_t rs( db_->execute_query( sql ) );
 	HRecordSet::HIterator it( rs->begin() );
-	M_ENSURE_EX( it != rs->end(), "no such record" );
+	M_ENSURE( it != rs->end(), "no such record" );
 	HRecordSet::values_t document( *it );
 	rs.reset();
 	OInvoice inv;
