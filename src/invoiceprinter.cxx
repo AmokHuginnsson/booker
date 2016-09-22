@@ -25,9 +25,11 @@ Copyright:
 */
 
 #include <cstdlib>
+#include <cstring>
 
 #include "invoiceprinter.hxx"
 M_VCSID( "$Id: " __ID__ " $" )
+#include <yaal/hcore/hlog.hxx>
 #include <yaal/tools/filesystem.hxx>
 #include <yaal/dbwrapper/hcruddescriptor.hxx>
 
@@ -138,8 +140,12 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 		M_ENSURE( ext == ".tex" );
 		HString base( fn.left( fn.get_size() - 4 ) );
 		cmd.assign( "pdflatex " ).append( fn );
-		::system( cmd.c_str() );
-		::system( cmd.c_str() ); /* Use .aux to get prettier output. */
+		if ( ::system( cmd.c_str() ) != 0 ) {
+			log << strerror( errno ) << endl;
+		}
+		if ( ::system( cmd.c_str() ) != 0 ) { /* Use .aux to get prettier output. */
+			log << strerror( errno ) << endl;
+		}
 		filesystem::remove( fn );
 		filesystem::remove( base + ".aux" );
 		filesystem::remove( base + ".log" );
