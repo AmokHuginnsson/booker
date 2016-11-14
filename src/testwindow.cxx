@@ -27,6 +27,7 @@ Copyright:
 #include "testwindow.hxx"
 M_VCSID( "$Id: " __ID__ " $" )
 #include <yaal/hconsole/hdatewidget.hxx>
+#include <yaal/hconsole/htimewidget.hxx>
 
 #include "booker.hxx"
 #include "testset.hxx"
@@ -93,21 +94,25 @@ void HTestWindow::do_init( void ) {
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
-			control = _edit = new HEditWidget( this, -13, 1, 1, 24, "&Int",
+			control = _edit = new HEditWidget( this, -13, 1, 1, 20, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.mask( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
-			control = new HEditWidget( this, -13, 27, 1, 32, "&Real",
+			control = new HEditWidget( this, -13, 23, 1, 24, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.mask( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
-			control = new HDateWidget( this, -13, 61, "&Date",
+			control = new HDateWidget( this, -13, 49, "&Date",
+				HWidgetAttributes()
+				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
+	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Time", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
+			control = new HTimeWidget( this, -13, 63, "&Time",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
@@ -119,7 +124,7 @@ void HTestWindow::do_init( void ) {
 	HTestSet rs( theProc.data_base() );
 	HRecordSet::ptr_t r = rs.get_records();
 	HAsIsValueListModel<>::ptr_t mC = _list->get_model();
-	HInfoItem row( 5 );
+	HInfoItem row( 6 );
 	for ( HRecordSet::iterator it = r->begin(); it != r->end(); ++ it ) {
 		rs.sync( it );
 		row[ 0 ].set_integer( _names[static_cast<int>( rs._idName )].first );
@@ -128,6 +133,7 @@ void HTestWindow::do_init( void ) {
 		row[ 2 ].set_string( rs._vInt );
 		row[ 3 ].set_string( rs._vReal );
 		row[ 4 ].set_time( rs._vDate );
+		row[ 5 ].set_time( rs._vTime );
 		mC->add_tail( row );
 	}
 	_editableList = new HListWidget( this, -10, 1, -3, -1, "&Edit test",
