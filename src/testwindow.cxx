@@ -111,6 +111,7 @@ void HTestWindow::do_init( void ) {
 			control = new HDateWidget( this, -13, 49, "&Date",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
+	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Time", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
 			control = new HTimeWidget( this, -13, 63, "&Time",
 				HWidgetAttributes()
