@@ -58,7 +58,7 @@ HTestWindow::~HTestWindow ( void ) {
 void HTestWindow::do_init( void ) {
 	M_PROLOG
 	HWindow::do_init();
-	_name = new HComboboxWidget( this, -16, 1, 9, 24, "&Name",
+	_name = create_widget<HComboboxWidget>( this, -16, 1, 9, 24, "&Name",
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
@@ -81,39 +81,39 @@ void HTestWindow::do_init( void ) {
 		item[ 0 ].set_string( name );
 		controler->add_tail( item );
 	}
-	_list = new HListWidget( this, 1, 1, -17, -1, "&Test data", HListWidgetAttributes().searchable( true ) );
+	_list = create_widget<HListWidget>( this, 1, 1, -17, -1, "&Test data", HListWidgetAttributes().searchable( true ) );
 	_list->enable( true );
 	_list->set_focus();
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, "", _name ) );
 	HWidget* control( NULL );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, "",
-			control = new HEditWidget( this, -16, 27, 1, -1, "Te&xt",
+			control = create_widget<HEditWidget>( this, -16, 27, 1, -1, "Te&xt",
 				HEditWidgetAttributes()
 				.max_string_size( 64 )
 				.mask( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
-			control = _edit = new HEditWidget( this, -13, 1, 1, 20, "&Int",
+			control = _edit = create_widget<HEditWidget>( this, -13, 1, 1, 20, "&Int",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.mask( "^[0-9]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Real", 20, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
-			control = new HEditWidget( this, -13, 23, 1, 24, "&Real",
+			control = create_widget<HEditWidget>( this, -13, 23, 1, 24, "&Real",
 				HEditWidgetAttributes()
 				.max_string_size( 32 )
 				.mask( "^[0-9\\.-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Date", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
-			control = new HDateWidget( this, -13, 49, "&Date",
+			control = create_widget<HDateWidget>( this, -13, 49, "&Date",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Time", 11, HWidget::BITS::ALIGN::CENTER, TYPE::HTIME, "",
-			control = new HTimeWidget( this, -13, 63, "&Time",
+			control = create_widget<HTimeWidget>( this, -13, 63, "&Time",
 				HWidgetAttributes()
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
@@ -137,7 +137,7 @@ void HTestWindow::do_init( void ) {
 		row[ 5 ].set_time( rs._vTime );
 		mC->add_tail( row );
 	}
-	_editableList = new HListWidget( this, -10, 1, -3, -1, "&Edit test",
+	_editableList = create_widget<HListWidget>( this, -10, 1, -3, -1, "&Edit test",
 			HListWidgetAttributes()
 			.editable( true )
 			.searchable( true )
