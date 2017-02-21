@@ -43,7 +43,7 @@ namespace booker {
 HTestWindow::HTestWindow( const char* title_ )
 	: HWindow( title_ ), _names(), _list( NULL ), _editableList( nullptr ), _edit( NULL ), _name( NULL ) {
 	M_PROLOG
-	register_postprocess_handler( KEY_CODES::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
+	register_postprocess_handler( KEY_CODE::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
 	register_postprocess_handler( '\r', NULL, call( &HTestWindow::handler_enter, this, _1 ) );
 	return;
 	M_EPILOG
