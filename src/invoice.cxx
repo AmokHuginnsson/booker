@@ -228,13 +228,13 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 
 	fileName.assign( "fv_" ).append( date ).append( "_orig.tex" );
 	HFile invoice( fileName, HFile::OPEN::WRITING );
-	invoice.write( invoiceText.raw(), invoiceText.get_length() );
+	invoice.write( invoiceText.c_str(), invoiceText.get_length() );
 	invoice.close();
 	documentFileNames.emplace_back( fileName );
 
 	fileName.assign( "fv_" ).append( date ).append( "_copy.tex" );
 	HFile invoiceCopy( fileName, HFile::OPEN::WRITING );
-	invoiceCopy.write( invoiceTextCopy.raw(), invoiceTextCopy.get_length() );
+	invoiceCopy.write( invoiceTextCopy.c_str(), invoiceTextCopy.get_length() );
 	invoiceCopy.close();
 	documentFileNames.emplace_back( fileName );
 	return ( documentFileNames );
