@@ -88,7 +88,7 @@ bool HBookerProcess::run_dictionary_contracting_party( yaal::hconsole::HEvent co
 bool HBookerProcess::run_config( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	HConsole& cons( HConsole::get_instance() );
-	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_config" );
+	cons.cmvprintf( cons.get_height() - 2, -1, COLOR::FG_BRIGHTRED, "run_config" );
 	cons.refresh ( );
 	return ( true );
 	M_EPILOG
@@ -106,7 +106,7 @@ bool HBookerProcess::run_test( yaal::hconsole::HEvent const& ) {
 bool HBookerProcess::run_subject( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
-	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_subject" );
+	cons.cmvprintf ( cons.get_height() - 2, -1, COLOR::FG_BRIGHTRED, "run_subject" );
 	cons.refresh ( );
 	return ( true );
 	M_EPILOG
@@ -115,7 +115,7 @@ bool HBookerProcess::run_subject( yaal::hconsole::HEvent const& ) {
 bool HBookerProcess::run_account_map( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
-	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_account_map" );
+	cons.cmvprintf ( cons.get_height() - 2, -1, COLOR::FG_BRIGHTRED, "run_account_map" );
 	cons.refresh ( );
 	return ( true );
 	M_EPILOG
@@ -124,7 +124,7 @@ bool HBookerProcess::run_account_map( yaal::hconsole::HEvent const& ) {
 bool HBookerProcess::run_account_orders( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
-	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_account_orders" );
+	cons.cmvprintf ( cons.get_height() - 2, -1, COLOR::FG_BRIGHTRED, "run_account_orders" );
 	cons.refresh ( );
 	return ( true );
 	M_EPILOG
@@ -133,7 +133,7 @@ bool HBookerProcess::run_account_orders( yaal::hconsole::HEvent const& ) {
 bool HBookerProcess::run_regular_oblige( yaal::hconsole::HEvent const& ) {
 	M_PROLOG
 	HConsole& cons = HConsole::get_instance();
-	cons.cmvprintf ( cons.get_height() - 2, -1, 48, "run_regular_oblige" );
+	cons.cmvprintf ( cons.get_height() - 2, -1, COLOR::FG_BRIGHTRED, "run_regular_oblige" );
 	cons.refresh ( );
 	return ( true );
 	M_EPILOG
