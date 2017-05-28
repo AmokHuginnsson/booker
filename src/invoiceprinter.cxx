@@ -140,10 +140,11 @@ void print_invoice( HDataBase::ptr_t db_, int id_ ) {
 		M_ENSURE( ext == ".tex" );
 		HString base( fn.left( fn.get_size() - 4 ) );
 		cmd.assign( "pdflatex " ).append( fn );
-		if ( ::system( cmd.c_str() ) != 0 ) {
+		HUTF8String utf8( cmd );
+		if ( ::system( utf8.c_str() ) != 0 ) {
 			log << strerror( errno ) << endl;
 		}
-		if ( ::system( cmd.c_str() ) != 0 ) { /* Use .aux to get prettier output. */
+		if ( ::system( utf8.c_str() ) != 0 ) { /* Use .aux to get prettier output. */
 			log << strerror( errno ) << endl;
 		}
 		filesystem::remove( fn );

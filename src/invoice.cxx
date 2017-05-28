@@ -41,20 +41,44 @@ using namespace yaal::tools::money;
 namespace invoice {
 
 OContractingParty::OContractingParty( void )
-	: _name(), _firstName(), _middleName(), _lastName(), _country(),
-	_postalCode(), _city(), _street(), _streetNo(), _flatNo(), _tin(),
-	_email(), _webPage(), _phone(), _fax(), _extra()
-	{}
+	: _name()
+	, _firstName()
+	, _middleName()
+	, _lastName()
+	, _country()
+	, _postalCode()
+	, _city()
+	, _street()
+	, _streetNo()
+	, _flatNo()
+	, _tin()
+	, _email()
+	, _webPage()
+	, _phone()
+	, _fax()
+	, _extra() {
+}
 
 OInvoiceItem::OInvoiceItem( void )
-	: _name(), _price(), _vat(), _quantity()
-	{}
+	: _name()
+	, _price()
+	, _vat()
+	, _quantity() {
+}
 
 OInvoice::OInvoice( void )
-	: _type( TYPE::INVALID ), _vendor(), _vendee(), _invoiceNo(), _invoiceDate(),
-	_transactionDate(), _dueDate(), _payMethod(), _issuer(),
-	_signature(), _items()
-	{}
+	: _type( TYPE::INVALID )
+	, _vendor()
+	, _vendee()
+	, _invoiceNo()
+	, _invoiceDate()
+	, _transactionDate()
+	, _dueDate()
+	, _payMethod()
+	, _issuer()
+	, _signature()
+	, _items() {
+}
 
 char const INVOICE_TEMPLATE_PATH[] = "./data/invoice_";
 
@@ -67,8 +91,9 @@ HString leave_characters( HString const& string_, HString const& characters_ ) {
 	M_PROLOG
 	HString string;
 	for ( HString::const_iterator it( string_.begin() ), end( string_.end() ); it != end; ++ it ) {
-		if ( characters_.find( *it ) != HString::npos )
+		if ( characters_.find( *it ) != HString::npos ) {
 			string += *it;
+		}
 	}
 	return ( string );
 	M_EPILOG
@@ -228,13 +253,15 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 
 	fileName.assign( "fv_" ).append( date ).append( "_orig.tex" );
 	HFile invoice( fileName, HFile::OPEN::WRITING );
-	invoice.write( invoiceText.c_str(), invoiceText.get_length() );
+	HUTF8String utf8( invoiceText );
+	invoice.write( utf8.c_str(), utf8.byte_count() );
 	invoice.close();
 	documentFileNames.emplace_back( fileName );
 
 	fileName.assign( "fv_" ).append( date ).append( "_copy.tex" );
 	HFile invoiceCopy( fileName, HFile::OPEN::WRITING );
-	invoiceCopy.write( invoiceTextCopy.c_str(), invoiceTextCopy.get_length() );
+	utf8 = invoiceTextCopy;
+	invoice.write( utf8.c_str(), utf8.byte_count() );
 	invoiceCopy.close();
 	documentFileNames.emplace_back( fileName );
 	return ( documentFileNames );
