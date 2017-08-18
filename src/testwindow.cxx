@@ -62,7 +62,7 @@ void HTestWindow::do_init( void ) {
 			HComboboxWidgetAttributes()
 				.dropped_width( 32 )
 				.max_string_size( 128 )
-				.mask( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ \\._@-]*$" )
+				.mask( "^[a-zA-ZÄ…Ä„Ä‡Ä†Ä™Ä˜Å‚ÅÅ„ÅƒÃ³Ã“Å›ÅšÅºÅ¹Å¼Å» \\._@-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED )
 				.up<HComboboxWidgetAttributes>()
 				.searchable( true )
@@ -90,7 +90,7 @@ void HTestWindow::do_init( void ) {
 			control = create_widget<HEditWidget>( this, -16, 27, 1, -1, "Te&xt",
 				HEditWidgetAttributes()
 				.max_string_size( 64 )
-				.mask( "^[a-zA-Z±¡æÆêÊ³£ñÑóÓ¶¦¼¬¿¯ !,-]*$" )
+				.mask( "^[a-zA-ZÄ…Ä„Ä‡Ä†Ä™Ä˜Å‚ÅÅ„ÅƒÃ³Ã“Å›ÅšÅºÅ¹Å¼Å» !,-]*$" )
 				.label_position( HWidget::LABEL::POSITION::STACKED ) ) ) );
 	control->enable( true );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Int", 16, HWidget::BITS::ALIGN::RIGHT, TYPE::HSTRING, "",
