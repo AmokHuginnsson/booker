@@ -4,12 +4,14 @@
 M_VCSID( "$Id: " __ID__ " $" )
 #include <yaal/hconsole/hdatewidget.hxx>
 #include <yaal/hconsole/htimewidget.hxx>
+#include <yaal/tools/keycode.hxx>
 
 #include "booker.hxx"
 #include "testset.hxx"
 
 using namespace yaal;
 using namespace yaal::hcore;
+using namespace yaal::tools;
 using namespace yaal::hconsole;
 using namespace yaal::hconsole::list_widget_helper;
 using namespace yaal::dbwrapper;

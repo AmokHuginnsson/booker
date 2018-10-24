@@ -4,6 +4,7 @@
 M_VCSID( "$Id: " __ID__ " $" )
 #include <yaal/hdata/hdataprocess.hxx>
 #include <yaal/hdata/hdatawindow.hxx>
+#include <yaal/tools/keycode.hxx>
 
 using namespace yaal;
 using namespace yaal::hcore;
