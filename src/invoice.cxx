@@ -215,7 +215,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@netto@", money_string( totalNetto ) );
 	HString invoiceTextCopy( invoiceText );
 	if ( invoice_._type == OInvoice::TYPE::PL ) {
-		invoiceText.replace( "@documentType@", "ORYGINA£" );
+		invoiceText.replace( "@documentType@", "ORYGINA≈Å" );
 		invoiceTextCopy.replace( "@documentType@", "KOPIA" );
 	} else {
 		invoiceText.replace( "@documentType@", "ORYGINAL" );
@@ -237,7 +237,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	fileName.assign( "fv_" ).append( date ).append( "_copy.tex" );
 	HFile invoiceCopy( fileName, HFile::OPEN::WRITING );
 	utf8 = invoiceTextCopy;
-	invoice.write( utf8.c_str(), utf8.byte_count() );
+	invoiceCopy.write( utf8.c_str(), utf8.byte_count() );
 	invoiceCopy.close();
 	documentFileNames.emplace_back( fileName );
 	return ( documentFileNames );

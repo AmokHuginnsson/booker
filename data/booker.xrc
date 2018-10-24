@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="iso8859-2"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resource>
 	<dsn>sqlite3:///booker</dsn>
 	<menu>
 		<menu_item>
-			<!--label>Księgowość</label>
+			<!--label>KsiÄgowoĹÄ</label>
 			<menu>
 				<menu_item>
-					<label>Polecenia księgowania</label>
+					<label>Polecenia ksiÄgowania</label>
 					<handler>run_account_orders</handler>
 				</menu_item>
 				<menu_item>
@@ -14,7 +14,7 @@
 					<handler>run_account_map</handler>
 				</menu_item>
 				<menu_item>
-					<label>Przeglądanie</label>
+					<label>PrzeglÄdanie</label>
 					<menu>
 						<menu_item>
 							<label>Analityka</label>
@@ -39,10 +39,10 @@
 			<handler name="create_window" param="window_invoice" />
 		</menu_item>
 		<menu_item>
-			<label>Słowniki</label>
+			<label>SĹowniki</label>
 			<menu>
 				<menu_item>
-					<label>Metody płatności</label>
+					<label>Metody pĹatnoĹci</label>
 					<handler name="create_window" param="window_payment_method" />
 				</menu_item>
 				<menu_item>
@@ -50,7 +50,7 @@
 					<handler name="create_window" param="window_invoice_type" />
 				</menu_item>
 				<menu_item>
-					<label>Wystawiający</label>
+					<label>WystawiajÄcy</label>
 					<handler name="create_window" param="window_issuer" />
 				</menu_item>
 				<menu_item>
@@ -85,10 +85,10 @@
 			<handler>run_quit</handler>
 		</menu_item>
 	</menu>
-	<datawindow id="window_payment_method" title="Metody płatności">
+	<datawindow id="window_payment_method" title="Metody pĹatnoĹci">
 		<db table="payment_method" column="name, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
-			<label position="stacked">&amp;Metody płatności</label>
+			<label position="stacked">&amp;Metody pĹatnoĹci</label>
 			<position row="1" column="1" height="-8" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
@@ -102,7 +102,7 @@
 			<position row="-7" column="1" height="1" width="-25" />
 			<max_string_size>160</max_string_size>
 			<value></value>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ \\.-]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť \\.-]*$</mask>
 		</dataedit>
 	</datawindow>
 	<datawindow id="window_invoice_type" title="Typy faktur">
@@ -122,13 +122,13 @@
 			<position row="-7" column="1" height="1" width="-25" />
 			<max_string_size>160</max_string_size>
 			<value></value>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ \\.-]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť \\.-]*$</mask>
 		</dataedit>
 	</datawindow>
-	<datawindow id="window_issuer" title="Wystawiający">
+	<datawindow id="window_issuer" title="WystawiajÄcy">
 		<db table="issuer" column="name, signature, id" id_column="id" sort="name ASC" />
 		<datalist role="main">
-			<label position="stacked">&amp;Wystawiający</label>
+			<label position="stacked">&amp;WystawiajÄcy</label>
 			<position row="1" column="1" height="-8" width="-1" />
 			<checkable>true</checkable>
 			<sortable>true</sortable>
@@ -143,7 +143,7 @@
 			<position row="-7" column="1" height="1" width="35" />
 			<max_string_size>160</max_string_size>
 			<value></value>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ \\.-]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť \\.-]*$</mask>
 		</dataedit>
 		<dataedit id="window_issuer_signature" role="data">
 			<label position="stacked">&amp;Podpis</label>
@@ -176,7 +176,7 @@
 			<position row="-8" column="1" height="1" width="-46" />
 			<max_string_size>160</max_string_size>
 			<value></value>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ \\.-]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť \\.-]*$</mask>
 			<replace>false</replace>
 			<multi_line>false</multi_line>
 			<read_only>false</read_only>
@@ -206,13 +206,13 @@
 			<label position="stacked">&amp;Miasto</label>
 			<position row="-5" column="10" height="1" width="23" />
 			<max_string_size>32</max_string_size>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ ]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť ]*$</mask>
 		</dataedit>
 		<dataedit id="window_bank_street" role="data">
 			<label position="stacked">&amp;Ulica</label>
 			<position row="-5" column="35" height="1" width="-11" />
 			<max_string_size>48</max_string_size>
-			<mask>^[0-9a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ \\.-]*$</mask>
+			<mask>^[0-9a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť \\.-]*$</mask>
 		</dataedit>
 		<dataedit id="window_bank_street_no" role="data">
 			<label position="stacked">&amp;Numer</label>
@@ -232,7 +232,7 @@
 			<editable>false</editable>
 			<draw_header>true</draw_header>
 			<column placement="-1" name="nazwa" width="6" align="left" type="string" refid="window_contracting_party_name" />
-			<column placement="-1" name="imię" width="4" align="left" type="string" refid="window_contracting_party_first_name" />
+			<column placement="-1" name="imiÄ" width="4" align="left" type="string" refid="window_contracting_party_first_name" />
 			<column placement="-1" name="drugie" width="0" align="left" type="string" refid="window_contracting_party_middle_name" />
 			<column placement="-1" name="nazwisko" width="4" align="left" type="string" refid="window_contracting_party_last_name" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_contracting_party_country" />
@@ -269,7 +269,7 @@
 			<max_history_level>8</max_history_level>
 		</dataedit>
 		<dataedit id="window_contracting_party_first_name" role="data">
-			<label position="stacked">&amp;Imię</label>
+			<label position="stacked">&amp;ImiÄ</label>
 			<position row="-17" column="1" height="1" width="24" />
 			<max_string_size>160</max_string_size>
 			<value></value>
@@ -281,7 +281,7 @@
 			<value></value>
 		</dataedit>
 		<dataedit id="window_contracting_party_middle_name" role="data">
-			<label position="stacked">&amp;Drugie imię</label>
+			<label position="stacked">&amp;Drugie imiÄ</label>
 			<position row="-17" column="55" height="1" width="24" />
 			<max_string_size>160</max_string_size>
 			<value></value>
@@ -290,7 +290,7 @@
 			<label position="stacked">&amp;Kraj</label>
 			<position row="-14" column="1" height="1" width="24" />
 			<max_string_size>32</max_string_size>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ ]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť ]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_postalcode" role="data">
 			<label position="stacked">&amp;Kod</label>
@@ -302,13 +302,13 @@
 			<label position="stacked">&amp;Miasto</label>
 			<position row="-14" column="38" height="1" width="23" />
 			<max_string_size>32</max_string_size>
-			<mask>^[a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ ,]*$</mask>
+			<mask>^[a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť ,]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_street" role="data">
 			<label position="stacked">&amp;Ulica</label>
 			<position row="-11" column="1" height="1" width="40" />
 			<max_string_size>48</max_string_size>
-			<mask>^[0-9a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ /\\.,-]*$</mask>
+			<mask>^[0-9a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť /\\.,-]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_street_no" role="data">
 			<label position="stacked">&amp;Numer domu</label>
@@ -389,13 +389,13 @@ GROUP BY i.id;
 			<draw_header>true</draw_header>
 			<column placement="-1" name="numer" width="2" align="left" type="string" refid="window_invoice_no" />
 			<column placement="-1" name="data wystawienia" width="-10" align="center" type="date" refid="window_invoice_invoice_date" />
-			<column placement="-1" name="sprzedający" width="4" align="left" type="string" refid="window_invoice_vendor" dict="contracting_party" />
-			<column placement="-1" name="kupujący" width="4" align="left" type="string" refid="window_invoice_vendee" dict="contracting_party" />
-			<column placement="-1" name="data sprzedaży" width="-10" align="center" type="date" refid="window_invoice_transaction_date" />
+			<column placement="-1" name="sprzedajÄcy" width="4" align="left" type="string" refid="window_invoice_vendor" dict="contracting_party" />
+			<column placement="-1" name="kupujÄcy" width="4" align="left" type="string" refid="window_invoice_vendee" dict="contracting_party" />
+			<column placement="-1" name="data sprzedaĹźy" width="-10" align="center" type="date" refid="window_invoice_transaction_date" />
 			<column placement="-1" name="netto" width="1" align="right" type="real" format="%.2Lf" />
 			<column placement="-1" name="brutto" width="1" align="right" type="real" format="%.2Lf" />
-			<column placement="-1" name="termin płatności" width="1" align="left" type="integer" refid="window_invoice_due_date" />
-			<column placement="-1" name="metoda płatności" width="1" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
+			<column placement="-1" name="termin pĹatnoĹci" width="1" align="left" type="integer" refid="window_invoice_due_date" />
+			<column placement="-1" name="metoda pĹatnoĹci" width="1" align="left" type="string" refid="window_invoice_payment_method" dict="payment_method" />
 			<column placement="-1" name="" width="0" align="left" type="string" refid="window_invoice_issuer" dict="issuer" />
 			<column placement="-1" name="typ faktury" width="-4" align="left" type="string" refid="window_invoice_invoice_type" dict="invoice_type" />
 		</datalist>
@@ -411,27 +411,27 @@ GROUP BY i.id;
 			<position row="-18" column="19" />
 		</datadate>
 		<datadate id="window_invoice_transaction_date" role="data">
-			<label position="stacked">Data &amp;sprzedaży</label>
+			<label position="stacked">Data &amp;sprzedaĹźy</label>
 			<position row="-18" column="40" />
 		</datadate>
 		<dataedit id="window_invoice_due_date" role="data">
-			<label position="stacked">&amp;Termin płatności</label>
+			<label position="stacked">&amp;Termin pĹatnoĹci</label>
 			<position row="-18" column="60" height="1" width="19" />
 			<max_string_size>32</max_string_size>
-			<mask>^[0-9a-zA-ZąĄćĆęĘłŁńŃóÓśŚźŹżŻ ]*$</mask>
+			<mask>^[0-9a-zA-ZÄÄÄÄÄÄĹĹĹĹĂłĂĹĹĹşĹšĹźĹť ]*$</mask>
 		</dataedit>
 		<datacombobox id="window_invoice_vendor" role="data">
-			<label position="stacked">&amp;Sprzedający</label>
+			<label position="stacked">&amp;SprzedajÄcy</label>
 			<position row="-15" column="1" width="38" height="6" />
 			<dict>contracting_party</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_vendee" role="data">
-			<label position="stacked">&amp;Kupujący</label>
+			<label position="stacked">&amp;KupujÄcy</label>
 			<position row="-15" column="41" width="38" height="6" />
 			<dict>contracting_party</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_payment_method" role="data">
-			<label position="stacked">&amp;Metoda płatności</label>
+			<label position="stacked">&amp;Metoda pĹatnoĹci</label>
 			<position row="-12" column="1" width="19" height="6" />
 			<dict>payment_method</dict>
 		</datacombobox>
@@ -441,7 +441,7 @@ GROUP BY i.id;
 			<dict>invoice_type</dict>
 		</datacombobox>
 		<datacombobox id="window_invoice_issuer" role="data">
-			<label position="stacked">&amp;Wystawiający</label>
+			<label position="stacked">&amp;WystawiajÄcy</label>
 			<position row="-12" column="41" width="38" height="6" />
 			<dict>issuer</dict>
 		</datacombobox>
@@ -457,7 +457,7 @@ GROUP BY i.id;
 			<column placement="-1" name="nazwa" width="6" align="left" type="string" />
 			<column placement="-1" name="cena" width="1" align="right" type="real" format="%.2Lf" />
 			<column placement="-1" name="VAT" width="1" align="right" type="real" format="%.1Lf" />
-			<column placement="-1" name="ilość" width="1" align="right" type="integer" />
+			<column placement="-1" name="iloĹÄ" width="1" align="right" type="integer" />
 		</datalist>
 	</invoicewindow>
 </resource>
