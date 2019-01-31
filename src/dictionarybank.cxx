@@ -39,7 +39,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	double value( 0 );
 	HExpression analyser;
 	HInfoItem item( 6 );
-	HRandomizer rnd( 0 );
+	random::HRandomNumberGenerator rng;
 	HDataListWidget* list = dynamic_cast<HDataListWidget*>( _widgets.get_widget_by_no( 1 ) );
 	M_ASSERT( list != NULL );
 	analyser.compile( "A+B" );
@@ -48,14 +48,14 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	HAsIsValueListModel<>::ptr_t controler = list->get_model();
 	for ( int long ctr = 0; ctr < TO_ADD; ctr ++ ) {
 /*		value = list->size ( ) / 100.;*/
-		value = static_cast<double>( rnd() ) / 100.;
+		value = static_cast<double>( rng() ) / 100.;
 /*
 		analyser [ 'A' ] = value;
 		analyser [ 'B' ] = value * value;
 		value = analyser.evaluate ( );
 */
 		item[ 0 ].set_string( tools::money::in_words_pl( value, money::CURRENCY::PLN ) );
-		item[ 1 ].set_string( "wype³niacz" );
+		item[ 1 ].set_string( "wypeÅ‚niacz" );
 /*		iitem [ 2 ] = HString ( value );*/
 		item[ 2 ].set_real( value );
 		controler->add_tail( item );
