@@ -115,8 +115,10 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@vendorName@", vendorName );
 	HString vendorStreet( invoice_._vendor._street );
 	if ( ! invoice_._vendor._streetNo.is_empty() ) {
-		vendorStreet += " ";
-		vendorStreet += invoice_._vendor._streetNo;
+		vendorStreet.append( " " ).append( invoice_._vendor._streetNo );
+		if ( ! invoice_._vendor._flatNo.is_empty() ) {
+			vendorStreet.append( "/" ).append( invoice_._vendor._flatNo );
+		}
 	}
 	invoiceText.replace( "@vendorStreet@", vendorStreet );
 	HString vendorCity( invoice_._vendor._city );
@@ -143,8 +145,10 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceText.replace( "@vendeeName@", vendeeName );
 	HString vendeeStreet( invoice_._vendee._street );
 	if ( ! invoice_._vendee._streetNo.is_empty() ) {
-		vendeeStreet += " ";
-		vendeeStreet += invoice_._vendee._streetNo;
+		vendeeStreet.append( " " ).append( invoice_._vendee._streetNo );
+		if ( ! invoice_._vendee._flatNo.is_empty() ) {
+			vendeeStreet.append( "/" ).append( invoice_._vendee._flatNo );
+		}
 	}
 	invoiceText.replace( "@vendeeStreet@", vendeeStreet );
 	HString vendeeCity( invoice_._vendee._city );

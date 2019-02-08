@@ -332,14 +332,14 @@
 			<label position="stacked">&amp;Email</label>
 			<position row="-8" column="28" height="1" width="24" />
 			<max_string_size>32</max_string_size>
-			<mask>^[a-z0-9\._@-]*$</mask>
-			<valid>^[a-z0-9\._-]\+@[a-z0-9][a-z0-9\.-]*[a-z0-9]$</valid>
+			<mask>^[a-z0-9._@+-]*$</mask>
+			<valid>^[a-z0-9._+-]+@[a-z0-9][a-z0-9.-]*[a-z0-9]$</valid>
 		</dataedit>
 		<dataedit id="window_contracting_party_www" role="data">
 			<label position="stacked">&amp;Strona WWW</label>
 			<position row="-8" column="55" height="1" width="24" />
 			<max_string_size>32</max_string_size>
-			<mask>^[a-z0-9/:\.-]*$</mask>
+			<mask>^[a-z0-9/:.-]*$</mask>
 		</dataedit>
 		<dataedit id="window_contracting_party_extra" role="data">
 			<label position="stacked">&amp;Informacje dodatkowe</label>
