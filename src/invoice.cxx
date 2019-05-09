@@ -228,17 +228,25 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 
 	document_file_names_t documentFileNames;
 
-	HString date( leave_characters( invoice_._invoiceDate, "0123456789-" ) );
+	HString invoiceName;
+	invoiceName
+		.assign( leave_characters( invoice_._invoiceDate, "0123456789-+/_. " ) )
+		.append( "_" )
+		.append( leave_characters( invoice_._invoiceNo, "0123456789-+/_. " ) )
+		.replace( " ", "_" )
+		.replace( "/", "_" )
+		.replace( "+", "_" )
+		.replace( "__", "_" );
 	HString fileName;
 
-	fileName.assign( "fv_" ).append( date ).append( "_orig.tex" );
+	fileName.assign( "fv_" ).append( invoiceName ).append( "_orig.tex" ).replace( "__", "_" );
 	HFile invoice( fileName, HFile::OPEN::WRITING );
 	HUTF8String utf8( invoiceText );
 	invoice.write( utf8.c_str(), utf8.byte_count() );
 	invoice.close();
 	documentFileNames.emplace_back( fileName );
 
-	fileName.assign( "fv_" ).append( date ).append( "_copy.tex" );
+	fileName.assign( "fv_" ).append( invoiceName ).append( "_copy.tex" );
 	HFile invoiceCopy( fileName, HFile::OPEN::WRITING );
 	utf8 = invoiceTextCopy;
 	invoiceCopy.write( utf8.c_str(), utf8.byte_count() );
