@@ -19,10 +19,10 @@ using namespace yaal::dbwrapper;
 namespace booker {
 
 HTestWindow::HTestWindow( const char* title_ )
-	: HWindow( title_ ), _names(), _list( NULL ), _editableList( nullptr ), _edit( NULL ), _name( NULL ) {
+	: HWindow( title_ ), _names(), _list( nullptr ), _editableList( nullptr ), _edit( nullptr ), _name( nullptr ) {
 	M_PROLOG
-	register_postprocess_handler( KEY_CODE::DELETE, NULL, call( &HTestWindow::handler_delete, this, _1 ) );
-	register_postprocess_handler( '\r', NULL, call( &HTestWindow::handler_enter, this, _1 ) );
+	register_postprocess_handler( KEY_CODE::DELETE, nullptr, call( &HTestWindow::handler_delete, this, _1 ) );
+	register_postprocess_handler( '\r', nullptr, call( &HTestWindow::handler_enter, this, _1 ) );
 	return;
 	M_EPILOG
 }
@@ -63,7 +63,7 @@ void HTestWindow::do_init( void ) {
 	_list->enable( true );
 	_list->set_focus();
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Name", 16, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, "", _name ) );
-	HWidget* control( NULL );
+	HWidget* control( nullptr );
 	_list->add_column( -1, make_resource<HListWidget::HColumnInfo>( "Text", 32, HWidget::BITS::ALIGN::LEFT, TYPE::HSTRING, "",
 			control = create_widget<HEditWidget>( this, -16, 27, 1, -1, "Te&xt",
 				HEditWidgetAttributes()

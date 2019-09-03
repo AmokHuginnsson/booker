@@ -19,7 +19,7 @@ class HInvoiceWindow : public HDataWindow {
 public:
 	HInvoiceWindow( yaal::hcore::HString const& title_, HDataProcess* tui_ )
 		: HDataWindow( title_, tui_ ) {
-	  register_postprocess_handler( KEY<'p'>::command, NULL, call( &HInvoiceWindow::handler_print, this, _1 ) );
+	  register_postprocess_handler( KEY<'p'>::command, nullptr, call( &HInvoiceWindow::handler_print, this, _1 ) );
 		return;
 	}
 	bool handler_print( hconsole::HEvent const& ) {

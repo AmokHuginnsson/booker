@@ -23,7 +23,7 @@ namespace booker {
 HDictionaryBank::HDictionaryBank( const char* title_, HDataProcess* owner_ )
 		: HDataWindow( title_, owner_ ) {
 	M_PROLOG
-  register_postprocess_handler( 'a', NULL, call( &HDictionaryBank::handler_add, this, _1 ) );
+  register_postprocess_handler( 'a', nullptr, call( &HDictionaryBank::handler_add, this, _1 ) );
 	return;
 	M_EPILOG
 }
@@ -41,7 +41,7 @@ bool HDictionaryBank::handler_add( hconsole::HEvent const& ) {
 	HInfoItem item( 6 );
 	random::HRandomNumberGenerator rng;
 	HDataListWidget* list = dynamic_cast<HDataListWidget*>( _widgets.get_widget_by_no( 1 ) );
-	M_ASSERT( list != NULL );
+	M_ASSERT( list != nullptr );
 	analyser.compile( "A+B" );
 	int long const TO_ADD = 500000;
 	_statusBar->init_progress ( TO_ADD, _( "Precaching ..." ) );

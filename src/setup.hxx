@@ -22,7 +22,7 @@ struct OSetup {
 		: _quiet( false )
 		, _verbose( false )
 		, _test( false )
-		, _programName( NULL )
+		, _programName( nullptr )
 		, _logPath()
 		, _resource() {
 		return;
