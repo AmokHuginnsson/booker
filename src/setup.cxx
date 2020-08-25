@@ -1,5 +1,7 @@
 /* Read booker/LICENSE.md file for copyright and licensing information. */
 
+#include <cstdio>
+
 #include "setup.hxx"
 M_VCSID( "$Id: " __ID__ " $" )
 #include <yaal/hcore/hfile.hxx>
