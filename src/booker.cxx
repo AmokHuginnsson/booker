@@ -44,7 +44,7 @@ int HBookerProcess::init( const char* processName_ ) {
 	M_REGISTER_MENU_HANDLER ( run_account_map );
 	M_REGISTER_MENU_HANDLER ( run_regular_oblige );
 	*/
-	HDataProcess::init_xrc( processName_, setup._resource );
+	HDataProcess::init_xrc_db( processName_, setup._resource, setup._dsn );
 	return ( 0 );
 	M_EPILOG
 }

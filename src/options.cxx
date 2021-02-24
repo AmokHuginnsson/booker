@@ -50,7 +50,7 @@ int handle_program_options( int argc_, char** argv_ ) {
 	bool vers( false );
 	po(
 		HProgramOptionsHandler::HOption()
-		.long_form( "log_path" )
+		.long_form( "log-path" )
 		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
 		.description( "path pointing to file for application logs" )
 		.recipient(	setup._logPath )
@@ -63,6 +63,13 @@ int handle_program_options( int argc_, char** argv_ ) {
 		.description( "path to resource file" )
 		.recipient( setup._resource )
 		.argument_name( "path" )
+	)(
+		HProgramOptionsHandler::HOption()
+		.long_form( "dsn" )
+		.switch_type( HProgramOptionsHandler::HOption::ARGUMENT::REQUIRED )
+		.description( "DSN for booker's database" )
+		.recipient( setup._dsn )
+		.argument_name( "dsn" )
 	)(
 		HProgramOptionsHandler::HOption()
 		.short_form( 'T' )

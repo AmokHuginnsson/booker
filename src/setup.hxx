@@ -17,6 +17,7 @@ struct OSetup {
 	char * _programName;
 	yaal::hcore::HString _logPath;
 	yaal::hcore::HString _resource;
+	yaal::hcore::HString _dsn;
 	/* self-sufficient */
 	OSetup( void )
 		: _quiet( false )
@@ -24,7 +25,8 @@ struct OSetup {
 		, _test( false )
 		, _programName( nullptr )
 		, _logPath()
-		, _resource() {
+		, _resource()
+		, _dsn() {
 		return;
 	}
 	void test_setup( void );
