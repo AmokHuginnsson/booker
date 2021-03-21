@@ -71,7 +71,7 @@ HString leave_characters( HString const& string_, HString const& characters_ ) {
 			string += *it;
 		}
 	}
-	return ( string );
+	return string;
 	M_EPILOG
 }
 }
@@ -252,7 +252,7 @@ document_file_names_t print( OInvoice const& invoice_ ) {
 	invoiceCopy.write( utf8.c_str(), utf8.byte_count() );
 	invoiceCopy.close();
 	documentFileNames.emplace_back( fileName );
-	return ( documentFileNames );
+	return documentFileNames;
 	M_EPILOG
 }
 

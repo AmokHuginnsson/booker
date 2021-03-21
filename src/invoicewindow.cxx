@@ -35,7 +35,7 @@ class HInvoiceWindowCreator : public HDataWindowCreator {
 		M_ENSURE( dp );
 		HString name( xml::attr_val( node_, "title" ) );
 		HWindow::ptr_t window( make_pointer<HInvoiceWindow>( name, dp ) );
-		return ( window );
+		return window;
 	}
 };
 

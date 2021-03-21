@@ -50,7 +50,7 @@ OContractingParty get_contracting_party(  HDataBase::ptr_t db_, int id_ ) {
 	contractingParty._flatNo.assign( contractingPartyData[10] ? *contractingPartyData[10] : "" );
 	contractingParty._tin.assign( contractingPartyData[11] ? *contractingPartyData[11] : "" );
 	contractingParty._extra.assign( contractingPartyData[16] ? *contractingPartyData[16] : "" );
-	return ( contractingParty );
+	return contractingParty;
 }
 
 }
